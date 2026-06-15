@@ -61,3 +61,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Optionally publish sanitized public dashboard repo
+        env:
+          PUBLIC_DASHBOARD_REPO: ${{ vars.PUBLIC_DASHBOARD_REPO }}
+          PUBLIC_DASHBOARD_BRANCH: ${{ vars.PUBLIC_DASHBOARD_BRANCH || 'main' }}
+          DASHBOARD_DEPLOY_TOKEN: ${{ secrets.DASHBOARD_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$PUBLIC_DASHBOARD_REPO" ] || [ -z "$DASHBOARD_DEPLOY_TOKEN" ]; then
+            echo "PUBLIC_DASHBOARD_REPO or DASHBOARD_DEPLOY_TOKEN not configured; skipping public dashboard publish."
+            exit 0
+          fi
+
+          rm -rf public-dashboard-publish
+          git clone "https://x-access-token:${DASHBOARD_DEPLOY_TOKEN}@github.com/${PUBLIC_DASHBOARD_REPO}.git" public-dashboard-publish
+          cd public-dashboard-publish
+          git checkout "$PUBLIC_DASHBOARD_BRANCH" || git checkout -b "$PUBLIC_DASHBOARD_BRANCH"
+          cd ..
+          find public-dashboard-publish -mindepth 1 -maxdepth 1 ! -name ".git" -exec rm -rf {} +
+          cp -R frontend/dist/. public-dashboard-publish/
+          cd public-dashboard-publish
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No public dashboard changes."
+          else
+            git commit -m "Update stock radar dashboard"
+            git push origin "HEAD:${PUBLIC_DASHBOARD_BRANCH}"
+          fi

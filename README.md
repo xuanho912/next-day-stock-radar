@@ -13,6 +13,8 @@
 5. 输出静态 JSON 到 `frontend/public`。
 6. 静态 Dashboard 只读取本地 JSON，可部署到 GitHub Pages 或 Cloudflare Pages。
 
+正式更新不是靠本地电脑联网。正式模式由 GitHub Actions 在 GitHub 云端联网运行，使用 GitHub Secrets 读取 API key，生成当天 Dashboard，再部署成可随时打开的静态网页。本地 `--offline` 只用于 smoke test，页面会显示 `fallback_only`，不能当作当天雷达。
+
 ## Difference From `market-predictor`
 
 - `market-predictor`: 判断 SPY / QQQ / IWM / DIA 的大盘概率路径。
@@ -99,6 +101,43 @@ Required output fields include:
 - validation status
 
 If the data is stale, missing, or fallback-only, the page must show a warning and cannot pretend it is a fresh forecast.
+
+## Always-Available Dashboard Mode
+
+This project supports the same operating style as `market-predictor`:
+
+```text
+private/core repo -> GitHub Actions -> static dashboard JSON -> GitHub Pages
+```
+
+Recommended URLs after deployment:
+
+```text
+core repo Pages:
+https://xuanho912.github.io/next-day-stock-radar/
+
+optional public dashboard repo:
+https://xuanho912.github.io/next-day-stock-radar-dashboard/
+```
+
+The browser never calls Finnhub, FRED, or Yahoo directly. It only reads generated static JSON. Real data refresh happens inside GitHub Actions.
+
+Optional public-dashboard publishing uses:
+
+Repository variables:
+
+```text
+PUBLIC_DASHBOARD_REPO=xuanho912/next-day-stock-radar-dashboard
+PUBLIC_DASHBOARD_BRANCH=main
+```
+
+Repository secret:
+
+```text
+DASHBOARD_DEPLOY_TOKEN
+```
+
+Use a fine-grained GitHub token with `Contents: read/write` access only to the public dashboard repository.
 
 ## GitHub Pages
 

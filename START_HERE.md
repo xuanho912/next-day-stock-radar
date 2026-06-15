@@ -27,6 +27,14 @@ The page must always show:
 4. Run the workflow manually once:
    - Actions -> Daily Stock Radar -> Run workflow
 
+After deployment, the daily-use URL should be:
+
+```text
+https://xuanho912.github.io/next-day-stock-radar/
+```
+
+If the core repository is private, create a public `next-day-stock-radar-dashboard` repo and configure `PUBLIC_DASHBOARD_REPO`, `PUBLIC_DASHBOARD_BRANCH`, and `DASHBOARD_DEPLOY_TOKEN` as described in `docs/private_core_public_dashboard.md`.
+
 ## Local Smoke Test
 
 ```powershell
@@ -34,7 +42,7 @@ python scripts\run_daily_radar.py --offline
 python scripts\export_static_dashboard.py
 ```
 
-The offline mode uses deterministic fallback data. It is only for smoke tests and must be labeled as fallback / not fully validated.
+The offline mode uses deterministic fallback data. It is only for smoke tests and must be labeled as `fallback_only` / not fully validated. Do not use offline output as the live daily radar.
 
 ## Daily Use
 
