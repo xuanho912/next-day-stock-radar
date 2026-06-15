@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next-Day Stock Radar</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Next-Day Stock Radar</p>
+        <h1>次日高弹性股票投机机会雷达</h1>
+      </div>
+      <div id="freshnessBadge" class="badge neutral">loading</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="summary-panel">
+          <p class="eyebrow">今日雷达总结</p>
+          <h2 id="radarDecision">加载中</h2>
+          <p id="radarSummary" class="summary-text"></p>
+          <div class="hero-grid">
+            <div><span>明天高弹性机会</span><strong id="opportunityStatus">-</strong></div>
+            <div><span>市场背景</span><strong id="marketState">-</strong></div>
+            <div><span>最强候选类型</span><strong id="candidateType">-</strong></div>
+            <div><span>风险等级</span><strong id="riskLevel">-</strong></div>
+            <div><span>数据日期</span><strong id="dataDate">-</strong></div>
+            <div><span>模型验证</span><strong id="validationStatus">-</strong></div>
+          </div>
+        </div>
+
+        <div class="top-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Top Candidates</p>
+              <h2>最强候选股票</h2>
+            </div>
+          </div>
+          <div id="topPreview" class="top-preview"></div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Ranked List</p>
+            <h2>次日候选榜</h2>
+          </div>
+          <div id="candidateCount" class="badge info">0 candidates</div>
+        </div>
+        <div class="table-wrap">
+          <table id="candidateTable">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Ticker</th>
+                <th>Company</th>
+                <th>Close</th>
+                <th>Type</th>
+                <th>Elasticity</th>
+                <th>Confluence</th>
+                <th>Catalyst</th>
+                <th>Risk</th>
+                <th>Scenario</th>
+                <th>Range</th>
+                <th>Trigger</th>
+                <th>Invalidation</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="band detail-band">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Candidate Detail</p>
+            <h2 id="detailTitle">个股详情</h2>
+          </div>
+          <div id="detailRating" class="badge neutral">-</div>
+        </div>
+        <div id="candidateDetail" class="detail-grid"></div>
+      </section>
+
+      <section class="band muted">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Validation</p>
+            <h2>预测验证</h2>
+          </div>
+          <div id="validationBadge" class="badge neutral">not_yet_validated</div>
+        </div>
+        <div id="validationGrid" class="metric-grid"></div>
+        <div class="validation-layout">
+          <div>
+            <h3>Baseline vs Challenger</h3>
+            <div id="modelCompare" class="fact-list"></div>
+          </div>
+          <div>
+            <h3>Data Quality</h3>
+            <div id="dataQuality" class="fact-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

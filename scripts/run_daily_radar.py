@@ -1,0 +1,340 @@
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS_ROOT = PROJECT_ROOT / "scripts"
+if str(SCRIPTS_ROOT) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_ROOT))
+
+from candidate_ranking_engine import rank_candidates
+from forecast_validation_engine import public_records, update_forecast_ledger
+from providers.finnhub_provider import fetch_finnhub_bundle
+from providers.fred_provider import fetch_fred_bundle
+from providers.market_context_provider import CORE_MARKET_SYMBOLS, RISK_SYMBOLS, build_market_context
+from providers.news_event_provider import build_news_events
+from providers.stock_fundamental_provider import build_fundamental_snapshot
+from providers.yahoo_provider import fetch_price_series
+from stock_prediction_engine import build_stock_predictions
+
+
+OUTPUTS_DIR = PROJECT_ROOT / "outputs"
+PUBLIC_DIR = PROJECT_ROOT / "frontend" / "public"
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Run the daily next-day stock radar pipeline.")
+    parser.add_argument("--offline", action="store_true", help="Use deterministic fallback data for smoke tests.")
+    parser.add_argument("--limit", type=int, default=0, help="Optional watchlist limit for local debugging.")
+    args = parser.parse_args(argv)
+
+    OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+
+    watchlist = _read_json(PROJECT_ROOT / "config" / "watchlist.json")
+    sector_map = _read_json(PROJECT_ROOT / "config" / "sector_map.json")
+    benchmark_map = _read_json(PROJECT_ROOT / "config" / "benchmark_map.json")
+
+    symbols = list(watchlist["symbols"])
+    if args.limit:
+        symbols = symbols[: args.limit]
+    benchmark_symbols = sorted(set(CORE_MARKET_SYMBOLS + RISK_SYMBOLS + _benchmark_symbols(benchmark_map) + symbols))
+
+    series_by_symbol = fetch_price_series(benchmark_symbols, offline=args.offline)
+    market_context = build_market_context(series_by_symbol)
+    finnhub_bundle = fetch_finnhub_bundle(symbols, offline=args.offline)
+    fred_bundle = fetch_fred_bundle(offline=args.offline)
+    news_events = build_news_events(symbols, finnhub_bundle)
+    fundamentals = build_fundamental_snapshot(symbols, finnhub_bundle)
+    prediction_payload = build_stock_predictions(
+        symbols=symbols,
+        sector_map=sector_map,
+        benchmark_map=benchmark_map,
+        series_by_symbol=series_by_symbol,
+        news_events=news_events,
+        fundamentals=fundamentals,
+        market_context=market_context,
+    )
+    baseline = rank_candidates(prediction_payload, market_context, model_version="baseline_v1")
+    challenger = rank_candidates(prediction_payload, market_context, model_version="challenger_strict_v1")
+    validation = update_forecast_ledger(
+        baseline_ranking=baseline,
+        challenger_ranking=challenger,
+        market_context=market_context,
+        series_by_symbol=series_by_symbol,
+        records_path=OUTPUTS_DIR / "stock_forecast_records.csv",
+    )
+
+    provider_status = _provider_status(series_by_symbol, finnhub_bundle, fred_bundle)
+    data_quality = _data_quality_report(market_context, provider_status, len(baseline["candidates"]))
+    dashboard = _dashboard_payload(
+        market_context=market_context,
+        provider_status=provider_status,
+        baseline=baseline,
+        challenger=challenger,
+        validation=validation,
+        prediction_payload=prediction_payload,
+        data_quality=data_quality,
+    )
+    top_candidates = {
+        "version": "top_candidates_v1",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "model_version": baseline["model_version"],
+        "candidates": _public_candidates(baseline["candidates"][:20]),
+    }
+    records_payload = public_records(OUTPUTS_DIR / "stock_forecast_records.csv")
+
+    _write_json(PUBLIC_DIR / "stock-radar-dashboard.json", dashboard)
+    _write_json(PUBLIC_DIR / "top-candidates.json", top_candidates)
+    _write_json(PUBLIC_DIR / "stock-forecast-records.json", records_payload)
+    _write_json(PUBLIC_DIR / "validation-scorecard.json", validation)
+    _write_json(OUTPUTS_DIR / "stock_radar_dashboard.json", dashboard)
+    _write_json(OUTPUTS_DIR / "validation_scorecard.json", validation)
+    _write_text(OUTPUTS_DIR / "daily_stock_radar_report.md", _render_daily_report(dashboard))
+    _write_text(OUTPUTS_DIR / "candidate_validation_report.md", _render_validation_report(validation))
+    _write_text(OUTPUTS_DIR / "data_quality_report.md", _render_data_quality_report(data_quality))
+
+    print(
+        json.dumps(
+            {
+                "latest_data_date": market_context.get("latest_data_date"),
+                "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
+                "data_freshness_status": market_context.get("data_freshness_status"),
+                "candidate_count": len(baseline["candidates"]),
+                "top_candidates": [candidate["ticker"] for candidate in baseline["candidates"][:10]],
+                "validation_status": validation.get("validation_status"),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    return 0
+
+
+def _dashboard_payload(
+    *,
+    market_context: dict[str, Any],
+    provider_status: dict[str, Any],
+    baseline: dict[str, Any],
+    challenger: dict[str, Any],
+    validation: dict[str, Any],
+    prediction_payload: dict[str, Any],
+    data_quality: dict[str, Any],
+) -> dict[str, Any]:
+    official = baseline["candidates"]
+    actionable = [candidate for candidate in official if candidate["rating"] in {"A+", "A"}]
+    strongest_type = actionable[0]["candidate_type"] if actionable else official[0]["candidate_type"] if official else "none"
+    high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and market_context.get("data_freshness_status") == "fresh"
+    return {
+        "version": "stock_radar_dashboard_v1",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "latest_data_date": market_context.get("latest_data_date"),
+        "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
+        "data_freshness_status": market_context.get("data_freshness_status"),
+        "stale_warning": market_context.get("stale_warning"),
+        "provider_status": provider_status,
+        "candidate_count": len(official),
+        "top_candidate_count": len(actionable),
+        "high_elasticity_opportunity": high_elasticity_opportunity,
+        "radar_summary": _radar_summary(market_context, actionable, validation),
+        "market_context": market_context,
+        "strongest_candidate_type": strongest_type,
+        "current_risk_level": market_context.get("risk_level"),
+        "model_validation_status": validation.get("validation_status"),
+        "top_candidates": _public_candidates(official[:20]),
+        "avoid_candidates": _public_candidates([candidate for candidate in official if candidate["rating"] == "C"][:12]),
+        "sector_strength": prediction_payload.get("sector_strength", {}),
+        "validation": validation,
+        "models": {
+            "baseline": {"model_version": baseline["model_version"], "role": "official"},
+            "challenger": {"model_version": challenger["model_version"], "role": "shadow_only"},
+        },
+        "data_quality": data_quality,
+    }
+
+
+def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows = []
+    for candidate in candidates:
+        rows.append(
+            {
+                "rank": candidate.get("rank"),
+                "ticker": candidate.get("ticker"),
+                "company_name": candidate.get("company_name"),
+                "sector": candidate.get("sector"),
+                "last_close": candidate.get("last_close"),
+                "candidate_type": candidate.get("candidate_type"),
+                "rating": candidate.get("rating"),
+                "elasticity_score": candidate.get("elasticity_score"),
+                "confluence_score": candidate.get("confluence_score"),
+                "catalyst_score": candidate.get("catalyst_score"),
+                "risk_score": candidate.get("risk_score"),
+                "primary_scenario": candidate.get("primary_scenario"),
+                "secondary_scenario": candidate.get("secondary_scenario"),
+                "risk_scenario": candidate.get("risk_scenario"),
+                "next_day_expected_range": candidate.get("next_day_expected_range"),
+                "upside_trigger_level": candidate.get("upside_trigger_level"),
+                "invalidation_level": candidate.get("invalidation_level"),
+                "gap_fill_level": candidate.get("gap_fill_level"),
+                "recent_support": candidate.get("recent_support"),
+                "recent_resistance": candidate.get("recent_resistance"),
+                "reason": candidate.get("reason"),
+                "trade_plan": candidate.get("trade_plan"),
+                "news": candidate.get("news"),
+                "relative_strength": (candidate.get("features") or {}).get("relative_strength_5d"),
+                "relative_volume": (candidate.get("features") or {}).get("relative_volume"),
+                "dollar_volume_m": (candidate.get("features") or {}).get("dollar_volume_m"),
+                "price_history": (candidate.get("features") or {}).get("price_history"),
+                "historical_similar_samples": candidate.get("historical_similar_samples"),
+                "supporting_evidence": candidate.get("supporting_evidence"),
+                "conflicting_evidence": candidate.get("conflicting_evidence"),
+                "validation_status": candidate.get("validation_status"),
+            }
+        )
+    return rows
+
+
+def _data_quality_report(market_context: dict[str, Any], provider_status: dict[str, Any], candidate_count: int) -> dict[str, Any]:
+    score = 100
+    if market_context.get("data_freshness_status") != "fresh":
+        score -= 28
+    if provider_status["yahoo"].get("fallback_count", 0) > 0:
+        score -= min(35, provider_status["yahoo"]["fallback_count"] * 2)
+    if not provider_status["finnhub"].get("available"):
+        score -= 12
+    if candidate_count < 10:
+        score -= 10
+    return {
+        "version": "data_quality_report_v1",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "score": max(0, score),
+        "latest_data_date": market_context.get("latest_data_date"),
+        "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
+        "data_freshness_status": market_context.get("data_freshness_status"),
+        "stale_warning": bool(market_context.get("stale_warning")),
+        "provider_status": provider_status,
+        "candidate_count": candidate_count,
+    }
+
+
+def _provider_status(series_by_symbol: dict[str, Any], finnhub_bundle: dict[str, Any], fred_bundle: dict[str, Any]) -> dict[str, Any]:
+    fallback_count = sum(1 for series in series_by_symbol.values() if not series.real_data)
+    return {
+        "yahoo": {
+            "available": fallback_count < len(series_by_symbol),
+            "total_symbols": len(series_by_symbol),
+            "fallback_count": fallback_count,
+            "sources": sorted({series.source for series in series_by_symbol.values()}),
+        },
+        "finnhub": {
+            "configured": bool(finnhub_bundle.get("configured")),
+            "available": bool(finnhub_bundle.get("available")),
+            "source": finnhub_bundle.get("source"),
+            "error_count": len(finnhub_bundle.get("errors") or {}),
+        },
+        "fred": {
+            "configured": bool(fred_bundle.get("configured")),
+            "available": bool(fred_bundle.get("available")),
+            "source": fred_bundle.get("source"),
+            "error_count": len(fred_bundle.get("errors") or {}),
+        },
+    }
+
+
+def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, Any]], validation: dict[str, Any]) -> str:
+    if market_context.get("data_freshness_status") != "fresh":
+        return "Data is stale or incomplete; dashboard must be treated as observation only."
+    if market_context.get("market_state") == "defense":
+        return "Market background is defensive; avoid chasing and require trigger confirmation."
+    if actionable:
+        return f"{len(actionable)} actionable candidates passed baseline confluence gates; validation status is {validation.get('validation_status')}."
+    return "No high-confluence candidates today; fewer names is better than false precision."
+
+
+def _benchmark_symbols(benchmark_map: dict[str, Any]) -> list[str]:
+    symbols = set(benchmark_map.get("market_benchmarks", []))
+    symbols.update(benchmark_map.get("risk_benchmarks", []))
+    for values in (benchmark_map.get("sector_benchmarks") or {}).values():
+        symbols.update(values)
+    return list(symbols)
+
+
+def _render_daily_report(dashboard: dict[str, Any]) -> str:
+    lines = [
+        "# Daily Stock Radar Report",
+        "",
+        f"- generated_at: `{dashboard.get('generated_at')}`",
+        f"- latest_data_date: `{dashboard.get('latest_data_date')}`",
+        f"- expected_latest_trading_date: `{dashboard.get('expected_latest_trading_date')}`",
+        f"- data_freshness_status: `{dashboard.get('data_freshness_status')}`",
+        f"- market_state: `{(dashboard.get('market_context') or {}).get('market_state')}`",
+        f"- high_elasticity_opportunity: `{dashboard.get('high_elasticity_opportunity')}`",
+        f"- validation_status: `{dashboard.get('model_validation_status')}`",
+        "",
+        "## Top Candidates",
+        "",
+        "| Rank | Ticker | Rating | Elasticity | Confluence | Trigger | Invalidation | Reason |",
+        "| ---: | --- | --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for candidate in dashboard.get("top_candidates", [])[:20]:
+        lines.append(
+            f"| {candidate.get('rank')} | {candidate.get('ticker')} | {candidate.get('rating')} | "
+            f"{candidate.get('elasticity_score')} | {candidate.get('confluence_score')} | "
+            f"{candidate.get('upside_trigger_level')} | {candidate.get('invalidation_level')} | {candidate.get('reason')} |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _render_validation_report(validation: dict[str, Any]) -> str:
+    baseline = validation.get("baseline") or {}
+    return "\n".join(
+        [
+            "# Candidate Validation Report",
+            "",
+            f"- validation_status: `{validation.get('validation_status')}`",
+            f"- pending_forecasts: `{validation.get('pending_forecasts')}`",
+            f"- completed_next_day_forecasts: `{validation.get('completed_next_day_forecasts')}`",
+            f"- top5_hit_rate: `{baseline.get('top5_hit_rate')}`",
+            f"- avg_trigger_buy_return: `{baseline.get('avg_trigger_buy_return')}`",
+            f"- avg_max_drawdown: `{baseline.get('avg_max_drawdown')}`",
+            "",
+        ]
+    )
+
+
+def _render_data_quality_report(data_quality: dict[str, Any]) -> str:
+    lines = ["# Data Quality Report", ""]
+    for key in ("score", "latest_data_date", "expected_latest_trading_date", "data_freshness_status", "stale_warning", "candidate_count"):
+        lines.append(f"- {key}: `{data_quality.get(key)}`")
+    lines.append("")
+    lines.append("## Provider Status")
+    lines.append("")
+    for name, status in (data_quality.get("provider_status") or {}).items():
+        lines.append(f"- {name}: `{status}`")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _read_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

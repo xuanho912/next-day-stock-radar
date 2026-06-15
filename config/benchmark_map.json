@@ -1,0 +1,24 @@
+{
+  "version": "benchmark_map_v1",
+  "market_benchmarks": ["SPY", "QQQ", "IWM", "DIA"],
+  "risk_benchmarks": ["^VIX", "^TNX", "TLT", "UUP", "HYG", "LQD"],
+  "sector_benchmarks": {
+    "AI / Semiconductors": ["SMH", "QQQ", "NVDA"],
+    "AI Infrastructure": ["SMH", "QQQ", "NVDA"],
+    "AI Software": ["IGV", "QQQ", "PLTR"],
+    "Quantum / High Beta": ["IWM", "QQQ"],
+    "High Beta / EV": ["IWM", "TSLA"],
+    "Crypto Proxy": ["BTC-USD", "COIN", "MSTR"],
+    "Crypto Miners": ["BTC-USD", "RIOT", "MARA"],
+    "Nuclear / Power": ["XLU", "URA", "CEG"],
+    "Space / High Beta": ["IWM", "ARKK"],
+    "Aviation / High Beta": ["IWM", "ARKK"],
+    "Biotech": ["XBI", "IBB"],
+    "Biotech / AI Drug": ["XBI", "IBB"],
+    "Meme / Squeeze": ["IWM", "GME"],
+    "Fintech / Trading": ["ARKF", "QQQ"],
+    "China ADR": ["KWEB", "FXI"],
+    "China ADR / AI": ["KWEB", "FXI"],
+    "China ADR / EV": ["KWEB", "FXI"]
+  }
+}
