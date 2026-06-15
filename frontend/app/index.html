@@ -17,62 +17,52 @@
 
     <main>
       <section class="hero">
-        <div class="summary-panel">
-          <p class="eyebrow">今日雷达总结</p>
+        <div class="summary-panel command-center">
+          <p class="eyebrow">Command Center</p>
           <h2 id="radarDecision">加载中</h2>
+          <p class="disclaimer">这是次日高弹性概率雷达，不是投资建议或交易指令。</p>
           <p id="radarSummary" class="summary-text"></p>
           <div class="hero-grid">
-            <div><span>明天高弹性机会</span><strong id="opportunityStatus">-</strong></div>
+            <div><span>明日机会</span><strong id="opportunityStatus">-</strong></div>
+            <div><span>最强候选</span><strong id="strongestCandidate">-</strong></div>
+            <div><span>最强方向</span><strong id="strongestDirection">-</strong></div>
             <div><span>市场背景</span><strong id="marketState">-</strong></div>
-            <div><span>最强候选类型</span><strong id="candidateType">-</strong></div>
+            <div><span>适合筛选</span><strong id="screeningStatus">-</strong></div>
             <div><span>风险等级</span><strong id="riskLevel">-</strong></div>
             <div><span>数据日期</span><strong id="dataDate">-</strong></div>
             <div><span>模型验证</span><strong id="validationStatus">-</strong></div>
           </div>
         </div>
 
-        <div class="top-panel">
+        <div class="top-panel command-table">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Top Candidates</p>
-              <h2>最强候选股票</h2>
+              <p class="eyebrow">Top Candidates Table</p>
+              <h2>次日候选榜</h2>
             </div>
+            <div id="candidateCount" class="badge info">0 candidates</div>
           </div>
-          <div id="topPreview" class="top-preview"></div>
-        </div>
-      </section>
-
-      <section class="band">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Ranked List</p>
-            <h2>次日候选榜</h2>
+          <div class="table-wrap compact-table">
+            <table id="candidateTable">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Ticker</th>
+                  <th>Type</th>
+                  <th>Elasticity</th>
+                  <th>Confluence</th>
+                  <th>Catalyst</th>
+                  <th>Risk</th>
+                  <th>Primary Scenario</th>
+                  <th>Range</th>
+                  <th>Trigger</th>
+                  <th>Invalidation</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-          <div id="candidateCount" class="badge info">0 candidates</div>
-        </div>
-        <div class="table-wrap">
-          <table id="candidateTable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Ticker</th>
-                <th>Company</th>
-                <th>Close</th>
-                <th>Type</th>
-                <th>Edge</th>
-                <th>Elasticity</th>
-                <th>Confluence</th>
-                <th>Catalyst</th>
-                <th>Risk</th>
-                <th>Scenario</th>
-                <th>Range</th>
-                <th>Trigger</th>
-                <th>Invalidation</th>
-                <th>Reason</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
         </div>
       </section>
 

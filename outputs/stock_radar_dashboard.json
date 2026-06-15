@@ -1,6 +1,6 @@
 {
   "version": "stock_radar_dashboard_v1",
-  "generated_at": "2026-06-15T14:16:51.007626+00:00",
+  "generated_at": "2026-06-15T14:32:12.133171+00:00",
   "latest_data_date": "2026-06-15",
   "expected_latest_trading_date": "2026-06-15",
   "data_freshness_status": "fresh",
@@ -41,7 +41,7 @@
   "high_elasticity_opportunity": false,
   "radar_summary": "Market background is defensive; avoid chasing and require trigger confirmation.",
   "market_context": {
-    "generated_at": "2026-06-15T14:16:50.946261+00:00",
+    "generated_at": "2026-06-15T14:32:12.063169+00:00",
     "latest_data_date": "2026-06-15",
     "expected_latest_trading_date": "2026-06-15",
     "data_freshness_status": "fresh",
@@ -205,7 +205,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -233,7 +233,7 @@
           "label": "75.11 to 83.92"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "ASTS",
@@ -1461,7 +1461,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 2,
@@ -1552,7 +1552,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -1580,7 +1580,7 @@
           "label": "38.49 to 43.13"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "SMCI",
@@ -2808,7 +2808,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 3,
@@ -2899,7 +2899,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -2927,7 +2927,7 @@
           "label": "104.88 to 118.25"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "SOUN",
@@ -4155,7 +4155,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 4,
@@ -4246,7 +4246,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -4274,7 +4274,7 @@
           "label": "35.46 to 39.73"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "SAVA",
@@ -5502,7 +5502,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 5,
@@ -5593,7 +5593,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -5621,7 +5621,7 @@
           "label": "64.30 to 71.75"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "CRSP",
@@ -6849,7 +6849,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 6,
@@ -6940,7 +6940,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -6968,7 +6968,7 @@
           "label": "81.06 to 91.16"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "RIOT",
@@ -8196,7 +8196,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 7,
@@ -8287,7 +8287,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -8315,7 +8315,7 @@
           "label": "61.67 to 69.70"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "AMD",
@@ -9543,7 +9543,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 8,
@@ -9634,7 +9634,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -9662,7 +9662,7 @@
           "label": "39.08 to 43.65"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "AVGO",
@@ -10890,7 +10890,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 9,
@@ -10981,7 +10981,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -11009,7 +11009,7 @@
           "label": "93.20 to 104.09"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "NNE",
@@ -12237,7 +12237,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 10,
@@ -12328,7 +12328,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -12356,7 +12356,7 @@
           "label": "32.13 to 36.15"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "COIN",
@@ -13584,7 +13584,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 11,
@@ -13675,7 +13675,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -13703,7 +13703,7 @@
           "label": "89.73 to 101.34"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "LUNR",
@@ -14931,7 +14931,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 12,
@@ -15022,7 +15022,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -15050,7 +15050,7 @@
           "label": "35.47 to 39.72"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "RKLB",
@@ -16278,7 +16278,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 13,
@@ -16369,7 +16369,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -16397,7 +16397,7 @@
           "label": "83.93 to 94.56"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "RIVN",
@@ -17625,7 +17625,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 14,
@@ -17716,7 +17716,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -17744,7 +17744,7 @@
           "label": "33.76 to 37.90"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "HOOD",
@@ -18972,7 +18972,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 15,
@@ -19063,7 +19063,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -19091,7 +19091,7 @@
           "label": "95.60 to 107.90"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "XPEV",
@@ -20319,7 +20319,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 16,
@@ -20410,7 +20410,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / price_structure_unconfirmed",
       "trade_plan": {
@@ -20438,7 +20438,7 @@
           "label": "135.74 to 151.54"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "RXRX",
@@ -21666,7 +21666,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 17,
@@ -21757,7 +21757,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / price_structure_unconfirmed",
       "trade_plan": {
@@ -21785,7 +21785,7 @@
           "label": "121.37 to 135.50"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "VKTX",
@@ -23013,7 +23013,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 18,
@@ -23104,7 +23104,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -23132,7 +23132,7 @@
           "label": "54.07 to 60.32"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "JOBY",
@@ -24360,7 +24360,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 19,
@@ -24451,7 +24451,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -24479,7 +24479,7 @@
           "label": "54.07 to 60.32"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "TSLA",
@@ -25707,7 +25707,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 20,
@@ -25798,7 +25798,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -25826,7 +25826,7 @@
           "label": "25.16 to 28.31"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "BIDU",
@@ -27054,7 +27054,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     }
   ],
   "avoid_candidates": [
@@ -27147,7 +27147,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -27175,7 +27175,7 @@
           "label": "75.11 to 83.92"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "ASTS",
@@ -28403,7 +28403,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 2,
@@ -28494,7 +28494,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -28522,7 +28522,7 @@
           "label": "38.49 to 43.13"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "SMCI",
@@ -29750,7 +29750,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 3,
@@ -29841,7 +29841,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -29869,7 +29869,7 @@
           "label": "104.88 to 118.25"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "SOUN",
@@ -31097,7 +31097,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 4,
@@ -31188,7 +31188,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -31216,7 +31216,7 @@
           "label": "35.46 to 39.73"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "SAVA",
@@ -32444,7 +32444,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 5,
@@ -32535,7 +32535,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -32563,7 +32563,7 @@
           "label": "64.30 to 71.75"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "CRSP",
@@ -33791,7 +33791,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 6,
@@ -33882,7 +33882,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -33910,7 +33910,7 @@
           "label": "81.06 to 91.16"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "RIOT",
@@ -35138,7 +35138,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 7,
@@ -35229,7 +35229,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -35257,7 +35257,7 @@
           "label": "61.67 to 69.70"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "AMD",
@@ -36485,7 +36485,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 8,
@@ -36576,7 +36576,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -36604,7 +36604,7 @@
           "label": "39.08 to 43.65"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "AVGO",
@@ -37832,7 +37832,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 9,
@@ -37923,7 +37923,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / sector_context_weak",
       "trade_plan": {
@@ -37951,7 +37951,7 @@
           "label": "93.20 to 104.09"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "NNE",
@@ -39179,7 +39179,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 10,
@@ -39270,7 +39270,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -39298,7 +39298,7 @@
           "label": "32.13 to 36.15"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "COIN",
@@ -40526,7 +40526,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 11,
@@ -40617,7 +40617,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -40645,7 +40645,7 @@
           "label": "89.73 to 101.34"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "LUNR",
@@ -41873,7 +41873,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     },
     {
       "rank": 12,
@@ -41964,7 +41964,7 @@
         "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
         "downside_risk_level": "Breaking below this level means the risk path is taking control.",
         "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-        "note": "These are probabilistic path levels, not buy/sell advice."
+        "note": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "reason": "Capped: weak_or_missing_catalyst / defensive_market_context",
       "trade_plan": {
@@ -41992,7 +41992,7 @@
           "label": "35.47 to 39.72"
         },
         "overnight_or_intraday": "intraday_confirm_only",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice."
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions."
       },
       "news": {
         "symbol": "RKLB",
@@ -43220,7 +43220,7 @@
         }
       ],
       "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions."
+      "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions."
     }
   ],
   "excluded_candidates": [],
@@ -43404,7 +43404,7 @@
   },
   "validation": {
     "version": "validation_scorecard_v2",
-    "generated_at": "2026-06-15T14:16:51.006620+00:00",
+    "generated_at": "2026-06-15T14:32:12.132008+00:00",
     "validation_status": "not_yet_validated",
     "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
     "pending_forecasts": 20,
@@ -43422,8 +43422,8 @@
       "avg_next_day_high_gain": null,
       "avg_next_day_close_gain": null,
       "avg_max_drawdown": null,
-      "avg_open_buy_return": null,
-      "avg_trigger_buy_return": null,
+      "avg_open_condition_return": null,
+      "avg_trigger_condition_return": null,
       "profit_factor": null,
       "high_confluence_avg_next_day_return": null,
       "low_confluence_avg_next_day_return": null,
@@ -43448,8 +43448,8 @@
       "avg_next_day_high_gain": null,
       "avg_next_day_close_gain": null,
       "avg_max_drawdown": null,
-      "avg_open_buy_return": null,
-      "avg_trigger_buy_return": null,
+      "avg_open_condition_return": null,
+      "avg_trigger_condition_return": null,
       "profit_factor": null,
       "high_confluence_avg_next_day_return": null,
       "low_confluence_avg_next_day_return": null,
@@ -43483,8 +43483,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43511,8 +43511,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43537,8 +43537,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43563,8 +43563,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43589,8 +43589,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43615,8 +43615,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43641,8 +43641,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43667,8 +43667,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43693,8 +43693,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43719,8 +43719,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43745,8 +43745,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43771,8 +43771,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43797,8 +43797,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43823,8 +43823,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43849,8 +43849,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43877,8 +43877,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43905,8 +43905,8 @@
         "avg_next_day_high_gain": null,
         "avg_next_day_close_gain": null,
         "avg_max_drawdown": null,
-        "avg_open_buy_return": null,
-        "avg_trigger_buy_return": null,
+        "avg_open_condition_return": null,
+        "avg_trigger_condition_return": null,
         "profit_factor": null,
         "high_confluence_avg_next_day_return": null,
         "low_confluence_avg_next_day_return": null,
@@ -43921,14 +43921,14 @@
     },
     "guardrails": [
       "This is a forecast ledger, not a trading or PnL ledger.",
-      "High gain alone is not enough; trigger-buy and drawdown are tracked separately.",
+      "High gain alone is not enough; trigger-condition return and drawdown are tracked separately.",
       "Forecast fields are immutable; outcome backfill only updates realized fields.",
       "Challenger must remain shadow until future samples prove improvement."
     ]
   },
   "model_leaderboard": {
     "version": "stock_model_leaderboard_v1",
-    "generated_at": "2026-06-15T14:16:51.007626+00:00",
+    "generated_at": "2026-06-15T14:32:12.133145+00:00",
     "active_baseline": "stock_radar_baseline_v1",
     "validation_status": "not_yet_validated",
     "models": [
@@ -43949,8 +43949,8 @@
           "avg_next_day_high_gain": null,
           "avg_next_day_close_gain": null,
           "avg_max_drawdown": null,
-          "avg_open_buy_return": null,
-          "avg_trigger_buy_return": null,
+          "avg_open_condition_return": null,
+          "avg_trigger_condition_return": null,
           "profit_factor": null,
           "high_confluence_avg_next_day_return": null,
           "low_confluence_avg_next_day_return": null,
@@ -43981,8 +43981,8 @@
           "avg_next_day_high_gain": null,
           "avg_next_day_close_gain": null,
           "avg_max_drawdown": null,
-          "avg_open_buy_return": null,
-          "avg_trigger_buy_return": null,
+          "avg_open_condition_return": null,
+          "avg_trigger_condition_return": null,
           "profit_factor": null,
           "high_confluence_avg_next_day_return": null,
           "low_confluence_avg_next_day_return": null,
@@ -44023,7 +44023,7 @@
   },
   "data_quality": {
     "version": "data_quality_report_v1",
-    "generated_at": "2026-06-15T14:16:51.007626+00:00",
+    "generated_at": "2026-06-15T14:32:12.133163+00:00",
     "score": 53,
     "latest_data_date": "2026-06-15",
     "expected_latest_trading_date": "2026-06-15",

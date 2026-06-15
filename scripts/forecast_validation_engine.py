@@ -66,8 +66,8 @@ CSV_FIELDS = [
     "entry_triggered",
     "stop_triggered",
     "target_hit",
-    "open_buy_return",
-    "trigger_buy_return",
+    "open_condition_return",
+    "trigger_condition_return",
     "executable_result",
 ]
 
@@ -126,7 +126,7 @@ def build_validation_scorecard(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "by_edge_status": _bucket_metrics(baseline, "edge_status"),
         "guardrails": [
             "This is a forecast ledger, not a trading or PnL ledger.",
-            "High gain alone is not enough; trigger-buy and drawdown are tracked separately.",
+            "High gain alone is not enough; trigger-condition return and drawdown are tracked separately.",
             "Forecast fields are immutable; outcome backfill only updates realized fields.",
             "Challenger must remain shadow until future samples prove improvement.",
         ],
@@ -309,8 +309,8 @@ def _backfill_row(row: dict[str, Any], series_by_symbol: dict[str, PriceSeries])
                 "entry_triggered": str(entry_triggered).lower(),
                 "stop_triggered": str(stop_triggered).lower(),
                 "target_hit": str(target_hit).lower(),
-                "open_buy_return": _fmt(next_row["close"] / next_row["open"] - 1),
-                "trigger_buy_return": _fmt(next_row["close"] / trigger - 1) if entry_triggered else "",
+                "open_condition_return": _fmt(next_row["close"] / next_row["open"] - 1),
+                "trigger_condition_return": _fmt(next_row["close"] / trigger - 1) if entry_triggered else "",
                 "executable_result": "target_hit" if target_hit else "stopped" if stop_triggered else "triggered_no_target" if entry_triggered else "not_triggered",
                 "status": "completed",
             }
@@ -330,7 +330,7 @@ def _metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     no_catalyst = [row for row in completed if (_float(row.get("catalyst_score")) or 0) < 60]
     high_risk = [row for row in completed if (_float(row.get("risk_score")) or 0) >= 55]
     lower_risk = [row for row in completed if (_float(row.get("risk_score")) or 0) < 55]
-    all_trigger_returns = [_float(row.get("trigger_buy_return")) for row in completed if _float(row.get("trigger_buy_return")) is not None]
+    all_trigger_returns = [_float(row.get("trigger_condition_return")) for row in completed if _float(row.get("trigger_condition_return")) is not None]
     wins = [value for value in all_trigger_returns if value and value > 0]
     losses = [value for value in all_trigger_returns if value and value < 0]
     return {
@@ -346,8 +346,8 @@ def _metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "avg_next_day_high_gain": _avg_float(completed, "next_day_high_gain"),
         "avg_next_day_close_gain": _avg_float(completed, "next_day_close_gain"),
         "avg_max_drawdown": _avg_float(completed, "next_day_max_drawdown"),
-        "avg_open_buy_return": _avg_float(completed, "open_buy_return"),
-        "avg_trigger_buy_return": _avg_values(all_trigger_returns),
+        "avg_open_condition_return": _avg_float(completed, "open_condition_return"),
+        "avg_trigger_condition_return": _avg_values(all_trigger_returns),
         "profit_factor": abs(sum(wins) / sum(losses)) if losses else None,
         "high_confluence_avg_next_day_return": _avg_float(high_confluence, "actual_next_day_return"),
         "low_confluence_avg_next_day_return": _avg_float(low_confluence, "actual_next_day_return"),
@@ -374,7 +374,7 @@ def _compare(baseline: dict[str, Any], challenger: dict[str, Any]) -> dict[str, 
     return {
         "challenger_shadow_only": True,
         "completed_sample_gap": (challenger.get("completed_next_day_forecasts") or 0) - (baseline.get("completed_next_day_forecasts") or 0),
-        "trigger_return_delta": _none_safe(challenger.get("avg_trigger_buy_return")) - _none_safe(baseline.get("avg_trigger_buy_return")),
+        "trigger_return_delta": _none_safe(challenger.get("avg_trigger_condition_return")) - _none_safe(baseline.get("avg_trigger_condition_return")),
         "range_hit_rate_delta": _none_safe(challenger.get("range_hit_rate")) - _none_safe(baseline.get("range_hit_rate")),
         "primary_scenario_hit_rate_delta": _none_safe(challenger.get("primary_scenario_hit_rate")) - _none_safe(baseline.get("primary_scenario_hit_rate")),
         "promotion_status": "not_yet_validated",

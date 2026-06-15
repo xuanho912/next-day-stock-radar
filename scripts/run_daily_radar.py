@@ -341,7 +341,7 @@ def _render_validation_report(validation: dict[str, Any]) -> str:
             f"- pending_forecasts: `{validation.get('pending_forecasts')}`",
             f"- completed_next_day_forecasts: `{validation.get('completed_next_day_forecasts')}`",
             f"- top5_hit_rate: `{baseline.get('top5_hit_rate')}`",
-            f"- avg_trigger_buy_return: `{baseline.get('avg_trigger_buy_return')}`",
+            f"- avg_trigger_condition_return: `{baseline.get('avg_trigger_condition_return')}`",
             f"- avg_max_drawdown: `{baseline.get('avg_max_drawdown')}`",
             "",
         ]

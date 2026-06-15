@@ -119,7 +119,7 @@ def _build_candidate(
         "missing_evidence": missing,
         "historical_analog": analog,
         "historical_similar_samples": analog["top_similar_dates"],
-        "not_trading_advice_note": "These are probabilistic path levels, not buy/sell advice or execution instructions.",
+        "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions.",
     }
 
 
@@ -463,7 +463,7 @@ def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type
             "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
             "downside_risk_level": "Breaking below this level means the risk path is taking control.",
             "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-            "note": "These are probabilistic path levels, not buy/sell advice.",
+            "note": "These are probabilistic path levels, not investment advice or trading instructions.",
         },
     }
 

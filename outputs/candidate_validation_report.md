@@ -4,5 +4,5 @@
 - pending_forecasts: `20`
 - completed_next_day_forecasts: `0`
 - top5_hit_rate: `None`
-- avg_trigger_buy_return: `None`
+- avg_trigger_condition_return: `None`
 - avg_max_drawdown: `None`

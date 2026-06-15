@@ -30,7 +30,7 @@ It does not affect official Top Candidates.
 A Challenger cannot become Baseline unless it proves itself on future samples for 30-60 trading days and improves:
 
 - Top candidate hit rate
-- executable trigger-buy return
+- executable trigger-condition return
 - average maximum drawdown
 - performance across market regimes
 - performance across sectors and candidate types
@@ -114,4 +114,4 @@ Each candidate has:
 - nearest_support
 - nearest_resistance
 
-These are probabilistic path points, not buy/sell advice.
+These are probabilistic path points, not investment advice or trading instructions.

@@ -130,7 +130,7 @@ def _trade_plan(candidate: dict[str, Any], rating: str, edge_status: str) -> dic
         "target_high_price": expected.get("expected_high"),
         "next_day_expected_range": expected,
         "overnight_or_intraday": "intraday_confirm_only" if rating != "A+" else "small_overnight_or_intraday_confirm",
-        "not_trading_advice": "These are probabilistic path levels, not buy/sell advice.",
+        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions.",
     }
 
 

@@ -58,8 +58,8 @@ This is not a trade record and not a PnL ledger.
 - average next-day high gain
 - average next-day close gain
 - average maximum drawdown
-- open-buy return
-- trigger-buy return
+- open-condition return
+- trigger-condition return
 - profit factor
 - by market regime
 - by sector
