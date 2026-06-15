@@ -71,10 +71,12 @@ If the repository is private and GitHub Pages is unavailable on your plan, use o
 - `frontend/public/top-candidates.json`
 - `frontend/public/stock-forecast-records.json`
 - `frontend/public/validation-scorecard.json`
+- `frontend/public/stock-model-leaderboard.json`
 - `outputs/daily_stock_radar_report.md`
 - `outputs/stock_forecast_records.csv`
 - `outputs/candidate_validation_report.md`
 - `outputs/data_quality_report.md`
+- `outputs/stock_model_leaderboard.md`
 
 ## Validation Discipline
 
@@ -87,3 +89,11 @@ The dashboard must distinguish:
 - maximum drawdown
 
 Baseline is the official model. Challenger runs in shadow mode only and cannot affect the displayed official candidates until it proves itself on future samples.
+
+Frozen first baseline:
+
+```text
+stock_radar_baseline_v1
+```
+
+Any new logic must run as a Challenger before it can be considered for promotion.

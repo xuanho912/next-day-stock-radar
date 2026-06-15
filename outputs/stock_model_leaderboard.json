@@ -1,0 +1,85 @@
+{
+  "version": "stock_model_leaderboard_v1",
+  "generated_at": "2026-06-15T14:16:51.007626+00:00",
+  "active_baseline": "stock_radar_baseline_v1",
+  "validation_status": "not_yet_validated",
+  "models": [
+    {
+      "model_version": "stock_radar_baseline_v1",
+      "role": "baseline",
+      "status": "active",
+      "metrics": {
+        "total_forecasts": 20,
+        "pending_forecasts": 20,
+        "completed_next_day_forecasts": 0,
+        "top_10_avg_next_day_volatility": null,
+        "top_10_next_day_direction_hit_rate": null,
+        "top5_hit_rate": null,
+        "top10_hit_rate": null,
+        "range_hit_rate": null,
+        "primary_scenario_hit_rate": null,
+        "avg_next_day_high_gain": null,
+        "avg_next_day_close_gain": null,
+        "avg_max_drawdown": null,
+        "avg_open_buy_return": null,
+        "avg_trigger_buy_return": null,
+        "profit_factor": null,
+        "high_confluence_avg_next_day_return": null,
+        "low_confluence_avg_next_day_return": null,
+        "high_confluence_beats_low_confluence": false,
+        "catalyst_candidates_avg_return": null,
+        "no_catalyst_avg_return": null,
+        "catalyst_candidates_beat_no_catalyst": false,
+        "high_risk_avg_volatility": null,
+        "lower_risk_avg_volatility": null,
+        "high_risk_candidates_more_volatile": false
+      },
+      "promotion_status": "active_baseline"
+    },
+    {
+      "model_version": "stock_radar_challenger_strict_v1",
+      "role": "challenger",
+      "status": "shadow",
+      "metrics": {
+        "total_forecasts": 20,
+        "pending_forecasts": 20,
+        "completed_next_day_forecasts": 0,
+        "top_10_avg_next_day_volatility": null,
+        "top_10_next_day_direction_hit_rate": null,
+        "top5_hit_rate": null,
+        "top10_hit_rate": null,
+        "range_hit_rate": null,
+        "primary_scenario_hit_rate": null,
+        "avg_next_day_high_gain": null,
+        "avg_next_day_close_gain": null,
+        "avg_max_drawdown": null,
+        "avg_open_buy_return": null,
+        "avg_trigger_buy_return": null,
+        "profit_factor": null,
+        "high_confluence_avg_next_day_return": null,
+        "low_confluence_avg_next_day_return": null,
+        "high_confluence_beats_low_confluence": false,
+        "catalyst_candidates_avg_return": null,
+        "no_catalyst_avg_return": null,
+        "catalyst_candidates_beat_no_catalyst": false,
+        "high_risk_avg_volatility": null,
+        "lower_risk_avg_volatility": null,
+        "high_risk_candidates_more_volatile": false
+      },
+      "promotion_status": "sample_insufficient"
+    }
+  ],
+  "comparison_metrics": [
+    "top_10_avg_next_day_volatility",
+    "top_10_next_day_direction_hit_rate",
+    "range_hit_rate",
+    "primary_scenario_hit_rate",
+    "high_confluence_beats_low_confluence",
+    "catalyst_candidates_beat_no_catalyst",
+    "high_risk_candidates_more_volatile"
+  ],
+  "guardrails": [
+    "No model can be promoted without forward validation.",
+    "not_yet_validated must remain visible when sample size is insufficient."
+  ]
+}

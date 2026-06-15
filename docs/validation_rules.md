@@ -19,6 +19,36 @@ Not allowed after creation:
 - changing reason
 - changing trigger or invalidation level
 
+## Required Forecast Fields
+
+Each daily candidate record must include:
+
+- `forecast_id`
+- `forecast_date`
+- `model_version`
+- `ticker`
+- `candidate_type`
+- `edge_status`
+- `elasticity_score`
+- `confluence_score`
+- `catalyst_score`
+- `risk_score`
+- `primary_scenario`
+- `primary_probability`
+- `expected_range`
+- `trigger_levels`
+- `market_context`
+- `supporting_evidence`
+- `conflicting_evidence`
+- `actual_next_day_return`
+- `actual_3d_return`
+- `actual_5d_return`
+- `range_hit`
+- `primary_hit`
+- `status`
+
+This is not a trade record and not a PnL ledger.
+
 ## Required Metrics
 
 - pending forecasts
@@ -35,6 +65,13 @@ Not allowed after creation:
 - by sector
 - by candidate type
 - baseline vs challenger
+- top 10 candidates average next-day volatility
+- top 10 candidates next-day direction hit rate
+- range hit rate
+- primary scenario hit rate
+- high confluence vs low confluence
+- catalyst candidates vs no-catalyst candidates
+- high-risk candidates realized volatility
 
 ## Hit Definition
 
@@ -55,3 +92,14 @@ The dashboard must not judge only by theoretical high gain.
 ## Anti-Overfitting
 
 Do not promote any model based on historical backtests alone. Future-sample shadow validation is required.
+
+## Model Leaderboard
+
+The project exports:
+
+- `outputs/stock_model_leaderboard.md`
+- `frontend/public/stock-model-leaderboard.json`
+
+The first baseline is `stock_radar_baseline_v1`.
+
+Sample-insufficient models must display `not_yet_validated`. No model may be called high precision without forward validation.

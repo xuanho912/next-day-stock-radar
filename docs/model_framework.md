@@ -2,7 +2,7 @@
 
 ## Baseline Model
 
-`baseline_v1` is the official output model.
+`stock_radar_baseline_v1` is the frozen first official output model.
 
 Score components:
 
@@ -16,7 +16,7 @@ Score components:
 
 ## Challenger Model
 
-`challenger_strict_v1` runs in shadow mode. It applies stricter confluence caps:
+`stock_radar_challenger_strict_v1` runs in shadow mode. It applies stricter confluence caps:
 
 - lower tolerance for stale data
 - stronger penalty for weak sector confirmation
@@ -52,14 +52,41 @@ Strong ratings are capped when:
 
 ## Candidate Types
 
-- catalyst_breakout
-- earnings_momentum
-- sector_leader_pull
-- squeeze_setup
-- gap_and_go
-- reversal_reclaim
-- avoid_social_only
-- avoid_low_liquidity
+- next_day_upside_momentum
+- oversold_bounce
+- short_squeeze_candidate
+- gap_continuation
+- event_driven_volatility
+- failed_bounce_risk
+- downside_continuation
+- no_edge
+
+## Edge Status
+
+`edge_status` is a forecast-advantage label, not a trading recommendation:
+
+- NO_EDGE
+- WATCH
+- MODERATE_EDGE
+- STRONG_EDGE
+- HIGH_RISK_HIGH_REWARD
+- AVOID
+
+## Required Scores
+
+Each candidate must emit:
+
+- `elasticity_score`
+- `next_day_move_probability`
+- `upside_momentum_score`
+- `bounce_score`
+- `downside_continuation_score`
+- `squeeze_score`
+- `catalyst_score`
+- `risk_score`
+- `confluence_score`
+
+If real short interest or options data is missing, squeeze-related fields must be marked `proxy`.
 
 ## Scenario Fields
 
@@ -69,8 +96,22 @@ Each candidate has:
 - secondary_scenario
 - risk_scenario
 - next_day_expected_range
+- primary_probability
+- secondary_probability
+- risk_probability
+- expected_low / expected_mid / expected_high
+- base_case_price
+- upside_case_price
+- downside_case_price
+- bounce_target_price
+- failed_bounce_price
 - upside_trigger_level
+- downside_risk_level
 - invalidation_level
 - gap_fill_level
-- recent_support
-- recent_resistance
+- breakout_level
+- breakdown_level
+- nearest_support
+- nearest_resistance
+
+These are probabilistic path points, not buy/sell advice.

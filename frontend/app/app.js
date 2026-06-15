@@ -83,6 +83,7 @@ function renderCandidateTable() {
       <td>${candidate.company_name}</td>
       <td>${price(candidate.last_close)}</td>
       <td>${candidate.candidate_type}</td>
+      <td><span class="badge ${edgeClass(candidate.edge_status)}">${candidate.edge_status || "-"}</span></td>
       <td>${candidate.elasticity_score}</td>
       <td>${candidate.confluence_score}</td>
       <td>${candidate.catalyst_score}</td>
@@ -123,15 +124,23 @@ function renderDetail() {
       <h3>预测路径</h3>
       ${facts([
         ["主路径", candidate.primary_scenario],
+        ["主路径概率", pct(candidate.primary_probability)],
         ["第二路径", candidate.secondary_scenario],
+        ["第二路径概率", pct(candidate.secondary_probability)],
         ["风险路径", candidate.risk_scenario],
+        ["风险路径概率", pct(candidate.risk_probability)],
         ["次日区间", candidate.next_day_expected_range?.label],
-        ["上冲触发价", price(candidate.upside_trigger_level)],
-        ["下行风险价", price(candidate.invalidation_level)],
+        ["Expected low", price(candidate.next_day_expected_range?.expected_low)],
+        ["Expected mid", price(candidate.next_day_expected_range?.expected_mid)],
+        ["Expected high", price(candidate.next_day_expected_range?.expected_high)],
+        ["上冲触发价", price(candidate.trigger_levels?.upside_trigger_level || candidate.upside_trigger_level)],
+        ["下行风险价", price(candidate.trigger_levels?.downside_risk_level || candidate.downside_risk_level)],
         ["失效价", price(candidate.trade_plan?.invalidation_level)],
-        ["Gap fill", price(candidate.gap_fill_level)],
-        ["Support", price(candidate.recent_support)],
-        ["Resistance", price(candidate.recent_resistance)],
+        ["Gap fill", price(candidate.trigger_levels?.gap_fill_level || candidate.gap_fill_level)],
+        ["Breakout", price(candidate.trigger_levels?.breakout_level || candidate.breakout_level)],
+        ["Breakdown", price(candidate.trigger_levels?.breakdown_level || candidate.breakdown_level)],
+        ["Support", price(candidate.trigger_levels?.nearest_support || candidate.nearest_support)],
+        ["Resistance", price(candidate.trigger_levels?.nearest_resistance || candidate.nearest_resistance)],
       ])}
     </div>
     <div class="detail-card">
@@ -141,8 +150,29 @@ function renderDetail() {
         ["主新闻", candidate.news?.primary_headline || "No recent confirmed headline"],
         ["相对强弱", pct(candidate.relative_strength)],
         ["相对成交量", candidate.relative_volume],
+        ["Volume Z", candidate.volume_z_score],
         ["美元成交额", `${candidate.dollar_volume_m || "-"}M`],
+        ["20日均美元成交额", `${candidate.avg_dollar_volume_m || "-"}M`],
+        ["ATR%", pct(candidate.atr_pct)],
+        ["20日实现波动", pct(candidate.realized_volatility_20d)],
+        ["Edge", candidate.edge_status],
+        ["Risk flags", (candidate.risk_flags || []).join(" / ") || "none"],
+        ["Squeeze data", candidate.squeeze_data_status?.short_interest || "missing"],
         ["验证状态", candidate.validation_status],
+      ])}
+    </div>
+    <div class="detail-card">
+      <h3>评分结构</h3>
+      ${facts([
+        ["elasticity_score", candidate.elasticity_score],
+        ["next_day_move_probability", pct(candidate.next_day_move_probability)],
+        ["upside_momentum_score", candidate.upside_momentum_score],
+        ["bounce_score", candidate.bounce_score],
+        ["downside_continuation_score", candidate.downside_continuation_score],
+        ["squeeze_score", candidate.squeeze_score],
+        ["catalyst_score", candidate.catalyst_score],
+        ["risk_score", candidate.risk_score],
+        ["confluence_score", candidate.confluence_score],
       ])}
     </div>
     <div class="detail-card">
@@ -154,7 +184,12 @@ function renderDetail() {
       ${evidence(candidate.conflicting_evidence || [], true)}
     </div>
     <div class="detail-card">
+      <h3>缺失 / Proxy 证据</h3>
+      ${evidence(candidate.missing_evidence || [], true)}
+    </div>
+    <div class="detail-card">
       <h3>历史类似样本</h3>
+      ${analogSummary(candidate.historical_analog)}
       ${similarSamples(candidate.historical_similar_samples || [])}
     </div>
   `;
@@ -185,6 +220,22 @@ function renderValidation() {
     ["Promotion", compare.promotion_status],
   ]);
 
+  const leaderboard = dashboard.model_leaderboard || {};
+  const baselineModel = (leaderboard.models || []).find(model => model.role === "baseline") || {};
+  const baselineMetrics = baselineModel.metrics || {};
+  document.getElementById("modelLeaderboard").innerHTML = facts([
+    ["Active baseline", leaderboard.active_baseline],
+    ["Leaderboard status", leaderboard.validation_status],
+    ["Completed", baselineMetrics.completed_next_day_forecasts],
+    ["Top10 avg volatility", pct(baselineMetrics.top_10_avg_next_day_volatility)],
+    ["Direction hit", pct(baselineMetrics.top_10_next_day_direction_hit_rate)],
+    ["Range hit", pct(baselineMetrics.range_hit_rate)],
+    ["Primary hit", pct(baselineMetrics.primary_scenario_hit_rate)],
+    ["High conf > low conf", baselineMetrics.high_confluence_beats_low_confluence],
+    ["Catalyst > no catalyst", baselineMetrics.catalyst_candidates_beat_no_catalyst],
+    ["High risk more volatile", baselineMetrics.high_risk_candidates_more_volatile],
+  ]);
+
   const quality = dashboard.data_quality || {};
   document.getElementById("dataQuality").innerHTML = facts([
     ["Score", quality.score],
@@ -193,6 +244,22 @@ function renderValidation() {
     ["Yahoo fallback count", quality.provider_status?.yahoo?.fallback_count],
     ["Finnhub available", quality.provider_status?.finnhub?.available],
     ["FRED available", quality.provider_status?.fred?.available],
+  ]);
+}
+
+function analogSummary(analog) {
+  if (!analog) return "";
+  return facts([
+    ["sample_size", analog.sample_size],
+    ["low_sample_warning", analog.low_sample_warning],
+    ["next_day_return_avg", pct(analog.next_day_return_avg)],
+    ["next_day_hit_rate", pct(analog.next_day_hit_rate)],
+    ["3d forward avg", pct(analog.forward_return_3d_avg)],
+    ["5d forward avg", pct(analog.forward_return_5d_avg)],
+    ["MFE avg", pct(analog.max_favorable_excursion_avg)],
+    ["MAE avg", pct(analog.max_adverse_excursion_avg)],
+    ["worst_case", pct(analog.worst_case)],
+    ["best_case", pct(analog.best_case)],
   ]);
 }
 
@@ -250,6 +317,12 @@ function setText(id, value) {
 function ratingClass(rating) {
   if (rating === "A+" || rating === "A") return "good";
   if (rating === "C") return "bad";
+  return "neutral";
+}
+
+function edgeClass(edge) {
+  if (edge === "STRONG_EDGE" || edge === "MODERATE_EDGE") return "good";
+  if (edge === "AVOID" || edge === "NO_EDGE") return "bad";
   return "neutral";
 }
 

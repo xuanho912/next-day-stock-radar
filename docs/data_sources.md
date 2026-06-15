@@ -19,8 +19,14 @@ Used for public OHLCV price data, relative volume, price structure, support/resi
 
 Used when `FINNHUB_API_KEY` is configured:
 
+- quote
+- OHLCV candle fallback
 - company profile
 - company news
+- market news
+- earnings calendar
+- economic calendar
+- sentiment if available
 - quote snapshots
 - basic financial metrics when available
 
@@ -33,6 +39,32 @@ Used when `FRED_API_KEY` is configured:
 ### Fallback Data
 
 Fallback data is allowed only for local smoke tests and must be labeled. Fallback data cannot be presented as a fresh validated forecast.
+
+## Optional Future Provider Interfaces
+
+The project keeps explicit missing/proxy slots for:
+
+- options put/call
+- implied volatility
+- short interest
+- borrow fee
+- social trend
+- sector ETF flow
+
+Until real feeds are connected, these fields must be marked `missing` or `proxy`.
+
+## Candidate Pool Filters
+
+Default filters:
+
+- price must be greater than 2
+- average dollar volume must be sufficient
+- OTC and Pink Sheet names are not included by default
+- extremely low-liquidity trash names are not included by default
+
+If a weak-liquidity stock remains in the watchlist for observation, it must be flagged `high_liquidity_risk`.
+
+If a high-volatility small-cap candidate is included, it must be flagged `high_risk_high_volatility`.
 
 ## Data Freshness Fields
 

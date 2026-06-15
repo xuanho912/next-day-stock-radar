@@ -13,8 +13,13 @@ SCRIPTS_ROOT = PROJECT_ROOT / "scripts"
 if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
-from candidate_ranking_engine import rank_candidates
-from forecast_validation_engine import public_records, update_forecast_ledger
+from candidate_ranking_engine import BASELINE_MODEL_VERSION, CHALLENGER_MODEL_VERSION, rank_candidates
+from forecast_validation_engine import (
+    build_model_leaderboard,
+    public_records,
+    render_model_leaderboard_markdown,
+    update_forecast_ledger,
+)
 from providers.finnhub_provider import fetch_finnhub_bundle
 from providers.fred_provider import fetch_fred_bundle
 from providers.market_context_provider import CORE_MARKET_SYMBOLS, RISK_SYMBOLS, build_market_context
@@ -61,8 +66,8 @@ def main(argv: list[str] | None = None) -> int:
         fundamentals=fundamentals,
         market_context=market_context,
     )
-    baseline = rank_candidates(prediction_payload, market_context, model_version="baseline_v1")
-    challenger = rank_candidates(prediction_payload, market_context, model_version="challenger_strict_v1")
+    baseline = rank_candidates(prediction_payload, market_context, model_version=BASELINE_MODEL_VERSION)
+    challenger = rank_candidates(prediction_payload, market_context, model_version=CHALLENGER_MODEL_VERSION)
     validation = update_forecast_ledger(
         baseline_ranking=baseline,
         challenger_ranking=challenger,
@@ -70,6 +75,8 @@ def main(argv: list[str] | None = None) -> int:
         series_by_symbol=series_by_symbol,
         records_path=OUTPUTS_DIR / "stock_forecast_records.csv",
     )
+    records_payload = public_records(OUTPUTS_DIR / "stock_forecast_records.csv")
+    leaderboard = build_model_leaderboard(records_payload["records"])
 
     provider_status = _provider_status(series_by_symbol, finnhub_bundle, fred_bundle)
     data_quality = _data_quality_report(market_context, provider_status, len(baseline["candidates"]))
@@ -79,6 +86,7 @@ def main(argv: list[str] | None = None) -> int:
         baseline=baseline,
         challenger=challenger,
         validation=validation,
+        leaderboard=leaderboard,
         prediction_payload=prediction_payload,
         data_quality=data_quality,
     )
@@ -88,17 +96,18 @@ def main(argv: list[str] | None = None) -> int:
         "model_version": baseline["model_version"],
         "candidates": _public_candidates(baseline["candidates"][:20]),
     }
-    records_payload = public_records(OUTPUTS_DIR / "stock_forecast_records.csv")
-
     _write_json(PUBLIC_DIR / "stock-radar-dashboard.json", dashboard)
     _write_json(PUBLIC_DIR / "top-candidates.json", top_candidates)
     _write_json(PUBLIC_DIR / "stock-forecast-records.json", records_payload)
     _write_json(PUBLIC_DIR / "validation-scorecard.json", validation)
+    _write_json(PUBLIC_DIR / "stock-model-leaderboard.json", leaderboard)
     _write_json(OUTPUTS_DIR / "stock_radar_dashboard.json", dashboard)
     _write_json(OUTPUTS_DIR / "validation_scorecard.json", validation)
+    _write_json(OUTPUTS_DIR / "stock_model_leaderboard.json", leaderboard)
     _write_text(OUTPUTS_DIR / "daily_stock_radar_report.md", _render_daily_report(dashboard))
     _write_text(OUTPUTS_DIR / "candidate_validation_report.md", _render_validation_report(validation))
     _write_text(OUTPUTS_DIR / "data_quality_report.md", _render_data_quality_report(data_quality))
+    _write_text(OUTPUTS_DIR / "stock_model_leaderboard.md", render_model_leaderboard_markdown(leaderboard))
 
     print(
         json.dumps(
@@ -109,6 +118,7 @@ def main(argv: list[str] | None = None) -> int:
                 "candidate_count": len(baseline["candidates"]),
                 "top_candidates": [candidate["ticker"] for candidate in baseline["candidates"][:10]],
                 "validation_status": validation.get("validation_status"),
+                "leaderboard_status": leaderboard.get("validation_status"),
             },
             ensure_ascii=False,
             indent=2,
@@ -124,11 +134,12 @@ def _dashboard_payload(
     baseline: dict[str, Any],
     challenger: dict[str, Any],
     validation: dict[str, Any],
+    leaderboard: dict[str, Any],
     prediction_payload: dict[str, Any],
     data_quality: dict[str, Any],
 ) -> dict[str, Any]:
     official = baseline["candidates"]
-    actionable = [candidate for candidate in official if candidate["rating"] in {"A+", "A"}]
+    actionable = [candidate for candidate in official if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}]
     strongest_type = actionable[0]["candidate_type"] if actionable else official[0]["candidate_type"] if official else "none"
     high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and market_context.get("data_freshness_status") == "fresh"
     return {
@@ -149,8 +160,10 @@ def _dashboard_payload(
         "model_validation_status": validation.get("validation_status"),
         "top_candidates": _public_candidates(official[:20]),
         "avoid_candidates": _public_candidates([candidate for candidate in official if candidate["rating"] == "C"][:12]),
+        "excluded_candidates": _public_candidates(prediction_payload.get("excluded_candidates", [])[:20]),
         "sector_strength": prediction_payload.get("sector_strength", {}),
         "validation": validation,
+        "model_leaderboard": leaderboard,
         "models": {
             "baseline": {"model_version": baseline["model_version"], "role": "official"},
             "challenger": {"model_version": challenger["model_version"], "role": "shadow_only"},
@@ -170,31 +183,56 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "sector": candidate.get("sector"),
                 "last_close": candidate.get("last_close"),
                 "candidate_type": candidate.get("candidate_type"),
+                "edge_status": candidate.get("edge_status"),
                 "rating": candidate.get("rating"),
                 "elasticity_score": candidate.get("elasticity_score"),
+                "next_day_move_probability": candidate.get("next_day_move_probability"),
+                "upside_momentum_score": candidate.get("upside_momentum_score"),
+                "bounce_score": candidate.get("bounce_score"),
+                "downside_continuation_score": candidate.get("downside_continuation_score"),
+                "squeeze_score": candidate.get("squeeze_score"),
+                "squeeze_data_status": candidate.get("squeeze_data_status"),
                 "confluence_score": candidate.get("confluence_score"),
                 "catalyst_score": candidate.get("catalyst_score"),
                 "risk_score": candidate.get("risk_score"),
+                "risk_flags": candidate.get("risk_flags"),
+                "pool_filter": candidate.get("pool_filter"),
                 "primary_scenario": candidate.get("primary_scenario"),
+                "primary_probability": candidate.get("primary_probability"),
                 "secondary_scenario": candidate.get("secondary_scenario"),
+                "secondary_probability": candidate.get("secondary_probability"),
                 "risk_scenario": candidate.get("risk_scenario"),
+                "risk_probability": candidate.get("risk_probability"),
                 "next_day_expected_range": candidate.get("next_day_expected_range"),
+                "scenario_prices": candidate.get("scenario_prices"),
+                "trigger_levels": candidate.get("trigger_levels"),
                 "upside_trigger_level": candidate.get("upside_trigger_level"),
+                "downside_risk_level": candidate.get("downside_risk_level"),
                 "invalidation_level": candidate.get("invalidation_level"),
                 "gap_fill_level": candidate.get("gap_fill_level"),
-                "recent_support": candidate.get("recent_support"),
-                "recent_resistance": candidate.get("recent_resistance"),
+                "breakout_level": candidate.get("breakout_level"),
+                "breakdown_level": candidate.get("breakdown_level"),
+                "nearest_support": candidate.get("nearest_support"),
+                "nearest_resistance": candidate.get("nearest_resistance"),
+                "trigger_meaning": candidate.get("trigger_meaning"),
                 "reason": candidate.get("reason"),
                 "trade_plan": candidate.get("trade_plan"),
                 "news": candidate.get("news"),
                 "relative_strength": (candidate.get("features") or {}).get("relative_strength_5d"),
                 "relative_volume": (candidate.get("features") or {}).get("relative_volume"),
                 "dollar_volume_m": (candidate.get("features") or {}).get("dollar_volume_m"),
+                "avg_dollar_volume_m": (candidate.get("features") or {}).get("avg_dollar_volume_m"),
+                "atr_pct": (candidate.get("features") or {}).get("atr_pct"),
+                "realized_volatility_20d": (candidate.get("features") or {}).get("realized_volatility_20d"),
+                "volume_z_score": (candidate.get("features") or {}).get("volume_z_score"),
                 "price_history": (candidate.get("features") or {}).get("price_history"),
+                "historical_analog": candidate.get("historical_analog"),
                 "historical_similar_samples": candidate.get("historical_similar_samples"),
                 "supporting_evidence": candidate.get("supporting_evidence"),
                 "conflicting_evidence": candidate.get("conflicting_evidence"),
+                "missing_evidence": candidate.get("missing_evidence"),
                 "validation_status": candidate.get("validation_status"),
+                "not_trading_advice_note": candidate.get("not_trading_advice_note"),
             }
         )
     return rows
@@ -236,6 +274,7 @@ def _provider_status(series_by_symbol: dict[str, Any], finnhub_bundle: dict[str,
             "configured": bool(finnhub_bundle.get("configured")),
             "available": bool(finnhub_bundle.get("available")),
             "source": finnhub_bundle.get("source"),
+            "optional_data_status": finnhub_bundle.get("optional_data_status", {}),
             "error_count": len(finnhub_bundle.get("errors") or {}),
         },
         "fred": {

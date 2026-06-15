@@ -44,6 +44,20 @@ High rank requires multi-source confluence. Missing evidence and conflicting evi
 - B: observe, do not chase.
 - C: reject.
 
+## Candidate Pool Discipline
+
+The radar must not become a low-quality penny-stock list.
+
+Default pool rules:
+
+- price greater than 2
+- sufficient average dollar volume
+- OTC / Pink Sheet names excluded by default
+- low-liquidity names flagged `high_liquidity_risk`
+- volatile small caps flagged `high_risk_high_volatility`
+
+Risk flags must be visible in the candidate detail view.
+
 ## First Screen
 
 The first screen must include:
