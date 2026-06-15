@@ -1,10 +1,10 @@
 # Data Quality Report
 
-- score: `53`
+- score: `25`
 - latest_data_date: `2026-06-15`
 - expected_latest_trading_date: `2026-06-15`
-- data_freshness_status: `fresh`
-- stale_warning: `False`
+- data_freshness_status: `fallback_only`
+- stale_warning: `True`
 - candidate_count: `40`
 
 ## Provider Status

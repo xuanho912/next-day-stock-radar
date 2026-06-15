@@ -114,7 +114,7 @@ def main(argv: list[str] | None = None) -> int:
             {
                 "latest_data_date": market_context.get("latest_data_date"),
                 "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
-                "data_freshness_status": market_context.get("data_freshness_status"),
+                "data_freshness_status": dashboard.get("data_freshness_status"),
                 "candidate_count": len(baseline["candidates"]),
                 "top_candidates": [candidate["ticker"] for candidate in baseline["candidates"][:10]],
                 "validation_status": validation.get("validation_status"),
@@ -141,19 +141,21 @@ def _dashboard_payload(
     official = baseline["candidates"]
     actionable = [candidate for candidate in official if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}]
     strongest_type = actionable[0]["candidate_type"] if actionable else official[0]["candidate_type"] if official else "none"
-    high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and market_context.get("data_freshness_status") == "fresh"
+    effective_freshness = _effective_data_freshness(market_context, provider_status)
+    stale_warning = market_context.get("stale_warning") or effective_freshness != "fresh"
+    high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness == "fresh"
     return {
         "version": "stock_radar_dashboard_v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "latest_data_date": market_context.get("latest_data_date"),
         "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
-        "data_freshness_status": market_context.get("data_freshness_status"),
-        "stale_warning": market_context.get("stale_warning"),
+        "data_freshness_status": effective_freshness,
+        "stale_warning": stale_warning,
         "provider_status": provider_status,
         "candidate_count": len(official),
         "top_candidate_count": len(actionable),
         "high_elasticity_opportunity": high_elasticity_opportunity,
-        "radar_summary": _radar_summary(market_context, actionable, validation),
+        "radar_summary": _radar_summary(market_context, actionable, validation, effective_freshness),
         "market_context": market_context,
         "strongest_candidate_type": strongest_type,
         "current_risk_level": market_context.get("risk_level"),
@@ -239,8 +241,9 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
 
 
 def _data_quality_report(market_context: dict[str, Any], provider_status: dict[str, Any], candidate_count: int) -> dict[str, Any]:
+    effective_freshness = _effective_data_freshness(market_context, provider_status)
     score = 100
-    if market_context.get("data_freshness_status") != "fresh":
+    if effective_freshness != "fresh":
         score -= 28
     if provider_status["yahoo"].get("fallback_count", 0) > 0:
         score -= min(35, provider_status["yahoo"]["fallback_count"] * 2)
@@ -254,8 +257,8 @@ def _data_quality_report(market_context: dict[str, Any], provider_status: dict[s
         "score": max(0, score),
         "latest_data_date": market_context.get("latest_data_date"),
         "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
-        "data_freshness_status": market_context.get("data_freshness_status"),
-        "stale_warning": bool(market_context.get("stale_warning")),
+        "data_freshness_status": effective_freshness,
+        "stale_warning": bool(market_context.get("stale_warning") or effective_freshness != "fresh"),
         "provider_status": provider_status,
         "candidate_count": candidate_count,
     }
@@ -286,8 +289,19 @@ def _provider_status(series_by_symbol: dict[str, Any], finnhub_bundle: dict[str,
     }
 
 
-def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, Any]], validation: dict[str, Any]) -> str:
-    if market_context.get("data_freshness_status") != "fresh":
+def _effective_data_freshness(market_context: dict[str, Any], provider_status: dict[str, Any]) -> str:
+    yahoo = provider_status.get("yahoo") or {}
+    total = int(yahoo.get("total_symbols") or 0)
+    fallback_count = int(yahoo.get("fallback_count") or 0)
+    if total and fallback_count >= total:
+        return "fallback_only"
+    if fallback_count:
+        return "partial_fallback"
+    return market_context.get("data_freshness_status") or "missing"
+
+
+def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, Any]], validation: dict[str, Any], data_freshness_status: str) -> str:
+    if data_freshness_status != "fresh":
         return "Data is stale or incomplete; dashboard must be treated as observation only."
     if market_context.get("market_state") == "defense":
         return "Market background is defensive; avoid chasing and require trigger confirmation."
