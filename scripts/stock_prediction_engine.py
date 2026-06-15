@@ -339,7 +339,7 @@ def _pool_filter(symbol: str, features: dict[str, Any], fundamental: dict[str, A
         "high_risk_high_volatility": features["atr_pct"] >= HIGH_VOL_ATR_PCT and features["avg_dollar_volume_m"] < 40,
         "fallback_or_missing_price_data": not features["real_data"],
     }
-    hard_excluded = flags["price_below_minimum"] or flags["otc_or_pink"]
+    hard_excluded = flags["price_below_minimum"] or flags["otc_or_pink"] or flags["fallback_or_missing_price_data"]
     reason = []
     if flags["price_below_minimum"]:
         reason.append(f"price <= {MIN_PRICE}")

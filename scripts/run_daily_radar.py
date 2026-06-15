@@ -143,7 +143,7 @@ def _dashboard_payload(
     strongest_type = actionable[0]["candidate_type"] if actionable else official[0]["candidate_type"] if official else "none"
     effective_freshness = _effective_data_freshness(market_context, provider_status)
     stale_warning = market_context.get("stale_warning") or effective_freshness != "fresh"
-    high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness == "fresh"
+    high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness in {"fresh", "partial_fallback"}
     return {
         "version": "stock_radar_dashboard_v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -266,11 +266,13 @@ def _data_quality_report(market_context: dict[str, Any], provider_status: dict[s
 
 def _provider_status(series_by_symbol: dict[str, Any], finnhub_bundle: dict[str, Any], fred_bundle: dict[str, Any]) -> dict[str, Any]:
     fallback_count = sum(1 for series in series_by_symbol.values() if not series.real_data)
+    fallback_symbols = sorted(symbol for symbol, series in series_by_symbol.items() if not series.real_data)
     return {
         "yahoo": {
             "available": fallback_count < len(series_by_symbol),
             "total_symbols": len(series_by_symbol),
             "fallback_count": fallback_count,
+            "fallback_symbols": fallback_symbols,
             "sources": sorted({series.source for series in series_by_symbol.values()}),
         },
         "finnhub": {
@@ -301,8 +303,10 @@ def _effective_data_freshness(market_context: dict[str, Any], provider_status: d
 
 
 def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, Any]], validation: dict[str, Any], data_freshness_status: str) -> str:
-    if data_freshness_status != "fresh":
+    if data_freshness_status in {"fallback_only", "missing"}:
         return "Data is stale or incomplete; dashboard must be treated as observation only."
+    if data_freshness_status == "partial_fallback":
+        return f"Some symbols have fallback data and are excluded or capped; {len(actionable)} real-data candidates remain. Validation status is {validation.get('validation_status')}."
     if market_context.get("market_state") == "defense":
         return "Market background is defensive; avoid chasing and require trigger confirmation."
     if actionable:
