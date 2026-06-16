@@ -247,8 +247,11 @@ def _data_quality_report(market_context: dict[str, Any], provider_status: dict[s
         score -= 28
     if provider_status["yahoo"].get("fallback_count", 0) > 0:
         score -= min(35, provider_status["yahoo"]["fallback_count"] * 2)
-    if not provider_status["finnhub"].get("available"):
+    finnhub_status = provider_status["finnhub"]
+    if not finnhub_status.get("available"):
         score -= 12
+    elif finnhub_status.get("availability_status") == "partial":
+        score -= 4
     if candidate_count < 10:
         score -= 10
     return {
@@ -278,6 +281,8 @@ def _provider_status(series_by_symbol: dict[str, Any], finnhub_bundle: dict[str,
         "finnhub": {
             "configured": bool(finnhub_bundle.get("configured")),
             "available": bool(finnhub_bundle.get("available")),
+            "core_available": bool(finnhub_bundle.get("core_available")),
+            "availability_status": finnhub_bundle.get("availability_status", "missing"),
             "source": finnhub_bundle.get("source"),
             "optional_data_status": finnhub_bundle.get("optional_data_status", {}),
             "error_count": len(finnhub_bundle.get("errors") or {}),

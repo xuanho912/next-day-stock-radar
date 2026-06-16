@@ -228,7 +228,9 @@ function renderValidation() {
     ["Freshness", quality.data_freshness_status],
     ["Stale warning", quality.stale_warning],
     ["Yahoo fallback count", quality.provider_status?.yahoo?.fallback_count],
-    ["Finnhub available", quality.provider_status?.finnhub?.available],
+    ["Finnhub status", quality.provider_status?.finnhub?.availability_status],
+    ["Finnhub core available", quality.provider_status?.finnhub?.core_available],
+    ["Finnhub error count", quality.provider_status?.finnhub?.error_count],
     ["FRED available", quality.provider_status?.fred?.available],
   ]);
 }

@@ -75,9 +75,26 @@ def fetch_finnhub_bundle(symbols: list[str], *, offline: bool = False) -> dict[s
     if economic_error:
         errors["economic_calendar"] = economic_error
 
+    optional_data_status = {
+        "quote": "available" if _symbol_endpoint_available(errors, "quote", symbols) else "missing",
+        "ohlcv_candle_fallback": "available" if _symbol_endpoint_available(errors, "candle", symbols) else "missing",
+        "company_news": "available" if _symbol_endpoint_available(errors, "news", symbols) else "missing",
+        "market_news": "available" if isinstance(market_news, list) else "missing",
+        "earnings_calendar": "available" if earnings_calendar else "missing",
+        "economic_calendar": "available" if economic_calendar else "missing",
+        "sentiment": "available" if _symbol_endpoint_available(errors, "sentiment", symbols) else "missing",
+    }
+    core_available = optional_data_status["quote"] == "available" and any(
+        optional_data_status[key] == "available"
+        for key in ("company_news", "market_news", "earnings_calendar", "sentiment")
+    )
+    availability_status = "available" if core_available and not errors else "partial" if core_available else "missing"
+
     return {
         "configured": True,
-        "available": len(errors) == 0,
+        "available": core_available,
+        "core_available": core_available,
+        "availability_status": availability_status,
         "source": "finnhub",
         "profiles": profiles,
         "quotes": quotes,
@@ -87,15 +104,7 @@ def fetch_finnhub_bundle(symbols: list[str], *, offline: bool = False) -> dict[s
         "earnings_calendar": earnings_calendar or {},
         "economic_calendar": economic_calendar or {},
         "sentiment": sentiment,
-        "optional_data_status": {
-            "quote": "available" if quotes else "missing",
-            "ohlcv_candle_fallback": "available" if candles else "missing",
-            "company_news": "available" if news else "missing",
-            "market_news": "available" if isinstance(market_news, list) else "missing",
-            "earnings_calendar": "available" if earnings_calendar else "missing",
-            "economic_calendar": "available" if economic_calendar else "missing",
-            "sentiment": "available" if sentiment else "missing",
-        },
+        "optional_data_status": optional_data_status,
         "errors": errors,
     }
 
@@ -110,10 +119,18 @@ def _get_json(path: str, params: dict[str, str], timeout: int = 15) -> tuple[Any
         return None, str(exc)[:180]
 
 
+def _symbol_endpoint_available(errors: dict[str, str], prefix: str, symbols: list[str]) -> bool:
+    if not symbols:
+        return False
+    return any(f"{prefix}:{symbol}" not in errors for symbol in symbols)
+
+
 def _missing_bundle(reason: str) -> dict[str, Any]:
     return {
         "configured": False,
         "available": False,
+        "core_available": False,
+        "availability_status": "missing",
         "source": reason,
         "profiles": {},
         "quotes": {},
