@@ -33,6 +33,11 @@ CSV_FIELDS = [
     "squeeze_data_status",
     "confluence_score",
     "catalyst_score",
+    "expectation_gap_score",
+    "execution_quality_score",
+    "payoff_quality_score",
+    "risk_reward_ratio",
+    "precision_gate",
     "risk_score",
     "last_close",
     "primary_scenario",
@@ -236,6 +241,11 @@ def _forecast_row(candidate: dict[str, Any], ranking: dict[str, Any], market_con
             "squeeze_data_status": _json(candidate.get("squeeze_data_status")),
             "confluence_score": _fmt(candidate.get("confluence_score")),
             "catalyst_score": _fmt(candidate.get("catalyst_score")),
+            "expectation_gap_score": _fmt(candidate.get("expectation_gap_score")),
+            "execution_quality_score": _fmt(candidate.get("execution_quality_score")),
+            "payoff_quality_score": _fmt(candidate.get("payoff_quality_score")),
+            "risk_reward_ratio": _fmt(candidate.get("risk_reward_ratio")),
+            "precision_gate": _json(candidate.get("precision_gate")),
             "risk_score": _fmt(candidate.get("risk_score")),
             "last_close": _fmt(candidate.get("last_close")),
             "primary_scenario": candidate.get("primary_scenario", ""),
@@ -328,6 +338,10 @@ def _metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     low_confluence = [row for row in completed if (_float(row.get("confluence_score")) or 0) < 72]
     catalyst = [row for row in completed if (_float(row.get("catalyst_score")) or 0) >= 60]
     no_catalyst = [row for row in completed if (_float(row.get("catalyst_score")) or 0) < 60]
+    high_expectation_gap = [row for row in completed if (_float(row.get("expectation_gap_score")) or 0) >= 58]
+    low_expectation_gap = [row for row in completed if (_float(row.get("expectation_gap_score")) or 0) < 58]
+    high_payoff_quality = [row for row in completed if (_float(row.get("payoff_quality_score")) or 0) >= 52]
+    low_payoff_quality = [row for row in completed if (_float(row.get("payoff_quality_score")) or 0) < 52]
     high_risk = [row for row in completed if (_float(row.get("risk_score")) or 0) >= 55]
     lower_risk = [row for row in completed if (_float(row.get("risk_score")) or 0) < 55]
     all_trigger_returns = [_float(row.get("trigger_condition_return")) for row in completed if _float(row.get("trigger_condition_return")) is not None]
@@ -355,6 +369,12 @@ def _metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "catalyst_candidates_avg_return": _avg_float(catalyst, "actual_next_day_return"),
         "no_catalyst_avg_return": _avg_float(no_catalyst, "actual_next_day_return"),
         "catalyst_candidates_beat_no_catalyst": _none_safe(_avg_float(catalyst, "actual_next_day_return")) > _none_safe(_avg_float(no_catalyst, "actual_next_day_return")),
+        "high_expectation_gap_avg_return": _avg_float(high_expectation_gap, "actual_next_day_return"),
+        "low_expectation_gap_avg_return": _avg_float(low_expectation_gap, "actual_next_day_return"),
+        "high_expectation_gap_beats_low": _none_safe(_avg_float(high_expectation_gap, "actual_next_day_return")) > _none_safe(_avg_float(low_expectation_gap, "actual_next_day_return")),
+        "high_payoff_quality_avg_return": _avg_float(high_payoff_quality, "actual_next_day_return"),
+        "low_payoff_quality_avg_return": _avg_float(low_payoff_quality, "actual_next_day_return"),
+        "high_payoff_quality_beats_low": _none_safe(_avg_float(high_payoff_quality, "actual_next_day_return")) > _none_safe(_avg_float(low_payoff_quality, "actual_next_day_return")),
         "high_risk_avg_volatility": _avg_next_day_volatility(high_risk),
         "lower_risk_avg_volatility": _avg_next_day_volatility(lower_risk),
         "high_risk_candidates_more_volatile": _none_safe(_avg_next_day_volatility(high_risk)) > _none_safe(_avg_next_day_volatility(lower_risk)),
@@ -375,6 +395,7 @@ def _compare(baseline: dict[str, Any], challenger: dict[str, Any]) -> dict[str, 
         "challenger_shadow_only": True,
         "completed_sample_gap": (challenger.get("completed_next_day_forecasts") or 0) - (baseline.get("completed_next_day_forecasts") or 0),
         "trigger_return_delta": _none_safe(challenger.get("avg_trigger_condition_return")) - _none_safe(baseline.get("avg_trigger_condition_return")),
+        "top5_hit_rate_delta": _none_safe(challenger.get("top5_hit_rate")) - _none_safe(baseline.get("top5_hit_rate")),
         "range_hit_rate_delta": _none_safe(challenger.get("range_hit_rate")) - _none_safe(baseline.get("range_hit_rate")),
         "primary_scenario_hit_rate_delta": _none_safe(challenger.get("primary_scenario_hit_rate")) - _none_safe(baseline.get("primary_scenario_hit_rate")),
         "promotion_status": "not_yet_validated",

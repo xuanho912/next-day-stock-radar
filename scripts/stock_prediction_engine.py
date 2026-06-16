@@ -66,11 +66,23 @@ def _build_candidate(
     sector = stock.get("sector") or "Unknown"
     sector_payload = sector_strength.get(sector, {"score": 40, "level": "weak"})
     raw_scores = _raw_scores(features, news, sector_payload, market_context, pool_filter)
-    support, conflict, missing = _evidence(symbol, sector, features, news, sector_payload, market_context, pool_filter, raw_scores)
+    price_path = _price_path(features, raw_scores, _candidate_type(stock, features, news, raw_scores, pool_filter))
+    payoff_profile = _payoff_profile(features, price_path, raw_scores)
+    support, conflict, missing = _evidence(
+        symbol,
+        sector,
+        features,
+        news,
+        sector_payload,
+        market_context,
+        pool_filter,
+        raw_scores,
+        payoff_profile,
+    )
     risk_flags = _risk_flags(features, news, pool_filter)
     candidate_type = _candidate_type(stock, features, news, raw_scores, pool_filter)
-    edge_status = _edge_status(raw_scores, support, conflict, risk_flags, market_context, pool_filter)
-    price_path = _price_path(features, raw_scores, candidate_type)
+    edge_status = _edge_status(raw_scores, payoff_profile, support, conflict, risk_flags, market_context, pool_filter)
+    precision_gate = _precision_gate(raw_scores, payoff_profile, support, conflict, risk_flags, market_context, pool_filter)
     analog = _historical_analog(features, market_context, news)
 
     return {
@@ -94,6 +106,13 @@ def _build_candidate(
         "squeeze_score": raw_scores["squeeze_score"],
         "squeeze_data_status": raw_scores["squeeze_data_status"],
         "catalyst_score": raw_scores["catalyst_score"],
+        "expectation_gap_score": raw_scores["expectation_gap_score"],
+        "execution_quality_score": raw_scores["execution_quality_score"],
+        "payoff_quality_score": payoff_profile["payoff_quality_score"],
+        "risk_reward_ratio": payoff_profile["risk_reward_ratio"],
+        "expected_upside_pct": payoff_profile["expected_upside_pct"],
+        "expected_downside_pct": payoff_profile["expected_downside_pct"],
+        "precision_gate": precision_gate,
         "risk_score": raw_scores["risk_score"],
         "confluence_score": raw_scores["confluence_score"],
         "primary_scenario": _primary_scenario(market_context, candidate_type, raw_scores),
@@ -119,7 +138,7 @@ def _build_candidate(
         "missing_evidence": missing,
         "historical_analog": analog,
         "historical_similar_samples": analog["top_similar_dates"],
-        "not_trading_advice_note": "These are probabilistic path levels, not investment advice or execution instructions.",
+        "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。",
     }
 
 
@@ -249,6 +268,8 @@ def _raw_scores(
     volume = float(features["volume_score"])
     sector = float(sector_payload.get("score") or 40)
     risk_score = _risk_score(features, news, market_context, pool_filter)
+    expectation_gap_score = _expectation_gap_score(features, news, sector, market_context, risk_score)
+    execution_quality_score = _execution_quality_score(features, volume, technical, risk_score, pool_filter)
     elasticity_score = _clamp(
         features["atr_pct"] * 260
         + features["realized_volatility_20d"] * 620
@@ -294,12 +315,14 @@ def _raw_scores(
     )
     confluence_score = _clamp(
         catalyst_score * 0.22
-        + technical * 0.22
-        + volume * 0.20
-        + sector * 0.16
+        + technical * 0.19
+        + volume * 0.18
+        + sector * 0.14
+        + expectation_gap_score * 0.10
+        + execution_quality_score * 0.08
         + upside_momentum_score * 0.10
         + bounce_score * 0.04
-        + elasticity_score * 0.06
+        + elasticity_score * 0.05
         - risk_score * 0.32
         + _market_adjustment(market_context)
     )
@@ -319,14 +342,91 @@ def _raw_scores(
             "short_interest": "proxy",
             "options_flow": "proxy",
             "borrow_fee": "missing",
-            "note": "Squeeze score uses volatility, relative volume and momentum proxies until real short/options data is connected.",
+            "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。",
         },
         "catalyst_score": round(catalyst_score, 2),
+        "expectation_gap_score": round(expectation_gap_score, 2),
+        "execution_quality_score": round(execution_quality_score, 2),
         "risk_score": round(risk_score, 2),
         "confluence_score": round(confluence_score, 2),
         "primary_probability": round(primary_probability, 4),
         "secondary_probability": round(secondary_probability, 4),
         "risk_probability": round(risk_probability, 4),
+    }
+
+
+def _expectation_gap_score(
+    features: dict[str, Any],
+    news: dict[str, Any],
+    sector_score: float,
+    market_context: dict[str, Any],
+    risk_score: float,
+) -> float:
+    catalyst_score = float(news.get("catalyst_score") or 35)
+    catalyst_type = str(news.get("catalyst_type") or "")
+    strong_catalyst = catalyst_type in {
+        "earnings_momentum",
+        "confirmed_business_catalyst",
+        "regulatory_catalyst",
+        "analyst_upgrade",
+    }
+    overdone_gap = features["gap_pct"] > 0.08 and features["close_position"] < 0.55
+    return _clamp(
+        24
+        + catalyst_score * 0.36
+        + float(features["technical_score"]) * 0.16
+        + float(features["volume_score"]) * 0.12
+        + sector_score * 0.10
+        + (10 if strong_catalyst else 0)
+        + (8 if features["relative_strength_5d"] > 0.018 else 0)
+        + (6 if market_context.get("market_state") == "attack" else 0)
+        - (14 if overdone_gap else 0)
+        - (8 if features["close_position"] < 0.35 else 0)
+        - risk_score * 0.18
+    )
+
+
+def _execution_quality_score(
+    features: dict[str, Any],
+    volume_score: float,
+    technical_score: float,
+    risk_score: float,
+    pool_filter: dict[str, Any],
+) -> float:
+    return _clamp(
+        30
+        + volume_score * 0.24
+        + technical_score * 0.22
+        + (10 if features["avg_dollar_volume_m"] >= 40 else 0)
+        + (8 if features["close_position"] >= 0.65 else 0)
+        + (6 if features["relative_volume"] >= 1.6 else 0)
+        - risk_score * 0.22
+        - (18 if pool_filter["flags"].get("high_liquidity_risk") else 0)
+        - (10 if pool_filter["flags"].get("high_risk_high_volatility") else 0)
+    )
+
+
+def _payoff_profile(features: dict[str, Any], price_path: dict[str, Any], scores: dict[str, Any]) -> dict[str, Any]:
+    last = max(float(features["last_close"] or 0), 0.0001)
+    expected = price_path["next_day_expected_range"]
+    levels = price_path["trigger_levels"]
+    expected_upside = max(float(expected["expected_high"]) / last - 1, 0)
+    invalidation_downside = max(0.0, 1 - float(levels["invalidation_level"]) / last)
+    expected_low_downside = max(0.0, 1 - float(expected["expected_low"]) / last)
+    expected_downside = max(0.01, min(max(invalidation_downside, expected_low_downside), 0.35))
+    ratio = min(expected_upside / expected_downside, 6.0)
+    payoff_quality = _clamp(
+        ratio * 22
+        + float(scores["primary_probability"]) * 34
+        + float(scores["execution_quality_score"]) * 0.18
+        - float(scores["risk_probability"]) * 24
+        + (8 if scores["risk_score"] <= 45 else 0)
+    )
+    return {
+        "expected_upside_pct": round(expected_upside, 5),
+        "expected_downside_pct": round(expected_downside, 5),
+        "risk_reward_ratio": round(ratio, 3),
+        "payoff_quality_score": round(payoff_quality, 2),
     }
 
 
@@ -395,6 +495,7 @@ def _candidate_type(stock: dict[str, Any], features: dict[str, Any], news: dict[
 
 def _edge_status(
     scores: dict[str, Any],
+    payoff_profile: dict[str, Any],
     support: list[dict[str, Any]],
     conflict: list[dict[str, Any]],
     risk_flags: list[str],
@@ -405,15 +506,73 @@ def _edge_status(
         return "AVOID"
     if scores["risk_score"] >= 70:
         return "AVOID"
+    if scores["expectation_gap_score"] < 45 and scores["catalyst_score"] < 55:
+        return "WATCH" if scores["confluence_score"] >= 60 and scores["execution_quality_score"] >= 58 else "NO_EDGE"
+    if payoff_profile["payoff_quality_score"] < 42:
+        return "WATCH" if scores["confluence_score"] >= 66 else "NO_EDGE"
     if scores["elasticity_score"] >= 75 and scores["confluence_score"] >= 62 and scores["risk_score"] >= 50:
         return "HIGH_RISK_HIGH_REWARD"
-    if scores["confluence_score"] >= 78 and len(support) >= 4 and len(conflict) <= 2 and market_context.get("market_state") != "defense":
+    if (
+        scores["confluence_score"] >= 78
+        and scores["expectation_gap_score"] >= 58
+        and payoff_profile["payoff_quality_score"] >= 50
+        and len(support) >= 4
+        and len(conflict) <= 2
+        and market_context.get("market_state") != "defense"
+    ):
         return "STRONG_EDGE"
     if scores["confluence_score"] >= 66 and len(support) >= 3:
         return "MODERATE_EDGE"
     if scores["confluence_score"] >= 52:
         return "WATCH"
     return "NO_EDGE"
+
+
+def _precision_gate(
+    scores: dict[str, Any],
+    payoff_profile: dict[str, Any],
+    support: list[dict[str, Any]],
+    conflict: list[dict[str, Any]],
+    risk_flags: list[str],
+    market_context: dict[str, Any],
+    pool_filter: dict[str, Any],
+) -> dict[str, Any]:
+    reasons = []
+    if pool_filter["hard_excluded"]:
+        reasons.append("股票池硬过滤未通过")
+    if market_context.get("market_state") == "defense":
+        reasons.append("市场背景偏防守")
+    if scores["expectation_gap_score"] < 50:
+        reasons.append("预期差证据不足")
+    if payoff_profile["payoff_quality_score"] < 45:
+        reasons.append("次日赔率质量不足")
+    if scores["execution_quality_score"] < 50:
+        reasons.append("成交/触发执行质量不足")
+    if scores["risk_score"] >= 65:
+        reasons.append("风险分过高")
+    if "high_liquidity_risk" in risk_flags:
+        reasons.append("流动性风险偏高")
+
+    passed = (
+        not reasons
+        and scores["confluence_score"] >= 66
+        and scores["elasticity_score"] >= 70
+        and len(support) >= 4
+        and len(conflict) <= 3
+    )
+    if passed and scores["confluence_score"] >= 78 and payoff_profile["payoff_quality_score"] >= 55:
+        level = "强共振"
+    elif passed:
+        level = "可观察"
+    elif scores["elasticity_score"] >= 78 and scores["risk_score"] >= 50:
+        level = "高风险高弹性"
+    else:
+        level = "不具备高置信优势"
+    return {
+        "level": level,
+        "passed": passed,
+        "reason": reasons[:5] or ["市场、催化、技术、成交、赔率和风险同时通过"],
+    }
 
 
 def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type: str) -> dict[str, Any]:
@@ -459,11 +618,11 @@ def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type
             "nearest_resistance": round(features["recent_resistance"], 4),
         },
         "trigger_meaning": {
-            "upside_trigger_level": "Standing above this level starts to confirm the upside path.",
-            "invalidation_level": "Breaking below this level invalidates the bounce/upside path.",
-            "downside_risk_level": "Breaking below this level means the risk path is taking control.",
-            "gap_fill_level": "Filling this gap suggests gap continuation has failed.",
-            "note": "These are probabilistic path levels, not investment advice or trading instructions.",
+            "upside_trigger_level": "站上并维持在该价位上方，说明上冲路径开始被确认。",
+            "invalidation_level": "跌破该价位，说明反抽或上冲路径失效。",
+            "downside_risk_level": "跌破该价位，说明风险路径开始接管。",
+            "gap_fill_level": "回补该缺口，说明跳空延续失败概率上升。",
+            "note": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。",
         },
     }
 
@@ -558,6 +717,7 @@ def _evidence(
     market_context: dict[str, Any],
     pool_filter: dict[str, Any],
     scores: dict[str, Any],
+    payoff_profile: dict[str, Any],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     support: list[dict[str, Any]] = []
     conflict: list[dict[str, Any]] = []
@@ -566,27 +726,35 @@ def _evidence(
     if news.get("catalyst_score", 0) >= 60:
         support.append(_ev("catalyst", news.get("catalyst_type"), news.get("catalyst_score"), news.get("primary_headline")))
     else:
-        conflict.append(_ev("catalyst", "weak_or_missing_catalyst", 100 - news.get("catalyst_score", 35), "No strong confirmed recent catalyst."))
+        conflict.append(_ev("catalyst", "weak_or_missing_catalyst", 100 - news.get("catalyst_score", 35), "近期没有强确认催化，不能只靠热度给高等级。"))
+    if scores["expectation_gap_score"] >= 58:
+        support.append(_ev("expectation_gap", "positive_expectation_gap", scores["expectation_gap_score"], "催化、板块、价格和成交共同支持正向预期差。"))
+    else:
+        conflict.append(_ev("expectation_gap", "expectation_gap_not_confirmed", 100 - scores["expectation_gap_score"], "预期差证据不足，可能只是普通波动。"))
     if features["technical_score"] >= 64:
-        support.append(_ev("price", "price_structure_confirmed", features["technical_score"], "Breakout/reclaim/high-close structure is constructive."))
+        support.append(_ev("price", "price_structure_confirmed", features["technical_score"], "价格结构有突破、收复或强收盘特征。"))
     else:
-        conflict.append(_ev("price", "price_structure_unconfirmed", 100 - features["technical_score"], "Price structure has not confirmed a high-quality setup."))
+        conflict.append(_ev("price", "price_structure_unconfirmed", 100 - features["technical_score"], "价格结构没有确认高质量短线形态。"))
     if features["volume_score"] >= 62:
-        support.append(_ev("volume", "volume_anomaly_confirmed", features["volume_score"], "Relative volume and dollar liquidity are sufficient."))
+        support.append(_ev("volume", "volume_anomaly_confirmed", features["volume_score"], "相对成交量和美元流动性足够支撑次日交易观察。"))
     else:
-        conflict.append(_ev("volume", "volume_or_liquidity_weak", 100 - features["volume_score"], "Volume confirmation or liquidity is weak."))
+        conflict.append(_ev("volume", "volume_or_liquidity_weak", 100 - features["volume_score"], "成交确认或流动性不足。"))
+    if payoff_profile["payoff_quality_score"] >= 52:
+        support.append(_ev("payoff", "payoff_quality_confirmed", payoff_profile["payoff_quality_score"], f"次日预期上行/下行赔率约 {payoff_profile['risk_reward_ratio']}。"))
+    else:
+        conflict.append(_ev("payoff", "payoff_quality_weak", 100 - payoff_profile["payoff_quality_score"], "预期上行空间相对失效风险不够优。"))
     if sector_payload["score"] >= 62:
-        support.append(_ev("sector", "sector_context_confirmed", sector_payload["score"], f"{sector} is showing relative strength."))
+        support.append(_ev("sector", "sector_context_confirmed", sector_payload["score"], f"{sector} 板块显示相对强势。"))
     else:
-        conflict.append(_ev("sector", "sector_context_weak", 100 - sector_payload["score"], f"{sector} is not a confirmed capital-flow theme."))
+        conflict.append(_ev("sector", "sector_context_weak", 100 - sector_payload["score"], f"{sector} 还不是确认的资金主线。"))
     if market_context.get("market_state") == "attack":
-        support.append(_ev("market", "risk_on_market_context", market_context.get("market_score", 50), "Market context allows selective speculation."))
+        support.append(_ev("market", "risk_on_market_context", market_context.get("market_score", 50), "市场背景允许选择性寻找高弹性机会。"))
     elif market_context.get("market_state") == "defense":
-        conflict.append(_ev("market", "defensive_market_context", 70, "Market context is defensive; ratings must be capped."))
+        conflict.append(_ev("market", "defensive_market_context", 70, "市场背景偏防守，候选评级必须被压制。"))
     if scores["squeeze_data_status"]["short_interest"] == "proxy":
-        missing.append(_ev("short_interest", "real_short_interest_missing", 0, "Squeeze score is proxy-only until real short interest/options data is connected."))
+        missing.append(_ev("short_interest", "real_short_interest_missing", 0, "逼空分暂用 proxy；真实 short interest / options 数据尚未接入。"))
     if not features["real_data"]:
-        missing.append(_ev("price_data", "real_price_data_missing", 0, "OHLCV uses fallback; do not present as fully validated."))
+        missing.append(_ev("price_data", "real_price_data_missing", 0, "OHLCV 使用 fallback，不能当成完整验证数据。"))
     for flag, enabled in pool_filter["flags"].items():
         if enabled:
             conflict.append(_ev("pool_filter", flag, 75 if flag in {"high_liquidity_risk", "high_risk_high_volatility"} else 90, flag))

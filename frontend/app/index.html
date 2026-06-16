@@ -3,61 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Next-Day Stock Radar</title>
+    <title>次日高弹性股票投机机会雷达</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Next-Day Stock Radar</p>
+        <p class="eyebrow">次日机会雷达</p>
         <h1>次日高弹性股票投机机会雷达</h1>
       </div>
-      <div id="freshnessBadge" class="badge neutral">loading</div>
+      <div id="freshnessBadge" class="badge neutral">加载中</div>
     </header>
 
     <main>
       <section class="hero">
         <div class="summary-panel command-center">
-          <p class="eyebrow">Command Center</p>
+          <p class="eyebrow">雷达驾驶舱</p>
           <h2 id="radarDecision">加载中</h2>
-          <p class="disclaimer">这是次日高弹性概率雷达，不是投资建议或交易指令。</p>
+          <p class="disclaimer">这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。</p>
           <p id="radarSummary" class="summary-text"></p>
           <div class="hero-grid">
             <div><span>明日机会</span><strong id="opportunityStatus">-</strong></div>
             <div><span>最强候选</span><strong id="strongestCandidate">-</strong></div>
             <div><span>最强方向</span><strong id="strongestDirection">-</strong></div>
             <div><span>市场背景</span><strong id="marketState">-</strong></div>
-            <div><span>适合筛选</span><strong id="screeningStatus">-</strong></div>
+            <div><span>筛选状态</span><strong id="screeningStatus">-</strong></div>
             <div><span>风险等级</span><strong id="riskLevel">-</strong></div>
             <div><span>数据日期</span><strong id="dataDate">-</strong></div>
             <div><span>模型验证</span><strong id="validationStatus">-</strong></div>
+          </div>
+          <div class="avoid-box">
+            <h3>今日不要碰</h3>
+            <ul id="avoidList"></ul>
           </div>
         </div>
 
         <div class="top-panel command-table">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Top Candidates Table</p>
-              <h2>次日候选榜</h2>
+              <p class="eyebrow">候选榜</p>
+              <h2>次日 Top 候选</h2>
             </div>
-            <div id="candidateCount" class="badge info">0 candidates</div>
+            <div id="candidateCount" class="badge info">0 只候选</div>
           </div>
           <div class="table-wrap compact-table">
             <table id="candidateTable">
               <thead>
                 <tr>
-                  <th>Rank</th>
-                  <th>Ticker</th>
-                  <th>Type</th>
-                  <th>Elasticity</th>
-                  <th>Confluence</th>
-                  <th>Catalyst</th>
-                  <th>Risk</th>
-                  <th>Primary Scenario</th>
-                  <th>Range</th>
-                  <th>Trigger</th>
-                  <th>Invalidation</th>
-                  <th>Reason</th>
+                  <th>排名</th>
+                  <th>股票</th>
+                  <th>类型</th>
+                  <th>弹性</th>
+                  <th>共振</th>
+                  <th>预期差</th>
+                  <th>赔率</th>
+                  <th>风险</th>
+                  <th>主路径</th>
+                  <th>次日区间</th>
+                  <th>触发价</th>
+                  <th>失效价</th>
+                  <th>一句话原因</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -69,7 +74,7 @@
       <section class="band detail-band">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Candidate Detail</p>
+            <p class="eyebrow">个股详情</p>
             <h2 id="detailTitle">个股详情</h2>
           </div>
           <div id="detailRating" class="badge neutral">-</div>
@@ -80,23 +85,23 @@
       <section class="band muted">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Validation</p>
-            <h2>预测验证</h2>
+            <p class="eyebrow">预测验证</p>
+            <h2>模型表现与数据质量</h2>
           </div>
-          <div id="validationBadge" class="badge neutral">not_yet_validated</div>
+          <div id="validationBadge" class="badge neutral">样本不足</div>
         </div>
         <div id="validationGrid" class="metric-grid"></div>
         <div class="validation-layout">
           <div>
-            <h3>Baseline vs Challenger</h3>
+            <h3>基准模型 / 挑战模型</h3>
             <div id="modelCompare" class="fact-list"></div>
           </div>
           <div>
-            <h3>Model Leaderboard</h3>
+            <h3>模型排行榜</h3>
             <div id="modelLeaderboard" class="fact-list"></div>
           </div>
           <div>
-            <h3>Data Quality</h3>
+            <h3>数据质量</h3>
             <div id="dataQuality" class="fact-list"></div>
           </div>
         </div>

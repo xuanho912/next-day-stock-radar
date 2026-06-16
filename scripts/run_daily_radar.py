@@ -196,6 +196,13 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "squeeze_data_status": candidate.get("squeeze_data_status"),
                 "confluence_score": candidate.get("confluence_score"),
                 "catalyst_score": candidate.get("catalyst_score"),
+                "expectation_gap_score": candidate.get("expectation_gap_score"),
+                "execution_quality_score": candidate.get("execution_quality_score"),
+                "payoff_quality_score": candidate.get("payoff_quality_score"),
+                "risk_reward_ratio": candidate.get("risk_reward_ratio"),
+                "expected_upside_pct": candidate.get("expected_upside_pct"),
+                "expected_downside_pct": candidate.get("expected_downside_pct"),
+                "precision_gate": candidate.get("precision_gate"),
                 "risk_score": candidate.get("risk_score"),
                 "risk_flags": candidate.get("risk_flags"),
                 "pool_filter": candidate.get("pool_filter"),
@@ -309,14 +316,14 @@ def _effective_data_freshness(market_context: dict[str, Any], provider_status: d
 
 def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, Any]], validation: dict[str, Any], data_freshness_status: str) -> str:
     if data_freshness_status in {"fallback_only", "missing"}:
-        return "Data is stale or incomplete; dashboard must be treated as observation only."
+        return "数据陈旧或不完整；本页只能当作观察面板，不能当作今日雷达。"
     if data_freshness_status == "partial_fallback":
-        return f"Some symbols have fallback data and are excluded or capped; {len(actionable)} real-data candidates remain. Validation status is {validation.get('validation_status')}."
+        return f"部分标的行情缺失或降级，系统已剔除或压制；当前剩余 {len(actionable)} 只真实数据候选。验证状态：{validation.get('validation_status')}。"
     if market_context.get("market_state") == "defense":
-        return "Market background is defensive; avoid chasing and require trigger confirmation."
+        return "市场背景偏防守；即使有个股信号，也必须降低等级并等待触发确认。"
     if actionable:
-        return f"{len(actionable)} actionable candidates passed baseline confluence gates; validation status is {validation.get('validation_status')}."
-    return "No high-confluence candidates today; fewer names is better than false precision."
+        return f"{len(actionable)} 只候选通过市场、板块、催化、技术、成交、赔率和风险闸门；验证状态：{validation.get('validation_status')}。"
+    return "今天没有高共振候选；少给比乱给更重要。"
 
 
 def _benchmark_symbols(benchmark_map: dict[str, Any]) -> list[str]:
@@ -329,7 +336,7 @@ def _benchmark_symbols(benchmark_map: dict[str, Any]) -> list[str]:
 
 def _render_daily_report(dashboard: dict[str, Any]) -> str:
     lines = [
-        "# Daily Stock Radar Report",
+        "# 次日高弹性股票雷达日报",
         "",
         f"- generated_at: `{dashboard.get('generated_at')}`",
         f"- latest_data_date: `{dashboard.get('latest_data_date')}`",
@@ -339,9 +346,9 @@ def _render_daily_report(dashboard: dict[str, Any]) -> str:
         f"- high_elasticity_opportunity: `{dashboard.get('high_elasticity_opportunity')}`",
         f"- validation_status: `{dashboard.get('model_validation_status')}`",
         "",
-        "## Top Candidates",
+        "## 候选榜",
         "",
-        "| Rank | Ticker | Rating | Elasticity | Confluence | Trigger | Invalidation | Reason |",
+        "| 排名 | 股票 | 等级 | 弹性 | 共振 | 触发价 | 失效价 | 原因 |",
         "| ---: | --- | --- | ---: | ---: | ---: | ---: | --- |",
     ]
     for candidate in dashboard.get("top_candidates", [])[:20]:
@@ -358,7 +365,7 @@ def _render_validation_report(validation: dict[str, Any]) -> str:
     baseline = validation.get("baseline") or {}
     return "\n".join(
         [
-            "# Candidate Validation Report",
+            "# 候选验证报告",
             "",
             f"- validation_status: `{validation.get('validation_status')}`",
             f"- pending_forecasts: `{validation.get('pending_forecasts')}`",
@@ -372,11 +379,11 @@ def _render_validation_report(validation: dict[str, Any]) -> str:
 
 
 def _render_data_quality_report(data_quality: dict[str, Any]) -> str:
-    lines = ["# Data Quality Report", ""]
+    lines = ["# 数据质量报告", ""]
     for key in ("score", "latest_data_date", "expected_latest_trading_date", "data_freshness_status", "stale_warning", "candidate_count"):
         lines.append(f"- {key}: `{data_quality.get(key)}`")
     lines.append("")
-    lines.append("## Provider Status")
+    lines.append("## 数据源状态")
     lines.append("")
     for name, status in (data_quality.get("provider_status") or {}).items():
         lines.append(f"- {name}: `{status}`")

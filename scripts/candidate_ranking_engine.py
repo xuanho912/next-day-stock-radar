@@ -13,7 +13,16 @@ def rank_candidates(prediction_payload: dict[str, Any], market_context: dict[str
     ranked = []
     for candidate in prediction_payload.get("candidates", []):
         ranked.append(_score_candidate(candidate, market_context, strict=strict, model_version=model_version))
-    ranked.sort(key=lambda item: (edge_rank(item["edge_status"]), item["elasticity_score"], item["confluence_score"]), reverse=True)
+    ranked.sort(
+        key=lambda item: (
+            edge_rank(item["edge_status"]),
+            1 if (item.get("precision_gate") or {}).get("passed") else 0,
+            float(item.get("confluence_score") or 0),
+            float(item.get("payoff_quality_score") or 0),
+            float(item.get("elasticity_score") or 0),
+        ),
+        reverse=True,
+    )
     for index, candidate in enumerate(ranked, start=1):
         candidate["rank"] = index
     return {
@@ -44,15 +53,39 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     elasticity_score = float(candidate.get("elasticity_score") or 0)
     risk_score = float(candidate.get("risk_score") or 0)
     catalyst_score = float(candidate.get("catalyst_score") or 0)
+    expectation_gap_score = float(candidate.get("expectation_gap_score") or 50)
+    payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
+    execution_quality_score = float(candidate.get("execution_quality_score") or 50)
 
     if strict:
-        confluence_score = confluence_score - risk_score * 0.08
+        confluence_score = (
+            confluence_score
+            - risk_score * 0.08
+            + max(expectation_gap_score - 55, 0) * 0.07
+            + max(payoff_quality_score - 50, 0) * 0.06
+            + max(execution_quality_score - 55, 0) * 0.04
+        )
         if support_count < 4:
             confluence_score = min(confluence_score, 64)
         if catalyst_score < 55:
             confluence_score = min(confluence_score, 58)
+        if expectation_gap_score < 50:
+            confluence_score = min(confluence_score, 58)
+        if payoff_quality_score < 45:
+            confluence_score = min(confluence_score, 56)
         if "high_liquidity_risk" in risk_flags:
             confluence_score = min(confluence_score, 52)
+    else:
+        confluence_score = (
+            confluence_score
+            + max(expectation_gap_score - 58, 0) * 0.03
+            + max(payoff_quality_score - 52, 0) * 0.03
+            + max(execution_quality_score - 58, 0) * 0.02
+        )
+        if expectation_gap_score < 45 and catalyst_score < 55:
+            confluence_score = min(confluence_score, 62)
+        if payoff_quality_score < 42:
+            confluence_score = min(confluence_score, 60)
     if market_context.get("data_freshness_status") != "fresh":
         confluence_score = min(confluence_score, 68 if not strict else 60)
     if candidate.get("pool_filter", {}).get("hard_excluded"):
@@ -85,13 +118,25 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
 def _edge_status(candidate: dict[str, Any], confluence: float, elasticity: float, support_count: int, conflict_count: int, strict: bool) -> str:
     risk_score = float(candidate.get("risk_score") or 0)
     risk_flags = candidate.get("risk_flags") or []
+    expectation_gap_score = float(candidate.get("expectation_gap_score") or 50)
+    payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
     if candidate.get("candidate_type") == "no_edge" or candidate.get("pool_filter", {}).get("hard_excluded"):
         return "AVOID"
     if risk_score >= 72 or ("high_liquidity_risk" in risk_flags and confluence < 58):
         return "AVOID"
+    if expectation_gap_score < 45 and confluence < 66:
+        return "NO_EDGE"
+    if payoff_quality_score < 42:
+        return "WATCH" if confluence >= 64 else "NO_EDGE"
     if elasticity >= 76 and confluence >= 60 and risk_score >= 50:
         return "HIGH_RISK_HIGH_REWARD"
-    if confluence >= (80 if strict else 76) and support_count >= 4 and conflict_count <= 2:
+    if (
+        confluence >= (80 if strict else 76)
+        and expectation_gap_score >= 55
+        and payoff_quality_score >= 48
+        and support_count >= 4
+        and conflict_count <= 2
+    ):
         return "STRONG_EDGE"
     if confluence >= (69 if strict else 66) and support_count >= 3:
         return "MODERATE_EDGE"
@@ -115,8 +160,8 @@ def _trade_plan(candidate: dict[str, Any], rating: str, edge_status: str) -> dic
     expected = candidate.get("next_day_expected_range") or {}
     return {
         "actionable": edge_status in {"STRONG_EDGE", "MODERATE_EDGE"} and rating in {"A+", "A"},
-        "edge_status_note": "edge_status is a forecast-advantage label, not a trade recommendation.",
-        "entry_condition": "No active trade / no edge" if rating == "C" else f"Upside path starts confirming only above {levels.get('upside_trigger_level'):.2f}",
+        "edge_status_note": "edge_status 是预测优势等级，不是交易建议。",
+        "entry_condition": "无主动优势，仅观察" if rating == "C" else f"只有站上并维持在 {levels.get('upside_trigger_level'):.2f} 上方，上冲路径才开始确认",
         "upside_trigger_level": levels.get("upside_trigger_level"),
         "downside_risk_level": levels.get("downside_risk_level"),
         "invalidation_level": levels.get("invalidation_level"),
@@ -125,20 +170,20 @@ def _trade_plan(candidate: dict[str, Any], rating: str, edge_status: str) -> dic
         "breakdown_level": levels.get("breakdown_level"),
         "nearest_support": levels.get("nearest_support"),
         "nearest_resistance": levels.get("nearest_resistance"),
-        "stop_condition": "No trade" if rating == "C" else f"Upside/bounce path invalidates below {levels.get('invalidation_level'):.2f}",
+        "stop_condition": "无主动优势" if rating == "C" else f"跌破 {levels.get('invalidation_level'):.2f}，当前上冲/反抽路径失效",
         "target_low_price": expected.get("expected_mid"),
         "target_high_price": expected.get("expected_high"),
         "next_day_expected_range": expected,
-        "overnight_or_intraday": "intraday_confirm_only" if rating != "A+" else "small_overnight_or_intraday_confirm",
-        "not_trading_advice": "These are probabilistic path levels, not investment advice or trading instructions.",
+        "overnight_or_intraday": "只适合盘中确认" if rating != "A+" else "可观察隔夜延续，但仍需盘中确认",
+        "not_trading_advice": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。",
     }
 
 
 def _reason(candidate: dict[str, Any], edge_status: str) -> str:
-    supports = [item["name"] for item in candidate.get("supporting_evidence", [])[:3]]
-    conflicts = [item["name"] for item in candidate.get("conflicting_evidence", [])[:2]]
+    supports = [item.get("detail") or item.get("name") for item in candidate.get("supporting_evidence", [])[:3]]
+    conflicts = [item.get("detail") or item.get("name") for item in candidate.get("conflicting_evidence", [])[:2]]
     if edge_status in {"STRONG_EDGE", "MODERATE_EDGE", "HIGH_RISK_HIGH_REWARD"}:
-        return " + ".join(supports) if supports else "multi-source confluence"
+        return " / ".join(supports[:2]) if supports else "多源共振"
     if conflicts:
-        return "Capped: " + " / ".join(conflicts)
-    return "No edge; confluence not strong enough."
+        return "压制：" + " / ".join(conflicts[:2])
+    return "没有明显优势，共振不足。"
