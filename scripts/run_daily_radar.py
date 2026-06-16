@@ -315,15 +315,24 @@ def _effective_data_freshness(market_context: dict[str, Any], provider_status: d
 
 
 def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, Any]], validation: dict[str, Any], data_freshness_status: str) -> str:
+    validation_status = _zh_validation_status(validation.get("validation_status"))
     if data_freshness_status in {"fallback_only", "missing"}:
         return "数据陈旧或不完整；本页只能当作观察面板，不能当作今日雷达。"
     if data_freshness_status == "partial_fallback":
-        return f"部分标的行情缺失或降级，系统已剔除或压制；当前剩余 {len(actionable)} 只真实数据候选。验证状态：{validation.get('validation_status')}。"
+        return f"部分标的行情缺失或降级，系统已剔除或压制；当前剩余 {len(actionable)} 只真实数据候选。验证状态：{validation_status}。"
     if market_context.get("market_state") == "defense":
         return "市场背景偏防守；即使有个股信号，也必须降低等级并等待触发确认。"
     if actionable:
-        return f"{len(actionable)} 只候选通过市场、板块、催化、技术、成交、赔率和风险闸门；验证状态：{validation.get('validation_status')}。"
+        return f"{len(actionable)} 只候选通过市场、板块、催化、技术、成交、赔率和风险闸门；验证状态：{validation_status}。"
     return "今天没有高共振候选；少给比乱给更重要。"
+
+
+def _zh_validation_status(value: Any) -> str:
+    return {
+        "not_yet_validated": "样本不足",
+        "early_evidence": "早期证据",
+        "validated": "已验证",
+    }.get(str(value), str(value or "未知"))
 
 
 def _benchmark_symbols(benchmark_map: dict[str, Any]) -> list[str]:
