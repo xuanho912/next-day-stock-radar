@@ -1,7 +1,7 @@
 # Data Quality Report
 
 - score: `58`
-- latest_data_date: `2026-06-15`
+- latest_data_date: `2026-06-16`
 - expected_latest_trading_date: `2026-06-16`
 - data_freshness_status: `partial_fallback`
 - stale_warning: `True`
@@ -10,5 +10,5 @@
 ## Provider Status
 
 - yahoo: `{'available': True, 'total_symbols': 61, 'fallback_count': 1, 'fallback_symbols': ['SAVA'], 'sources': ['fallback-yahoo-error', 'yahoo-chart']}`
-- finnhub: `{'configured': False, 'available': False, 'source': 'missing_secret', 'optional_data_status': {'quote': 'missing', 'ohlcv_candle_fallback': 'missing', 'company_news': 'missing', 'market_news': 'missing', 'earnings_calendar': 'missing', 'economic_calendar': 'missing', 'sentiment': 'missing'}, 'error_count': 0}`
-- fred: `{'configured': False, 'available': False, 'source': 'missing_secret', 'error_count': 0}`
+- finnhub: `{'configured': True, 'available': False, 'source': 'finnhub', 'optional_data_status': {'quote': 'available', 'ohlcv_candle_fallback': 'available', 'company_news': 'available', 'market_news': 'available', 'earnings_calendar': 'available', 'economic_calendar': 'missing', 'sentiment': 'available'}, 'error_count': 81}`
+- fred: `{'configured': True, 'available': True, 'source': 'fred-api', 'error_count': 0}`
