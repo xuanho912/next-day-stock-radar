@@ -1,4 +1,4 @@
-# Data Quality Report
+# 数据质量报告
 
 - score: `66`
 - latest_data_date: `2026-06-16`
@@ -7,7 +7,7 @@
 - stale_warning: `True`
 - candidate_count: `39`
 
-## Provider Status
+## 数据源状态
 
 - yahoo: `{'available': True, 'total_symbols': 61, 'fallback_count': 1, 'fallback_symbols': ['SAVA'], 'sources': ['fallback-yahoo-error', 'yahoo-chart']}`
 - finnhub: `{'configured': True, 'available': True, 'core_available': True, 'availability_status': 'partial', 'source': 'finnhub', 'optional_data_status': {'quote': 'available', 'ohlcv_candle_fallback': 'missing', 'company_news': 'available', 'market_news': 'available', 'earnings_calendar': 'available', 'economic_calendar': 'missing', 'sentiment': 'missing'}, 'error_count': 81}`
