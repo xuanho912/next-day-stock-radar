@@ -57,7 +57,7 @@ def main(argv: list[str] | None = None) -> int:
     market_context = build_market_context(series_by_symbol)
     finnhub_bundle = fetch_finnhub_bundle(symbols, offline=args.offline)
     fred_bundle = fetch_fred_bundle(offline=args.offline)
-    news_events = build_news_events(symbols, finnhub_bundle)
+    news_events = build_news_events(symbols, finnhub_bundle, sector_map)
     quote_snapshots = build_quote_snapshots(symbols, finnhub_bundle)
     fundamentals = build_fundamental_snapshot(symbols, finnhub_bundle)
     prediction_payload = build_stock_predictions(

@@ -124,18 +124,20 @@ ACTIONABLE_PHRASES = {
 }
 
 
-def build_news_events(symbols: list[str], finnhub_bundle: dict[str, Any]) -> dict[str, Any]:
+def build_news_events(symbols: list[str], finnhub_bundle: dict[str, Any], sector_map: dict[str, Any] | None = None) -> dict[str, Any]:
     news_by_symbol = finnhub_bundle.get("news") or {}
     earnings_by_symbol = _earnings_by_symbol(finnhub_bundle.get("earnings_calendar") or {})
     sentiment_by_symbol = finnhub_bundle.get("sentiment") or {}
     events: dict[str, Any] = {}
     for symbol in symbols:
         rows = news_by_symbol.get(symbol) or []
+        aliases = _company_aliases(symbol, (sector_map or {}).get(symbol, {}))
         events[symbol] = _score_symbol_news(
             symbol,
             rows[:18],
             earnings_by_symbol.get(symbol) or [],
             sentiment_by_symbol.get(symbol) or {},
+            aliases,
         )
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -150,6 +152,7 @@ def _score_symbol_news(
     rows: list[dict[str, Any]],
     earnings_events: list[dict[str, Any]],
     sentiment: dict[str, Any],
+    aliases: set[str] | None = None,
 ) -> dict[str, Any]:
     now = datetime.now(timezone.utc)
     support_events: list[dict[str, Any]] = []
@@ -163,11 +166,13 @@ def _score_symbol_news(
         headline = str(item.get("headline") or "")[:260]
         summary = str(item.get("summary") or "")[:500]
         text = f"{headline} {summary}".lower()
+        relevance = _news_relevance(symbol, aliases or set(), item, text)
         published_at = _published_at(item)
         age_hours = _age_hours(now, published_at)
         recency = _recency_multiplier(age_hours)
         best_event = _best_event(text)
         if best_event:
+            best_event = _apply_relevance_guard(best_event, relevance)
             event_score = round(float(best_event["weight"]) * recency, 2)
             score += event_score
             if best_event["strong"]:
@@ -183,6 +188,7 @@ def _score_symbol_news(
                     "age_hours": round(age_hours, 2) if age_hours is not None else None,
                     "score_contribution": event_score,
                     "strong": bool(best_event["strong"]),
+                    "relevance": relevance,
                 }
             )
         best_risk = _best_risk(text)
@@ -198,6 +204,7 @@ def _score_symbol_news(
                     "published_at": published_at.isoformat() if published_at else None,
                     "age_hours": round(age_hours, 2) if age_hours is not None else None,
                     "score_contribution": risk_score,
+                    "relevance": relevance,
                 }
             )
 
@@ -255,6 +262,47 @@ def _best_event(text: str) -> dict[str, Any] | None:
         return None
     best = max(matches, key=lambda item: (bool(item["strong"]), int(item["weight"])))
     return _event_with_quality_guard(best, text)
+
+
+def _company_aliases(symbol: str, stock: dict[str, Any]) -> set[str]:
+    aliases: set[str] = set()
+    name = str(stock.get("company_name") or "").lower()
+    if name:
+        cleaned = _clean_company_name(name)
+        if cleaned:
+            aliases.add(cleaned)
+        first = cleaned.split(" ")[0] if cleaned else ""
+        if len(first) >= 4:
+            aliases.add(first)
+    if len(symbol) >= 4:
+        aliases.add(symbol.lower())
+    return {alias for alias in aliases if len(alias) >= 3}
+
+
+def _clean_company_name(name: str) -> str:
+    cleaned = name
+    for suffix in (" corp.", " corp", " corporation", " inc.", " inc", " ltd.", " ltd", " holdings", " holding", " class a"):
+        cleaned = cleaned.replace(suffix, "")
+    return " ".join(cleaned.replace(",", " ").replace(".", " ").split())
+
+
+def _news_relevance(symbol: str, aliases: set[str], item: dict[str, Any], text: str) -> str:
+    related = str(item.get("related") or "").upper()
+    symbol_upper = symbol.upper()
+    if any(alias and alias in text for alias in aliases):
+        return "direct"
+    if symbol_upper and symbol_upper in {part.strip().upper() for part in related.replace(";", ",").split(",")}:
+        return "provider_related"
+    return "unrelated"
+
+
+def _apply_relevance_guard(rule: dict[str, Any], relevance: str) -> dict[str, Any]:
+    guarded = dict(rule)
+    if relevance == "direct":
+        return guarded
+    guarded["strong"] = False
+    guarded["weight"] = min(int(guarded["weight"]), 6 if relevance == "provider_related" else 3)
+    return guarded
 
 
 def _event_with_quality_guard(rule: dict[str, Any], text: str) -> dict[str, Any]:
