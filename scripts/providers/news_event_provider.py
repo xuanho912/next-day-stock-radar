@@ -57,6 +57,72 @@ RISK_RULES: list[dict[str, Any]] = [
     {"risk_type": "bankruptcy_or_delisting", "keywords": ("bankruptcy", "chapter 11", "delisting", "going concern"), "weight": 28},
 ]
 
+SOFT_ARTICLE_MARKERS = (
+    "better buy",
+    "which stock",
+    "what is going on",
+    "what's going on",
+    "is it time to",
+    "why this analyst",
+    "why shares",
+    "technical strength",
+    "deteriorating fundamentals",
+    "stocks to watch",
+    "could be",
+    "may be",
+    "reportedly eyeing",
+    "mulls",
+    "rumor",
+)
+
+ACTIONABLE_PHRASES = {
+    "earnings_momentum": (
+        "reports earnings",
+        "reported earnings",
+        "earnings beat",
+        "beats estimates",
+        "beat estimates",
+        "raises guidance",
+        "raised guidance",
+        "raises outlook",
+        "raised outlook",
+        "announces results",
+        "quarterly results",
+        "q1 results",
+        "q2 results",
+        "q3 results",
+        "q4 results",
+    ),
+    "regulatory_catalyst": (
+        "fda approves",
+        "fda approval",
+        "receives approval",
+        "wins approval",
+        "clearance",
+        "phase 3 meets",
+        "positive phase",
+        "trial meets",
+    ),
+    "confirmed_business_catalyst": (
+        "wins contract",
+        "secures contract",
+        "awarded contract",
+        "signs agreement",
+        "supply agreement",
+        "strategic partnership with",
+        "partners with",
+        "launches",
+    ),
+    "mna_or_strategic_review": (
+        "to acquire",
+        "will acquire",
+        "acquisition of",
+        "merger agreement",
+        "buyout offer",
+        "definitive agreement",
+    ),
+}
+
 
 def build_news_events(symbols: list[str], finnhub_bundle: dict[str, Any]) -> dict[str, Any]:
     news_by_symbol = finnhub_bundle.get("news") or {}
@@ -187,7 +253,31 @@ def _best_event(text: str) -> dict[str, Any] | None:
             matches.append(rule)
     if not matches:
         return None
-    return max(matches, key=lambda item: (bool(item["strong"]), int(item["weight"])))
+    best = max(matches, key=lambda item: (bool(item["strong"]), int(item["weight"])))
+    return _event_with_quality_guard(best, text)
+
+
+def _event_with_quality_guard(rule: dict[str, Any], text: str) -> dict[str, Any]:
+    guarded = dict(rule)
+    if _is_soft_article(text):
+        guarded["strong"] = False
+        guarded["weight"] = min(int(guarded["weight"]), 6)
+        return guarded
+    if guarded.get("strong") and not _has_actionable_phrase(str(guarded.get("event_type")), text):
+        guarded["strong"] = False
+        guarded["weight"] = min(int(guarded["weight"]), 8)
+    return guarded
+
+
+def _is_soft_article(text: str) -> bool:
+    return any(marker in text for marker in SOFT_ARTICLE_MARKERS)
+
+
+def _has_actionable_phrase(event_type: str, text: str) -> bool:
+    phrases = ACTIONABLE_PHRASES.get(event_type)
+    if not phrases:
+        return True
+    return any(phrase in text for phrase in phrases)
 
 
 def _best_risk(text: str) -> dict[str, Any] | None:
@@ -315,7 +405,7 @@ def _catalyst_quality(score: float, support_events: list[dict[str, Any]], risk_e
         return "conflicted"
     if strong_count >= 1 and score >= 72:
         return "strong"
-    if strong_count >= 1 and score >= 60:
+    if strong_count >= 1 and score >= 56:
         return "confirmed"
     if score >= 52:
         return "weak"
