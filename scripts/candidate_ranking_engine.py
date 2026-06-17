@@ -56,6 +56,7 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     expectation_gap_score = float(candidate.get("expectation_gap_score") or 50)
     payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
     execution_quality_score = float(candidate.get("execution_quality_score") or 50)
+    elasticity_confirmation_factor = float(candidate.get("elasticity_confirmation_factor") or 0.50)
     signal_quality_gate = _signal_quality_gate(candidate)
 
     if strict:
@@ -101,12 +102,21 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
                 100,
                 elasticity_score
                 + min(float(candidate["features"].get("relative_volume") or 1), 5) * 0.8
+                + max(elasticity_confirmation_factor - 0.55, 0) * 12
                 - max(risk_score - 60, 0) * 0.22
                 - len(signal_quality_gate["critical_failures"]) * 4,
             ),
         ),
         2,
     )
+    if elasticity_confirmation_factor < 0.46:
+        elasticity_score = min(elasticity_score, 58)
+    elif elasticity_confirmation_factor < 0.54:
+        elasticity_score = min(elasticity_score, 66)
+    if signal_quality_gate["level"] == "blocked":
+        elasticity_score = min(elasticity_score, 62 if signal_quality_gate["critical_failures"] else 68)
+    elif signal_quality_gate["level"] == "incomplete":
+        elasticity_score = min(elasticity_score, 74)
     edge_status = _edge_status(candidate, confluence_score, elasticity_score, support_count, conflict_count, strict, signal_quality_gate)
     rating = _rating(edge_status, confluence_score, risk_score)
     trade_plan = _trade_plan(candidate, rating, edge_status)

@@ -351,6 +351,9 @@ function renderDetail() {
       <h3>评分结构</h3>
       ${facts([
         ["弹性评分", candidate.elasticity_score],
+        ["原始波动潜力", candidate.elasticity_raw_potential],
+        ["弹性确认系数", candidate.elasticity_confirmation_factor],
+        ["弹性解释", zhElasticity(candidate.elasticity_interpretation)],
         ["次日明显波动概率", pct(candidate.next_day_move_probability)],
         ["上冲动量评分", candidate.upside_momentum_score],
         ["反抽评分", candidate.bounce_score],
@@ -856,6 +859,15 @@ function signalGateText(value) {
     partial: "部分共振",
     incomplete: "共振不足",
     blocked: "硬缺口",
+  }[value] || value || "-";
+}
+
+function zhElasticity(value) {
+  return {
+    confirmed_elasticity: "确认弹性",
+    partially_confirmed_elasticity: "部分确认弹性",
+    unconfirmed_volatility: "未确认波动",
+    normal_volatility: "普通波动",
   }[value] || value || "-";
 }
 

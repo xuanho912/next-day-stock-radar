@@ -107,6 +107,9 @@ def _build_candidate(
         "fundamental": fundamental,
         "sector_theme": sector_payload,
         "elasticity_score": raw_scores["elasticity_score"],
+        "elasticity_raw_potential": raw_scores["elasticity_raw_potential"],
+        "elasticity_confirmation_factor": raw_scores["elasticity_confirmation_factor"],
+        "elasticity_interpretation": raw_scores["elasticity_interpretation"],
         "next_day_move_probability": raw_scores["next_day_move_probability"],
         "upside_momentum_score": raw_scores["upside_momentum_score"],
         "bounce_score": raw_scores["bounce_score"],
@@ -374,18 +377,30 @@ def _raw_scores(
     quote_score = float(features.get("quote_confirmation_score") or 50)
     quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
     quote_bonus = quote_score - 50 if quote_available else 0
-    elasticity_score = _clamp(
-        features["atr_pct"] * 180
-        + features["realized_volatility_20d"] * 210
-        + features["intraday_range_pct"] * 120
-        + min(max(features["volume_z_score"], 0), 5) * 7
-        + abs(features["gap_pct"]) * 120
-        + max(features["beta_proxy"] - 1, 0) * 8
-        + catalyst_score * 0.12
-        + volume * 0.10
-        + max(quote_bonus, 0) * 0.12
-        + 14
+    catalyst_type = str(news.get("catalyst_type") or "")
+    elasticity_raw_potential = _raw_elasticity_potential(features)
+    elasticity_confirmation_factor = _elasticity_confirmation_factor(
+        features=features,
+        news=news,
+        sector_score=sector,
+        expectation_gap_score=expectation_gap_score,
+        quote_bonus=quote_bonus,
+        market_context=market_context,
     )
+    elasticity_score = _clamp(
+        elasticity_raw_potential * (0.34 + elasticity_confirmation_factor * 0.48)
+        + catalyst_score * 0.06 * elasticity_confirmation_factor
+        + volume * 0.05 * elasticity_confirmation_factor
+        + technical * 0.04 * elasticity_confirmation_factor
+        + max(quote_bonus, 0) * 0.12
+        - risk_score * 0.10
+    )
+    if catalyst_type == "no_recent_confirmed_news" and volume < 60:
+        elasticity_score = min(elasticity_score, 66)
+    if volume < 52 and catalyst_score < 58:
+        elasticity_score = min(elasticity_score, 64)
+    if technical < 45:
+        elasticity_score = min(elasticity_score, 62)
     upside_momentum_score = _clamp(
         30
         + technical * 0.32
@@ -443,13 +458,36 @@ def _raw_scores(
         features=features,
         news=news,
     )
-    next_day_move_probability = _clamp((elasticity_score * 0.62 + confluence_score * 0.28 + catalyst_score * 0.10) / 100, 0, 1)
+    next_day_move_probability = _clamp(
+        (
+            elasticity_score * 0.38
+            + confluence_score * 0.36
+            + catalyst_score * 0.12
+            + volume * 0.10
+            + technical * 0.04
+        )
+        / 100
+        * (0.72 + elasticity_confirmation_factor * 0.35),
+        0,
+        0.88,
+    )
+    if elasticity_confirmation_factor < 0.48:
+        next_day_move_probability = min(next_day_move_probability, 0.55)
+    if confluence_score < 58:
+        next_day_move_probability = min(next_day_move_probability, 0.62)
     primary_probability = _clamp((confluence_score * 0.52 + max(upside_momentum_score, bounce_score) * 0.28 + sector * 0.20) / 100, 0.05, 0.82)
+    if confluence_score < 58:
+        primary_probability = min(primary_probability, 0.50)
+    if elasticity_confirmation_factor < 0.48:
+        primary_probability = min(primary_probability, 0.46)
     risk_probability = _clamp((risk_score * 0.58 + downside_continuation_score * 0.34) / 100, 0.03, 0.86)
     secondary_probability = _clamp(1.0 - primary_probability - risk_probability, 0.05, 0.55)
 
     return {
         "elasticity_score": round(elasticity_score, 2),
+        "elasticity_raw_potential": round(elasticity_raw_potential, 2),
+        "elasticity_confirmation_factor": round(elasticity_confirmation_factor, 4),
+        "elasticity_interpretation": _elasticity_interpretation(elasticity_score, elasticity_confirmation_factor),
         "next_day_move_probability": round(next_day_move_probability, 4),
         "upside_momentum_score": round(upside_momentum_score, 2),
         "bounce_score": round(bounce_score, 2),
@@ -470,6 +508,67 @@ def _raw_scores(
         "secondary_probability": round(secondary_probability, 4),
         "risk_probability": round(risk_probability, 4),
     }
+
+
+def _raw_elasticity_potential(features: dict[str, Any]) -> float:
+    return _clamp(
+        min(features["atr_pct"], 0.16) * 150
+        + min(features["realized_volatility_20d"], 1.45) * 30
+        + min(features["intraday_range_pct"], 0.18) * 70
+        + min(max(features["volume_z_score"], 0), 4) * 4
+        + min(abs(features["gap_pct"]), 0.14) * 55
+        + max(features["beta_proxy"] - 1, 0) * 5
+        + 8
+    )
+
+
+def _elasticity_confirmation_factor(
+    *,
+    features: dict[str, Any],
+    news: dict[str, Any],
+    sector_score: float,
+    expectation_gap_score: float,
+    quote_bonus: float,
+    market_context: dict[str, Any],
+) -> float:
+    catalyst_score = float(news.get("catalyst_score") or 35)
+    catalyst_type = str(news.get("catalyst_type") or "")
+    technical = float(features["technical_score"])
+    volume = float(features["volume_score"])
+    relative_volume = float(features["relative_volume"])
+    confirmations = 0
+    confirmations += 1 if catalyst_score >= 60 and catalyst_type != "no_recent_confirmed_news" else 0
+    confirmations += 1 if technical >= 64 else 0
+    confirmations += 1 if volume >= 62 and relative_volume >= 1.15 else 0
+    confirmations += 1 if sector_score >= 58 else 0
+    confirmations += 1 if expectation_gap_score >= 58 else 0
+    confirmations += 1 if quote_bonus >= 6 else 0
+    factor = 0.34 + confirmations * 0.095
+    if market_context.get("market_state") == "attack":
+        factor += 0.04
+    elif market_context.get("market_state") == "defense":
+        factor -= 0.08
+    if catalyst_type == "no_recent_confirmed_news":
+        factor = min(factor, 0.58)
+    if volume < 55 or relative_volume < 1.05:
+        factor = min(factor, 0.56)
+    if technical < 50:
+        factor = min(factor, 0.54)
+    if catalyst_score < 45 and technical < 65:
+        factor = min(factor, 0.50)
+    if volume < 50 and catalyst_score < 58:
+        factor = min(factor, 0.46)
+    return _clamp(factor, 0.28, 1.0)
+
+
+def _elasticity_interpretation(elasticity_score: float, confirmation_factor: float) -> str:
+    if elasticity_score >= 75 and confirmation_factor >= 0.66:
+        return "confirmed_elasticity"
+    if elasticity_score >= 62 and confirmation_factor >= 0.54:
+        return "partially_confirmed_elasticity"
+    if elasticity_score >= 58:
+        return "unconfirmed_volatility"
+    return "normal_volatility"
 
 
 def _expectation_gap_score(
@@ -746,11 +845,25 @@ def _precision_gate(
 
 def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type: str) -> dict[str, Any]:
     last = features["last_close"]
-    atr_pct = max(features["atr_pct"], 0.035)
+    atr_pct = max(features["atr_pct"], 0.025)
     move_probability = scores["next_day_move_probability"]
-    range_pct = min(0.24, max(0.035, atr_pct * (1.15 + move_probability)))
-    expected_low_price = last * (1 - range_pct * (0.72 if scores["risk_score"] < 55 else 0.95))
-    expected_high_price = last * (1 + range_pct * (1.15 if candidate_type in {"short_squeeze_candidate", "event_driven_volatility"} else 0.92))
+    confirmation = float(scores.get("elasticity_confirmation_factor") or 0.50)
+    confluence = float(scores.get("confluence_score") or 0)
+    range_pct = min(0.18, max(0.025, atr_pct * (0.78 + move_probability * 0.65 + confirmation * 0.32)))
+    if confluence < 58:
+        range_pct *= 0.82
+    if confirmation < 0.48:
+        range_pct *= 0.78
+    upside_weight = 0.58 + confirmation * 0.30 + max(confluence - 58, 0) * 0.006
+    if candidate_type in {"short_squeeze_candidate", "event_driven_volatility"} and confluence >= 62 and confirmation >= 0.58:
+        upside_weight += 0.12
+    if confluence < 58:
+        upside_weight = min(upside_weight, 0.68)
+    downside_weight = 0.72 if scores["risk_score"] < 55 else 0.95
+    if confirmation < 0.48 and confluence < 60:
+        downside_weight = max(downside_weight, 0.86)
+    expected_low_price = last * (1 - range_pct * downside_weight)
+    expected_high_price = last * (1 + range_pct * upside_weight)
     expected_mid = (expected_low_price + expected_high_price) / 2
     breakout = max(features["recent_resistance"], last * 1.018)
     breakdown = min(features["recent_support"], last * 0.982)
