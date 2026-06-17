@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-06-17T17:11:24.720078+00:00",
+  "generated_at": "2026-06-17T17:15:55.147158+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 44,
+  "pending_forecasts": 45,
   "completed_next_day_forecasts": 42,
   "baseline": {
-    "total_forecasts": 86,
-    "pending_forecasts": 44,
+    "total_forecasts": 87,
+    "pending_forecasts": 45,
     "completed_next_day_forecasts": 42,
     "top_10_avg_next_day_volatility": 2.477148,
     "top_10_next_day_direction_hit_rate": 0.470588,
@@ -38,8 +38,8 @@
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 84,
-    "pending_forecasts": 43,
+    "total_forecasts": 86,
+    "pending_forecasts": 45,
     "completed_next_day_forecasts": 41,
     "top_10_avg_next_day_volatility": 2.224831,
     "top_10_next_day_direction_hit_rate": 0.263158,
@@ -80,8 +80,8 @@
   },
   "by_market_state": {
     "attack": {
-      "total_forecasts": 66,
-      "pending_forecasts": 44,
+      "total_forecasts": 67,
+      "pending_forecasts": 45,
       "completed_next_day_forecasts": 22,
       "top_10_avg_next_day_volatility": 0.061607,
       "top_10_next_day_direction_hit_rate": 0.571429,
@@ -530,8 +530,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "High Beta / EV": {
-      "total_forecasts": 6,
-      "pending_forecasts": 3,
+      "total_forecasts": 7,
+      "pending_forecasts": 4,
       "completed_next_day_forecasts": 3,
       "top_10_avg_next_day_volatility": null,
       "top_10_next_day_direction_hit_rate": null,
@@ -820,8 +820,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "oversold_bounce": {
-      "total_forecasts": 2,
-      "pending_forecasts": 2,
+      "total_forecasts": 3,
+      "pending_forecasts": 3,
       "completed_next_day_forecasts": 0,
       "top_10_avg_next_day_volatility": null,
       "top_10_next_day_direction_hit_rate": null,
@@ -918,8 +918,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 41,
-      "pending_forecasts": 21,
+      "total_forecasts": 42,
+      "pending_forecasts": 22,
       "completed_next_day_forecasts": 20,
       "top_10_avg_next_day_volatility": 4.168026,
       "top_10_next_day_direction_hit_rate": 0.4,
