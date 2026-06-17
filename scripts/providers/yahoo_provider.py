@@ -7,9 +7,13 @@ import urllib.request
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from typing import Any
+from zoneinfo import ZoneInfo
 
 
 YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?range={range}&interval=1d&includePrePost=false"
+US_MARKET_TIMEZONE = ZoneInfo("America/New_York")
+DAILY_BAR_COMPLETE_HOUR = 16
+DAILY_BAR_COMPLETE_MINUTE = 15
 
 
 @dataclass
@@ -91,7 +95,13 @@ def fallback_series(symbol: str, days: int = 180) -> PriceSeries:
 
 def expected_latest_trading_date(now: datetime | None = None) -> str:
     now = now or datetime.now(timezone.utc)
-    current = now.date()
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    market_now = now.astimezone(US_MARKET_TIMEZONE)
+    current = market_now.date()
+    daily_bar_complete = (market_now.hour, market_now.minute) >= (DAILY_BAR_COMPLETE_HOUR, DAILY_BAR_COMPLETE_MINUTE)
+    if not daily_bar_complete:
+        current -= timedelta(days=1)
     while current.weekday() >= 5:
         current -= timedelta(days=1)
     return current.isoformat()
