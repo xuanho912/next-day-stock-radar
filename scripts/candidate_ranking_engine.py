@@ -200,11 +200,12 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     expectation_gap = float(candidate.get("expectation_gap_score") or 0)
     quote_status = (candidate.get("quote_confirmation") or {}).get("status")
     catalyst_type = news.get("catalyst_type")
+    catalyst_quality = news.get("catalyst_quality")
 
     failures: list[str] = []
     critical: list[str] = []
 
-    if catalyst < 58 or catalyst_type == "no_recent_confirmed_news" or "catalyst" not in support_sources:
+    if catalyst < 58 or catalyst_type == "no_recent_confirmed_news" or catalyst_quality not in {"confirmed", "strong"} or "catalyst" not in support_sources:
         failures.append("催化不足或没有确认新闻")
     if technical < 55 or "price" not in support_sources:
         failures.append("技术结构未确认")
@@ -222,6 +223,8 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     if candidate.get("squeeze_data_status", {}).get("short_interest") == "proxy" and candidate.get("candidate_type") == "short_squeeze_candidate":
         failures.append("逼空逻辑只有 proxy，不能作为强共振")
 
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65:
+        critical.append("催化质量未确认")
     if catalyst < 45 and technical < 65:
         critical.append("缺催化且技术不强")
     if volume < 52:

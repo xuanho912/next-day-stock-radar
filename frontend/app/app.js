@@ -162,6 +162,7 @@ function renderCandidateTable() {
       <td>${scoreBlock(num(candidate.relative_volume), "相对量")}</td>
       <td>${scoreBlock(candidate.elasticity_score, "弹性")}</td>
       <td>${scoreBlock(candidate.confluence_score, "共振")}</td>
+      <td><span class="badge ${matrixClass(candidate.confluence_matrix?.overall)}">${safe(confluenceOverallText(candidate.confluence_matrix?.overall))}</span></td>
       <td>${scoreBlock(candidate.expectation_gap_score, "预期差")}</td>
       <td>${scoreBlock(candidate.payoff_quality_score, "赔率")}</td>
       <td>${scoreBlock(candidate.risk_score, "风险")}</td>
@@ -322,6 +323,10 @@ function renderDetail() {
         ["预期上行", pct(candidate.expected_upside_pct)],
         ["预期下行", pct(candidate.expected_downside_pct)],
       ])}
+    </div>
+    <div class="detail-card wide-card">
+      <h3>共振矩阵</h3>
+      ${confluenceMatrix(candidate.confluence_matrix)}
     </div>
     <div class="detail-card">
       <h3>催化 / 相对强弱</h3>
@@ -690,6 +695,31 @@ function evidence(items, conflict) {
   `).join("")}</div>`;
 }
 
+function confluenceMatrix(matrix) {
+  if (!matrix || !Array.isArray(matrix.items) || !matrix.items.length) {
+    return `<p>暂无共振矩阵。</p>`;
+  }
+  const summary = [
+    ["总体", confluenceOverallText(matrix.overall)],
+    ["核心确认数", matrix.confirmed_core_count ?? "-"],
+    ["阻断维度", (matrix.blocking_dimensions || []).join(" / ") || "无"],
+  ];
+  const rows = matrix.items.map(item => `
+    <div class="matrix-row status-${safeAttr(item.status)}">
+      <div>
+        <strong>${safe(item.label || item.dimension)}</strong>
+        <span>${safe(confluenceStatusText(item.status))}</span>
+      </div>
+      <div class="matrix-score">${safe(num(item.score))}</div>
+      <p>${safe(item.reason || "-")}</p>
+    </div>
+  `).join("");
+  return `
+    ${facts(summary)}
+    <div class="matrix-grid">${rows}</div>
+  `;
+}
+
 function similarSamples(items) {
   if (!items.length) return `<p>暂无成熟相似样本。</p>`;
   return `<div class="sample-list">${items.map(item => `
@@ -784,6 +814,12 @@ function edgeClass(edge) {
   return "neutral";
 }
 
+function matrixClass(overall) {
+  if (overall === "confirmed") return "good";
+  if (overall === "blocked" || overall === "incomplete") return "bad";
+  return "neutral";
+}
+
 function price(value) {
   const number = Number(value);
   return Number.isFinite(number) ? `${number.toFixed(2)} 美元` : "-";
@@ -859,6 +895,25 @@ function signalGateText(value) {
     partial: "部分共振",
     incomplete: "共振不足",
     blocked: "硬缺口",
+  }[value] || value || "-";
+}
+
+function confluenceStatusText(value) {
+  return {
+    confirmed: "确认",
+    partial: "部分",
+    weak: "偏弱",
+    blocked: "阻断",
+    missing: "缺失",
+  }[value] || value || "-";
+}
+
+function confluenceOverallText(value) {
+  return {
+    confirmed: "真实共振",
+    partial: "部分共振",
+    incomplete: "共振不足",
+    blocked: "存在阻断",
   }[value] || value || "-";
 }
 

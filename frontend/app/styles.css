@@ -441,6 +441,59 @@ tr[data-ticker].selected {
   overflow-wrap: anywhere;
 }
 
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.matrix-row {
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--muted);
+  border-radius: 8px;
+  background: white;
+  padding: 10px;
+}
+
+.matrix-row > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.matrix-row span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.matrix-row p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.matrix-score {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.matrix-row.status-confirmed {
+  border-left-color: var(--green);
+}
+
+.matrix-row.status-partial {
+  border-left-color: var(--amber);
+}
+
+.matrix-row.status-weak,
+.matrix-row.status-missing,
+.matrix-row.status-blocked {
+  border-left-color: var(--red);
+}
+
 .evidence {
   display: grid;
   gap: 8px;
@@ -569,7 +622,8 @@ tr[data-ticker].selected {
   }
 
   .opportunity-strip,
-  .volume-analysis {
+  .volume-analysis,
+  .matrix-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -589,7 +643,8 @@ tr[data-ticker].selected {
   .metric-grid,
   .space-tiles,
   .opportunity-strip,
-  .volume-analysis {
+  .volume-analysis,
+  .matrix-grid {
     grid-template-columns: 1fr;
   }
 }

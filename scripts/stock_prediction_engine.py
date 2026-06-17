@@ -92,6 +92,15 @@ def _build_candidate(
     edge_status = _edge_status(raw_scores, payoff_profile, support, conflict, risk_flags, market_context, pool_filter)
     precision_gate = _precision_gate(raw_scores, payoff_profile, support, conflict, risk_flags, market_context, pool_filter)
     analog = _historical_analog(features, market_context, news)
+    confluence_matrix = _confluence_matrix(
+        features=features,
+        news=news,
+        sector_payload=sector_payload,
+        market_context=market_context,
+        scores=raw_scores,
+        payoff_profile=payoff_profile,
+        pool_filter=pool_filter,
+    )
 
     return {
         "ticker": symbol,
@@ -126,6 +135,7 @@ def _build_candidate(
         "expected_upside_pct": payoff_profile["expected_upside_pct"],
         "expected_downside_pct": payoff_profile["expected_downside_pct"],
         "precision_gate": precision_gate,
+        "confluence_matrix": confluence_matrix,
         "risk_score": raw_scores["risk_score"],
         "confluence_score": raw_scores["confluence_score"],
         "primary_scenario": _primary_scenario(market_context, candidate_type, raw_scores),
@@ -378,6 +388,7 @@ def _raw_scores(
     quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
     quote_bonus = quote_score - 50 if quote_available else 0
     catalyst_type = str(news.get("catalyst_type") or "")
+    catalyst_quality = str(news.get("catalyst_quality") or "missing")
     elasticity_raw_potential = _raw_elasticity_potential(features)
     elasticity_confirmation_factor = _elasticity_confirmation_factor(
         features=features,
@@ -397,6 +408,8 @@ def _raw_scores(
     )
     if catalyst_type == "no_recent_confirmed_news" and volume < 60:
         elasticity_score = min(elasticity_score, 66)
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"}:
+        elasticity_score = min(elasticity_score, 62)
     if volume < 52 and catalyst_score < 58:
         elasticity_score = min(elasticity_score, 64)
     if technical < 45:
@@ -533,11 +546,12 @@ def _elasticity_confirmation_factor(
 ) -> float:
     catalyst_score = float(news.get("catalyst_score") or 35)
     catalyst_type = str(news.get("catalyst_type") or "")
+    catalyst_quality = str(news.get("catalyst_quality") or "missing")
     technical = float(features["technical_score"])
     volume = float(features["volume_score"])
     relative_volume = float(features["relative_volume"])
     confirmations = 0
-    confirmations += 1 if catalyst_score >= 60 and catalyst_type != "no_recent_confirmed_news" else 0
+    confirmations += 1 if catalyst_score >= 60 and catalyst_quality in {"confirmed", "strong"} and catalyst_type != "no_recent_confirmed_news" else 0
     confirmations += 1 if technical >= 64 else 0
     confirmations += 1 if volume >= 62 and relative_volume >= 1.15 else 0
     confirmations += 1 if sector_score >= 58 else 0
@@ -550,6 +564,8 @@ def _elasticity_confirmation_factor(
         factor -= 0.08
     if catalyst_type == "no_recent_confirmed_news":
         factor = min(factor, 0.58)
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"}:
+        factor = min(factor, 0.54)
     if volume < 55 or relative_volume < 1.05:
         factor = min(factor, 0.56)
     if technical < 50:
@@ -580,6 +596,7 @@ def _expectation_gap_score(
 ) -> float:
     catalyst_score = float(news.get("catalyst_score") or 35)
     catalyst_type = str(news.get("catalyst_type") or "")
+    catalyst_quality = str(news.get("catalyst_quality") or "missing")
     strong_catalyst = catalyst_type in {
         "earnings_momentum",
         "confirmed_business_catalyst",
@@ -603,6 +620,8 @@ def _expectation_gap_score(
     )
     if catalyst_type == "no_recent_confirmed_news":
         score = min(score, 50)
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"}:
+        score = min(score, 54)
     if catalyst_score < 45 and not (features["technical_score"] >= 70 and features["volume_score"] >= 65):
         score = min(score, 54)
     if features["volume_score"] < 55:
@@ -623,8 +642,11 @@ def _apply_raw_signal_caps(
 ) -> float:
     score = confluence_score
     catalyst_type = news.get("catalyst_type")
+    catalyst_quality = str(news.get("catalyst_quality") or "missing")
     if catalyst_type == "no_recent_confirmed_news" or catalyst_score < 45:
         score = min(score, 58)
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"}:
+        score = min(score, 62)
     if catalyst_score < 58 and not (technical_score >= 72 and volume_score >= 66):
         score = min(score, 66)
     if technical_score < 45:
@@ -909,6 +931,194 @@ def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type
     }
 
 
+def _confluence_matrix(
+    *,
+    features: dict[str, Any],
+    news: dict[str, Any],
+    sector_payload: dict[str, Any],
+    market_context: dict[str, Any],
+    scores: dict[str, Any],
+    payoff_profile: dict[str, Any],
+    pool_filter: dict[str, Any],
+) -> dict[str, Any]:
+    items = [
+        _matrix_catalyst(news),
+        _matrix_price(features),
+        _matrix_volume(features, pool_filter),
+        _matrix_sector(sector_payload, market_context),
+        _matrix_quote(features),
+        _matrix_payoff(payoff_profile, scores),
+        _matrix_risk(scores, pool_filter),
+    ]
+    counts: dict[str, int] = {}
+    for item in items:
+        counts[item["status"]] = counts.get(item["status"], 0) + 1
+    blocking = [item for item in items if item.get("blocking")]
+    confirmed_core = sum(1 for item in items if item["dimension"] in {"catalyst", "price", "volume", "payoff"} and item["status"] == "confirmed")
+    if blocking:
+        overall = "blocked"
+    elif confirmed_core >= 4 and counts.get("weak", 0) == 0 and counts.get("missing", 0) == 0:
+        overall = "confirmed"
+    elif confirmed_core >= 2:
+        overall = "partial"
+    else:
+        overall = "incomplete"
+    return {
+        "version": "confluence_matrix_v1",
+        "overall": overall,
+        "confirmed_core_count": confirmed_core,
+        "status_counts": counts,
+        "blocking_dimensions": [item["dimension"] for item in blocking],
+        "items": items,
+    }
+
+
+def _matrix_catalyst(news: dict[str, Any]) -> dict[str, Any]:
+    score = float(news.get("catalyst_score") or 35)
+    quality = str(news.get("catalyst_quality") or "missing")
+    risk = float(news.get("risk_event_score") or 0)
+    headline = news.get("primary_headline") or "近期没有确认主新闻"
+    if quality in {"strong", "confirmed"} and score >= 60:
+        status = "confirmed"
+    elif quality == "weak" or score >= 52:
+        status = "partial"
+    elif quality == "conflicted" or risk >= 35:
+        status = "blocked"
+    elif quality == "missing":
+        status = "missing"
+    else:
+        status = "weak"
+    return _matrix_item(
+        "catalyst",
+        "事件催化",
+        status,
+        score,
+        headline,
+        blocking=status in {"blocked", "missing", "weak"},
+        data={
+            "quality": quality,
+            "event_type": news.get("catalyst_type"),
+            "risk_event_score": risk,
+            "strong_event_count": news.get("strong_event_count"),
+        },
+    )
+
+
+def _matrix_price(features: dict[str, Any]) -> dict[str, Any]:
+    score = float(features.get("technical_score") or 0)
+    if score >= 64 and float(features.get("close_position") or 0) >= 0.58:
+        status = "confirmed"
+    elif score >= 55:
+        status = "partial"
+    elif score < 42:
+        status = "blocked"
+    else:
+        status = "weak"
+    reason = (
+        f"技术分 {score:.1f}，收盘位置 {float(features.get('close_position') or 0):.2f}，"
+        f"20日新高={bool(features.get('new_20d_high'))}，站上20日线={bool(features.get('above_20d_ma'))}"
+    )
+    return _matrix_item("price", "价格结构", status, score, reason, blocking=status == "blocked")
+
+
+def _matrix_volume(features: dict[str, Any], pool_filter: dict[str, Any]) -> dict[str, Any]:
+    score = float(features.get("volume_score") or 0)
+    relative_volume = float(features.get("relative_volume") or 0)
+    dollar_volume = float(features.get("avg_dollar_volume_m") or 0)
+    if pool_filter.get("flags", {}).get("high_liquidity_risk"):
+        status = "blocked"
+    elif score >= 62 and relative_volume >= 1.15:
+        status = "confirmed"
+    elif score >= 55 or relative_volume >= 1.0:
+        status = "partial"
+    else:
+        status = "weak"
+    reason = f"相对量 {relative_volume:.2f}x，量能分 {score:.1f}，20日均美元成交额 {dollar_volume:.1f}M"
+    return _matrix_item("volume", "成交量确认", status, score, reason, blocking=status in {"blocked", "weak"})
+
+
+def _matrix_sector(sector_payload: dict[str, Any], market_context: dict[str, Any]) -> dict[str, Any]:
+    score = float(sector_payload.get("score") or 0)
+    if score >= 62:
+        status = "confirmed"
+    elif score >= 55 or market_context.get("market_state") == "attack":
+        status = "partial"
+    else:
+        status = "weak"
+    reason = f"板块分 {score:.1f}，市场状态 {market_context.get('market_state')}"
+    return _matrix_item("sector", "板块/市场", status, score, reason)
+
+
+def _matrix_quote(features: dict[str, Any]) -> dict[str, Any]:
+    quote = features.get("quote_confirmation") or {}
+    status_map = {
+        "confirming": "confirmed",
+        "neutral": "partial",
+        "failed": "blocked",
+        "missing": "missing",
+    }
+    status = status_map.get(quote.get("status"), "missing")
+    score = float(quote.get("score") or features.get("quote_confirmation_score") or 0)
+    return _matrix_item(
+        "quote",
+        "当前价确认",
+        status,
+        score,
+        quote.get("reason") or "当前价确认不可用",
+        blocking=status == "blocked",
+        data={"quote_timestamp": quote.get("quote_timestamp"), "current_price": quote.get("current_price")},
+    )
+
+
+def _matrix_payoff(payoff_profile: dict[str, Any], scores: dict[str, Any]) -> dict[str, Any]:
+    score = float(payoff_profile.get("payoff_quality_score") or 0)
+    ratio = float(payoff_profile.get("risk_reward_ratio") or 0)
+    if score >= 60 and ratio >= 1.25:
+        status = "confirmed"
+    elif score >= 52:
+        status = "partial"
+    elif score < 42:
+        status = "blocked"
+    else:
+        status = "weak"
+    reason = f"赔率分 {score:.1f}，上/下行比 {ratio:.2f}，主路径概率 {float(scores.get('primary_probability') or 0):.2f}"
+    return _matrix_item("payoff", "赔率/路径", status, score, reason, blocking=status == "blocked")
+
+
+def _matrix_risk(scores: dict[str, Any], pool_filter: dict[str, Any]) -> dict[str, Any]:
+    score = float(scores.get("risk_score") or 0)
+    flags = [name for name, enabled in (pool_filter.get("flags") or {}).items() if enabled]
+    if score >= 72 or "high_liquidity_risk" in flags:
+        status = "blocked"
+    elif score >= 55 or flags:
+        status = "partial"
+    else:
+        status = "confirmed"
+    reason = f"风险分 {score:.1f}，风险标记 {', '.join(flags) if flags else '无硬风险标记'}"
+    return _matrix_item("risk", "风险现实校验", status, 100 - score, reason, blocking=status == "blocked")
+
+
+def _matrix_item(
+    dimension: str,
+    label: str,
+    status: str,
+    score: float,
+    reason: str,
+    *,
+    blocking: bool = False,
+    data: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    return {
+        "dimension": dimension,
+        "label": label,
+        "status": status,
+        "score": round(float(score), 2),
+        "reason": reason,
+        "blocking": bool(blocking),
+        "data": data or {},
+    }
+
+
 def _historical_analog(features: dict[str, Any], market_context: dict[str, Any], news: dict[str, Any]) -> dict[str, Any]:
     history = features.get("price_history") or []
     if len(history) < 45:
@@ -1005,7 +1215,7 @@ def _evidence(
     conflict: list[dict[str, Any]] = []
     missing: list[dict[str, Any]] = []
 
-    if news.get("catalyst_score", 0) >= 60:
+    if news.get("catalyst_score", 0) >= 60 and news.get("catalyst_quality") in {"confirmed", "strong"}:
         support.append(_ev("catalyst", news.get("catalyst_type"), news.get("catalyst_score"), news.get("primary_headline")))
     else:
         conflict.append(_ev("catalyst", "weak_or_missing_catalyst", 100 - news.get("catalyst_score", 35), "近期没有强确认催化，不能只靠热度给高等级。"))
