@@ -119,6 +119,7 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         elasticity_score = min(elasticity_score, 74)
     edge_status = _edge_status(candidate, confluence_score, elasticity_score, support_count, conflict_count, strict, signal_quality_gate)
     rating = _rating(edge_status, confluence_score, risk_score)
+    scenario_overrides = _scenario_overrides(candidate, edge_status, signal_quality_gate)
     trade_plan = _trade_plan(candidate, rating, edge_status)
     reason = _reason(candidate, edge_status)
 
@@ -133,11 +134,25 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         "trade_plan": trade_plan,
         "signal_quality_gate": signal_quality_gate,
         "validation_status": "not_yet_validated",
+        **scenario_overrides,
     }
     enriched["upside_trigger_level"] = trade_plan["upside_trigger_level"]
     enriched["downside_risk_level"] = trade_plan["downside_risk_level"]
     enriched["invalidation_level"] = trade_plan["invalidation_level"]
     return enriched
+
+
+def _scenario_overrides(candidate: dict[str, Any], edge_status: str, signal_quality_gate: dict[str, Any]) -> dict[str, Any]:
+    if edge_status not in {"NO_EDGE", "AVOID"} and signal_quality_gate.get("level") != "blocked":
+        return {}
+    return {
+        "raw_candidate_type": candidate.get("candidate_type"),
+        "candidate_type": "no_edge",
+        "primary_scenario": "no_edge",
+        "secondary_scenario": "no_edge",
+        "primary_probability": min(float(candidate.get("primary_probability") or 0), 0.15),
+        "secondary_probability": min(float(candidate.get("secondary_probability") or 0), 0.20),
+    }
 
 
 def _edge_status(

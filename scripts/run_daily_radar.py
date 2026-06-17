@@ -204,6 +204,7 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "sector": candidate.get("sector"),
                 "last_close": candidate.get("last_close"),
                 "candidate_type": candidate.get("candidate_type"),
+                "raw_candidate_type": candidate.get("raw_candidate_type"),
                 "edge_status": candidate.get("edge_status"),
                 "rating": candidate.get("rating"),
                 "elasticity_score": candidate.get("elasticity_score"),

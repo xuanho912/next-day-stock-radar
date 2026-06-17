@@ -106,20 +106,23 @@ async function loadJson(paths) {
 function renderDashboard() {
   const fresh = dashboard.data_freshness_status === "fresh";
   const marketState = dashboard.market_context?.market_state || "-";
-  const topCandidate = dashboard.top_candidates?.[0] || null;
+  const actionable = (dashboard.top_candidates || []).filter(candidate => ["STRONG_EDGE", "MODERATE_EDGE"].includes(candidate.edge_status));
+  const topCandidate = actionable[0] || dashboard.top_candidates?.[0] || null;
+  const displayedCount = dashboard.top_candidates?.length || 0;
+  const passedCount = dashboard.top_candidate_count || actionable.length || 0;
 
   setText("radarDecision", dashboard.high_elasticity_opportunity ? "明天有高弹性候选" : "明天不强行进攻");
   setText("radarSummary", dashboard.radar_summary || "");
   setText("opportunityStatus", dashboard.high_elasticity_opportunity ? "有候选" : "观望");
-  setText("strongestCandidate", topCandidate ? `${topCandidate.ticker} ${topCandidate.rating || ""}` : "-");
-  setText("strongestDirection", zh("candidateType", topCandidate?.candidate_type || dashboard.strongest_candidate_type));
+  setText("strongestCandidate", passedCount ? `${topCandidate.ticker} ${topCandidate.rating || ""}` : "无通过闸门");
+  setText("strongestDirection", passedCount ? zh("candidateType", topCandidate?.candidate_type || dashboard.strongest_candidate_type) : "无进攻方向");
   setText("marketState", zh("market", marketState));
   setText("screeningStatus", marketState === "defense" ? "防守过滤" : "可筛选，等触发");
   setText("riskLevel", zh("risk", dashboard.current_risk_level));
   setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"}`);
   setText("validationStatus", zh("validation", dashboard.model_validation_status));
   setText("agencyStatus", dashboard.agency_review?.agency_quality_gate || "-");
-  setText("candidateCount", `${dashboard.top_candidates?.length || 0} 只展示 / ${dashboard.candidate_count || 0} 只总候选`);
+  setText("candidateCount", `${passedCount} 只通过 / ${displayedCount} 只观察阻断 / ${dashboard.candidate_count || 0} 只总候选`);
 
   const freshnessBadge = document.getElementById("freshnessBadge");
   freshnessBadge.textContent = fresh ? "数据最新" : "数据警告";
