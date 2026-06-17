@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-06-17T09:55:47.826608+00:00`
+- generated_at: `2026-06-17T10:25:32.631798+00:00`
 - overall_decision: `进攻`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `允许筛选高弹性机会，但只能按触发价和失效价确认。`
@@ -21,26 +21,33 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=attack; freshness=partial_fallback; strong_edge_count=8
+- evidence: market_state=attack; freshness=partial_fallback; strong_edge_count=6
 - warning: 存在数据新鲜度或降级警告，需要盘前再次刷新确认。
 
 ### 板块主线代理
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Nuclear / Power(2); top_type=event_driven_volatility(4)
+- evidence: top_sector=Nuclear / Power(2); top_type=event_driven_volatility(6)
 
 ### 预期差代理
 
 - status: `pass`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=81.15; min_top5_gap=71.14
+- evidence: avg_top5_gap=79.18; min_top5_gap=68.48
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=63.06; avg_execution=66.26; avg_risk=3.2
+- evidence: avg_payoff=62.49; avg_execution=68.15; avg_risk=4.8
+
+### 当前价确认代理
+
+- status: `warn`
+- conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
+- evidence: confirming=0; failed=0; missing=0
+- warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
 
@@ -76,15 +83,15 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | VST | 强共振候选 | 共振 93.47; 预期差 100.0; 赔率 61.15; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 2 | COIN | 强共振候选 | 共振 84.69; 预期差 82.35; 赔率 71.94; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 3 | ARM | 强共振候选 | 共振 80.5; 预期差 74.96; 赔率 59.67; 风险 8.0; 闸门 强共振 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 4 | MARA | 可观察候选 | 共振 79.69; 预期差 71.14; 赔率 60.57; 风险 8.0; 闸门 强共振 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 5 | CEG | 可观察候选 | 共振 78.77; 预期差 77.31; 赔率 61.97; 风险 0; 闸门 可观察 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 6 | AMD | 可观察候选 | 共振 77.88; 预期差 72.73; 赔率 56.01; 风险 8.0; 闸门 可观察 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 7 | RIOT | 可观察候选 | 共振 76.8; 预期差 67.67; 赔率 58.66; 风险 8.0; 闸门 可观察 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 8 | HOOD | 可观察候选 | 共振 76.35; 预期差 68.83; 赔率 60.3; 风险 11.0; 闸门 可观察 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 9 | AMC | 可观察候选 | 共振 86.92; 预期差 83.36; 赔率 62.66; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 10 | AI | 可观察候选 | 共振 79.54; 预期差 79.24; 赔率 58.7; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 1 | VST | 强共振候选 | 共振 94.58; 预期差 100.0; 赔率 61.36; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 2 | COIN | 强共振候选 | 共振 83.08; 预期差 81.89; 赔率 71.62; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 3 | MARA | 强共振候选 | 共振 80.91; 预期差 71.95; 赔率 60.79; 风险 8.0; 闸门 强共振 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 4 | ARM | 可观察候选 | 共振 79.97; 预期差 73.6; 赔率 59.8; 风险 8.0; 闸门 强共振 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 5 | RIOT | 可观察候选 | 共振 78.02; 预期差 68.48; 赔率 58.87; 风险 8.0; 闸门 可观察 | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 6 | CEG | 可观察候选 | 共振 77.14; 预期差 76.83; 赔率 61.2; 风险 0; 闸门 可观察 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 7 | AMC | 可观察候选 | 共振 87.53; 预期差 83.84; 赔率 62.88; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 8 | AI | 可观察候选 | 共振 80.76; 预期差 80.04; 赔率 59.25; 风险 0; 闸门 强共振 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 9 | PLTR | 可观察候选 | 共振 78.97; 预期差 80.75; 赔率 75.69; 风险 5.5; 闸门 可观察 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 10 | TSLA | 可观察候选 | 共振 75.88; 预期差 67.25; 赔率 75.4; 风险 0; 闸门 可观察 | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。

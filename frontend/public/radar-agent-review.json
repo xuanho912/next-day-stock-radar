@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-06-17T09:55:47.826608+00:00",
+  "generated_at": "2026-06-17T10:25:32.631798+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "进攻",
@@ -9,32 +9,35 @@
   "top10_metric_snapshot": {
     "top10_count": 10,
     "top5_count": 5,
-    "strong_edge_count": 8,
-    "moderate_edge_count": 2,
+    "strong_edge_count": 6,
+    "moderate_edge_count": 4,
     "avg_top5_elasticity_score": 100.0,
-    "avg_top5_confluence_score": 83.42,
-    "avg_top5_expectation_gap_score": 81.15,
-    "avg_top5_payoff_quality_score": 63.06,
-    "avg_top5_execution_quality_score": 66.26,
-    "avg_top5_risk_score": 3.2,
-    "min_top5_confluence_score": 78.77,
-    "min_top5_expectation_gap_score": 71.14,
+    "avg_top5_confluence_score": 83.31,
+    "avg_top5_expectation_gap_score": 79.18,
+    "avg_top5_payoff_quality_score": 62.49,
+    "avg_top5_execution_quality_score": 68.15,
+    "avg_top5_risk_score": 4.8,
+    "min_top5_confluence_score": 78.02,
+    "min_top5_expectation_gap_score": 68.48,
     "top_sector": "Nuclear / Power",
     "top_sector_count": 2,
     "top_candidate_type": "event_driven_volatility",
-    "top_candidate_type_count": 4,
+    "top_candidate_type_count": 6,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 10,
-    "top10_proxy_squeeze_count": 10
+    "top10_proxy_squeeze_count": 10,
+    "top10_quote_confirming_count": 0,
+    "top10_quote_failed_count": 0,
+    "top10_quote_missing_count": 0
   },
   "agent_findings": [
     {
       "agent_name": "市场路径代理",
       "status": "warn",
       "conclusion": "检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。",
-      "evidence": "market_state=attack; freshness=partial_fallback; strong_edge_count=8",
+      "evidence": "market_state=attack; freshness=partial_fallback; strong_edge_count=6",
       "warnings": [
         "存在数据新鲜度或降级警告，需要盘前再次刷新确认。"
       ]
@@ -43,22 +46,31 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Nuclear / Power(2); top_type=event_driven_volatility(4)",
+      "evidence": "top_sector=Nuclear / Power(2); top_type=event_driven_volatility(6)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "pass",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=81.15; min_top5_gap=71.14",
+      "evidence": "avg_top5_gap=79.18; min_top5_gap=68.48",
       "warnings": []
     },
     {
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=63.06; avg_execution=66.26; avg_risk=3.2",
+      "evidence": "avg_payoff=62.49; avg_execution=68.15; avg_risk=4.8",
       "warnings": []
+    },
+    {
+      "agent_name": "当前价确认代理",
+      "status": "warn",
+      "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
+      "evidence": "confirming=0; failed=0; missing=0",
+      "warnings": [
+        "当前价确认数量偏少，盘前/盘中需要再次刷新。"
+      ]
     },
     {
       "agent_name": "风险现实校验代理",
@@ -104,7 +116,7 @@
       "ticker": "VST",
       "candidate_type": "event_driven_volatility",
       "agency_verdict": "强共振候选",
-      "key_check": "共振 93.47; 预期差 100.0; 赔率 61.15; 风险 0; 闸门 强共振",
+      "key_check": "共振 94.58; 预期差 100.0; 赔率 61.36; 风险 0; 闸门 强共振",
       "trigger": 167.4,
       "invalidation": 132.66,
       "warnings": [
@@ -117,7 +129,7 @@
       "ticker": "COIN",
       "candidate_type": "event_driven_volatility",
       "agency_verdict": "强共振候选",
-      "key_check": "共振 84.69; 预期差 82.35; 赔率 71.94; 风险 0; 闸门 强共振",
+      "key_check": "共振 83.08; 预期差 81.89; 赔率 71.62; 风险 0; 闸门 强共振",
       "trigger": 196.62,
       "invalidation": 147.88,
       "warnings": [
@@ -127,24 +139,10 @@
     },
     {
       "rank": 3,
-      "ticker": "ARM",
-      "candidate_type": "short_squeeze_candidate",
-      "agency_verdict": "强共振候选",
-      "key_check": "共振 80.5; 预期差 74.96; 赔率 59.67; 风险 8.0; 闸门 强共振",
-      "trigger": 427.99,
-      "invalidation": 203.005,
-      "warnings": [
-        "风险标记：weak_close_distribution_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy"
-      ]
-    },
-    {
-      "rank": 4,
       "ticker": "MARA",
       "candidate_type": "next_day_upside_momentum",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 79.69; 预期差 71.14; 赔率 60.57; 风险 8.0; 闸门 强共振",
+      "agency_verdict": "强共振候选",
+      "key_check": "共振 80.91; 预期差 71.95; 赔率 60.79; 风险 8.0; 闸门 强共振",
       "trigger": 15.32,
       "invalidation": 11.53,
       "warnings": [
@@ -154,26 +152,13 @@
       ]
     },
     {
-      "rank": 5,
-      "ticker": "CEG",
-      "candidate_type": "event_driven_volatility",
+      "rank": 4,
+      "ticker": "ARM",
+      "candidate_type": "short_squeeze_candidate",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 78.77; 预期差 77.31; 赔率 61.97; 风险 0; 闸门 可观察",
-      "trigger": 310.45,
-      "invalidation": 240.51,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy"
-      ]
-    },
-    {
-      "rank": 6,
-      "ticker": "AMD",
-      "candidate_type": "next_day_upside_momentum",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 77.88; 预期差 72.73; 赔率 56.01; 风险 8.0; 闸门 可观察",
-      "trigger": 558.37,
-      "invalidation": 393.36,
+      "key_check": "共振 79.97; 预期差 73.6; 赔率 59.8; 风险 8.0; 闸门 强共振",
+      "trigger": 427.99,
+      "invalidation": 203.005,
       "warnings": [
         "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
@@ -181,11 +166,11 @@
       ]
     },
     {
-      "rank": 7,
+      "rank": 5,
       "ticker": "RIOT",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.8; 预期差 67.67; 赔率 58.66; 风险 8.0; 闸门 可观察",
+      "key_check": "共振 78.02; 预期差 68.48; 赔率 58.87; 风险 8.0; 闸门 可观察",
       "trigger": 28.94,
       "invalidation": 21.73,
       "warnings": [
@@ -195,24 +180,24 @@
       ]
     },
     {
-      "rank": 8,
-      "ticker": "HOOD",
-      "candidate_type": "short_squeeze_candidate",
+      "rank": 6,
+      "ticker": "CEG",
+      "candidate_type": "event_driven_volatility",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.35; 预期差 68.83; 赔率 60.3; 风险 11.0; 闸门 可观察",
-      "trigger": 100.87,
-      "invalidation": 73.18,
+      "key_check": "共振 77.14; 预期差 76.83; 赔率 61.2; 风险 0; 闸门 可观察",
+      "trigger": 310.45,
+      "invalidation": 240.51,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy"
       ]
     },
     {
-      "rank": 9,
+      "rank": 7,
       "ticker": "AMC",
       "candidate_type": "short_squeeze_candidate",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 86.92; 预期差 83.36; 赔率 62.66; 风险 0; 闸门 强共振",
+      "key_check": "共振 87.53; 预期差 83.84; 赔率 62.88; 风险 0; 闸门 强共振",
       "trigger": 2.5557,
       "invalidation": 1.24,
       "warnings": [
@@ -221,13 +206,39 @@
       ]
     },
     {
-      "rank": 10,
+      "rank": 8,
       "ticker": "AI",
       "candidate_type": "event_driven_volatility",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 79.54; 预期差 79.24; 赔率 58.7; 风险 0; 闸门 强共振",
+      "key_check": "共振 80.76; 预期差 80.04; 赔率 59.25; 风险 0; 闸门 强共振",
       "trigger": 11.82,
       "invalidation": 8.32,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy"
+      ]
+    },
+    {
+      "rank": 9,
+      "ticker": "PLTR",
+      "candidate_type": "event_driven_volatility",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 78.97; 预期差 80.75; 赔率 75.69; 风险 5.5; 闸门 可观察",
+      "trigger": 163.7,
+      "invalidation": 126.65,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy"
+      ]
+    },
+    {
+      "rank": 10,
+      "ticker": "TSLA",
+      "candidate_type": "event_driven_volatility",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 75.88; 预期差 67.25; 赔率 75.4; 风险 0; 闸门 可观察",
+      "trigger": 445.6,
+      "invalidation": 380.15,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy"
