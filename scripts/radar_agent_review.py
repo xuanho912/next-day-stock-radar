@@ -127,6 +127,7 @@ def _candidate_metrics(*, top10: list[dict[str, Any]], top5: list[dict[str, Any]
     strong_edge_count = sum(1 for candidate in top10 if candidate.get("edge_status") == "STRONG_EDGE")
     moderate_edge_count = sum(1 for candidate in top10 if candidate.get("edge_status") == "MODERATE_EDGE")
     quote_statuses = Counter((candidate.get("quote_confirmation") or {}).get("status") or "missing" for candidate in top10)
+    signal_gate_levels = Counter((candidate.get("signal_quality_gate") or {}).get("level") or "missing" for candidate in top10)
 
     return {
         "top10_count": len(top10),
@@ -153,6 +154,9 @@ def _candidate_metrics(*, top10: list[dict[str, Any]], top5: list[dict[str, Any]
         "top10_quote_confirming_count": quote_statuses.get("confirming", 0),
         "top10_quote_failed_count": quote_statuses.get("failed", 0),
         "top10_quote_missing_count": quote_statuses.get("missing", 0),
+        "top10_signal_confirmed_count": signal_gate_levels.get("confirmed", 0),
+        "top10_signal_partial_count": signal_gate_levels.get("partial", 0),
+        "top10_signal_blocked_count": signal_gate_levels.get("blocked", 0),
     }
 
 
@@ -217,7 +221,8 @@ def _expectation_gap_agent(metrics: dict[str, Any]) -> dict[str, Any]:
     avg_gap = metrics.get("avg_top5_expectation_gap_score") or 0
     min_gap = metrics.get("min_top5_expectation_gap_score") or 0
     warnings = []
-    if avg_gap >= 70 and min_gap >= 45:
+    confirmed = metrics.get("top10_signal_confirmed_count", 0)
+    if avg_gap >= 70 and min_gap >= 45 and confirmed >= 1:
         status = "pass"
     elif avg_gap >= 55:
         status = "warn"
@@ -230,7 +235,7 @@ def _expectation_gap_agent(metrics: dict[str, Any]) -> dict[str, Any]:
         "预期差代理",
         status,
         "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-        f"avg_top5_gap={avg_gap}; min_top5_gap={min_gap}",
+        f"avg_top5_gap={avg_gap}; min_top5_gap={min_gap}; confirmed_signal_count={confirmed}",
         warnings,
     )
 
@@ -306,6 +311,8 @@ def _risk_reality_checker(dashboard: dict[str, Any], top10: list[dict[str, Any]]
         warnings.append("Top 10 中存在高流动性风险，必须压低等级。")
     if metrics.get("top10_quote_failed_count", 0):
         warnings.append("Top 10 中存在当前价确认失败，不能继续按原路径看待。")
+    if metrics.get("top10_signal_confirmed_count", 0) == 0:
+        warnings.append("Top 10 没有真实共振候选，只能观察，不能进攻。")
 
     if metrics.get("top10_high_liquidity_risk_count", 0):
         status = "fail"
@@ -418,6 +425,9 @@ def _candidate_note(candidate: dict[str, Any]) -> dict[str, Any]:
         warnings.append("当前价确认失败")
     if (candidate.get("quote_confirmation") or {}).get("status") == "missing":
         warnings.append("当前价缺失")
+    signal_gate = candidate.get("signal_quality_gate") or {}
+    if signal_gate.get("level") in {"blocked", "incomplete"}:
+        warnings.append("信号闸门：" + " / ".join(signal_gate.get("failures") or [signal_gate.get("level")]))
 
     confluence = candidate.get("confluence_score") or 0
     gap = candidate.get("expectation_gap_score") or 0
@@ -438,7 +448,8 @@ def _candidate_note(candidate: dict[str, Any]) -> dict[str, Any]:
         "agency_verdict": verdict,
         "key_check": (
             f"共振 {confluence}; 预期差 {gap}; 赔率 {payoff}; 风险 {risk}; "
-            f"闸门 {(candidate.get('precision_gate') or {}).get('level', '-')}"
+            f"闸门 {(candidate.get('precision_gate') or {}).get('level', '-')}; "
+            f"信号 {(candidate.get('signal_quality_gate') or {}).get('level', '-')}"
         ),
         "trigger": candidate.get("upside_trigger_level") or (candidate.get("trigger_levels") or {}).get("upside_trigger_level"),
         "invalidation": candidate.get("invalidation_level") or (candidate.get("trigger_levels") or {}).get("invalidation_level"),
@@ -475,6 +486,7 @@ def _quality_gate(dashboard: dict[str, Any], findings: list[dict[str, Any]], met
         dashboard.get("data_freshness_status") == "fresh"
         and not dashboard.get("stale_warning")
         and metrics.get("strong_edge_count", 0) >= 3
+        and metrics.get("top10_signal_confirmed_count", 0) >= 2
         and (metrics.get("avg_top5_confluence_score") or 0) >= 75
         and (metrics.get("avg_top5_expectation_gap_score") or 0) >= 65
         and (metrics.get("avg_top5_payoff_quality_score") or 0) >= 50
@@ -491,6 +503,7 @@ def _overall_decision(dashboard: dict[str, Any], metrics: dict[str, Any], qualit
     if (
         dashboard.get("high_elasticity_opportunity")
         and metrics.get("strong_edge_count", 0) >= 3
+        and metrics.get("top10_signal_confirmed_count", 0) >= 1
         and (metrics.get("avg_top5_confluence_score") or 0) >= 75
         and (metrics.get("avg_top5_expectation_gap_score") or 0) >= 65
     ):

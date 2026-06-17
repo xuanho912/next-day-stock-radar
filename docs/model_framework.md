@@ -50,6 +50,19 @@ Strong ratings are capped when:
 - social heat exists without real catalyst
 - risk penalty is high
 
+## Hard Confluence Gate
+
+High ratings cannot be created by a weighted average alone. `signal_quality_gate` must check independent evidence sources:
+
+- confirmed catalyst
+- price structure
+- volume confirmation
+- sector/mainline support
+- payoff quality
+- current quote not failed
+
+If catalyst, price, volume, or payoff evidence is missing, the candidate is capped at observation level even when volatility is high. High volatility is not the same as high-quality opportunity.
+
 ## Candidate Types
 
 - next_day_upside_momentum

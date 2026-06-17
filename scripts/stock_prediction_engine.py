@@ -210,11 +210,12 @@ def _stock_features(
         + quote_confirmation["technical_adjustment"]
     )
     volume_score = _clamp(
-        32
-        + min(relative_volume, 4.0) * 9
-        + min(max(volume_z_score, 0), 4.0) * 5
-        + min(avg_dollar_volume_m / 40, 4.0) * 5
-        + (8 if relative_volume >= 1.8 and close_position >= 0.62 else 0)
+        20
+        + min(relative_volume, 4.0) * 10
+        + min(max(volume_z_score, 0), 4.0) * 6
+        + min(avg_dollar_volume_m / 60, 4.0) * 4
+        + (12 if relative_volume >= 1.8 and close_position >= 0.62 else 0)
+        + (6 if relative_volume >= 1.25 and close_position >= 0.58 else 0)
         - (24 if avg_dollar_volume_m < MIN_AVG_DOLLAR_VOLUME_M else 0)
     )
 
@@ -374,16 +375,16 @@ def _raw_scores(
     quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
     quote_bonus = quote_score - 50 if quote_available else 0
     elasticity_score = _clamp(
-        features["atr_pct"] * 260
-        + features["realized_volatility_20d"] * 620
-        + features["intraday_range_pct"] * 160
+        features["atr_pct"] * 180
+        + features["realized_volatility_20d"] * 210
+        + features["intraday_range_pct"] * 120
         + min(max(features["volume_z_score"], 0), 5) * 7
-        + abs(features["gap_pct"]) * 180
-        + max(features["beta_proxy"] - 1, 0) * 12
-        + catalyst_score * 0.18
-        + volume * 0.18
+        + abs(features["gap_pct"]) * 120
+        + max(features["beta_proxy"] - 1, 0) * 8
+        + catalyst_score * 0.12
+        + volume * 0.10
         + max(quote_bonus, 0) * 0.12
-        + 18
+        + 14
     )
     upside_momentum_score = _clamp(
         30
@@ -427,10 +428,20 @@ def _raw_scores(
         + execution_quality_score * 0.08
         + upside_momentum_score * 0.10
         + bounce_score * 0.04
-        + elasticity_score * 0.05
+        + elasticity_score * 0.02
         + quote_bonus * 0.08
         - risk_score * 0.32
         + _market_adjustment(market_context)
+    )
+    confluence_score = _apply_raw_signal_caps(
+        confluence_score=confluence_score,
+        expectation_gap_score=expectation_gap_score,
+        catalyst_score=catalyst_score,
+        technical_score=technical,
+        volume_score=volume,
+        sector_score=sector,
+        features=features,
+        news=news,
     )
     next_day_move_probability = _clamp((elasticity_score * 0.62 + confluence_score * 0.28 + catalyst_score * 0.10) / 100, 0, 1)
     primary_probability = _clamp((confluence_score * 0.52 + max(upside_momentum_score, bounce_score) * 0.28 + sector * 0.20) / 100, 0.05, 0.82)
@@ -477,7 +488,7 @@ def _expectation_gap_score(
         "analyst_upgrade",
     }
     overdone_gap = features["gap_pct"] > 0.08 and features["close_position"] < 0.55
-    return _clamp(
+    score = _clamp(
         24
         + catalyst_score * 0.36
         + float(features["technical_score"]) * 0.16
@@ -491,6 +502,45 @@ def _expectation_gap_score(
         - (8 if features["close_position"] < 0.35 else 0)
         - risk_score * 0.18
     )
+    if catalyst_type == "no_recent_confirmed_news":
+        score = min(score, 50)
+    if catalyst_score < 45 and not (features["technical_score"] >= 70 and features["volume_score"] >= 65):
+        score = min(score, 54)
+    if features["volume_score"] < 55:
+        score = min(score, 58)
+    return score
+
+
+def _apply_raw_signal_caps(
+    *,
+    confluence_score: float,
+    expectation_gap_score: float,
+    catalyst_score: float,
+    technical_score: float,
+    volume_score: float,
+    sector_score: float,
+    features: dict[str, Any],
+    news: dict[str, Any],
+) -> float:
+    score = confluence_score
+    catalyst_type = news.get("catalyst_type")
+    if catalyst_type == "no_recent_confirmed_news" or catalyst_score < 45:
+        score = min(score, 58)
+    if catalyst_score < 58 and not (technical_score >= 72 and volume_score >= 66):
+        score = min(score, 66)
+    if technical_score < 45:
+        score = min(score, 58)
+    elif technical_score < 55:
+        score = min(score, 66)
+    if volume_score < 52 or float(features.get("relative_volume") or 0) < 1.0:
+        score = min(score, 58)
+    elif volume_score < 60:
+        score = min(score, 68)
+    if sector_score < 50:
+        score = min(score, 64)
+    if expectation_gap_score < 55:
+        score = min(score, 62)
+    return score
 
 
 def _execution_quality_score(
@@ -648,10 +698,19 @@ def _precision_gate(
     pool_filter: dict[str, Any],
 ) -> dict[str, Any]:
     reasons = []
+    support_sources = {item.get("source") for item in support}
     if pool_filter["hard_excluded"]:
         reasons.append("股票池硬过滤未通过")
     if market_context.get("market_state") == "defense":
         reasons.append("市场背景偏防守")
+    if "catalyst" not in support_sources:
+        reasons.append("缺少确认催化")
+    if "price" not in support_sources:
+        reasons.append("价格结构未确认")
+    if "volume" not in support_sources:
+        reasons.append("成交量未确认")
+    if "payoff" not in support_sources:
+        reasons.append("赔率质量未确认")
     if scores["expectation_gap_score"] < 50:
         reasons.append("预期差证据不足")
     if payoff_profile["payoff_quality_score"] < 45:
@@ -665,12 +724,12 @@ def _precision_gate(
 
     passed = (
         not reasons
-        and scores["confluence_score"] >= 66
-        and scores["elasticity_score"] >= 70
-        and len(support) >= 4
-        and len(conflict) <= 3
+        and scores["confluence_score"] >= 72
+        and scores["elasticity_score"] >= 55
+        and len(support) >= 5
+        and len(conflict) <= 2
     )
-    if passed and scores["confluence_score"] >= 78 and payoff_profile["payoff_quality_score"] >= 55:
+    if passed and scores["confluence_score"] >= 80 and payoff_profile["payoff_quality_score"] >= 55:
         level = "强共振"
     elif passed:
         level = "可观察"

@@ -56,6 +56,7 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     expectation_gap_score = float(candidate.get("expectation_gap_score") or 50)
     payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
     execution_quality_score = float(candidate.get("execution_quality_score") or 50)
+    signal_quality_gate = _signal_quality_gate(candidate)
 
     if strict:
         confluence_score = (
@@ -90,10 +91,23 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         confluence_score = min(confluence_score, 68 if not strict else 60)
     if candidate.get("pool_filter", {}).get("hard_excluded"):
         confluence_score = min(confluence_score, 30)
+    confluence_score = min(confluence_score, signal_quality_gate["confluence_cap"])
 
     confluence_score = round(max(0, min(100, confluence_score)), 2)
-    elasticity_score = round(max(0, min(100, elasticity_score + min(float(candidate["features"].get("relative_volume") or 1), 5) * 1.5 - max(risk_score - 65, 0) * 0.15)), 2)
-    edge_status = _edge_status(candidate, confluence_score, elasticity_score, support_count, conflict_count, strict)
+    elasticity_score = round(
+        max(
+            0,
+            min(
+                100,
+                elasticity_score
+                + min(float(candidate["features"].get("relative_volume") or 1), 5) * 0.8
+                - max(risk_score - 60, 0) * 0.22
+                - len(signal_quality_gate["critical_failures"]) * 4,
+            ),
+        ),
+        2,
+    )
+    edge_status = _edge_status(candidate, confluence_score, elasticity_score, support_count, conflict_count, strict, signal_quality_gate)
     rating = _rating(edge_status, confluence_score, risk_score)
     trade_plan = _trade_plan(candidate, rating, edge_status)
     reason = _reason(candidate, edge_status)
@@ -107,6 +121,7 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         "rating": rating,
         "reason": reason,
         "trade_plan": trade_plan,
+        "signal_quality_gate": signal_quality_gate,
         "validation_status": "not_yet_validated",
     }
     enriched["upside_trigger_level"] = trade_plan["upside_trigger_level"]
@@ -115,13 +130,25 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     return enriched
 
 
-def _edge_status(candidate: dict[str, Any], confluence: float, elasticity: float, support_count: int, conflict_count: int, strict: bool) -> str:
+def _edge_status(
+    candidate: dict[str, Any],
+    confluence: float,
+    elasticity: float,
+    support_count: int,
+    conflict_count: int,
+    strict: bool,
+    signal_quality_gate: dict[str, Any],
+) -> str:
     risk_score = float(candidate.get("risk_score") or 0)
     risk_flags = candidate.get("risk_flags") or []
     expectation_gap_score = float(candidate.get("expectation_gap_score") or 50)
     payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
     if candidate.get("candidate_type") == "no_edge" or candidate.get("pool_filter", {}).get("hard_excluded"):
         return "AVOID"
+    if signal_quality_gate["level"] == "blocked":
+        return "NO_EDGE"
+    if signal_quality_gate["level"] == "incomplete" and confluence < 74:
+        return "WATCH"
     if risk_score >= 72 or ("high_liquidity_risk" in risk_flags and confluence < 58):
         return "AVOID"
     if expectation_gap_score < 45 and confluence < 66:
@@ -131,18 +158,89 @@ def _edge_status(candidate: dict[str, Any], confluence: float, elasticity: float
     if elasticity >= 76 and confluence >= 60 and risk_score >= 50:
         return "HIGH_RISK_HIGH_REWARD"
     if (
-        confluence >= (80 if strict else 76)
+        signal_quality_gate["level"] == "confirmed"
+        and confluence >= (82 if strict else 78)
         and expectation_gap_score >= 55
-        and payoff_quality_score >= 48
-        and support_count >= 4
+        and payoff_quality_score >= 52
+        and support_count >= 5
         and conflict_count <= 2
     ):
         return "STRONG_EDGE"
-    if confluence >= (69 if strict else 66) and support_count >= 3:
+    if signal_quality_gate["level"] in {"confirmed", "partial"} and confluence >= (72 if strict else 69) and support_count >= 4:
         return "MODERATE_EDGE"
     if confluence >= 52:
         return "WATCH"
     return "NO_EDGE"
+
+
+def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
+    features = candidate.get("features") or {}
+    news = candidate.get("news") or {}
+    sector_theme = candidate.get("sector_theme") or {}
+    supporting = candidate.get("supporting_evidence") or []
+    conflicting = candidate.get("conflicting_evidence") or []
+    support_sources = {item.get("source") for item in supporting}
+
+    catalyst = float(candidate.get("catalyst_score") or 0)
+    technical = float(features.get("technical_score") or 0)
+    volume = float(features.get("volume_score") or 0)
+    relative_volume = float(features.get("relative_volume") or 0)
+    sector = float(sector_theme.get("score") or 0)
+    payoff = float(candidate.get("payoff_quality_score") or 0)
+    expectation_gap = float(candidate.get("expectation_gap_score") or 0)
+    quote_status = (candidate.get("quote_confirmation") or {}).get("status")
+    catalyst_type = news.get("catalyst_type")
+
+    failures: list[str] = []
+    critical: list[str] = []
+
+    if catalyst < 58 or catalyst_type == "no_recent_confirmed_news" or "catalyst" not in support_sources:
+        failures.append("催化不足或没有确认新闻")
+    if technical < 55 or "price" not in support_sources:
+        failures.append("技术结构未确认")
+    if volume < 60 or relative_volume < 1.15 or "volume" not in support_sources:
+        failures.append("成交量没有形成确认")
+    if sector < 55:
+        failures.append("板块主线不够强")
+    if payoff < 52 or "payoff" not in support_sources:
+        failures.append("赔率质量不足")
+    if expectation_gap < 58:
+        failures.append("预期差不足")
+    if quote_status == "failed":
+        failures.append("当前价确认失败")
+        critical.append("当前价确认失败")
+    if candidate.get("squeeze_data_status", {}).get("short_interest") == "proxy" and candidate.get("candidate_type") == "short_squeeze_candidate":
+        failures.append("逼空逻辑只有 proxy，不能作为强共振")
+
+    if catalyst < 45 and technical < 65:
+        critical.append("缺催化且技术不强")
+    if volume < 52:
+        critical.append("成交量弱")
+    if technical < 42:
+        critical.append("技术结构弱")
+
+    if critical:
+        level = "blocked"
+        cap = 58
+    elif not failures:
+        level = "confirmed"
+        cap = 100
+    elif len(failures) <= 2 and catalyst >= 50 and technical >= 50 and volume >= 55 and payoff >= 48:
+        level = "partial"
+        cap = 74
+    else:
+        level = "incomplete"
+        cap = 66
+
+    return {
+        "level": level,
+        "passed": level == "confirmed",
+        "failures": failures[:8],
+        "critical_failures": critical[:5],
+        "confluence_cap": cap,
+        "required_sources": ["catalyst", "price", "volume", "payoff", "sector_or_market"],
+        "support_sources": sorted(source for source in support_sources if source),
+    }
 
 
 def _rating(edge_status: str, confluence: float, risk_score: float) -> str:

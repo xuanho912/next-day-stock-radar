@@ -222,6 +222,7 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "expected_upside_pct": candidate.get("expected_upside_pct"),
                 "expected_downside_pct": candidate.get("expected_downside_pct"),
                 "precision_gate": candidate.get("precision_gate"),
+                "signal_quality_gate": candidate.get("signal_quality_gate"),
                 "quote_confirmation": candidate.get("quote_confirmation"),
                 "quote_confirmation_score": candidate.get("quote_confirmation_score"),
                 "current_price": (candidate.get("features") or {}).get("current_price"),

@@ -312,6 +312,9 @@ function renderDetail() {
         ["质量闸门", candidate.precision_gate?.level || "-"],
         ["是否通过", yn(candidate.precision_gate?.passed)],
         ["闸门原因", (candidate.precision_gate?.reason || []).join(" / ") || "-"],
+        ["信号闸门", signalGateText(candidate.signal_quality_gate?.level)],
+        ["信号缺口", (candidate.signal_quality_gate?.failures || []).join(" / ") || "-"],
+        ["严重缺口", (candidate.signal_quality_gate?.critical_failures || []).join(" / ") || "-"],
         ["预期差评分", candidate.expectation_gap_score],
         ["执行质量评分", candidate.execution_quality_score],
         ["赔率质量评分", candidate.payoff_quality_score],
@@ -844,6 +847,15 @@ function quoteStatusText(value) {
     neutral: "当前价中性",
     failed: "当前价否定路径",
     missing: "当前价缺失",
+  }[value] || value || "-";
+}
+
+function signalGateText(value) {
+  return {
+    confirmed: "真实共振",
+    partial: "部分共振",
+    incomplete: "共振不足",
+    blocked: "硬缺口",
   }[value] || value || "-";
 }
 
