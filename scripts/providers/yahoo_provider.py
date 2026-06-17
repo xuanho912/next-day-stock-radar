@@ -46,6 +46,8 @@ def fetch_yahoo_chart(symbol: str, *, range_: str = "8mo", timeout: int = 15) ->
         with urllib.request.urlopen(request, timeout=timeout) as response:
             payload = json.loads(response.read().decode("utf-8"))
         rows = _parse_yahoo_payload(payload)
+        expected_date = expected_latest_trading_date(datetime.now(timezone.utc))
+        rows = [row for row in rows if row.get("date") and row["date"] <= expected_date]
         if len(rows) >= 20:
             return PriceSeries(symbol=symbol, rows=rows, source="yahoo-chart", real_data=True)
         return PriceSeries(symbol=symbol, rows=fallback_series(symbol).rows, source="fallback-too-few-yahoo-rows", real_data=False)
