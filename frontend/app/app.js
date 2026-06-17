@@ -130,6 +130,8 @@ function renderDashboard() {
   validationBadge.className = `badge ${dashboard.model_validation_status === "validated" ? "good" : "neutral"}`;
 
   renderAvoidList();
+  renderPrimaryVisual();
+  renderOpportunityStrip();
   renderCandidateTable();
   renderDetail();
   renderValidation();
@@ -147,7 +149,7 @@ function renderAvoidList() {
 function renderCandidateTable() {
   const tbody = document.querySelector("#candidateTable tbody");
   tbody.innerHTML = (dashboard.top_candidates || []).map(candidate => `
-    <tr data-ticker="${safeAttr(candidate.ticker)}">
+    <tr data-ticker="${safeAttr(candidate.ticker)}" class="${candidate.ticker === selectedTicker ? "selected" : ""}">
       <td>${safe(candidate.rank)}</td>
       <td>
         <strong>${safe(candidate.ticker)}</strong>
@@ -155,6 +157,9 @@ function renderCandidateTable() {
         <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
       </td>
       <td>${safe(zh("candidateType", candidate.candidate_type))}</td>
+      <td>${price(candidate.current_price || candidate.last_close)}<small>${safe(quoteStatusText(candidate.quote_confirmation?.status))}</small></td>
+      <td>${scoreBlock(pct(candidate.expected_upside_pct), "空间")}</td>
+      <td>${scoreBlock(num(candidate.relative_volume), "相对量")}</td>
       <td>${scoreBlock(candidate.elasticity_score, "弹性")}</td>
       <td>${scoreBlock(candidate.confluence_score, "共振")}</td>
       <td>${scoreBlock(candidate.expectation_gap_score, "预期差")}</td>
@@ -171,8 +176,66 @@ function renderCandidateTable() {
   tbody.querySelectorAll("[data-ticker]").forEach(row => {
     row.addEventListener("click", () => {
       selectedTicker = row.dataset.ticker;
+      renderPrimaryVisual();
+      renderOpportunityStrip();
+      renderCandidateTable();
       renderDetail();
       document.querySelector(".detail-band").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+function renderPrimaryVisual() {
+  const target = document.getElementById("primaryVisual");
+  if (!target) return;
+  const candidate = (dashboard.top_candidates || []).find(item => item.ticker === selectedTicker) || dashboard.top_candidates?.[0];
+  if (!candidate) {
+    target.innerHTML = `<p>暂无候选图表。</p>`;
+    return;
+  }
+
+  target.innerHTML = `
+    <div class="primary-chart">
+      <div class="visual-title">
+        <div>
+          <strong>${safe(candidate.ticker)}</strong>
+          <span>${safe(candidate.company_name || "")}</span>
+        </div>
+        <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
+      </div>
+      ${renderPriceVolumeComposite(candidate)}
+    </div>
+    <div class="space-panel">
+      <h3>次日上涨空间</h3>
+      ${spaceTiles(candidate)}
+      ${renderExpectedRangeChart(candidate)}
+    </div>
+    <div class="space-panel">
+      <h3>未来情景走势</h3>
+      ${renderFutureScenarioChart(candidate)}
+      ${renderVolumeAnalysis(candidate)}
+    </div>
+  `;
+}
+
+function renderOpportunityStrip() {
+  const target = document.getElementById("topCandidateCards");
+  if (!target) return;
+  target.innerHTML = (dashboard.top_candidates || []).slice(0, 5).map(candidate => `
+    <button class="opportunity-card ${candidate.ticker === selectedTicker ? "active" : ""}" data-ticker="${safeAttr(candidate.ticker)}">
+      <span>${safe(candidate.rank)} · ${safe(candidate.ticker)}</span>
+      <strong>${safe(pct(candidate.expected_upside_pct))}</strong>
+      <small>量能 ${safe(num(candidate.relative_volume))}x · 共振 ${safe(candidate.confluence_score)}</small>
+    </button>
+  `).join("");
+
+  target.querySelectorAll("[data-ticker]").forEach(card => {
+    card.addEventListener("click", () => {
+      selectedTicker = card.dataset.ticker;
+      renderPrimaryVisual();
+      renderOpportunityStrip();
+      renderCandidateTable();
+      renderDetail();
     });
   });
 }
@@ -190,13 +253,38 @@ function renderDetail() {
   rating.className = `badge ${ratingClass(candidate.rating)}`;
 
   document.getElementById("candidateDetail").innerHTML = `
+    <div class="detail-card chart-card wide-card">
+      <h3>价格结构 + 成交量确认</h3>
+      ${renderPriceVolumeComposite(candidate)}
+      ${renderVolumeAnalysis(candidate)}
+    </div>
     <div class="detail-card chart-card">
-      <h3>价格 / 成交量</h3>
-      ${renderChart(candidate.price_history || [], "close")}
-      ${renderChart(candidate.price_history || [], "volume")}
+      <h3>次日预期图表</h3>
+      ${renderExpectedRangeChart(candidate)}
+      ${spaceTiles(candidate)}
+    </div>
+    <div class="detail-card chart-card">
+      <h3>未来情景走势图</h3>
+      ${renderFutureScenarioChart(candidate)}
     </div>
     <div class="detail-card">
-      <h3>次日概率路径</h3>
+      <h3>次日上涨空间</h3>
+      ${facts([
+        ["当前价", price(candidate.current_price || candidate.last_close)],
+        ["昨收", price(candidate.last_close)],
+        ["预期高点", price(candidate.next_day_expected_range?.expected_high)],
+        ["预期低点", price(candidate.next_day_expected_range?.expected_low)],
+        ["上行空间", pct(candidate.expected_upside_pct)],
+        ["下行风险", pct(candidate.expected_downside_pct)],
+        ["上行/下行赔率", num(candidate.risk_reward_ratio)],
+        ["上冲触发价", price(candidate.trigger_levels?.upside_trigger_level || candidate.upside_trigger_level)],
+        ["失效价", price(candidate.trigger_levels?.invalidation_level || candidate.invalidation_level || candidate.trade_plan?.invalidation_level)],
+        ["当前价确认", quoteStatusText(candidate.quote_confirmation?.status)],
+      ])}
+      <p class="note">这些是概率路径点位，不是投资建议、买卖指令或仓位建议。</p>
+    </div>
+    <div class="detail-card">
+      <h3>路径点位</h3>
       ${facts([
         ["主路径", zh("scenario", candidate.primary_scenario)],
         ["主路径概率", pct(candidate.primary_probability)],
@@ -217,7 +305,6 @@ function renderDetail() {
         ["近端支撑", price(candidate.trigger_levels?.nearest_support || candidate.nearest_support)],
         ["近端压力", price(candidate.trigger_levels?.nearest_resistance || candidate.nearest_resistance)],
       ])}
-      <p class="note">这些是概率路径点位，不是投资建议、买卖指令或仓位建议。</p>
     </div>
     <div class="detail-card">
       <h3>精准闸门</h3>
@@ -393,6 +480,171 @@ function analogSummary(analog) {
   ]);
 }
 
+function spaceTiles(candidate) {
+  const upside = candidate.expected_upside_pct;
+  const downside = candidate.expected_downside_pct;
+  const range = candidate.next_day_expected_range || {};
+  return `
+    <div class="space-tiles">
+      <div><span>上行空间</span><strong class="green-text">${safe(pct(upside))}</strong></div>
+      <div><span>下行风险</span><strong class="red-text">${safe(pct(downside))}</strong></div>
+      <div><span>预期高点</span><strong>${safe(price(range.expected_high))}</strong></div>
+      <div><span>触发价</span><strong>${safe(price(candidate.upside_trigger_level || candidate.trigger_levels?.upside_trigger_level))}</strong></div>
+    </div>
+  `;
+}
+
+function renderPriceVolumeComposite(candidate) {
+  const rows = (candidate.price_history || []).slice(-70);
+  if (!rows.length) return `<svg class="chart large-chart" role="img" aria-label="暂无价格成交量数据"></svg>`;
+  const width = 620;
+  const height = 270;
+  const priceTop = 18;
+  const priceBottom = 162;
+  const volumeTop = 184;
+  const volumeBottom = 252;
+  const closes = rows.map(row => Number(row.close || 0));
+  const highs = rows.map(row => Number(row.high || row.close || 0));
+  const lows = rows.map(row => Number(row.low || row.close || 0));
+  const volumes = rows.map(row => Number(row.volume || 0));
+  const maxPrice = Math.max(...highs, Number(candidate.next_day_expected_range?.expected_high || 0), Number(candidate.upside_trigger_level || 0));
+  const minPrice = Math.min(...lows, Number(candidate.next_day_expected_range?.expected_low || Infinity), Number(candidate.invalidation_level || Infinity));
+  const pricePad = Math.max(0.01, (maxPrice - minPrice) * 0.08);
+  const yPrice = value => priceBottom - ((Number(value) - minPrice + pricePad) / Math.max(0.0001, maxPrice - minPrice + pricePad * 2)) * (priceBottom - priceTop);
+  const x = index => (index / Math.max(1, rows.length - 1)) * (width - 24) + 12;
+  const maxVolume = Math.max(...volumes, 1);
+  const pricePoints = closes.map((value, index) => `${x(index).toFixed(2)},${yPrice(value).toFixed(2)}`).join(" ");
+  const bars = volumes.map((value, index) => {
+    const barH = (value / maxVolume) * (volumeBottom - volumeTop);
+    return `<rect x="${(x(index) - 2).toFixed(2)}" y="${(volumeBottom - barH).toFixed(2)}" width="3.5" height="${barH.toFixed(2)}" fill="#276c9f" opacity="${index === volumes.length - 1 ? "0.9" : "0.42"}" />`;
+  }).join("");
+  const support = candidate.nearest_support || candidate.trigger_levels?.nearest_support;
+  const resistance = candidate.nearest_resistance || candidate.trigger_levels?.nearest_resistance;
+  const trigger = candidate.upside_trigger_level || candidate.trigger_levels?.upside_trigger_level;
+  const invalidation = candidate.invalidation_level || candidate.trigger_levels?.invalidation_level;
+  const current = candidate.current_price;
+  return `
+    <svg class="chart large-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="价格结构与成交量图">
+      <rect x="0" y="0" width="${width}" height="${height}" fill="#fff" rx="8" />
+      ${levelLine(width, yPrice(resistance), "#9b6500", "压力")}
+      ${levelLine(width, yPrice(support), "#687781", "支撑")}
+      ${levelLine(width, yPrice(trigger), "#127657", "触发")}
+      ${levelLine(width, yPrice(invalidation), "#b83232", "失效")}
+      <polyline points="${pricePoints}" fill="none" stroke="#172026" stroke-width="2.8" />
+      ${current ? `<circle cx="${x(rows.length - 1).toFixed(2)}" cy="${yPrice(current).toFixed(2)}" r="5" fill="#127657" />` : ""}
+      <line x1="12" y1="${volumeTop}" x2="${width - 12}" y2="${volumeTop}" stroke="#d7e0e4" />
+      ${bars}
+      <text x="14" y="16" fill="#687781" font-size="12">价格结构</text>
+      <text x="14" y="${volumeTop - 8}" fill="#687781" font-size="12">成交量</text>
+    </svg>
+  `;
+}
+
+function renderExpectedRangeChart(candidate) {
+  const range = candidate.next_day_expected_range || {};
+  const low = Number(range.expected_low);
+  const high = Number(range.expected_high);
+  const mid = Number(range.expected_mid);
+  const last = Number(candidate.last_close || candidate.current_price || 0);
+  const current = Number(candidate.current_price || last);
+  const trigger = Number(candidate.upside_trigger_level || candidate.trigger_levels?.upside_trigger_level || 0);
+  const invalidation = Number(candidate.invalidation_level || candidate.trigger_levels?.invalidation_level || 0);
+  const values = [low, high, mid, last, current, trigger, invalidation].filter(Number.isFinite);
+  if (values.length < 2) return `<svg class="chart" role="img" aria-label="暂无预期区间数据"></svg>`;
+  const width = 520;
+  const height = 190;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const pad = Math.max(0.01, (max - min) * 0.14);
+  const scale = value => 28 + ((Number(value) - min + pad) / Math.max(0.0001, max - min + pad * 2)) * (width - 56);
+  const barX = scale(low);
+  const barW = Math.max(2, scale(high) - barX);
+  return `
+    <svg class="chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="次日预期区间图">
+      <rect x="0" y="0" width="${width}" height="${height}" fill="#fff" rx="8" />
+      <line x1="28" y1="92" x2="${width - 28}" y2="92" stroke="#d7e0e4" stroke-width="2" />
+      <rect x="${barX.toFixed(2)}" y="70" width="${barW.toFixed(2)}" height="44" rx="6" fill="#e0eff8" stroke="#276c9f" />
+      ${rangeMarker(scale(low), 92, "#276c9f", "低")}
+      ${rangeMarker(scale(mid), 92, "#172026", "中")}
+      ${rangeMarker(scale(high), 92, "#276c9f", "高")}
+      ${rangeMarker(scale(last), 134, "#687781", "昨收")}
+      ${rangeMarker(scale(current), 50, "#127657", "当前")}
+      ${rangeMarker(scale(trigger), 24, "#127657", "触发")}
+      ${rangeMarker(scale(invalidation), 160, "#b83232", "失效")}
+      <text x="28" y="182" fill="#687781" font-size="12">预期区间：${safe(rangeLabel(range))}</text>
+    </svg>
+  `;
+}
+
+function renderFutureScenarioChart(candidate) {
+  const rows = (candidate.price_history || []).slice(-38);
+  if (!rows.length) return `<svg class="chart" role="img" aria-label="暂无未来情景数据"></svg>`;
+  const width = 620;
+  const height = 250;
+  const history = rows.map(row => Number(row.close || 0));
+  const last = Number(candidate.current_price || candidate.last_close || history[history.length - 1]);
+  const scenario = candidate.scenario_prices || {};
+  const upsideTarget = Number(scenario.upside_case_price || candidate.next_day_expected_range?.expected_high || last);
+  const baseTarget = Number(scenario.base_case_price || candidate.next_day_expected_range?.expected_mid || last);
+  const downsideTarget = Number(scenario.downside_case_price || candidate.next_day_expected_range?.expected_low || last);
+  const futureSteps = 6;
+  const allValues = [...history, last, upsideTarget, baseTarget, downsideTarget];
+  const min = Math.min(...allValues);
+  const max = Math.max(...allValues);
+  const pad = Math.max(0.01, (max - min) * 0.12);
+  const y = value => height - 28 - ((Number(value) - min + pad) / Math.max(0.0001, max - min + pad * 2)) * (height - 54);
+  const xHistory = index => 12 + (index / Math.max(1, history.length + futureSteps - 1)) * (width - 24);
+  const historyPoints = history.map((value, index) => `${xHistory(index).toFixed(2)},${y(value).toFixed(2)}`).join(" ");
+  const startIndex = history.length - 1;
+  const project = target => Array.from({ length: futureSteps + 1 }, (_, step) => {
+    const t = step / futureSteps;
+    const curve = last + (target - last) * (1 - Math.pow(1 - t, 1.25));
+    return `${xHistory(startIndex + step).toFixed(2)},${y(curve).toFixed(2)}`;
+  }).join(" ");
+  return `
+    <svg class="chart large-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="未来情景走势图">
+      <rect x="0" y="0" width="${width}" height="${height}" fill="#fff" rx="8" />
+      <polyline points="${historyPoints}" fill="none" stroke="#172026" stroke-width="2.5" />
+      <line x1="${xHistory(startIndex).toFixed(2)}" y1="16" x2="${xHistory(startIndex).toFixed(2)}" y2="${height - 24}" stroke="#d7e0e4" stroke-dasharray="4 4" />
+      <polyline points="${project(upsideTarget)}" fill="none" stroke="#127657" stroke-width="2.8" stroke-dasharray="7 4" />
+      <polyline points="${project(baseTarget)}" fill="none" stroke="#276c9f" stroke-width="2.5" stroke-dasharray="5 5" />
+      <polyline points="${project(downsideTarget)}" fill="none" stroke="#b83232" stroke-width="2.5" stroke-dasharray="4 5" />
+      <text x="14" y="18" fill="#687781" font-size="12">历史走势 + 未来情景线</text>
+      <text x="${width - 155}" y="28" fill="#127657" font-size="12">上冲 ${fmtPriceShort(upsideTarget)}</text>
+      <text x="${width - 155}" y="46" fill="#276c9f" font-size="12">主路径 ${fmtPriceShort(baseTarget)}</text>
+      <text x="${width - 155}" y="64" fill="#b83232" font-size="12">风险 ${fmtPriceShort(downsideTarget)}</text>
+    </svg>
+  `;
+}
+
+function renderVolumeAnalysis(candidate) {
+  const relative = Number(candidate.relative_volume);
+  const z = Number(candidate.volume_z_score);
+  const score = Number(candidate.volume_score);
+  const verdict = volumeVerdict(candidate);
+  return `
+    <div class="volume-analysis">
+      <div>
+        <span>成交量判断</span>
+        <strong>${safe(verdict)}</strong>
+      </div>
+      <div>
+        <span>相对成交量</span>
+        <strong>${safe(Number.isFinite(relative) ? `${relative.toFixed(2)}x` : "-")}</strong>
+      </div>
+      <div>
+        <span>量能异常</span>
+        <strong>${safe(Number.isFinite(z) ? z.toFixed(2) : "-")}</strong>
+      </div>
+      <div>
+        <span>量能评分</span>
+        <strong>${safe(Number.isFinite(score) ? score.toFixed(1) : "-")}</strong>
+      </div>
+      <p>${safe(volumeNarrative(candidate))}</p>
+    </div>
+  `;
+}
+
 function renderChart(rows, field) {
   if (!rows.length) return `<svg class="chart" role="img" aria-label="暂无图表数据"></svg>`;
   const values = rows.map(row => Number(row[field] || 0));
@@ -444,6 +696,50 @@ function similarSamples(items) {
       <span>最大不利 ${safe(pct(item.max_adverse_excursion))}</span>
     </div>
   `).join("")}</div>`;
+}
+
+function levelLine(width, y, color, label) {
+  if (!Number.isFinite(y)) return "";
+  return `
+    <line x1="12" y1="${y.toFixed(2)}" x2="${width - 12}" y2="${y.toFixed(2)}" stroke="${color}" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.75" />
+    <text x="${width - 52}" y="${Math.max(14, y - 4).toFixed(2)}" fill="${color}" font-size="11">${safe(label)}</text>
+  `;
+}
+
+function rangeMarker(x, y, color, label) {
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return "";
+  const textY = y < 95 ? y - 10 : y + 24;
+  return `
+    <line x1="${x.toFixed(2)}" y1="${Math.max(22, y - 22).toFixed(2)}" x2="${x.toFixed(2)}" y2="${Math.min(166, y + 22).toFixed(2)}" stroke="${color}" stroke-width="2" />
+    <circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4" fill="${color}" />
+    <text x="${(x + 5).toFixed(2)}" y="${textY.toFixed(2)}" fill="${color}" font-size="11">${safe(label)}</text>
+  `;
+}
+
+function volumeVerdict(candidate) {
+  const relative = Number(candidate.relative_volume);
+  const z = Number(candidate.volume_z_score);
+  if (relative >= 1.8 && z >= 1.2) return "放量确认";
+  if (relative >= 1.25 || z >= 0.8) return "温和放量";
+  if (relative < 0.75 && z < -0.5) return "量能不足";
+  return "量能中性";
+}
+
+function volumeNarrative(candidate) {
+  const relative = Number(candidate.relative_volume);
+  const z = Number(candidate.volume_z_score);
+  const dollar = Number(candidate.dollar_volume_m);
+  const avgDollar = Number(candidate.avg_dollar_volume_m);
+  if (!Number.isFinite(relative)) return "成交量数据缺失，不能把量能当成支持证据。";
+  const parts = [
+    `当前相对成交量约 ${relative.toFixed(2)}x`,
+    Number.isFinite(z) ? `量能异常值 ${z.toFixed(2)}` : "",
+    Number.isFinite(dollar) && Number.isFinite(avgDollar) ? `美元成交额 ${dollar.toFixed(1)}M，20日均值 ${avgDollar.toFixed(1)}M` : "",
+  ].filter(Boolean);
+  if (relative >= 1.8 && z >= 1.2) parts.push("成交量正在给价格路径提供确认。");
+  else if (relative < 0.75) parts.push("量能偏弱，若价格上冲但成交不能放大，路径质量要降级。");
+  else parts.push("量能没有明显否定，但还需要触发价附近继续确认。");
+  return parts.join("；");
 }
 
 function scoreBlock(value, label) {
@@ -500,6 +796,11 @@ function num(value) {
 function moneyM(value) {
   const number = Number(value);
   return Number.isFinite(number) ? `${number.toFixed(1)} 百万美元` : "-";
+}
+
+function fmtPriceShort(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? `$${number.toFixed(2)}` : "-";
 }
 
 function rangeLabel(range) {

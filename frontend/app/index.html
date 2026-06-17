@@ -42,10 +42,18 @@
         <div class="top-panel command-table">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">候选榜</p>
-              <h2>次日 Top 候选</h2>
+              <p class="eyebrow">主候选图表</p>
+              <h2>价格、成交量与预期路径</h2>
             </div>
             <div id="candidateCount" class="badge info">0 只候选</div>
+          </div>
+          <div id="primaryVisual" class="primary-visual"></div>
+          <div id="topCandidateCards" class="opportunity-strip"></div>
+          <div class="section-heading table-heading">
+            <div>
+              <p class="eyebrow">候选榜</p>
+              <h2>次日候选明细</h2>
+            </div>
           </div>
           <div class="table-wrap compact-table">
             <table id="candidateTable">
@@ -54,6 +62,9 @@
                   <th>排名</th>
                   <th>股票</th>
                   <th>类型</th>
+                  <th>当前价</th>
+                  <th>上行空间</th>
+                  <th>量能</th>
                   <th>弹性</th>
                   <th>共振</th>
                   <th>预期差</th>
