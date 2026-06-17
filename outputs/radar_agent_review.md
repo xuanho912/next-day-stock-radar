@@ -2,10 +2,10 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-06-17T13:50:19.347530+00:00`
-- overall_decision: `观察`
-- agency_quality_gate: `谨慎通过`
-- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
+- generated_at: `2026-06-17T13:54:49.470996+00:00`
+- overall_decision: `防守`
+- agency_quality_gate: `不通过`
+- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
@@ -31,27 +31,26 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Nuclear / Power(3); top_type=next_day_upside_momentum(5)
+- evidence: top_sector=Biotech(2); top_type=event_driven_volatility(5)
 
 ### 预期差代理
 
-- status: `warn`
+- status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=55.6; min_top5_gap=50.0; confirmed_signal_count=0
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=54.8; min_top5_gap=50.0; confirmed_signal_count=0
+- warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=70.98; avg_execution=63.76; avg_risk=2.2
+- evidence: avg_payoff=66.36; avg_execution=69.01; avg_risk=2.2
 
 ### 当前价确认代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=0
-- warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
+- evidence: confirming=3; failed=0; missing=0
 
 ### 风险现实校验代理
 
@@ -74,7 +73,7 @@
 
 - status: `warn`
 - conclusion: 检查 provider 状态、降级数量、最新交易日和数据质量分。
-- evidence: score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial
+- evidence: score=62; freshness=partial_fallback; yahoo_fallback=3; finnhub=partial
 - warning: 存在数据源降级，候选已被过滤或压制，但仍需人工确认。
 - warning: Finnhub 非完全可用，新闻/事件催化可能不完整。
 
@@ -82,21 +81,21 @@
 
 - status: `pass`
 - conclusion: 确认前端只读取静态 JSON，并把复杂推理放到后面。
-- evidence: static_payload=True; candidate_count=39
+- evidence: static_payload=True; candidate_count=37
 
 ## Top Candidate Notes
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | NNE | 共振不足 | 共振 58; 预期差 50; 赔率 74.91; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
-| 2 | PLTR | 共振不足 | 共振 58; 预期差 58; 赔率 71.49; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
-| 3 | TSLA | 共振不足 | 共振 58; 预期差 58; 赔率 71.11; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
-| 4 | MSTR | 共振不足 | 共振 58; 预期差 58; 赔率 68.83; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
-| 5 | OKLO | 共振不足 | 共振 58; 预期差 54; 赔率 68.55; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足 |
-| 6 | COIN | 共振不足 | 共振 58; 预期差 58; 赔率 66.96; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
-| 7 | RXRX | 共振不足 | 共振 58; 预期差 54; 赔率 66.19; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足 |
-| 8 | SOUN | 共振不足 | 共振 58; 预期差 58; 赔率 65.39; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 |
-| 9 | CRSP | 共振不足 | 共振 58; 预期差 50; 赔率 62.11; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 |
-| 10 | CEG | 共振不足 | 共振 58; 预期差 58; 赔率 60.29; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
+| 1 | BEAM | 共振不足 | 共振 58.8; 预期差 50; 赔率 62.39; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 |
+| 2 | TSLA | 共振不足 | 共振 58; 预期差 58; 赔率 70.07; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
+| 3 | PLTR | 共振不足 | 共振 58; 预期差 58; 赔率 69.66; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 4 | CRSP | 共振不足 | 共振 58; 预期差 50; 赔率 65.18; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 |
+| 5 | RKLB | 共振不足 | 共振 58; 预期差 58; 赔率 64.52; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 |
+| 6 | CEG | 共振不足 | 共振 58; 预期差 58; 赔率 64.12; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
+| 7 | MSTR | 共振不足 | 共振 58; 预期差 58; 赔率 62.64; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
+| 8 | COIN | 共振不足 | 共振 58; 预期差 58; 赔率 60.81; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
+| 9 | BIDU | 共振不足 | 共振 58; 预期差 58; 赔率 58.48; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
+| 10 | VST | 共振不足 | 共振 58; 预期差 58; 赔率 56.05; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
