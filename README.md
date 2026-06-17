@@ -183,6 +183,18 @@ docs/agent_agency_workflow.md
 
 这层审查是确定性规则，不调用外部 AI，不接触 API key，也不会输出买入、卖出或仓位建议。
 
+## Current Quote Confirmation
+
+GitHub Actions 后端会读取 Finnhub quote，并把当前价确认结果写入静态 JSON：
+
+- `current_price`
+- `current_vs_last_close_pct`
+- `quote_confirmation.status`
+- `quote_confirmation_score`
+- `quote_timestamp`
+
+这些字段用于判断手动刷新时，候选是否仍被当前价格支持。前端只展示已经生成好的静态 JSON，不会直接请求 Finnhub，也不会暴露 API key。
+
 ## Safety Boundary
 
 Forbidden:

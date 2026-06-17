@@ -21,6 +21,7 @@ def build_stock_predictions(
     benchmark_map: dict[str, Any],
     series_by_symbol: dict[str, PriceSeries],
     news_events: dict[str, Any],
+    quote_snapshots: dict[str, Any],
     fundamentals: dict[str, Any],
     market_context: dict[str, Any],
 ) -> dict[str, Any]:
@@ -30,7 +31,8 @@ def build_stock_predictions(
     for symbol in symbols:
         stock = sector_map.get(symbol, {})
         fundamental = (fundamentals.get("symbols") or {}).get(symbol, {})
-        features = _stock_features(symbol, series_by_symbol.get(symbol), stock, benchmark_map, series_by_symbol)
+        quote_snapshot = (quote_snapshots.get("symbols") or {}).get(symbol, {})
+        features = _stock_features(symbol, series_by_symbol.get(symbol), stock, benchmark_map, series_by_symbol, quote_snapshot)
         pool_filter = _pool_filter(symbol, features, fundamental)
         news = (news_events.get("symbols") or {}).get(symbol, {})
         candidate = _build_candidate(symbol, stock, features, news, fundamental, sector_strength, market_context, pool_filter)
@@ -49,6 +51,12 @@ def build_stock_predictions(
             "exclude_otc_pink_by_default": True,
             "low_liquidity_flag": "high_liquidity_risk",
             "high_volatility_flag": "high_risk_high_volatility",
+        },
+        "quote_snapshots": {
+            "provider": quote_snapshots.get("provider"),
+            "provider_available": quote_snapshots.get("provider_available"),
+            "available_count": quote_snapshots.get("available_count"),
+            "missing_count": quote_snapshots.get("missing_count"),
         },
     }
 
@@ -106,6 +114,8 @@ def _build_candidate(
         "squeeze_score": raw_scores["squeeze_score"],
         "squeeze_data_status": raw_scores["squeeze_data_status"],
         "catalyst_score": raw_scores["catalyst_score"],
+        "quote_confirmation": features.get("quote_confirmation"),
+        "quote_confirmation_score": features.get("quote_confirmation_score"),
         "expectation_gap_score": raw_scores["expectation_gap_score"],
         "execution_quality_score": raw_scores["execution_quality_score"],
         "payoff_quality_score": payoff_profile["payoff_quality_score"],
@@ -148,6 +158,7 @@ def _stock_features(
     stock: dict[str, Any],
     benchmark_map: dict[str, Any],
     series_by_symbol: dict[str, PriceSeries],
+    quote_snapshot: dict[str, Any] | None,
 ) -> dict[str, Any]:
     rows = series.rows if series else []
     if len(rows) < 60:
@@ -184,6 +195,7 @@ def _stock_features(
     return_20d = _return(closes, 20)
     relative_strength_5d = return_5d - benchmark_return
     beta_proxy = _beta_proxy(closes, series_by_symbol.get("SPY"))
+    quote_confirmation = _quote_confirmation(quote_snapshot or {}, last, recent_high_20, recent_low_20, ma20, ma50)
 
     technical_score = _clamp(
         34
@@ -195,6 +207,7 @@ def _stock_features(
         + (8 if return_5d > 0 else -5)
         + (8 if relative_strength_5d > 0.015 else 0)
         + (6 if gap_pct > 0.02 and close_position >= 0.6 else 0)
+        + quote_confirmation["technical_adjustment"]
     )
     volume_score = _clamp(
         32
@@ -211,6 +224,12 @@ def _stock_features(
         "real_data": bool(series and series.real_data),
         "latest_date": rows[-1]["date"] if rows else None,
         "last_close": last,
+        "current_price": quote_confirmation["current_price"],
+        "current_price_status": quote_confirmation["status"],
+        "current_vs_last_close_pct": quote_confirmation["current_vs_last_close_pct"],
+        "quote_confirmation": quote_confirmation,
+        "quote_confirmation_score": quote_confirmation["score"],
+        "quote_timestamp": quote_confirmation["quote_timestamp"],
         "previous_close": previous,
         "open": opens[-1] if opens else last,
         "gap_pct": round(gap_pct, 5),
@@ -256,6 +275,87 @@ def _stock_features(
     }
 
 
+def _quote_confirmation(
+    quote_snapshot: dict[str, Any],
+    last_close: float,
+    recent_high: float,
+    recent_low: float,
+    ma20: float,
+    ma50: float,
+) -> dict[str, Any]:
+    current = _safe_float(quote_snapshot.get("current_price"))
+    quote_timestamp = quote_snapshot.get("quote_timestamp")
+    if quote_snapshot.get("provider_status") != "available" or not current or current <= 0 or not last_close:
+        return {
+            "status": "missing",
+            "provider_status": quote_snapshot.get("provider_status") or "missing",
+            "score": 50.0,
+            "technical_adjustment": 0.0,
+            "current_price": None,
+            "current_vs_last_close_pct": None,
+            "quote_timestamp": quote_timestamp,
+            "reason": "Finnhub quote 缺失，当前价格确认不可用。",
+        }
+
+    current_vs_last = current / last_close - 1
+    score = 50.0
+    adjustment = 0.0
+    reasons: list[str] = []
+
+    if current_vs_last >= 0.01:
+        score += 10
+        adjustment += 3
+        reasons.append("当前价高于昨收 1% 以上")
+    elif current_vs_last >= 0.003:
+        score += 5
+        adjustment += 1.5
+        reasons.append("当前价略高于昨收")
+    elif current_vs_last <= -0.025:
+        score -= 14
+        adjustment -= 4
+        reasons.append("当前价明显低于昨收")
+    elif current_vs_last <= -0.008:
+        score -= 6
+        adjustment -= 2
+        reasons.append("当前价低于昨收")
+
+    if current >= max(recent_high, last_close * 1.006):
+        score += 12
+        adjustment += 4
+        reasons.append("当前价接近或突破近端压力")
+    elif current >= ma20 and current >= ma50:
+        score += 6
+        adjustment += 2
+        reasons.append("当前价仍在关键均线之上")
+
+    if current <= recent_low:
+        score -= 18
+        adjustment -= 6
+        reasons.append("当前价跌破近端支撑")
+    elif current < min(ma20, ma50):
+        score -= 8
+        adjustment -= 3
+        reasons.append("当前价回到关键均线下方")
+
+    if score >= 62:
+        status = "confirming"
+    elif score <= 38:
+        status = "failed"
+    else:
+        status = "neutral"
+
+    return {
+        "status": status,
+        "provider_status": "available",
+        "score": round(_clamp(score), 2),
+        "technical_adjustment": round(adjustment, 2),
+        "current_price": round(current, 4),
+        "current_vs_last_close_pct": round(current_vs_last, 5),
+        "quote_timestamp": quote_timestamp,
+        "reason": " / ".join(reasons) if reasons else "当前价没有明显新增确认或否定。",
+    }
+
+
 def _raw_scores(
     features: dict[str, Any],
     news: dict[str, Any],
@@ -270,6 +370,9 @@ def _raw_scores(
     risk_score = _risk_score(features, news, market_context, pool_filter)
     expectation_gap_score = _expectation_gap_score(features, news, sector, market_context, risk_score)
     execution_quality_score = _execution_quality_score(features, volume, technical, risk_score, pool_filter)
+    quote_score = float(features.get("quote_confirmation_score") or 50)
+    quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
+    quote_bonus = quote_score - 50 if quote_available else 0
     elasticity_score = _clamp(
         features["atr_pct"] * 260
         + features["realized_volatility_20d"] * 620
@@ -279,6 +382,7 @@ def _raw_scores(
         + max(features["beta_proxy"] - 1, 0) * 12
         + catalyst_score * 0.18
         + volume * 0.18
+        + max(quote_bonus, 0) * 0.12
         + 18
     )
     upside_momentum_score = _clamp(
@@ -289,6 +393,7 @@ def _raw_scores(
         + max(features["relative_strength_5d"], 0) * 550
         + (9 if features["new_20d_high"] else 0)
         + (8 if features["close_position"] >= 0.72 else 0)
+        + quote_bonus * 0.12
     )
     bounce_score = _clamp(
         28
@@ -323,6 +428,7 @@ def _raw_scores(
         + upside_momentum_score * 0.10
         + bounce_score * 0.04
         + elasticity_score * 0.05
+        + quote_bonus * 0.08
         - risk_score * 0.32
         + _market_adjustment(market_context)
     )
@@ -379,6 +485,7 @@ def _expectation_gap_score(
         + sector_score * 0.10
         + (10 if strong_catalyst else 0)
         + (8 if features["relative_strength_5d"] > 0.018 else 0)
+        + max(float(features.get("quote_confirmation_score") or 50) - 50, 0) * 0.08
         + (6 if market_context.get("market_state") == "attack" else 0)
         - (14 if overdone_gap else 0)
         - (8 if features["close_position"] < 0.35 else 0)
@@ -400,6 +507,7 @@ def _execution_quality_score(
         + (10 if features["avg_dollar_volume_m"] >= 40 else 0)
         + (8 if features["close_position"] >= 0.65 else 0)
         + (6 if features["relative_volume"] >= 1.6 else 0)
+        + (float(features.get("quote_confirmation_score") or 50) - 50) * 0.10
         - risk_score * 0.22
         - (18 if pool_filter["flags"].get("high_liquidity_risk") else 0)
         - (10 if pool_filter["flags"].get("high_risk_high_volatility") else 0)
@@ -470,6 +578,8 @@ def _risk_flags(features: dict[str, Any], news: dict[str, Any], pool_filter: dic
         flags.append("gap_fade_risk")
     if features["close_position"] <= 0.28:
         flags.append("weak_close_distribution_risk")
+    if (features.get("quote_confirmation") or {}).get("status") == "failed":
+        flags.append("current_quote_failed_risk")
     return flags
 
 
@@ -739,6 +849,13 @@ def _evidence(
         support.append(_ev("volume", "volume_anomaly_confirmed", features["volume_score"], "相对成交量和美元流动性足够支撑次日交易观察。"))
     else:
         conflict.append(_ev("volume", "volume_or_liquidity_weak", 100 - features["volume_score"], "成交确认或流动性不足。"))
+    quote_confirmation = features.get("quote_confirmation") or {}
+    if quote_confirmation.get("status") == "confirming":
+        support.append(_ev("quote", "current_price_confirming", quote_confirmation.get("score"), quote_confirmation.get("reason")))
+    elif quote_confirmation.get("status") == "failed":
+        conflict.append(_ev("quote", "current_price_failed", 100 - float(quote_confirmation.get("score") or 0), quote_confirmation.get("reason")))
+    elif quote_confirmation.get("status") == "missing":
+        missing.append(_ev("quote", "current_quote_missing", 0, quote_confirmation.get("reason")))
     if payoff_profile["payoff_quality_score"] >= 52:
         support.append(_ev("payoff", "payoff_quality_confirmed", payoff_profile["payoff_quality_score"], f"次日预期上行/下行赔率约 {payoff_profile['risk_reward_ratio']}。"))
     else:
@@ -826,6 +943,7 @@ def _risk_score(features: dict[str, Any], news: dict[str, Any], market_context: 
         + (12 if market_context.get("market_state") == "defense" else 0)
         + (10 if features["atr_pct"] > 0.14 else 0)
         + (8 if features["close_position"] <= 0.28 else 0)
+        + (12 if (features.get("quote_confirmation") or {}).get("status") == "failed" else 0)
     )
 
 
@@ -869,6 +987,13 @@ def _analog_distance(current: dict[str, float], candidate: dict[str, float]) -> 
 
 def _ev(source: str, name: str | None, score: float | None, detail: str = "") -> dict[str, Any]:
     return {"source": source, "name": name or source, "score": round(float(score or 0), 2), "detail": detail or ""}
+
+
+def _safe_float(value: Any) -> float | None:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def _return(values: list[float], days: int) -> float:

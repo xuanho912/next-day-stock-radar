@@ -24,6 +24,7 @@ from providers.finnhub_provider import fetch_finnhub_bundle
 from providers.fred_provider import fetch_fred_bundle
 from providers.market_context_provider import CORE_MARKET_SYMBOLS, RISK_SYMBOLS, build_market_context
 from providers.news_event_provider import build_news_events
+from providers.quote_confirmation_provider import build_quote_snapshots
 from providers.stock_fundamental_provider import build_fundamental_snapshot
 from providers.yahoo_provider import fetch_price_series
 from radar_agent_review import build_radar_agent_review, render_radar_agent_review_markdown
@@ -57,6 +58,7 @@ def main(argv: list[str] | None = None) -> int:
     finnhub_bundle = fetch_finnhub_bundle(symbols, offline=args.offline)
     fred_bundle = fetch_fred_bundle(offline=args.offline)
     news_events = build_news_events(symbols, finnhub_bundle)
+    quote_snapshots = build_quote_snapshots(symbols, finnhub_bundle)
     fundamentals = build_fundamental_snapshot(symbols, finnhub_bundle)
     prediction_payload = build_stock_predictions(
         symbols=symbols,
@@ -64,6 +66,7 @@ def main(argv: list[str] | None = None) -> int:
         benchmark_map=benchmark_map,
         series_by_symbol=series_by_symbol,
         news_events=news_events,
+        quote_snapshots=quote_snapshots,
         fundamentals=fundamentals,
         market_context=market_context,
     )
@@ -90,6 +93,7 @@ def main(argv: list[str] | None = None) -> int:
         leaderboard=leaderboard,
         prediction_payload=prediction_payload,
         data_quality=data_quality,
+        quote_snapshots=quote_snapshots,
     )
     agency_review = build_radar_agent_review(dashboard)
     dashboard["agency_review"] = agency_review
@@ -145,6 +149,7 @@ def _dashboard_payload(
     leaderboard: dict[str, Any],
     prediction_payload: dict[str, Any],
     data_quality: dict[str, Any],
+    quote_snapshots: dict[str, Any],
 ) -> dict[str, Any]:
     official = baseline["candidates"]
     actionable = [candidate for candidate in official if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}]
@@ -179,6 +184,12 @@ def _dashboard_payload(
             "challenger": {"model_version": challenger["model_version"], "role": "shadow_only"},
         },
         "data_quality": data_quality,
+        "quote_snapshots": {
+            "version": quote_snapshots.get("version"),
+            "provider": quote_snapshots.get("provider"),
+            "available_count": quote_snapshots.get("available_count"),
+            "missing_count": quote_snapshots.get("missing_count"),
+        },
     }
 
 
@@ -211,6 +222,10 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "expected_upside_pct": candidate.get("expected_upside_pct"),
                 "expected_downside_pct": candidate.get("expected_downside_pct"),
                 "precision_gate": candidate.get("precision_gate"),
+                "quote_confirmation": candidate.get("quote_confirmation"),
+                "quote_confirmation_score": candidate.get("quote_confirmation_score"),
+                "current_price": (candidate.get("features") or {}).get("current_price"),
+                "current_vs_last_close_pct": (candidate.get("features") or {}).get("current_vs_last_close_pct"),
                 "risk_score": candidate.get("risk_score"),
                 "risk_flags": candidate.get("risk_flags"),
                 "pool_filter": candidate.get("pool_filter"),

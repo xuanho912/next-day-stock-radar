@@ -49,6 +49,7 @@ const LABELS = {
     news_reversal_or_event_risk: "消息反转风险",
     gap_fade_risk: "跳空回落风险",
     weak_close_distribution_risk: "弱收盘派发风险",
+    current_quote_failed_risk: "当前价确认失败风险",
   },
   evidence: {
     earnings_momentum: "财报/指引催化",
@@ -63,6 +64,9 @@ const LABELS = {
     price_structure_unconfirmed: "价格结构未确认",
     volume_anomaly_confirmed: "成交确认",
     volume_or_liquidity_weak: "成交/流动性不足",
+    current_price_confirming: "当前价确认",
+    current_price_failed: "当前价否定",
+    current_quote_missing: "当前价缺失",
     payoff_quality_confirmed: "赔率质量确认",
     payoff_quality_weak: "赔率质量不足",
     sector_context_confirmed: "板块共振",
@@ -234,6 +238,12 @@ function renderDetail() {
       ${facts([
         ["新闻催化", zh("evidence", candidate.news?.catalyst_type) || "无确认新闻"],
         ["主新闻", candidate.news?.primary_headline || "近期没有确认主新闻"],
+        ["当前价", price(candidate.current_price)],
+        ["当前价相对昨收", pct(candidate.current_vs_last_close_pct)],
+        ["当前价确认", quoteStatusText(candidate.quote_confirmation?.status)],
+        ["确认分", candidate.quote_confirmation_score],
+        ["Quote 时间", candidate.quote_confirmation?.quote_timestamp || "-"],
+        ["Quote 说明", candidate.quote_confirmation?.reason || "-"],
         ["相对强弱", pct(candidate.relative_strength)],
         ["相对成交量", num(candidate.relative_volume)],
         ["成交量异常值", num(candidate.volume_z_score)],
@@ -524,6 +534,15 @@ function agentStatusText(value) {
     pass: "通过",
     warn: "警告",
     fail: "不通过",
+  }[value] || value || "-";
+}
+
+function quoteStatusText(value) {
+  return {
+    confirming: "当前价支持路径",
+    neutral: "当前价中性",
+    failed: "当前价否定路径",
+    missing: "当前价缺失",
   }[value] || value || "-";
 }
 

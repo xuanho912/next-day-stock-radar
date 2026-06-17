@@ -31,6 +31,7 @@ def build_radar_agent_review(dashboard: dict[str, Any]) -> dict[str, Any]:
         _sector_theme_agent(dashboard, top10),
         _expectation_gap_agent(metrics),
         _execution_quality_agent(metrics, top5),
+        _quote_confirmation_agent(metrics),
         _risk_reality_checker(dashboard, top10, metrics),
         _validation_agent(validation, dashboard.get("model_leaderboard") or {}),
         _data_quality_agent(data_quality, provider_status),
@@ -125,6 +126,7 @@ def _candidate_metrics(*, top10: list[dict[str, Any]], top5: list[dict[str, Any]
     )
     strong_edge_count = sum(1 for candidate in top10 if candidate.get("edge_status") == "STRONG_EDGE")
     moderate_edge_count = sum(1 for candidate in top10 if candidate.get("edge_status") == "MODERATE_EDGE")
+    quote_statuses = Counter((candidate.get("quote_confirmation") or {}).get("status") or "missing" for candidate in top10)
 
     return {
         "top10_count": len(top10),
@@ -148,6 +150,9 @@ def _candidate_metrics(*, top10: list[dict[str, Any]], top5: list[dict[str, Any]
         "top10_high_volatility_risk_count": top10_risk_flags.count("high_risk_high_volatility"),
         "top10_low_sample_warning_count": low_sample_count,
         "top10_proxy_squeeze_count": proxy_squeeze_count,
+        "top10_quote_confirming_count": quote_statuses.get("confirming", 0),
+        "top10_quote_failed_count": quote_statuses.get("failed", 0),
+        "top10_quote_missing_count": quote_statuses.get("missing", 0),
     }
 
 
@@ -259,6 +264,32 @@ def _execution_quality_agent(metrics: dict[str, Any], top5: list[dict[str, Any]]
     )
 
 
+def _quote_confirmation_agent(metrics: dict[str, Any]) -> dict[str, Any]:
+    failed = metrics.get("top10_quote_failed_count", 0)
+    missing = metrics.get("top10_quote_missing_count", 0)
+    confirming = metrics.get("top10_quote_confirming_count", 0)
+    warnings = []
+    if failed:
+        status = "fail"
+        warnings.append("Top 候选中存在当前价确认失败，必须降级或等待下一次刷新。")
+    elif missing >= max(3, metrics.get("top10_count", 0) // 3):
+        status = "warn"
+        warnings.append("较多候选缺少当前 quote，只能依赖收盘日线。")
+    elif confirming >= 3:
+        status = "pass"
+    else:
+        status = "warn"
+        warnings.append("当前价确认数量偏少，盘前/盘中需要再次刷新。")
+
+    return _finding(
+        "当前价确认代理",
+        status,
+        "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
+        f"confirming={confirming}; failed={failed}; missing={missing}",
+        warnings,
+    )
+
+
 def _risk_reality_checker(dashboard: dict[str, Any], top10: list[dict[str, Any]], metrics: dict[str, Any]) -> dict[str, Any]:
     warnings = []
     status = "pass"
@@ -273,6 +304,8 @@ def _risk_reality_checker(dashboard: dict[str, Any], top10: list[dict[str, Any]]
         warnings.append("Top 10 中存在高波动小票风险，需要显式标记。")
     if metrics.get("top10_high_liquidity_risk_count", 0):
         warnings.append("Top 10 中存在高流动性风险，必须压低等级。")
+    if metrics.get("top10_quote_failed_count", 0):
+        warnings.append("Top 10 中存在当前价确认失败，不能继续按原路径看待。")
 
     if metrics.get("top10_high_liquidity_risk_count", 0):
         status = "fail"
@@ -381,6 +414,10 @@ def _candidate_note(candidate: dict[str, Any]) -> dict[str, Any]:
         warnings.append("逼空/期权相关数据为 proxy")
     if (candidate.get("precision_gate") or {}).get("passed") is False:
         warnings.append("精准闸门未通过")
+    if (candidate.get("quote_confirmation") or {}).get("status") == "failed":
+        warnings.append("当前价确认失败")
+    if (candidate.get("quote_confirmation") or {}).get("status") == "missing":
+        warnings.append("当前价缺失")
 
     confluence = candidate.get("confluence_score") or 0
     gap = candidate.get("expectation_gap_score") or 0
@@ -419,6 +456,8 @@ def _hard_warnings(dashboard: dict[str, Any], findings: list[dict[str, Any]], me
         warnings.append("市场路径偏防守，所有个股等级应自动压低。")
     if metrics.get("top10_high_liquidity_risk_count", 0):
         warnings.append("Top 候选存在高流动性风险，执行前必须剔除或降级。")
+    if metrics.get("top10_quote_failed_count", 0):
+        warnings.append("Top 候选存在当前价确认失败，需要等待重新确认。")
     if metrics.get("top10_proxy_squeeze_count", 0):
         warnings.append("逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。")
     for finding in findings:

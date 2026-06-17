@@ -85,8 +85,11 @@ Each candidate must emit:
 - `catalyst_score`
 - `risk_score`
 - `confluence_score`
+- `quote_confirmation_score`
 
 If real short interest or options data is missing, squeeze-related fields must be marked `proxy`.
+
+`quote_confirmation_score` is a backend-only Finnhub quote confirmation layer. It can support or warn on an existing candidate path, but it must not replace OHLCV structure or become a standalone buy/sell signal.
 
 ## Scenario Fields
 

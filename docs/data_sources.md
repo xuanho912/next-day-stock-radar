@@ -30,6 +30,17 @@ Used when `FINNHUB_API_KEY` is configured:
 - quote snapshots
 - basic financial metrics when available
 
+Quote snapshots are normalized by `scripts/providers/quote_confirmation_provider.py`.
+
+They are used for backend-only current-price confirmation:
+
+- current price
+- current vs last close
+- quote timestamp
+- confirmation status: `confirming`, `neutral`, `failed`, or `missing`
+
+The frontend never calls Finnhub directly. It only reads generated static JSON.
+
 ### FRED
 
 Used when `FRED_API_KEY` is configured:
