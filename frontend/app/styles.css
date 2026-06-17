@@ -320,6 +320,16 @@ h3 {
   font-size: 24px;
 }
 
+.empty-state {
+  grid-column: 1 / -1;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--amber);
+  border-radius: 8px;
+  background: var(--amber-bg);
+  padding: 14px;
+  color: var(--text);
+}
+
 .green-text {
   color: var(--green);
 }

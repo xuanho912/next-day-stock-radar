@@ -126,7 +126,8 @@ def main(argv: list[str] | None = None) -> int:
                 "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
                 "data_freshness_status": dashboard.get("data_freshness_status"),
                 "candidate_count": len(baseline["candidates"]),
-                "top_candidates": [candidate["ticker"] for candidate in baseline["candidates"][:10]],
+                "actionable_candidates": [candidate["ticker"] for candidate in dashboard.get("top_candidates", [])[:10]],
+                "watch_candidates": [candidate["ticker"] for candidate in dashboard.get("watch_candidates", [])[:10]],
                 "validation_status": validation.get("validation_status"),
                 "leaderboard_status": leaderboard.get("validation_status"),
                 "agency_quality_gate": agency_review.get("agency_quality_gate"),
@@ -153,7 +154,12 @@ def _dashboard_payload(
 ) -> dict[str, Any]:
     official = baseline["candidates"]
     actionable = [candidate for candidate in official if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}]
-    strongest_type = actionable[0]["candidate_type"] if actionable else official[0]["candidate_type"] if official else "none"
+    watch_candidates = [
+        candidate
+        for candidate in official
+        if candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD", "NO_EDGE"}
+    ][:20]
+    strongest_type = actionable[0]["candidate_type"] if actionable else "none"
     effective_freshness = _effective_data_freshness(market_context, provider_status)
     stale_warning = market_context.get("stale_warning") or effective_freshness != "fresh"
     high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness in {"fresh", "partial_fallback"}
@@ -173,7 +179,8 @@ def _dashboard_payload(
         "strongest_candidate_type": strongest_type,
         "current_risk_level": market_context.get("risk_level"),
         "model_validation_status": validation.get("validation_status"),
-        "top_candidates": _public_candidates(official[:20]),
+        "top_candidates": _public_candidates(actionable[:20]),
+        "watch_candidates": _public_candidates(watch_candidates),
         "avoid_candidates": _public_candidates([candidate for candidate in official if candidate["rating"] == "C"][:12]),
         "excluded_candidates": _public_candidates(prediction_payload.get("excluded_candidates", [])[:20]),
         "sector_strength": prediction_payload.get("sector_strength", {}),

@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderError();
     return;
   }
-  selectedTicker = dashboard.top_candidates?.[0]?.ticker || null;
+  selectedTicker = dashboard.top_candidates?.[0]?.ticker || dashboard.watch_candidates?.[0]?.ticker || null;
   renderDashboard();
 });
 
@@ -106,9 +106,10 @@ async function loadJson(paths) {
 function renderDashboard() {
   const fresh = dashboard.data_freshness_status === "fresh";
   const marketState = dashboard.market_context?.market_state || "-";
-  const actionable = (dashboard.top_candidates || []).filter(candidate => ["STRONG_EDGE", "MODERATE_EDGE"].includes(candidate.edge_status));
-  const topCandidate = actionable[0] || dashboard.top_candidates?.[0] || null;
+  const actionable = dashboard.top_candidates || [];
+  const topCandidate = actionable[0] || null;
   const displayedCount = dashboard.top_candidates?.length || 0;
+  const watchCount = dashboard.watch_candidates?.length || 0;
   const passedCount = dashboard.top_candidate_count || actionable.length || 0;
 
   setText("radarDecision", dashboard.high_elasticity_opportunity ? "明天有高弹性候选" : "明天不强行进攻");
@@ -122,7 +123,7 @@ function renderDashboard() {
   setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"}`);
   setText("validationStatus", zh("validation", dashboard.model_validation_status));
   setText("agencyStatus", dashboard.agency_review?.agency_quality_gate || "-");
-  setText("candidateCount", `${passedCount} 只通过 / ${displayedCount} 只观察阻断 / ${dashboard.candidate_count || 0} 只总候选`);
+  setText("candidateCount", `${passedCount} 只可用机会 / ${watchCount} 只观察阻断 / ${dashboard.candidate_count || 0} 只总候选`);
 
   const freshnessBadge = document.getElementById("freshnessBadge");
   freshnessBadge.textContent = fresh ? "数据最新" : "数据警告";
@@ -143,7 +144,7 @@ function renderDashboard() {
 function renderAvoidList() {
   const target = document.getElementById("avoidList");
   if (!target) return;
-  const rows = [...(dashboard.excluded_candidates || []), ...(dashboard.avoid_candidates || [])].slice(0, 6);
+  const rows = [...(dashboard.watch_candidates || []), ...(dashboard.excluded_candidates || []), ...(dashboard.avoid_candidates || [])].slice(0, 6);
   target.innerHTML = rows.length
     ? rows.map(item => `<li><strong>${safe(item.ticker)}</strong><span>${safe(avoidReason(item))}</span></li>`).join("")
     : `<li><strong>暂无</strong><span>当前没有需要额外提示的剔除项</span></li>`;
@@ -151,7 +152,18 @@ function renderAvoidList() {
 
 function renderCandidateTable() {
   const tbody = document.querySelector("#candidateTable tbody");
-  tbody.innerHTML = (dashboard.top_candidates || []).map(candidate => `
+  const candidates = dashboard.top_candidates || [];
+  if (!candidates.length) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="17">
+          当前没有通过共振闸门的可用机会。无优势、存在阻断、只适合观察的股票不会进入候选榜；请看“今日不要碰/观察阻断”。
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  tbody.innerHTML = candidates.map(candidate => `
     <tr data-ticker="${safeAttr(candidate.ticker)}" class="${candidate.ticker === selectedTicker ? "selected" : ""}">
       <td>${safe(candidate.rank)}</td>
       <td>
@@ -194,7 +206,7 @@ function renderPrimaryVisual() {
   if (!target) return;
   const candidate = (dashboard.top_candidates || []).find(item => item.ticker === selectedTicker) || dashboard.top_candidates?.[0];
   if (!candidate) {
-    target.innerHTML = `<p>暂无候选图表。</p>`;
+    target.innerHTML = `<p>当前没有通过共振闸门的可用机会，因此不生成上冲路径图。</p>`;
     return;
   }
 
@@ -225,7 +237,12 @@ function renderPrimaryVisual() {
 function renderOpportunityStrip() {
   const target = document.getElementById("topCandidateCards");
   if (!target) return;
-  target.innerHTML = (dashboard.top_candidates || []).slice(0, 5).map(candidate => `
+  const candidates = dashboard.top_candidates || [];
+  if (!candidates.length) {
+    target.innerHTML = `<div class="empty-state">当前没有通过闸门的次日/近两日上涨候选。</div>`;
+    return;
+  }
+  target.innerHTML = candidates.slice(0, 5).map(candidate => `
     <button class="opportunity-card ${candidate.ticker === selectedTicker ? "active" : ""}" data-ticker="${safeAttr(candidate.ticker)}">
       <span>${safe(candidate.rank)} · ${safe(candidate.ticker)}</span>
       <strong>${safe(pct(candidate.expected_upside_pct))}</strong>
@@ -247,7 +264,11 @@ function renderOpportunityStrip() {
 function renderDetail() {
   const candidate = (dashboard.top_candidates || []).find(item => item.ticker === selectedTicker) || dashboard.top_candidates?.[0];
   if (!candidate) {
-    document.getElementById("candidateDetail").innerHTML = `<div class="detail-card">没有候选。</div>`;
+    setText("detailTitle", "当前没有可用机会");
+    const rating = document.getElementById("detailRating");
+    rating.textContent = "观望";
+    rating.className = "badge neutral";
+    document.getElementById("candidateDetail").innerHTML = `<div class="detail-card">候选榜只展示通过共振闸门的股票。当前无通过项，阻断票已放入“今日不要碰/观察阻断”。</div>`;
     return;
   }
 
