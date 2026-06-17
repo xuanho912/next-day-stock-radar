@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-06-17T17:19:57.448898+00:00",
+  "generated_at": "2026-06-17T17:22:27.387936+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -22,7 +22,7 @@
     "top_sector": "High Beta / EV",
     "top_sector_count": 2,
     "top_candidate_type": "next_day_upside_momentum",
-    "top_candidate_type_count": 6,
+    "top_candidate_type_count": 7,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
@@ -50,7 +50,7 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=High Beta / EV(2); top_type=next_day_upside_momentum(6)",
+      "evidence": "top_sector=High Beta / EV(2); top_type=next_day_upside_momentum(7)",
       "warnings": []
     },
     {
@@ -196,22 +196,6 @@
     },
     {
       "rank": 6,
-      "ticker": "CEG",
-      "candidate_type": "event_driven_volatility",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58.0; 预期差 58; 赔率 39.0; 风险 35.2; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 310.45,
-      "invalidation": 240.51,
-      "warnings": [
-        "风险标记：news_reversal_or_event_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 赔率质量不足"
-      ]
-    },
-    {
-      "rank": 7,
       "ticker": "BEAM",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
@@ -226,7 +210,7 @@
       ]
     },
     {
-      "rank": 8,
+      "rank": 7,
       "ticker": "HOOD",
       "candidate_type": "short_squeeze_candidate",
       "agency_verdict": "共振不足",
@@ -241,7 +225,7 @@
       ]
     },
     {
-      "rank": 9,
+      "rank": 8,
       "ticker": "COIN",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
@@ -256,7 +240,7 @@
       ]
     },
     {
-      "rank": 10,
+      "rank": 9,
       "ticker": "MARA",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
@@ -269,6 +253,21 @@
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
         "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足"
+      ]
+    },
+    {
+      "rank": 10,
+      "ticker": "AI",
+      "candidate_type": "next_day_upside_momentum",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58; 预期差 58; 赔率 36.9; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 11.82,
+      "invalidation": 8.32,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
       ]
     }
   ],
