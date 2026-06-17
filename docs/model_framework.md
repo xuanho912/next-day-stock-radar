@@ -115,3 +115,9 @@ Each candidate has:
 - nearest_resistance
 
 These are probabilistic path points, not investment advice or trading instructions.
+
+## User Logic Adaptation
+
+The user-provided stock logic document is reviewed in `docs/user_logic_review.md`.
+
+The project adopts its expectation-gap, payoff, risk-control, and invalidation-condition ideas, but does not adopt its buy/sell wording, position-sizing layer, or 20/60 day alpha target as the baseline objective. Any medium-term alpha model must run as a separate Challenger first.
