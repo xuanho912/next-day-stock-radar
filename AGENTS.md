@@ -37,9 +37,20 @@ Required public disclaimer:
 - `scripts/stock_prediction_engine.py`: candidate feature and scenario construction.
 - `scripts/candidate_ranking_engine.py`: scoring, rating, and path-plan generation.
 - `scripts/forecast_validation_engine.py`: immutable forecast ledger and outcome validation.
+- `scripts/radar_agent_review.py`: agency-style specialist review and quality gates.
 - `scripts/export_static_dashboard.py`: writes frontend-readable JSON and static files.
 - `frontend/app`: static dashboard.
 - `frontend/public`: generated JSON snapshots.
+
+## Agency Review Layer
+
+The project adapts `msitarzewski/agency-agents` as a local review method, not as a runtime dependency.
+
+- Agent roles are defined in `config/radar_agents.json`.
+- The workflow is documented in `docs/agent_agency_workflow.md`.
+- Every daily run writes `frontend/public/radar-agent-review.json` and `outputs/radar_agent_review.md`.
+- The agency review must stay deterministic, auditable, and free of API keys.
+- The review layer may downgrade or warn; it must not produce buy/sell/position instructions.
 
 ## Output Style
 

@@ -114,6 +114,7 @@ function renderDashboard() {
   setText("riskLevel", zh("risk", dashboard.current_risk_level));
   setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"}`);
   setText("validationStatus", zh("validation", dashboard.model_validation_status));
+  setText("agencyStatus", dashboard.agency_review?.agency_quality_gate || "-");
   setText("candidateCount", `${dashboard.top_candidates?.length || 0} 只展示 / ${dashboard.candidate_count || 0} 只总候选`);
 
   const freshnessBadge = document.getElementById("freshnessBadge");
@@ -335,6 +336,35 @@ function renderValidation() {
     ["Finnhub 局部错误数", quality.provider_status?.finnhub?.error_count],
     ["FRED 可用", yn(quality.provider_status?.fred?.available)],
   ]);
+
+  renderAgencyReview();
+}
+
+function renderAgencyReview() {
+  const target = document.getElementById("agencyReview");
+  if (!target) return;
+
+  const review = dashboard.agency_review || {};
+  const findings = review.agent_findings || [];
+  const warnings = review.hard_warnings || [];
+  const findingHtml = findings.length
+    ? `<div class="evidence">${findings.map(finding => `
+      <div class="evidence-item ${finding.status === "fail" ? "conflict" : ""}">
+        <strong>${safe(finding.agent_name)} · ${safe(agentStatusText(finding.status))}</strong>
+        <p>${safe(finding.evidence || finding.conclusion || "")}</p>
+        ${(finding.warnings || []).length ? `<p>${safe((finding.warnings || []).join(" / "))}</p>` : ""}
+      </div>
+    `).join("")}</div>`
+    : "<p>暂无代理审查结果。</p>";
+
+  target.innerHTML = facts([
+    ["总判断", review.overall_decision],
+    ["质量闸门", review.agency_quality_gate],
+    ["市场许可", review.market_permission],
+    ["硬警告数量", warnings.length],
+    ["最重要警告", warnings[0] || "无"],
+    ["方法来源", review.source_framework],
+  ]) + findingHtml;
 }
 
 function analogSummary(analog) {
@@ -486,6 +516,14 @@ function statusText(value) {
     sample_insufficient: "样本不足",
     shadow_observation_required: "继续影子观察",
     active_baseline: "当前基准",
+  }[value] || value || "-";
+}
+
+function agentStatusText(value) {
+  return {
+    pass: "通过",
+    warn: "警告",
+    fail: "不通过",
   }[value] || value || "-";
 }
 

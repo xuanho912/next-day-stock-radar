@@ -1,0 +1,63 @@
+{
+  "version": "radar_agents_v1",
+  "source_framework": "msitarzewski/agency-agents",
+  "purpose": "把 agency-agents 的专门代理、质量闸门、证据审查方法落到次日高弹性股票雷达。",
+  "agents": [
+    {
+      "id": "market_path_agent",
+      "name": "市场路径代理",
+      "mission": "判断当前市场是否允许筛选次日高弹性机会。",
+      "must_check": ["SPY/QQQ/IWM 状态", "VIX/风险偏好", "数据新鲜度", "市场是否防守"],
+      "fail_condition": "市场防守或数据缺失时，不允许给出进攻结论。"
+    },
+    {
+      "id": "sector_theme_agent",
+      "name": "板块主线代理",
+      "mission": "先识别资金主线，再允许个股进入高等级候选。",
+      "must_check": ["Top 候选行业集中度", "候选类型集中度", "板块强弱", "龙头带动"],
+      "fail_condition": "没有板块或类型共振时，不允许轻易给 A+。"
+    },
+    {
+      "id": "expectation_gap_agent",
+      "name": "预期差代理",
+      "mission": "判断上涨弹性是否来自真实超预期，而不是新闻热度。",
+      "must_check": ["催化强度", "放量", "价格结构", "预期差评分"],
+      "fail_condition": "催化、成交和价格不能同时支持时，不能进入强共振。"
+    },
+    {
+      "id": "execution_quality_agent",
+      "name": "执行质量代理",
+      "mission": "检查触发价、失效价、赔率和流动性是否真正可执行。",
+      "must_check": ["upside_trigger_level", "invalidation_level", "payoff_quality_score", "liquidity risk"],
+      "fail_condition": "高流动性风险或赔率不足时，不允许显示为重点机会。"
+    },
+    {
+      "id": "risk_reality_checker",
+      "name": "风险现实校验代理",
+      "mission": "默认怀疑表面强势，专门寻找旧数据、proxy、小样本和冲高回落风险。",
+      "must_check": ["stale warning", "proxy short/options", "low sample warning", "high volatility flags"],
+      "fail_condition": "风险没有显式标记时，Dashboard 不合格。"
+    },
+    {
+      "id": "validation_agent",
+      "name": "验证代理",
+      "mission": "维护 Forecast Ledger 和 Baseline/Challenger 前向验证纪律。",
+      "must_check": ["pending forecasts", "completed forecasts", "baseline vs challenger", "promotion status"],
+      "fail_condition": "没有 30-60 个交易日前向样本时，不允许称为高精度模型。"
+    },
+    {
+      "id": "data_quality_agent",
+      "name": "数据质量代理",
+      "mission": "检查 provider 状态、降级数量和最新交易日。",
+      "must_check": ["Finnhub", "Yahoo fallback", "FRED", "expected_latest_trading_date"],
+      "fail_condition": "数据缺失或降级时，必须在页面显示警告。"
+    },
+    {
+      "id": "dashboard_guardrail_agent",
+      "name": "中文仪表盘代理",
+      "mission": "确保用户第一屏先看到结论，复杂推理和验证放后面。",
+      "must_check": ["中文页面", "Top 候选", "触发价", "失效价", "静态 JSON", "免责声明"],
+      "fail_condition": "前端不得直接请求 Finnhub/FRED，也不得暴露任何 API key。"
+    }
+  ]
+}

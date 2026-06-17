@@ -26,6 +26,7 @@ from providers.market_context_provider import CORE_MARKET_SYMBOLS, RISK_SYMBOLS,
 from providers.news_event_provider import build_news_events
 from providers.stock_fundamental_provider import build_fundamental_snapshot
 from providers.yahoo_provider import fetch_price_series
+from radar_agent_review import build_radar_agent_review, render_radar_agent_review_markdown
 from stock_prediction_engine import build_stock_predictions
 
 
@@ -90,6 +91,8 @@ def main(argv: list[str] | None = None) -> int:
         prediction_payload=prediction_payload,
         data_quality=data_quality,
     )
+    agency_review = build_radar_agent_review(dashboard)
+    dashboard["agency_review"] = agency_review
     top_candidates = {
         "version": "top_candidates_v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -101,13 +104,16 @@ def main(argv: list[str] | None = None) -> int:
     _write_json(PUBLIC_DIR / "stock-forecast-records.json", records_payload)
     _write_json(PUBLIC_DIR / "validation-scorecard.json", validation)
     _write_json(PUBLIC_DIR / "stock-model-leaderboard.json", leaderboard)
+    _write_json(PUBLIC_DIR / "radar-agent-review.json", agency_review)
     _write_json(OUTPUTS_DIR / "stock_radar_dashboard.json", dashboard)
     _write_json(OUTPUTS_DIR / "validation_scorecard.json", validation)
     _write_json(OUTPUTS_DIR / "stock_model_leaderboard.json", leaderboard)
+    _write_json(OUTPUTS_DIR / "radar_agent_review.json", agency_review)
     _write_text(OUTPUTS_DIR / "daily_stock_radar_report.md", _render_daily_report(dashboard))
     _write_text(OUTPUTS_DIR / "candidate_validation_report.md", _render_validation_report(validation))
     _write_text(OUTPUTS_DIR / "data_quality_report.md", _render_data_quality_report(data_quality))
     _write_text(OUTPUTS_DIR / "stock_model_leaderboard.md", render_model_leaderboard_markdown(leaderboard))
+    _write_text(OUTPUTS_DIR / "radar_agent_review.md", render_radar_agent_review_markdown(agency_review))
 
     print(
         json.dumps(
@@ -119,6 +125,8 @@ def main(argv: list[str] | None = None) -> int:
                 "top_candidates": [candidate["ticker"] for candidate in baseline["candidates"][:10]],
                 "validation_status": validation.get("validation_status"),
                 "leaderboard_status": leaderboard.get("validation_status"),
+                "agency_quality_gate": agency_review.get("agency_quality_gate"),
+                "agency_overall_decision": agency_review.get("overall_decision"),
             },
             ensure_ascii=False,
             indent=2,
