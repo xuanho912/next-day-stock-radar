@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-06-17T13:54:49.470996+00:00",
+  "generated_at": "2026-06-17T14:07:25.800685+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,12 +11,12 @@
     "top5_count": 5,
     "strong_edge_count": 0,
     "moderate_edge_count": 0,
-    "avg_top5_elasticity_score": 95.05,
-    "avg_top5_confluence_score": 58.16,
-    "avg_top5_expectation_gap_score": 54.8,
-    "avg_top5_payoff_quality_score": 66.36,
-    "avg_top5_execution_quality_score": 69.01,
-    "avg_top5_risk_score": 2.2,
+    "avg_top5_elasticity_score": 29.28,
+    "avg_top5_confluence_score": 58.11,
+    "avg_top5_expectation_gap_score": 56.4,
+    "avg_top5_payoff_quality_score": 52.52,
+    "avg_top5_execution_quality_score": 66.41,
+    "avg_top5_risk_score": 2.7,
     "min_top5_confluence_score": 58.0,
     "min_top5_expectation_gap_score": 50.0,
     "top_sector": "Biotech",
@@ -28,8 +28,8 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 10,
     "top10_proxy_squeeze_count": 10,
-    "top10_quote_confirming_count": 3,
-    "top10_quote_failed_count": 0,
+    "top10_quote_confirming_count": 4,
+    "top10_quote_failed_count": 1,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
     "top10_signal_partial_count": 0,
@@ -55,26 +55,28 @@
     },
     {
       "agent_name": "预期差代理",
-      "status": "fail",
+      "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=54.8; min_top5_gap=50.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=56.4; min_top5_gap=50.0; confirmed_signal_count=0",
       "warnings": [
-        "预期差不足，容易变成表面热闹但没有交易价值。"
+        "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
     },
     {
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=66.36; avg_execution=69.01; avg_risk=2.2",
+      "evidence": "avg_payoff=52.52; avg_execution=66.41; avg_risk=2.7",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
-      "status": "pass",
+      "status": "fail",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=3; failed=0; missing=0",
-      "warnings": []
+      "evidence": "confirming=4; failed=1; missing=0",
+      "warnings": [
+        "Top 候选中存在当前价确认失败，必须降级或等待下一次刷新。"
+      ]
     },
     {
       "agent_name": "风险现实校验代理",
@@ -85,6 +87,7 @@
         "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
         "部分历史相似样本不足，不能把相似样本结论当作验证。",
+        "Top 10 中存在当前价确认失败，不能继续按原路径看待。",
         "Top 10 没有真实共振候选，只能观察，不能进攻。"
       ]
     },
@@ -101,7 +104,7 @@
       "agent_name": "数据质量代理",
       "status": "warn",
       "conclusion": "检查 provider 状态、降级数量、最新交易日和数据质量分。",
-      "evidence": "score=62; freshness=partial_fallback; yahoo_fallback=3; finnhub=partial",
+      "evidence": "score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial",
       "warnings": [
         "存在数据源降级，候选已被过滤或压制，但仍需人工确认。",
         "Finnhub 非完全可用，新闻/事件催化可能不完整。"
@@ -111,7 +114,7 @@
       "agent_name": "中文仪表盘代理",
       "status": "pass",
       "conclusion": "确认前端只读取静态 JSON，并把复杂推理放到后面。",
-      "evidence": "static_payload=True; candidate_count=37",
+      "evidence": "static_payload=True; candidate_count=39",
       "warnings": []
     }
   ],
@@ -121,7 +124,7 @@
       "ticker": "BEAM",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58.8; 预期差 50; 赔率 62.39; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
+      "key_check": "共振 58.55; 预期差 50; 赔率 53.96; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
       "trigger": 34.02,
       "invalidation": 25.87,
       "warnings": [
@@ -133,85 +136,10 @@
     },
     {
       "rank": 2,
-      "ticker": "TSLA",
-      "candidate_type": "event_driven_volatility",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 70.07; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 445.6,
-      "invalidation": 380.15,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认"
-      ]
-    },
-    {
-      "rank": 3,
-      "ticker": "PLTR",
-      "candidate_type": "event_driven_volatility",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 69.66; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 163.7,
-      "invalidation": 126.65,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
-      ]
-    },
-    {
-      "rank": 4,
-      "ticker": "CRSP",
-      "candidate_type": "next_day_upside_momentum",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 50; 赔率 65.18; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 59.0,
-      "invalidation": 46.92,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足"
-      ]
-    },
-    {
-      "rank": 5,
-      "ticker": "RKLB",
-      "candidate_type": "gap_continuation",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 64.52; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 151.0,
-      "invalidation": 99.61,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认"
-      ]
-    },
-    {
-      "rank": 6,
-      "ticker": "CEG",
-      "candidate_type": "event_driven_volatility",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 64.12; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 310.45,
-      "invalidation": 240.51,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认"
-      ]
-    },
-    {
-      "rank": 7,
       "ticker": "MSTR",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 62.64; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 58; 预期差 58; 赔率 56.7; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 169.23,
       "invalidation": 113.27,
       "warnings": [
@@ -223,59 +151,139 @@
       ]
     },
     {
-      "rank": 8,
-      "ticker": "COIN",
+      "rank": 3,
+      "ticker": "PLTR",
       "candidate_type": "event_driven_volatility",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 60.81; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 206.0,
-      "invalidation": 147.88,
+      "key_check": "共振 58; 预期差 58; 赔率 53.78; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 163.7,
+      "invalidation": 126.65,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
+      ]
+    },
+    {
+      "rank": 4,
+      "ticker": "RKLB",
+      "candidate_type": "gap_continuation",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58; 预期差 58; 赔率 49.13; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 151.0,
+      "invalidation": 99.61,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足"
+      ]
+    },
+    {
+      "rank": 5,
+      "ticker": "CEG",
+      "candidate_type": "event_driven_volatility",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58; 预期差 58; 赔率 49.04; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 310.45,
+      "invalidation": 240.51,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 赔率质量不足"
+      ]
+    },
+    {
+      "rank": 6,
+      "ticker": "HOOD",
+      "candidate_type": "short_squeeze_candidate",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58; 预期差 54; 赔率 46.83; 风险 13.5; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 100.5829,
+      "invalidation": 73.18,
       "warnings": [
         "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认"
+        "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振"
       ]
     },
     {
-      "rank": 9,
-      "ticker": "BIDU",
-      "candidate_type": "downside_continuation",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 58.48; 风险 5.5; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 143.36,
-      "invalidation": 110.5685,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认"
-      ]
-    },
-    {
-      "rank": 10,
+      "rank": 7,
       "ticker": "VST",
       "candidate_type": "event_driven_volatility",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58; 预期差 58; 赔率 56.05; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 58; 预期差 58; 赔率 46.67; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 167.4,
       "invalidation": 132.66,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认"
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 赔率质量不足"
+      ]
+    },
+    {
+      "rank": 8,
+      "ticker": "TSLA",
+      "candidate_type": "event_driven_volatility",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58.0; 预期差 58; 赔率 46.64; 风险 17.5; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 445.6,
+      "invalidation": 380.15,
+      "warnings": [
+        "风险标记：current_quote_failed_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "当前价确认失败",
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 当前价确认失败"
+      ]
+    },
+    {
+      "rank": 9,
+      "ticker": "AI",
+      "candidate_type": "event_driven_volatility",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58; 预期差 58; 赔率 44.7; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 11.82,
+      "invalidation": 8.32,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
+      ]
+    },
+    {
+      "rank": 10,
+      "ticker": "CRSP",
+      "candidate_type": "next_day_upside_momentum",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58; 预期差 50; 赔率 43.66; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 59.0,
+      "invalidation": 46.92,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足"
       ]
     }
   ],
   "hard_warnings": [
     "存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。",
+    "Top 候选存在当前价确认失败，需要等待重新确认。",
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
+    "Top 候选中存在当前价确认失败，必须降级或等待下一次刷新。",
     "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
     "部分历史相似样本不足，不能把相似样本结论当作验证。",
+    "Top 10 中存在当前价确认失败，不能继续按原路径看待。",
     "Top 10 没有真实共振候选，只能观察，不能进攻。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
