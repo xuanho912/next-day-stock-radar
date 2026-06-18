@@ -111,19 +111,20 @@ function renderDashboard() {
   const displayedCount = dashboard.top_candidates?.length || 0;
   const watchCount = dashboard.watch_candidates?.length || 0;
   const passedCount = dashboard.top_candidate_count || actionable.length || 0;
+  const attackCount = dashboard.actionable_candidate_count || 0;
 
-  setText("radarDecision", dashboard.high_elasticity_opportunity ? "明天有高弹性候选" : "明天不强行进攻");
+  setText("radarDecision", dashboard.high_elasticity_opportunity ? "明天有高弹性候选" : displayedCount ? "有条件候选，等待触发" : "明天不强行进攻");
   setText("radarSummary", dashboard.radar_summary || "");
-  setText("opportunityStatus", dashboard.high_elasticity_opportunity ? "有候选" : "观望");
+  setText("opportunityStatus", dashboard.high_elasticity_opportunity ? "有候选" : displayedCount ? "待触发" : "观望");
   setText("strongestCandidate", passedCount ? `${topCandidate.ticker} ${topCandidate.rating || ""}` : "无通过闸门");
   setText("strongestDirection", passedCount ? zh("candidateType", topCandidate?.candidate_type || dashboard.strongest_candidate_type) : "无进攻方向");
   setText("marketState", zh("market", marketState));
   setText("screeningStatus", marketState === "defense" ? "防守过滤" : "可筛选，等触发");
   setText("riskLevel", zh("risk", dashboard.current_risk_level));
-  setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"}`);
+  setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"} / 窗口 ${dashboard.forecast_horizon?.label || "次日"}`);
   setText("validationStatus", zh("validation", dashboard.model_validation_status));
   setText("agencyStatus", dashboard.agency_review?.agency_quality_gate || "-");
-  setText("candidateCount", `${passedCount} 只可用机会 / ${watchCount} 只观察阻断 / ${dashboard.candidate_count || 0} 只总候选`);
+  setText("candidateCount", `${attackCount} 只重点 / ${displayedCount} 只条件候选 / ${watchCount} 只阻断 / ${dashboard.candidate_count || 0} 只总候选`);
 
   const freshnessBadge = document.getElementById("freshnessBadge");
   freshnessBadge.textContent = fresh ? "数据最新" : "数据警告";
@@ -157,7 +158,7 @@ function renderCandidateTable() {
     tbody.innerHTML = `
       <tr>
         <td colspan="17">
-          当前没有通过共振闸门的可用机会。无优势、存在阻断、只适合观察的股票不会进入候选榜；请看“今日不要碰/观察阻断”。
+          当前没有 A/B 级条件候选。无优势、存在阻断、只适合观察的股票不会进入候选榜；请看“今日不要碰/观察阻断”。
         </td>
       </tr>
     `;
@@ -239,7 +240,7 @@ function renderOpportunityStrip() {
   if (!target) return;
   const candidates = dashboard.top_candidates || [];
   if (!candidates.length) {
-    target.innerHTML = `<div class="empty-state">当前没有通过闸门的次日/近两日上涨候选。</div>`;
+    target.innerHTML = `<div class="empty-state">当前没有 A/B 级次日/近两交易日上涨候选。</div>`;
     return;
   }
   target.innerHTML = candidates.slice(0, 5).map(candidate => `
@@ -268,7 +269,7 @@ function renderDetail() {
     const rating = document.getElementById("detailRating");
     rating.textContent = "观望";
     rating.className = "badge neutral";
-    document.getElementById("candidateDetail").innerHTML = `<div class="detail-card">候选榜只展示通过共振闸门的股票。当前无通过项，阻断票已放入“今日不要碰/观察阻断”。</div>`;
+    document.getElementById("candidateDetail").innerHTML = `<div class="detail-card">候选榜只展示 A/B 级条件候选。当前无通过项，阻断票已放入“今日不要碰/观察阻断”。</div>`;
     return;
   }
 

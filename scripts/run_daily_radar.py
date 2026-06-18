@@ -126,7 +126,9 @@ def main(argv: list[str] | None = None) -> int:
                 "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
                 "data_freshness_status": dashboard.get("data_freshness_status"),
                 "candidate_count": len(baseline["candidates"]),
-                "actionable_candidates": [candidate["ticker"] for candidate in dashboard.get("top_candidates", [])[:10]],
+                "top_candidates": [candidate["ticker"] for candidate in dashboard.get("top_candidates", [])[:10]],
+                "actionable_candidate_count": dashboard.get("actionable_candidate_count"),
+                "conditional_candidate_count": dashboard.get("conditional_candidate_count"),
                 "watch_candidates": [candidate["ticker"] for candidate in dashboard.get("watch_candidates", [])[:10]],
                 "validation_status": validation.get("validation_status"),
                 "leaderboard_status": leaderboard.get("validation_status"),
@@ -154,12 +156,19 @@ def _dashboard_payload(
 ) -> dict[str, Any]:
     official = baseline["candidates"]
     actionable = [candidate for candidate in official if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}]
+    conditional = [
+        candidate
+        for candidate in official
+        if candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD"}
+        and (candidate.get("confluence_matrix") or {}).get("overall") != "blocked"
+    ]
+    display_candidates = (actionable + conditional)[:20]
     watch_candidates = [
         candidate
         for candidate in official
-        if candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD", "NO_EDGE"}
+        if candidate["edge_status"] in {"NO_EDGE", "AVOID"}
     ][:20]
-    strongest_type = actionable[0]["candidate_type"] if actionable else "none"
+    strongest_type = display_candidates[0]["candidate_type"] if display_candidates else "none"
     effective_freshness = _effective_data_freshness(market_context, provider_status)
     stale_warning = market_context.get("stale_warning") or effective_freshness != "fresh"
     high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness in {"fresh", "partial_fallback"}
@@ -172,14 +181,22 @@ def _dashboard_payload(
         "stale_warning": stale_warning,
         "provider_status": provider_status,
         "candidate_count": len(official),
-        "top_candidate_count": len(actionable),
+        "top_candidate_count": len(display_candidates),
+        "actionable_candidate_count": len(actionable),
+        "conditional_candidate_count": len(conditional),
         "high_elasticity_opportunity": high_elasticity_opportunity,
-        "radar_summary": _radar_summary(market_context, actionable, validation, effective_freshness),
+        "forecast_horizon": {
+            "label": "次日/近两交易日",
+            "uses_trading_days": True,
+            "primary_window_trading_days": [1, 2],
+            "note": "窗口按美股交易日理解，周末和美股休市日不计入自然日。",
+        },
+        "radar_summary": _radar_summary(market_context, display_candidates, validation, effective_freshness),
         "market_context": market_context,
         "strongest_candidate_type": strongest_type,
         "current_risk_level": market_context.get("risk_level"),
         "model_validation_status": validation.get("validation_status"),
-        "top_candidates": _public_candidates(actionable[:20]),
+        "top_candidates": _public_candidates(display_candidates),
         "watch_candidates": _public_candidates(watch_candidates),
         "avoid_candidates": _public_candidates([candidate for candidate in official if candidate["rating"] == "C"][:12]),
         "excluded_candidates": _public_candidates(prediction_payload.get("excluded_candidates", [])[:20]),

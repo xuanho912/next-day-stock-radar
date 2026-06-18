@@ -994,7 +994,7 @@ def _matrix_catalyst(news: dict[str, Any]) -> dict[str, Any]:
         status,
         score,
         headline,
-        blocking=status in {"blocked", "missing", "weak"},
+        blocking=status == "blocked",
         data={
             "quality": quality,
             "event_type": news.get("catalyst_type"),
