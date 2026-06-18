@@ -160,7 +160,7 @@ def _dashboard_payload(
         candidate
         for candidate in official
         if candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD"}
-        and (candidate.get("confluence_matrix") or {}).get("overall") != "blocked"
+        and not _has_hard_display_blocker(candidate)
     ]
     display_candidates = (actionable + conditional)[:20]
     watch_candidates = [
@@ -215,6 +215,21 @@ def _dashboard_payload(
             "missing_count": quote_snapshots.get("missing_count"),
         },
     }
+
+
+def _has_hard_display_blocker(candidate: dict[str, Any]) -> bool:
+    matrix = candidate.get("confluence_matrix") or {}
+    blockers = set(matrix.get("blocking_dimensions") or [])
+    hard_blockers = {"price", "volume", "quote", "risk", "liquidity", "payoff"}
+    if blockers & hard_blockers:
+        return True
+    if candidate.get("candidate_type") == "no_edge":
+        return True
+    if float(candidate.get("confluence_score") or 0) < 52:
+        return True
+    if float(candidate.get("elasticity_score") or 0) < 30:
+        return True
+    return False
 
 
 def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:

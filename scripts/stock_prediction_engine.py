@@ -982,8 +982,10 @@ def _matrix_catalyst(news: dict[str, Any]) -> dict[str, Any]:
         status = "confirmed"
     elif quality == "weak" or score >= 52:
         status = "partial"
-    elif quality == "conflicted" or risk >= 35:
+    elif quality == "conflicted" and risk >= 45:
         status = "blocked"
+    elif quality == "conflicted" or risk >= 35:
+        status = "weak"
     elif quality == "missing":
         status = "missing"
     else:
