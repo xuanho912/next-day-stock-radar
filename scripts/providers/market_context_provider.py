@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 
-from providers.yahoo_provider import PriceSeries, expected_latest_trading_date, latest_available_date
+from providers.yahoo_provider import PriceSeries, expected_latest_trading_date, latest_available_date, next_us_market_trading_dates
 
 
 CORE_MARKET_SYMBOLS = ["SPY", "QQQ", "IWM", "DIA"]
@@ -45,6 +45,7 @@ def build_market_context(series_by_symbol: dict[str, PriceSeries]) -> dict[str, 
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "latest_data_date": latest_date,
         "expected_latest_trading_date": expected_date,
+        "forecast_target_trading_dates": next_us_market_trading_dates(latest_date or expected_date, count=2),
         "data_freshness_status": data_freshness_status,
         "stale_warning": stale_warning,
         "market_state": market_state,

@@ -14,6 +14,37 @@ YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?ra
 US_MARKET_TIMEZONE = ZoneInfo("America/New_York")
 DAILY_BAR_COMPLETE_HOUR = 16
 DAILY_BAR_COMPLETE_MINUTE = 15
+US_MARKET_HOLIDAYS = {
+    date(2026, 1, 1),
+    date(2026, 1, 19),
+    date(2026, 2, 16),
+    date(2026, 4, 3),
+    date(2026, 5, 25),
+    date(2026, 6, 19),
+    date(2026, 7, 3),
+    date(2026, 9, 7),
+    date(2026, 11, 26),
+    date(2026, 12, 25),
+    date(2027, 1, 1),
+    date(2027, 1, 18),
+    date(2027, 2, 15),
+    date(2027, 3, 26),
+    date(2027, 5, 31),
+    date(2027, 6, 18),
+    date(2027, 7, 5),
+    date(2027, 9, 6),
+    date(2027, 11, 25),
+    date(2027, 12, 24),
+    date(2028, 1, 17),
+    date(2028, 2, 21),
+    date(2028, 4, 14),
+    date(2028, 5, 29),
+    date(2028, 6, 19),
+    date(2028, 7, 4),
+    date(2028, 9, 4),
+    date(2028, 11, 23),
+    date(2028, 12, 25),
+}
 
 
 @dataclass
@@ -65,7 +96,7 @@ def fallback_series(symbol: str, days: int = 180) -> PriceSeries:
     trading_dates: list[date] = []
     current = today
     while len(trading_dates) < days:
-        if current.weekday() < 5:
+        if is_us_market_trading_day(current):
             trading_dates.append(current)
         current -= timedelta(days=1)
     trading_dates.reverse()
@@ -102,11 +133,38 @@ def expected_latest_trading_date(now: datetime | None = None) -> str:
     market_now = now.astimezone(US_MARKET_TIMEZONE)
     current = market_now.date()
     daily_bar_complete = (market_now.hour, market_now.minute) >= (DAILY_BAR_COMPLETE_HOUR, DAILY_BAR_COMPLETE_MINUTE)
-    if not daily_bar_complete:
+    if not daily_bar_complete or not is_us_market_trading_day(current):
         current -= timedelta(days=1)
-    while current.weekday() >= 5:
+    return previous_us_market_trading_day(current).isoformat()
+
+
+def is_us_market_trading_day(day: date) -> bool:
+    return day.weekday() < 5 and day not in US_MARKET_HOLIDAYS
+
+
+def previous_us_market_trading_day(day: date) -> date:
+    current = day
+    while not is_us_market_trading_day(current):
         current -= timedelta(days=1)
-    return current.isoformat()
+    return current
+
+
+def next_us_market_trading_day(day: date) -> date:
+    current = day + timedelta(days=1)
+    while not is_us_market_trading_day(current):
+        current += timedelta(days=1)
+    return current
+
+
+def next_us_market_trading_dates(from_date: str | date | None, count: int = 2) -> list[str]:
+    if not from_date:
+        return []
+    current = _date_from_iso(from_date) if isinstance(from_date, str) else from_date
+    dates: list[str] = []
+    for _ in range(count):
+        current = next_us_market_trading_day(current)
+        dates.append(current.isoformat())
+    return dates
 
 
 def latest_available_date(series_by_symbol: dict[str, PriceSeries], symbols: list[str]) -> str | None:

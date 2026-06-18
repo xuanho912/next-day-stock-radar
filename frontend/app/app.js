@@ -121,7 +121,9 @@ function renderDashboard() {
   setText("marketState", zh("market", marketState));
   setText("screeningStatus", marketState === "defense" ? "防守过滤" : "可筛选，等触发");
   setText("riskLevel", zh("risk", dashboard.current_risk_level));
-  setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"} / 窗口 ${dashboard.forecast_horizon?.label || "次日"}`);
+  const targetDates = dashboard.forecast_horizon?.target_trading_dates || [];
+  const targetText = targetDates.length ? ` / 目标交易日 ${targetDates.join(" / ")}` : "";
+  setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"} / 窗口 ${dashboard.forecast_horizon?.label || "次日"}${targetText}`);
   setText("validationStatus", zh("validation", dashboard.model_validation_status));
   setText("agencyStatus", dashboard.agency_review?.agency_quality_gate || "-");
   setText("candidateCount", `${attackCount} 只重点 / ${displayedCount} 只条件候选 / ${watchCount} 只阻断 / ${dashboard.candidate_count || 0} 只总候选`);

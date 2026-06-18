@@ -189,6 +189,8 @@ def _dashboard_payload(
             "label": "次日/近两交易日",
             "uses_trading_days": True,
             "primary_window_trading_days": [1, 2],
+            "base_data_date": market_context.get("latest_data_date"),
+            "target_trading_dates": market_context.get("forecast_target_trading_dates", []),
             "note": "窗口按美股交易日理解，周末和美股休市日不计入自然日。",
         },
         "radar_summary": _radar_summary(market_context, display_candidates, validation, effective_freshness),
