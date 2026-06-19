@@ -2,10 +2,10 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-06-18T16:54:02.936572+00:00`
-- overall_decision: `防守`
-- agency_quality_gate: `不通过`
-- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
+- generated_at: `2026-06-19T00:14:27.924355+00:00`
+- overall_decision: `观察`
+- agency_quality_gate: `谨慎通过`
+- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
 
 ## Hard Warnings
 
@@ -29,37 +29,35 @@
 
 ### 板块主线代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Fintech / Trading(1); top_type=short_squeeze_candidate(1)
-- warning: Top 10 主线集中度偏低，更多是离散机会。
+- evidence: top_sector=AI / Semiconductors(3); top_type=short_squeeze_candidate(5)
 
 ### 预期差代理
 
-- status: `fail`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=54.0; min_top5_gap=54.0; confirmed_signal_count=0
-- warning: 预期差不足，容易变成表面热闹但没有交易价值。
+- evidence: avg_top5_gap=75.74; min_top5_gap=54.0; confirmed_signal_count=0
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=49.76; avg_execution=88.05; avg_risk=16.5
-- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
+- evidence: avg_payoff=59.22; avg_execution=84.32; avg_risk=0
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=1; failed=0; missing=0
+- evidence: confirming=0; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
 
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
-- evidence: proxy_squeeze=1; low_sample=1; liquidity_risk=0
+- evidence: proxy_squeeze=7; low_sample=7; liquidity_risk=0
 - warning: 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
@@ -69,7 +67,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=67; leaderboard=validated
+- evidence: validation=early_evidence; completed=96; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -90,6 +88,12 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | HOOD | 共振不足 | 共振 58.6; 预期差 54; 赔率 49.76; 风险 16.5; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
+| 1 | AMD | 可观察候选 | 共振 74; 预期差 99.22; 赔率 62.97; 风险 0; 闸门 强共振; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
+| 2 | NVDA | 共振不足 | 共振 67.27; 预期差 78.75; 赔率 61.45; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | SMR | 共振不足 | 共振 66; 预期差 92.73; 赔率 62.48; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 逼空逻辑只有 proxy，不能作为强共振 |
+| 4 | AMC | 共振不足 | 共振 62.65; 预期差 54; 赔率 51.86; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 板块主线不够强 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
+| 5 | NNE | 共振不足 | 共振 58.76; 预期差 54; 赔率 57.33; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
+| 6 | ARM | 共振不足 | 共振 58.43; 预期差 54; 赔率 50.57; 风险 8.8; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
+| 7 | VST | 共振不足 | 共振 58.33; 预期差 54; 赔率 49.89; 风险 8.8; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
