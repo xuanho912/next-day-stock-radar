@@ -493,7 +493,7 @@ def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, An
 
 def _dashboard_readiness(candidates: list[dict[str, Any]], data_freshness_status: str, validation: dict[str, Any]) -> dict[str, Any]:
     reasons: list[str] = []
-    if data_freshness_status != "fresh":
+    if data_freshness_status in {"fallback_only", "missing"}:
         return {
             "status": "DATA_NOT_FRESH",
             "label": "数据不新，不可依赖",
@@ -501,6 +501,8 @@ def _dashboard_readiness(candidates: list[dict[str, Any]], data_freshness_status
             "trusted_candidate_count": 0,
             "reasons": ["行情或市场背景不是全量最新交易日，不能当作当日真钱级依据。"],
         }
+    if data_freshness_status == "partial_fallback":
+        reasons.append("部分标的行情降级；降级标的会被逐只压制，未降级候选仍需通过真钱审计。")
 
     trusted = [candidate for candidate in candidates if float(candidate.get("trust_score") or 0) >= 70]
     best_score = max([float(candidate.get("trust_score") or 0) for candidate in candidates] or [0])
