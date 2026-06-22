@@ -229,7 +229,7 @@ function renderCandidateTable() {
 function renderPrimaryVisual() {
   const target = document.getElementById("primaryVisual");
   if (!target) return;
-  const candidate = (dashboard.top_candidates || []).find(item => item.ticker === selectedTicker) || dashboard.top_candidates?.[0];
+  const candidate = selectedCandidate();
   if (!candidate) {
     target.innerHTML = `<p>当前没有通过共振闸门的可用机会，因此不生成上冲路径图。</p>`;
     return;
@@ -244,6 +244,7 @@ function renderPrimaryVisual() {
         </div>
         <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
       </div>
+      ${candidate.readiness_status === "NOT_TRUSTED_FOR_REAL_MONEY" ? `<div class="data-warning"><span>这是观察阻断图，不是 Top 机会：${safe(candidate.reason || "真钱可信度审计未通过")}</span></div>` : ""}
       ${renderPriceVolumeComposite(candidate)}
       ${renderDataBackedSummary(candidate)}
       ${renderDataWarnings(candidate)}
@@ -289,7 +290,7 @@ function renderOpportunityStrip() {
 }
 
 function renderDetail() {
-  const candidate = (dashboard.top_candidates || []).find(item => item.ticker === selectedTicker) || dashboard.top_candidates?.[0];
+  const candidate = selectedCandidate();
   if (!candidate) {
     setText("detailTitle", "当前没有可用机会");
     const rating = document.getElementById("detailRating");
@@ -541,6 +542,16 @@ function renderAgencyReview() {
     ["最重要警告", warnings[0] || "无"],
     ["方法来源", review.source_framework],
   ]) + findingHtml;
+}
+
+function selectedCandidate() {
+  const top = dashboard.top_candidates || [];
+  const watch = dashboard.watch_candidates || [];
+  return top.find(item => item.ticker === selectedTicker)
+    || watch.find(item => item.ticker === selectedTicker)
+    || top[0]
+    || [...watch].sort((a, b) => Number(b.fermentation_score || 0) - Number(a.fermentation_score || 0))[0]
+    || null;
 }
 
 function renderDataBackedSummary(candidate) {
