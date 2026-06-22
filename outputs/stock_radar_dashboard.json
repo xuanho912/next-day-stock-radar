@@ -1,6 +1,6 @@
 {
   "version": "stock_radar_dashboard_v1",
-  "generated_at": "2026-06-22T16:16:07.508681+00:00",
+  "generated_at": "2026-06-22T16:20:33.551828+00:00",
   "latest_data_date": "2026-06-18",
   "expected_latest_trading_date": "2026-06-18",
   "data_freshness_status": "partial_fallback",
@@ -72,7 +72,7 @@
     ]
   },
   "market_context": {
-    "generated_at": "2026-06-22T16:15:50.582464+00:00",
+    "generated_at": "2026-06-22T16:20:20.099011+00:00",
     "latest_data_date": "2026-06-18",
     "expected_latest_trading_date": "2026-06-18",
     "forecast_target_trading_dates": [
@@ -292,8 +292,8 @@
             "reason": "当前价略高于昨收 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:19+00:00",
-              "current_price": 540.84
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 540.6
             }
           },
           {
@@ -346,14 +346,14 @@
         "provider_status": "available",
         "score": 61.0,
         "technical_adjustment": 3.5,
-        "current_price": 540.84,
-        "current_vs_last_close_pct": 0.00646,
-        "quote_timestamp": "2026-06-22T16:15:19+00:00",
+        "current_price": 540.6,
+        "current_vs_last_close_pct": 0.00601,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价略高于昨收 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 61.0,
-      "current_price": 540.84,
-      "current_vs_last_close_pct": 0.00646,
+      "current_price": 540.6,
+      "current_vs_last_close_pct": 0.00601,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -405,7 +405,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:19+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -492,7 +492,7 @@
         "primary_headline": "AI Boom and HBM Demand to Boost Micron's DRAM Revenues in Q3",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 3.05,
+        "primary_event_age_hours": 3.13,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -505,7 +505,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2ebaebe8ea709e065238df3d69c1c7d7095cb55957ed395f6df924d0aeb745c9",
             "published_at": "2026-06-22T15:29:38+00:00",
-            "age_hours": 0.77,
+            "age_hours": 0.85,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -516,7 +516,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c9e01df762c46043f648e3b367847d4a0bd40b9fb2b82672068922f4c242d66c",
             "published_at": "2026-06-22T14:58:08+00:00",
-            "age_hours": 1.3,
+            "age_hours": 1.37,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -527,7 +527,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5ed20d1f9e1f1584759dc44ce2b19277bf30cefb9b7ca0f8fb0c48a533c968af",
             "published_at": "2026-06-22T13:13:00+00:00",
-            "age_hours": 3.05,
+            "age_hours": 3.13,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -538,7 +538,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d005beaa9875f5f2d213fbac9941fd9dcdf4392851a3e026f350e5a97c7f9913",
             "published_at": "2026-06-22T13:10:52+00:00",
-            "age_hours": 3.09,
+            "age_hours": 3.16,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -549,7 +549,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8b0e2174640bcf131cac2bb27bc827cd3ac01e9bfefc4cd2be2a14ad95825cca",
             "published_at": "2026-06-22T12:43:19+00:00",
-            "age_hours": 3.55,
+            "age_hours": 3.62,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -560,7 +560,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=023ff249fc8ffe182ddb40eb582ce38c9239d6fd45bdef217342357f552d0d55",
             "published_at": "2026-06-22T11:56:03+00:00",
-            "age_hours": 4.33,
+            "age_hours": 4.41,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -571,7 +571,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=17d6e3e3ea58a1fd72fa77067436d21e3c6bcf4af37a3cbcc608a0b8edfc1860",
             "published_at": "2026-06-22T11:37:52+00:00",
-            "age_hours": 4.64,
+            "age_hours": 4.71,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -582,7 +582,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=db1593ec281b047c0ff6062cd89e83105412788278f6f18b786c148dc330a9df",
             "published_at": "2026-06-22T09:30:00+00:00",
-            "age_hours": 6.77,
+            "age_hours": 6.84,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -2015,8 +2015,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:31+00:00",
-              "current_price": 35.56
+              "quote_timestamp": "2026-06-22T16:20:19+00:00",
+              "current_price": 35.54
             }
           },
           {
@@ -2071,14 +2071,14 @@
         "provider_status": "available",
         "score": 72.0,
         "technical_adjustment": 7.0,
-        "current_price": 35.56,
-        "current_vs_last_close_pct": 0.04159,
-        "quote_timestamp": "2026-06-22T16:15:31+00:00",
+        "current_price": 35.54,
+        "current_vs_last_close_pct": 0.04101,
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
       },
       "quote_confirmation_score": 72.0,
-      "current_price": 35.56,
-      "current_vs_last_close_pct": 0.04159,
+      "current_price": 35.54,
+      "current_vs_last_close_pct": 0.04101,
       "risk_score": 6.73,
       "risk_flags": [],
       "pool_filter": {
@@ -2129,7 +2129,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:31+00:00",
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "news_status": "available",
         "news_headline_count": 1
       },
@@ -2216,7 +2216,7 @@
         "primary_headline": "The FDA Clears Beam Therapeutics' Investigational New Drug Application For BEAM-304 For Phenylketonuria",
         "primary_event_type": "regulatory_catalyst",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 105.11,
+        "primary_event_age_hours": 105.18,
         "catalyst_type": "regulatory_catalyst",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -2229,7 +2229,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=7ecb524c152c12d2c492fefa0a3cc027374a55c3c0d2d0cfab828553f2825c43",
             "published_at": "2026-06-18T07:09:34+00:00",
-            "age_hours": 105.11,
+            "age_hours": 105.18,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -2242,7 +2242,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=7ecb524c152c12d2c492fefa0a3cc027374a55c3c0d2d0cfab828553f2825c43",
             "published_at": "2026-06-18T07:09:34+00:00",
-            "age_hours": 105.11,
+            "age_hours": 105.18,
             "score_contribution": 12.24,
             "relevance": "direct"
           }
@@ -3678,8 +3678,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:36+00:00",
-              "current_price": 167.02
+              "quote_timestamp": "2026-06-22T16:19:50+00:00",
+              "current_price": 167.1
             }
           },
           {
@@ -3734,14 +3734,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 167.02,
-        "current_vs_last_close_pct": 0.01997,
-        "quote_timestamp": "2026-06-22T16:15:36+00:00",
+        "current_price": 167.1,
+        "current_vs_last_close_pct": 0.02046,
+        "quote_timestamp": "2026-06-22T16:19:50+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 167.02,
-      "current_vs_last_close_pct": 0.01997,
+      "current_price": 167.1,
+      "current_vs_last_close_pct": 0.02046,
       "risk_score": 5.98,
       "risk_flags": [],
       "pool_filter": {
@@ -3792,7 +3792,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:36+00:00",
+        "quote_timestamp": "2026-06-22T16:19:50+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -3879,7 +3879,7 @@
         "primary_headline": "Vistra (VST) Stock Could Be 27.3% Undervalued After Helix AI Power Deal",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 44.11,
+        "primary_event_age_hours": 44.18,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -3892,7 +3892,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5d56a42fb93afd09b42b99ac6d5814825c9d602b3a41cbfb6de4f3d294c6e7ed",
             "published_at": "2026-06-22T09:22:31+00:00",
-            "age_hours": 6.89,
+            "age_hours": 6.97,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -3903,7 +3903,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=89d09eb75809de8d119e71f32313bd1529267ae23f1795ac912a0e156b746166",
             "published_at": "2026-06-21T11:15:08+00:00",
-            "age_hours": 29.02,
+            "age_hours": 29.09,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -3914,7 +3914,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b9792e7a8987c7fe79cb91a20dab9a5b298b248b560fd74cb24ca87a90771086",
             "published_at": "2026-06-20T20:09:31+00:00",
-            "age_hours": 44.11,
+            "age_hours": 44.18,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "direct"
@@ -3925,7 +3925,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c818e734f235787c2768b0a73f10bb43943fd26e211e14432c4e85b25dbd3fc5",
             "published_at": "2026-06-20T18:50:02+00:00",
-            "age_hours": 45.43,
+            "age_hours": 45.51,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -3936,7 +3936,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=289a84a6b3457217a8702af93980451d332cffe017bca7d00954484423db5802",
             "published_at": "2026-06-20T13:40:00+00:00",
-            "age_hours": 50.6,
+            "age_hours": 50.68,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -3947,7 +3947,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ae1696e2b3d7392cb7fcea8c43a5cba6327d21b15e5c8a1a46febd66f8086e5a",
             "published_at": "2026-06-19T13:40:00+00:00",
-            "age_hours": 74.6,
+            "age_hours": 74.68,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -3958,7 +3958,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=02b102bf5c53bac1a5ecb68a9bbc39c89d36c8f89b432fdf826613bc75817716",
             "published_at": "2026-06-19T00:00:00+00:00",
-            "age_hours": 88.27,
+            "age_hours": 88.34,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -3969,7 +3969,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4452c4c49dda04a8a7dbc128f60532e6e84e5a27c7120715ac8e0843c8ae1e30",
             "published_at": "2026-06-18T21:18:54+00:00",
-            "age_hours": 90.95,
+            "age_hours": 91.03,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -3982,7 +3982,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d6daa1db2ce21cf6b3e53a10da1ceba5c7276be9e5113ab52b9b951ed1123970",
             "published_at": "2026-06-17T13:47:56+00:00",
-            "age_hours": 122.47,
+            "age_hours": 122.54,
             "score_contribution": 10.88,
             "relevance": "provider_related"
           }
@@ -5423,8 +5423,8 @@
             "reason": "当前价没有明显新增确认或否定。",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:18+00:00",
-              "current_price": 209.68
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 209.65
             }
           },
           {
@@ -5478,14 +5478,14 @@
         "provider_status": "available",
         "score": 50.0,
         "technical_adjustment": 0.0,
-        "current_price": 209.68,
-        "current_vs_last_close_pct": -0.00479,
-        "quote_timestamp": "2026-06-22T16:15:18+00:00",
+        "current_price": 209.65,
+        "current_vs_last_close_pct": -0.00494,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价没有明显新增确认或否定。"
       },
       "quote_confirmation_score": 50.0,
-      "current_price": 209.68,
-      "current_vs_last_close_pct": -0.00479,
+      "current_price": 209.65,
+      "current_vs_last_close_pct": -0.00494,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -5537,7 +5537,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:18+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -5624,7 +5624,7 @@
         "primary_headline": "What Will Be Nvidia’s Stock Price in 2029?",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 0.58,
+        "primary_event_age_hours": 0.65,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -5637,7 +5637,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cf927366051b9be9de10bf2c924b9159fd7dfd9f13e751998bfbc6ad17403758",
             "published_at": "2026-06-22T15:50:21+00:00",
-            "age_hours": 0.43,
+            "age_hours": 0.5,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5648,7 +5648,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d5c34bd40ac1d78b559bb93a48f1c4f9d05069fc23fc1f62c61aaf1f0ea8bb88",
             "published_at": "2026-06-22T15:46:43+00:00",
-            "age_hours": 0.49,
+            "age_hours": 0.56,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5659,7 +5659,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=46a15c56e59adb57cd5152e7153abd07903a370ad42a241c880b07aedcaf0b69",
             "published_at": "2026-06-22T15:41:26+00:00",
-            "age_hours": 0.58,
+            "age_hours": 0.65,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5670,7 +5670,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a2b135326ba36e4440cb9b115b2295ca77861d9623300a6cf474975f4a0a79d8",
             "published_at": "2026-06-22T15:41:21+00:00",
-            "age_hours": 0.58,
+            "age_hours": 0.65,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -5681,7 +5681,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=84668cd4a1b3f27d2747a2ade38a24de658de036e644028d0f2d7dc988a877d8",
             "published_at": "2026-06-22T15:36:23+00:00",
-            "age_hours": 0.66,
+            "age_hours": 0.74,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5692,7 +5692,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=45457f4530d065e9b63c5a3aada0bff2ec0addfc44170684dbba55205476656d",
             "published_at": "2026-06-22T15:35:00+00:00",
-            "age_hours": 0.69,
+            "age_hours": 0.76,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -5703,7 +5703,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b0e10bb03db0817adb192a38b0f1d8e50a3d3e442da26cda6360f3d8c80a185e",
             "published_at": "2026-06-22T15:30:20+00:00",
-            "age_hours": 0.76,
+            "age_hours": 0.84,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5714,7 +5714,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2ebaebe8ea709e065238df3d69c1c7d7095cb55957ed395f6df924d0aeb745c9",
             "published_at": "2026-06-22T15:29:38+00:00",
-            "age_hours": 0.77,
+            "age_hours": 0.85,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -7017,11 +7017,11 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 64.48,
+      "elasticity_score": 63.83,
       "elasticity_raw_potential": 67.47,
       "elasticity_confirmation_factor": 0.72,
       "elasticity_interpretation": "unconfirmed_volatility",
-      "next_day_move_probability": 0.6422,
+      "next_day_move_probability": 0.6393,
       "upside_momentum_score": 100.0,
       "bounce_score": 47.46,
       "downside_continuation_score": 39.0,
@@ -7056,7 +7056,7 @@
         ],
         "conflicting_points": [],
         "inputs": {
-          "technical_score": 65.5,
+          "technical_score": 64.0,
           "volume_score": 63.71,
           "relative_volume": 1.374,
           "volume_z_score": 1.329,
@@ -7074,13 +7074,13 @@
         "borrow_fee": "missing",
         "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
       },
-      "confluence_score": 74.17,
+      "confluence_score": 74.13,
       "catalyst_score": 54.0,
-      "expectation_gap_score": 87.85,
-      "execution_quality_score": 78.2,
-      "payoff_quality_score": 60.5,
-      "risk_reward_ratio": 0.685,
-      "expected_upside_pct": 0.08762,
+      "expectation_gap_score": 87.21,
+      "execution_quality_score": 77.37,
+      "payoff_quality_score": 60.33,
+      "risk_reward_ratio": 0.684,
+      "expected_upside_pct": 0.08751,
       "expected_downside_pct": 0.128,
       "precision_gate": {
         "level": "不具备高置信优势",
@@ -7117,8 +7117,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "confirmed",
-            "score": 65.5,
-            "reason": "技术分 65.5，收盘位置 0.97，20日新高=False，站上20日线=False",
+            "score": 64.0,
+            "reason": "技术分 64.0，收盘位置 0.97，20日新高=False，站上20日线=False",
             "blocking": false,
             "data": {}
           },
@@ -7144,20 +7144,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "partial",
-            "score": 55.0,
-            "reason": "当前价略高于昨收",
+            "score": 50.0,
+            "reason": "当前价没有明显新增确认或否定。",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:37+00:00",
-              "current_price": 10.04
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 10.0
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "partial",
-            "score": 60.5,
-            "reason": "赔率分 60.5，上/下行比 0.69，主路径概率 0.78",
+            "score": 60.33,
+            "reason": "赔率分 60.3，上/下行比 0.68，主路径概率 0.78",
             "blocking": false,
             "data": {}
           },
@@ -7200,16 +7200,16 @@
       "quote_confirmation": {
         "status": "neutral",
         "provider_status": "available",
-        "score": 55.0,
-        "technical_adjustment": 1.5,
-        "current_price": 10.04,
-        "current_vs_last_close_pct": 0.004,
-        "quote_timestamp": "2026-06-22T16:15:37+00:00",
-        "reason": "当前价略高于昨收"
+        "score": 50.0,
+        "technical_adjustment": 0.0,
+        "current_price": 10.0,
+        "current_vs_last_close_pct": 0.0,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
+        "reason": "当前价没有明显新增确认或否定。"
       },
-      "quote_confirmation_score": 55.0,
-      "current_price": 10.04,
-      "current_vs_last_close_pct": 0.004,
+      "quote_confirmation_score": 50.0,
+      "current_price": 10.0,
+      "current_vs_last_close_pct": 0.0,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -7261,7 +7261,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:37+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 5
       },
@@ -7272,19 +7272,19 @@
       "risk_scenario": "failed_breakout_or_gap_fade",
       "risk_probability": 0.1326,
       "next_day_expected_range": {
-        "expected_low": 9.2525,
-        "expected_high": 10.8762,
-        "expected_mid": 10.0644,
-        "expected_low_pct": -0.07475,
-        "expected_high_pct": 0.08762,
-        "volatility_adjusted_range": 0.10382,
+        "expected_low": 9.2535,
+        "expected_high": 10.8751,
+        "expected_mid": 10.0643,
+        "expected_low_pct": -0.07465,
+        "expected_high_pct": 0.08751,
+        "volatility_adjusted_range": 0.10368,
         "label": "9.25 to 10.88"
       },
       "scenario_prices": {
-        "base_case_price": 10.0644,
-        "upside_case_price": 10.8762,
-        "downside_case_price": 9.2525,
-        "bounce_target_price": 10.7786,
+        "base_case_price": 10.0643,
+        "upside_case_price": 10.8751,
+        "downside_case_price": 9.2535,
+        "bounce_target_price": 10.7776,
         "failed_bounce_price": 8.72
       },
       "trigger_levels": {
@@ -7326,15 +7326,15 @@
         "nearest_support": 8.72,
         "nearest_resistance": 12.475,
         "stop_condition": "无主动优势",
-        "target_low_price": 10.0644,
-        "target_high_price": 10.8762,
+        "target_low_price": 10.0643,
+        "target_high_price": 10.8751,
         "next_day_expected_range": {
-          "expected_low": 9.2525,
-          "expected_high": 10.8762,
-          "expected_mid": 10.0644,
-          "expected_low_pct": -0.07475,
-          "expected_high_pct": 0.08762,
-          "volatility_adjusted_range": 0.10382,
+          "expected_low": 9.2535,
+          "expected_high": 10.8751,
+          "expected_mid": 10.0643,
+          "expected_low_pct": -0.07465,
+          "expected_high_pct": 0.08751,
+          "volatility_adjusted_range": 0.10368,
           "label": "9.25 to 10.88"
         },
         "overnight_or_intraday": "只适合盘中确认",
@@ -7348,7 +7348,7 @@
         "primary_headline": "Joby Aviation: The Race To The Skies Is Narrowing, And Joby Is In Front",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 56.38,
+        "primary_event_age_hours": 56.45,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -7361,7 +7361,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=ec8e3e480b35715b218455e647153365cbda35b8bcd23214a6ebeae9d53efbd4",
             "published_at": "2026-06-20T07:53:20+00:00",
-            "age_hours": 56.38,
+            "age_hours": 56.45,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -7372,7 +7372,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=2218b76fffbed2063e4713a88013fd87b47443d211c90417626a6619c0743b5b",
             "published_at": "2026-06-20T07:38:37+00:00",
-            "age_hours": 56.63,
+            "age_hours": 56.7,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -7383,7 +7383,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=00b9ff8d22b243f96fd405a8ce0a9267ed870729eda2d84ae0418ae4bc04ead1",
             "published_at": "2026-06-20T04:39:29+00:00",
-            "age_hours": 59.61,
+            "age_hours": 59.68,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -7394,7 +7394,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=86f81c69f38735099890ae88c696b98c265d5718fcaf07f0e9707a6a18eb4f57",
             "published_at": "2026-06-18T12:09:07+00:00",
-            "age_hours": 100.12,
+            "age_hours": 100.19,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -7416,7 +7416,7 @@
       "relative_strength": 0.02812,
       "relative_volume": 1.374,
       "volume_score": 63.71,
-      "technical_score": 65.5,
+      "technical_score": 64.0,
       "close_position": 0.973,
       "dollar_volume_m": 449.165,
       "avg_dollar_volume_m": 341.485,
@@ -7456,7 +7456,7 @@
         "rsi_14": 40.0,
         "atr_pct": 0.07271,
         "realized_volatility_20d": 0.82838,
-        "technical_score": 65.5
+        "technical_score": 64.0
       },
       "volume_snapshot": {
         "latest_date": "2026-06-18",
@@ -8627,7 +8627,7 @@
         {
           "source": "expectation_gap",
           "name": "positive_expectation_gap",
-          "score": 87.85,
+          "score": 87.21,
           "detail": "催化、板块、价格和成交共同支持正向预期差。"
         },
         {
@@ -8639,7 +8639,7 @@
         {
           "source": "price",
           "name": "price_structure_confirmed",
-          "score": 65.5,
+          "score": 64.0,
           "detail": "价格结构有突破、收复或强收盘特征。"
         },
         {
@@ -8651,8 +8651,8 @@
         {
           "source": "payoff",
           "name": "payoff_quality_confirmed",
-          "score": 60.5,
-          "detail": "次日预期上行/下行赔率约 0.685。"
+          "score": 60.33,
+          "detail": "次日预期上行/下行赔率约 0.684。"
         },
         {
           "source": "sector",
@@ -8831,8 +8831,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 32.43
+              "quote_timestamp": "2026-06-22T16:20:19+00:00",
+              "current_price": 32.45
             }
           },
           {
@@ -8886,14 +8886,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 32.43,
-        "current_vs_last_close_pct": 0.06748,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "current_price": 32.45,
+        "current_vs_last_close_pct": 0.06814,
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 32.43,
-      "current_vs_last_close_pct": 0.06748,
+      "current_price": 32.45,
+      "current_vs_last_close_pct": 0.06814,
       "risk_score": 8.0,
       "risk_flags": [
         "weak_close_distribution_risk"
@@ -8946,7 +8946,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "news_status": "missing",
         "news_headline_count": 0
       },
@@ -10471,8 +10471,8 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 408.48
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 408.06
             }
           },
           {
@@ -10524,14 +10524,14 @@
         "provider_status": "available",
         "score": 60.0,
         "technical_adjustment": 3.0,
-        "current_price": 408.48,
-        "current_vs_last_close_pct": 0.01995,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "current_price": 408.06,
+        "current_vs_last_close_pct": 0.0189,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
-      "current_price": 408.48,
-      "current_vs_last_close_pct": 0.01995,
+      "current_price": 408.06,
+      "current_vs_last_close_pct": 0.0189,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -10583,7 +10583,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -10670,7 +10670,7 @@
         "primary_headline": "Tesla's operational gains obscured by widening robotaxi lag and valuation disconnect",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.25,
+        "primary_event_age_hours": 2.33,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -10683,7 +10683,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c8b0fddb72459fef86e393846d2f52556187d6572c2679bc95f7eba825d70be2",
             "published_at": "2026-06-22T15:31:55+00:00",
-            "age_hours": 0.74,
+            "age_hours": 0.81,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -10694,7 +10694,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=79766806137d78f38cf043e7a5a32b978cf261f9ad6630fcaa76d6daabf357ff",
             "published_at": "2026-06-22T15:20:58+00:00",
-            "age_hours": 0.92,
+            "age_hours": 0.99,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -10705,7 +10705,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=968899a8f5bd7a75c3caef215afe92494cd63d484ed2445508c12b0c566b7c6c",
             "published_at": "2026-06-22T14:25:27+00:00",
-            "age_hours": 1.84,
+            "age_hours": 1.92,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -10716,7 +10716,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e41db941e2681508e80ec1b1c1083806228e3fe96fd2b4f32ccfd144bcdafbb3",
             "published_at": "2026-06-22T14:18:18+00:00",
-            "age_hours": 1.96,
+            "age_hours": 2.04,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -10727,7 +10727,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6048adcf84160af28eea6940a932991590022f783a0aa33e88c6a6a1aefb18ed",
             "published_at": "2026-06-22T14:01:00+00:00",
-            "age_hours": 2.25,
+            "age_hours": 2.33,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -10738,7 +10738,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cfca0d75738425162b40dfe908048860fec565ef4c82a910e5ac574cc02fca3b",
             "published_at": "2026-06-22T13:34:14+00:00",
-            "age_hours": 2.7,
+            "age_hours": 2.77,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -10749,7 +10749,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2542281f4d8e63105c3b4c42f920ac14c5f90478c053e7d8bb3fc470d4c8962a",
             "published_at": "2026-06-22T13:08:17+00:00",
-            "age_hours": 3.13,
+            "age_hours": 3.2,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -10760,7 +10760,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3052917b10d136a5845804519c83f01049825d69188610b418cb8aab110a0eae",
             "published_at": "2026-06-22T12:46:59+00:00",
-            "age_hours": 3.49,
+            "age_hours": 3.56,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -12200,8 +12200,8 @@
             "reason": "当前价明显低于昨收 / 当前价跌破近端支撑",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 98.94
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 98.9
             }
           },
           {
@@ -12258,14 +12258,14 @@
         "provider_status": "available",
         "score": 18.0,
         "technical_adjustment": -10.0,
-        "current_price": 98.94,
-        "current_vs_last_close_pct": -0.0774,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "current_price": 98.9,
+        "current_vs_last_close_pct": -0.07777,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价跌破近端支撑"
       },
       "quote_confirmation_score": 18.0,
-      "current_price": 98.94,
-      "current_vs_last_close_pct": -0.0774,
+      "current_price": 98.9,
+      "current_vs_last_close_pct": -0.07777,
       "risk_score": 26.96,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -12320,7 +12320,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -12407,7 +12407,7 @@
         "primary_headline": "Rocket Lab Just Got A Step Closer To Mars: Here's Why",
         "primary_event_type": "product_or_launch",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 79.39,
+        "primary_event_age_hours": 79.47,
         "catalyst_type": "product_or_launch",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -12420,7 +12420,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=1f22b2b6634f944b9ff16b32244bf56e2a1860ea3fe6a1dc8e936194683761eb",
             "published_at": "2026-06-19T08:52:35+00:00",
-            "age_hours": 79.39,
+            "age_hours": 79.47,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -12431,7 +12431,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=1fab3b5771dac8d29d4cbb9afc8e5c54d510a1b009a55fb1fb3be678f9ad9112",
             "published_at": "2026-06-18T15:56:10+00:00",
-            "age_hours": 96.33,
+            "age_hours": 96.41,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -12442,7 +12442,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=8974a7ed95a41d1f07e925f471465175de6db8506b7ff0dcc27463c770fcf48e",
             "published_at": "2026-06-17T10:50:00+00:00",
-            "age_hours": 125.44,
+            "age_hours": 125.51,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -12453,7 +12453,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=56d601567abe1cbaf705db21a9f7eb64b15b99db88af798cfa429a05af0b7616",
             "published_at": "2026-06-17T10:24:59+00:00",
-            "age_hours": 125.85,
+            "age_hours": 125.93,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -12464,7 +12464,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=7d3f564140dc5790a434d9d88686ed0ab94316a858bb797be5b83ee6483e4a3e",
             "published_at": "2026-06-17T06:47:55+00:00",
-            "age_hours": 129.47,
+            "age_hours": 129.54,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -12475,7 +12475,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=a9c8889faf0ce97e8a068b52a963fd27710596ebde94f090b4a1b49d387f9d22",
             "published_at": "2026-06-17T00:30:00+00:00",
-            "age_hours": 135.77,
+            "age_hours": 135.84,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -12486,7 +12486,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=8a34e379dfb9fce607fc615d83dd4801027cc6eee2d3e1713de0fad2a792a878",
             "published_at": "2026-06-16T14:42:36+00:00",
-            "age_hours": 145.56,
+            "age_hours": 145.63,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -12497,7 +12497,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=9fb95ec37c8810b24cafb1bca350730b94093427d398369e7dc9f2e14c4ef875",
             "published_at": "2026-06-16T14:09:46+00:00",
-            "age_hours": 146.11,
+            "age_hours": 146.18,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -12510,7 +12510,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=8974a7ed95a41d1f07e925f471465175de6db8506b7ff0dcc27463c770fcf48e",
             "published_at": "2026-06-17T10:50:00+00:00",
-            "age_hours": 125.44,
+            "age_hours": 125.51,
             "score_contribution": 10.88,
             "relevance": "direct"
           },
@@ -12520,7 +12520,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=56d601567abe1cbaf705db21a9f7eb64b15b99db88af798cfa429a05af0b7616",
             "published_at": "2026-06-17T10:24:59+00:00",
-            "age_hours": 125.85,
+            "age_hours": 125.93,
             "score_contribution": 16.32,
             "relevance": "provider_related"
           }
@@ -13968,8 +13968,8 @@
             "reason": "当前价明显低于昨收 / 当前价跌破近端支撑",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 121.31
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 120.94
             }
           },
           {
@@ -14026,14 +14026,14 @@
         "provider_status": "available",
         "score": 18.0,
         "technical_adjustment": -10.0,
-        "current_price": 121.31,
-        "current_vs_last_close_pct": -0.05573,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "current_price": 120.94,
+        "current_vs_last_close_pct": -0.05861,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价跌破近端支撑"
       },
       "quote_confirmation_score": 18.0,
-      "current_price": 121.31,
-      "current_vs_last_close_pct": -0.05573,
+      "current_price": 120.94,
+      "current_vs_last_close_pct": -0.05861,
       "risk_score": 12.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -14088,7 +14088,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -14175,7 +14175,7 @@
         "primary_headline": "Palantir (PLTR) Partners with Google Cloud to Integrate AIP and Foundry Platforms",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 77.89,
+        "primary_event_age_hours": 77.96,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -14190,7 +14190,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4295dec2efdd50960e1b728b9cfe273036787843d25b3d9731a6b0f894dae76f",
             "published_at": "2026-06-22T15:11:59+00:00",
-            "age_hours": 1.07,
+            "age_hours": 1.14,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -14201,7 +14201,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e121659f17bf2c2030c9b5530086f1e1f3dc1dbc148b5770f8e2d5de8bbba278",
             "published_at": "2026-06-22T13:00:00+00:00",
-            "age_hours": 3.27,
+            "age_hours": 3.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -14212,7 +14212,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3ff64da7e67545c31b2b49f0ae13f3095d701634398da4479d01d472a4efb9a5",
             "published_at": "2026-06-22T12:08:04+00:00",
-            "age_hours": 4.13,
+            "age_hours": 4.21,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -14223,7 +14223,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6645884d32a64280543a58afcd15f1e155723d8b6338498dfbab50292991bc8f",
             "published_at": "2026-06-22T12:00:00+00:00",
-            "age_hours": 4.27,
+            "age_hours": 4.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -14234,7 +14234,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=0c7be6ef288726423c7b530e1af50302a423f956fc4179cc4068361023baddb9",
             "published_at": "2026-06-21T21:50:56+00:00",
-            "age_hours": 18.42,
+            "age_hours": 18.49,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -14245,7 +14245,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6982cff82d932a0fecaa7d1b5d5d1b7e9b9799cf13200e2f1008b42ca9cd4762",
             "published_at": "2026-06-21T16:05:00+00:00",
-            "age_hours": 24.19,
+            "age_hours": 24.26,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -14256,7 +14256,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e1cc67f2f1b836e7426e2531025343286406eb009ed9b9c6afb0e86740bbb839",
             "published_at": "2026-06-20T12:09:48+00:00",
-            "age_hours": 52.11,
+            "age_hours": 52.18,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -14267,7 +14267,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=956b6ef5e9f6ee00fef82a826e01af6e0f75ebb3744eef66f5a1ee3e80e23e8a",
             "published_at": "2026-06-20T06:53:40+00:00",
-            "age_hours": 57.37,
+            "age_hours": 57.45,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -15715,8 +15715,8 @@
             "reason": "当前价明显低于昨收 / 当前价回到关键均线下方",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 58.24
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 58.13
             }
           },
           {
@@ -15774,14 +15774,14 @@
         "provider_status": "available",
         "score": 28.0,
         "technical_adjustment": -7.0,
-        "current_price": 58.24,
-        "current_vs_last_close_pct": -0.0479,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "current_price": 58.13,
+        "current_vs_last_close_pct": -0.0497,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 28.0,
-      "current_price": 58.24,
-      "current_vs_last_close_pct": -0.0479,
+      "current_price": 58.13,
+      "current_vs_last_close_pct": -0.0497,
       "risk_score": 12.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -15835,7 +15835,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 5
       },
@@ -15922,7 +15922,7 @@
         "primary_headline": "Oklo And Centrus Energy Sign LoI Under Which LEU Will Supply Enough Domestic High-Assay Low-Enriched Uranium To Power Up To Five Aurora Powerhouses For Multiple Years; Deliveries To Begin In 2029",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 105.2,
+        "primary_event_age_hours": 105.28,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "confirmed",
         "recent_confirmed_catalyst": true,
@@ -15937,7 +15937,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=463cb0096c6aaf68bfc3246595ca9932022ab5da6503d1c6f79017689f764dee",
             "published_at": "2026-06-22T04:59:38+00:00",
-            "age_hours": 11.27,
+            "age_hours": 11.35,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -15948,7 +15948,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=8f78eaf77dd17c94a48dd0960c12d45e0a40cb5ff3cfdfa58b4d068b090162b5",
             "published_at": "2026-06-18T12:43:24+00:00",
-            "age_hours": 99.55,
+            "age_hours": 99.62,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -15959,7 +15959,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=3166fc1e91518d95017214ed1c38373902661175cac7da18d1fe547764cec83b",
             "published_at": "2026-06-18T07:03:56+00:00",
-            "age_hours": 105.2,
+            "age_hours": 105.28,
             "score_contribution": 10.2,
             "strong": true,
             "relevance": "direct"
@@ -15970,7 +15970,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=2fa909ba07d99b68796b3e0e0992ce090d030ad04d1525997d69fff4c61d5482",
             "published_at": "2026-06-16T12:50:53+00:00",
-            "age_hours": 147.42,
+            "age_hours": 147.49,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -15981,7 +15981,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=1b555825c4adf9fb0098cf59f41e718a6e96c47e7e452f0b7290f62dd718dc60",
             "published_at": "2026-06-16T06:19:17+00:00",
-            "age_hours": 153.95,
+            "age_hours": 154.02,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -17290,11 +17290,11 @@
       "raw_candidate_type": "accumulation_breakout_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 41.74,
+      "elasticity_score": 40.98,
       "elasticity_raw_potential": 61.66,
       "elasticity_confirmation_factor": 0.46,
       "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.4793,
+      "next_day_move_probability": 0.4761,
       "upside_momentum_score": 100.0,
       "bounce_score": 46.61,
       "downside_continuation_score": 25.0,
@@ -17327,7 +17327,7 @@
           "成交量不足，缺少资金发酵"
         ],
         "inputs": {
-          "technical_score": 93.0,
+          "technical_score": 91.0,
           "volume_score": 44.35,
           "relative_volume": 0.835,
           "volume_z_score": -1.031,
@@ -17348,10 +17348,10 @@
       "confluence_score": 62,
       "catalyst_score": 47.52,
       "expectation_gap_score": 54,
-      "execution_quality_score": 81.3,
-      "payoff_quality_score": 43.78,
+      "execution_quality_score": 80.26,
+      "payoff_quality_score": 43.58,
       "risk_reward_ratio": 0.343,
-      "expected_upside_pct": 0.05743,
+      "expected_upside_pct": 0.05733,
       "expected_downside_pct": 0.16737,
       "precision_gate": {
         "level": "不具备高置信优势",
@@ -17393,8 +17393,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "confirmed",
-            "score": 93.0,
-            "reason": "技术分 93.0，收盘位置 0.75，20日新高=False，站上20日线=True",
+            "score": 91.0,
+            "reason": "技术分 91.0，收盘位置 0.75，20日新高=False，站上20日线=True",
             "blocking": false,
             "data": {}
           },
@@ -17420,20 +17420,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "confirmed",
-            "score": 72.0,
-            "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
+            "score": 66.0,
+            "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 15.38
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 15.26
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "weak",
-            "score": 43.78,
-            "reason": "赔率分 43.8，上/下行比 0.34，主路径概率 0.46",
+            "score": 43.58,
+            "reason": "赔率分 43.6，上/下行比 0.34，主路径概率 0.46",
             "blocking": false,
             "data": {}
           },
@@ -17479,16 +17479,16 @@
       "quote_confirmation": {
         "status": "confirming",
         "provider_status": "available",
-        "score": 72.0,
-        "technical_adjustment": 7.0,
-        "current_price": 15.38,
-        "current_vs_last_close_pct": 0.08158,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
-        "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
+        "score": 66.0,
+        "technical_adjustment": 5.0,
+        "current_price": 15.26,
+        "current_vs_last_close_pct": 0.07314,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
+        "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
-      "quote_confirmation_score": 72.0,
-      "current_price": 15.38,
-      "current_vs_last_close_pct": 0.08158,
+      "quote_confirmation_score": 66.0,
+      "current_price": 15.26,
+      "current_vs_last_close_pct": 0.07314,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -17539,7 +17539,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 3
       },
@@ -17550,19 +17550,19 @@
       "risk_scenario": "failed_breakout_or_gap_fade",
       "risk_probability": 0.085,
       "next_day_expected_range": {
-        "expected_low": 13.2419,
-        "expected_high": 15.0366,
-        "expected_mid": 14.1392,
-        "expected_low_pct": -0.06879,
-        "expected_high_pct": 0.05743,
-        "volatility_adjusted_range": 0.07998,
+        "expected_low": 13.2435,
+        "expected_high": 15.0353,
+        "expected_mid": 14.1394,
+        "expected_low_pct": -0.06867,
+        "expected_high_pct": 0.05733,
+        "volatility_adjusted_range": 0.07985,
         "label": "13.24 to 15.04"
       },
       "scenario_prices": {
-        "base_case_price": 14.1392,
-        "upside_case_price": 15.0366,
-        "downside_case_price": 13.2419,
-        "bounce_target_price": 15.073,
+        "base_case_price": 14.1394,
+        "upside_case_price": 15.0353,
+        "downside_case_price": 13.2435,
+        "bounce_target_price": 15.0716,
         "failed_bounce_price": 11.84
       },
       "trigger_levels": {
@@ -17604,15 +17604,15 @@
         "nearest_support": 11.84,
         "nearest_resistance": 15.32,
         "stop_condition": "无主动优势",
-        "target_low_price": 14.1392,
-        "target_high_price": 15.0366,
+        "target_low_price": 14.1394,
+        "target_high_price": 15.0353,
         "next_day_expected_range": {
-          "expected_low": 13.2419,
-          "expected_high": 15.0366,
-          "expected_mid": 14.1392,
-          "expected_low_pct": -0.06879,
-          "expected_high_pct": 0.05743,
-          "volatility_adjusted_range": 0.07998,
+          "expected_low": 13.2435,
+          "expected_high": 15.0353,
+          "expected_mid": 14.1394,
+          "expected_low_pct": -0.06867,
+          "expected_high_pct": 0.05733,
+          "volatility_adjusted_range": 0.07985,
           "label": "13.24 to 15.04"
         },
         "overnight_or_intraday": "只适合盘中确认",
@@ -17626,7 +17626,7 @@
         "primary_headline": "Bitcoin Miners Flash Technical Strength Amidst Deteriorating Fundamentals",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "ChartMill",
-        "primary_event_age_hours": 124.17,
+        "primary_event_age_hours": 124.25,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -17639,7 +17639,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=5de9e1b67358f1519e2cb293a83a13b2367cfffb71a366ea3daf3da1f9430b09",
             "published_at": "2026-06-18T16:27:32+00:00",
-            "age_hours": 95.81,
+            "age_hours": 95.88,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -17650,7 +17650,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=29b5bd869b336438e3ef524fa27bd70e984238a0fe3e48a6bd009792f6b821a0",
             "published_at": "2026-06-17T16:45:00+00:00",
-            "age_hours": 119.52,
+            "age_hours": 119.59,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -17661,7 +17661,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=1518bca4a4c5af44d4bd5ca8122a206da097fab6c3ee9790fe7c5a0666a8c45f",
             "published_at": "2026-06-17T12:05:40+00:00",
-            "age_hours": 124.17,
+            "age_hours": 124.25,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -17682,7 +17682,7 @@
       "relative_strength": 0.01916,
       "relative_volume": 0.835,
       "volume_score": 44.35,
-      "technical_score": 93.0,
+      "technical_score": 91.0,
       "close_position": 0.75,
       "dollar_volume_m": 466.09,
       "avg_dollar_volume_m": 544.123,
@@ -17722,7 +17722,7 @@
         "rsi_14": 56.24,
         "atr_pct": 0.08278,
         "realized_volatility_20d": 0.79107,
-        "technical_score": 93.0
+        "technical_score": 91.0
       },
       "volume_snapshot": {
         "latest_date": "2026-06-18",
@@ -18899,14 +18899,14 @@
         {
           "source": "price",
           "name": "price_structure_confirmed",
-          "score": 93.0,
+          "score": 91.0,
           "detail": "价格结构有突破、收复或强收盘特征。"
         },
         {
           "source": "quote",
           "name": "current_price_confirming",
-          "score": 72.0,
-          "detail": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
+          "score": 66.0,
+          "detail": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
         },
         {
           "source": "sector",
@@ -18937,7 +18937,7 @@
         {
           "source": "payoff",
           "name": "payoff_quality_weak",
-          "score": 56.22,
+          "score": 56.42,
           "detail": "预期上行空间相对失效风险不够优。"
         }
       ],
@@ -19105,8 +19105,8 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 58.64
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 58.68
             }
           },
           {
@@ -19161,14 +19161,14 @@
         "provider_status": "available",
         "score": 60.0,
         "technical_adjustment": 3.0,
-        "current_price": 58.64,
-        "current_vs_last_close_pct": 0.03696,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "current_price": 58.68,
+        "current_vs_last_close_pct": 0.03767,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
-      "current_price": 58.64,
-      "current_vs_last_close_pct": 0.03696,
+      "current_price": 58.68,
+      "current_vs_last_close_pct": 0.03767,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -19221,7 +19221,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 3
       },
@@ -19308,7 +19308,7 @@
         "primary_headline": "Quantum Computing Stocks Tilt Toward Tangible Earnings as Pure Plays Remain in the Red",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "ChartMill",
-        "primary_event_age_hours": 100.18,
+        "primary_event_age_hours": 100.25,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -19321,7 +19321,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=7a88906e7fc1dcc05c51c495160566a7539005838a85539aa6e6b4a44f11296d",
             "published_at": "2026-06-18T12:05:32+00:00",
-            "age_hours": 100.18,
+            "age_hours": 100.25,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -19332,7 +19332,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=c8cf7443ed4e17f9a814888aaf71ff57730f3ab390dfa7670717e48991221611",
             "published_at": "2026-06-17T15:27:00+00:00",
-            "age_hours": 120.82,
+            "age_hours": 120.89,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -20772,7 +20772,7 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:35+00:00",
+              "quote_timestamp": "2026-06-22T16:20:20+00:00",
               "current_price": 3.27
             }
           },
@@ -20831,7 +20831,7 @@
         "technical_adjustment": 0.0,
         "current_price": 3.27,
         "current_vs_last_close_pct": 0.01238,
-        "quote_timestamp": "2026-06-22T16:15:35+00:00",
+        "quote_timestamp": "2026-06-22T16:20:20+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
@@ -20889,7 +20889,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:35+00:00",
+        "quote_timestamp": "2026-06-22T16:20:20+00:00",
         "news_status": "available",
         "news_headline_count": 1
       },
@@ -20976,7 +20976,7 @@
         "primary_headline": "AbCellera: An AI-Era Antibody Platform Trading For Little More Than Its Cash",
         "primary_event_type": "theme_buzz",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 129.72,
+        "primary_event_age_hours": 129.79,
         "catalyst_type": "theme_buzz",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -20989,7 +20989,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=175394cd59460bc83a679adb9d8bc2e9a49d210c22ea02fa4be79d6c5ad87d0b",
             "published_at": "2026-06-17T06:33:06+00:00",
-            "age_hours": 129.72,
+            "age_hours": 129.79,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -22288,12 +22288,12 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 54.03,
+      "elasticity_score": 55.91,
       "elasticity_raw_potential": 88.99,
-      "elasticity_confirmation_factor": 0.435,
-      "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.5003,
-      "upside_momentum_score": 85.98,
+      "elasticity_confirmation_factor": 0.46,
+      "elasticity_interpretation": "unconfirmed_volatility",
+      "next_day_move_probability": 0.5121,
+      "upside_momentum_score": 87.06,
       "bounce_score": 64.25,
       "downside_continuation_score": 39.0,
       "squeeze_score": 54.52,
@@ -22327,7 +22327,7 @@
           "成交量不足，缺少资金发酵"
         ],
         "inputs": {
-          "technical_score": 63.5,
+          "technical_score": 65.0,
           "volume_score": 41.52,
           "relative_volume": 0.552,
           "volume_z_score": -0.667,
@@ -22348,17 +22348,16 @@
       "confluence_score": 62,
       "catalyst_score": 47.76,
       "expectation_gap_score": 54,
-      "execution_quality_score": 72.43,
-      "payoff_quality_score": 40.22,
-      "risk_reward_ratio": 0.306,
-      "expected_upside_pct": 0.07882,
+      "execution_quality_score": 73.26,
+      "payoff_quality_score": 40.52,
+      "risk_reward_ratio": 0.313,
+      "expected_upside_pct": 0.08066,
       "expected_downside_pct": 0.25796,
       "precision_gate": {
         "level": "不具备高置信优势",
         "passed": false,
         "reason": [
           "缺少确认催化",
-          "价格结构未确认",
           "成交量未确认",
           "赔率质量未确认",
           "次日赔率质量不足"
@@ -22367,11 +22366,11 @@
       "confluence_matrix": {
         "version": "confluence_matrix_v1",
         "overall": "blocked",
-        "confirmed_core_count": 0,
+        "confirmed_core_count": 1,
         "status_counts": {
           "weak": 2,
-          "partial": 2,
-          "confirmed": 2,
+          "confirmed": 3,
+          "partial": 1,
           "blocked": 1
         },
         "blocking_dimensions": [
@@ -22396,9 +22395,9 @@
           {
             "dimension": "price",
             "label": "价格结构",
-            "status": "partial",
-            "score": 63.5,
-            "reason": "技术分 63.5，收盘位置 0.94，20日新高=False，站上20日线=False",
+            "status": "confirmed",
+            "score": 65.0,
+            "reason": "技术分 65.0，收盘位置 0.94，20日新高=False，站上20日线=False",
             "blocking": false,
             "data": {}
           },
@@ -22424,20 +22423,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "partial",
-            "score": 55.0,
-            "reason": "当前价略高于昨收",
+            "score": 60.0,
+            "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 21.53
+              "quote_timestamp": "2026-06-22T16:19:56+00:00",
+              "current_price": 21.61
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "blocked",
-            "score": 40.22,
-            "reason": "赔率分 40.2，上/下行比 0.31，主路径概率 0.46",
+            "score": 40.52,
+            "reason": "赔率分 40.5，上/下行比 0.31，主路径概率 0.46",
             "blocking": true,
             "data": {}
           },
@@ -22457,7 +22456,6 @@
         "passed": false,
         "failures": [
           "催化不足或没有确认新闻",
-          "技术结构未确认",
           "成交量没有形成确认",
           "赔率质量不足",
           "预期差不足"
@@ -22474,6 +22472,7 @@
           "sector_or_market"
         ],
         "support_sources": [
+          "price",
           "sector",
           "setup"
         ],
@@ -22482,16 +22481,16 @@
       "quote_confirmation": {
         "status": "neutral",
         "provider_status": "available",
-        "score": 55.0,
-        "technical_adjustment": 1.5,
-        "current_price": 21.53,
-        "current_vs_last_close_pct": 0.00796,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
-        "reason": "当前价略高于昨收"
+        "score": 60.0,
+        "technical_adjustment": 3.0,
+        "current_price": 21.61,
+        "current_vs_last_close_pct": 0.0117,
+        "quote_timestamp": "2026-06-22T16:19:56+00:00",
+        "reason": "当前价高于昨收 1% 以上"
       },
-      "quote_confirmation_score": 55.0,
-      "current_price": 21.53,
-      "current_vs_last_close_pct": 0.00796,
+      "quote_confirmation_score": 60.0,
+      "current_price": 21.61,
+      "current_vs_last_close_pct": 0.0117,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -22542,7 +22541,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:56+00:00",
         "news_status": "available",
         "news_headline_count": 3
       },
@@ -22553,19 +22552,19 @@
       "risk_scenario": "failed_breakout_or_gap_fade",
       "risk_probability": 0.1326,
       "next_day_expected_range": {
-        "expected_low": 19.322,
-        "expected_high": 23.0437,
-        "expected_mid": 21.1829,
-        "expected_low_pct": -0.09541,
-        "expected_high_pct": 0.07882,
-        "volatility_adjusted_range": 0.11094,
-        "label": "19.32 to 23.04"
+        "expected_low": 19.2964,
+        "expected_high": 23.0829,
+        "expected_mid": 21.1896,
+        "expected_low_pct": -0.09661,
+        "expected_high_pct": 0.08066,
+        "volatility_adjusted_range": 0.11234,
+        "label": "19.30 to 23.08"
       },
       "scenario_prices": {
-        "base_case_price": 21.1829,
-        "upside_case_price": 23.0437,
-        "downside_case_price": 19.322,
-        "bounce_target_price": 23.1373,
+        "base_case_price": 21.1896,
+        "upside_case_price": 23.0829,
+        "downside_case_price": 19.2964,
+        "bounce_target_price": 23.1597,
         "failed_bounce_price": 15.85
       },
       "trigger_levels": {
@@ -22607,16 +22606,16 @@
         "nearest_support": 15.85,
         "nearest_resistance": 28.06,
         "stop_condition": "无主动优势",
-        "target_low_price": 21.1829,
-        "target_high_price": 23.0437,
+        "target_low_price": 21.1896,
+        "target_high_price": 23.0829,
         "next_day_expected_range": {
-          "expected_low": 19.322,
-          "expected_high": 23.0437,
-          "expected_mid": 21.1829,
-          "expected_low_pct": -0.09541,
-          "expected_high_pct": 0.07882,
-          "volatility_adjusted_range": 0.11094,
-          "label": "19.32 to 23.04"
+          "expected_low": 19.2964,
+          "expected_high": 23.0829,
+          "expected_mid": 21.1896,
+          "expected_low_pct": -0.09661,
+          "expected_high_pct": 0.08066,
+          "volatility_adjusted_range": 0.11234,
+          "label": "19.30 to 23.08"
         },
         "overnight_or_intraday": "只适合盘中确认",
         "not_trading_advice": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。"
@@ -22629,7 +22628,7 @@
         "primary_headline": "Quantum Computing Stocks Tilt Toward Tangible Earnings as Pure Plays Remain in the Red",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "ChartMill",
-        "primary_event_age_hours": 100.18,
+        "primary_event_age_hours": 100.25,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -22642,7 +22641,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=7a88906e7fc1dcc05c51c495160566a7539005838a85539aa6e6b4a44f11296d",
             "published_at": "2026-06-18T12:05:32+00:00",
-            "age_hours": 100.18,
+            "age_hours": 100.25,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -22653,7 +22652,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=c8cf7443ed4e17f9a814888aaf71ff57730f3ab390dfa7670717e48991221611",
             "published_at": "2026-06-17T15:27:00+00:00",
-            "age_hours": 120.82,
+            "age_hours": 120.89,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -22664,7 +22663,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=9dbcd44531936dc5b64db136a44ea56a6a627c7f4d5ae2effa12f0ff89dafcda",
             "published_at": "2026-06-15T16:02:13+00:00",
-            "age_hours": 168.23,
+            "age_hours": 168.31,
             "score_contribution": 1.6,
             "strong": false,
             "relevance": "provider_related"
@@ -22685,7 +22684,7 @@
       "relative_strength": 0.01008,
       "relative_volume": 0.552,
       "volume_score": 41.52,
-      "technical_score": 63.5,
+      "technical_score": 65.0,
       "close_position": 0.938,
       "dollar_volume_m": 764.107,
       "avg_dollar_volume_m": 1540.286,
@@ -22725,7 +22724,7 @@
         "rsi_14": 31.79,
         "atr_pct": 0.1143,
         "realized_volatility_20d": 1.67335,
-        "technical_score": 63.5
+        "technical_score": 65.0
       },
       "volume_snapshot": {
         "latest_date": "2026-06-18",
@@ -23900,6 +23899,12 @@
           "detail": "价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。"
         },
         {
+          "source": "price",
+          "name": "price_structure_confirmed",
+          "score": 65.0,
+          "detail": "价格结构有突破、收复或强收盘特征。"
+        },
+        {
           "source": "sector",
           "name": "sector_context_confirmed",
           "score": 68.78,
@@ -23920,12 +23925,6 @@
           "detail": "预期差证据不足，可能只是普通波动。"
         },
         {
-          "source": "price",
-          "name": "price_structure_unconfirmed",
-          "score": 36.5,
-          "detail": "价格结构没有确认高质量短线形态。"
-        },
-        {
           "source": "volume",
           "name": "volume_or_liquidity_weak",
           "score": 58.48,
@@ -23934,7 +23933,7 @@
         {
           "source": "payoff",
           "name": "payoff_quality_weak",
-          "score": 59.78,
+          "score": 59.48,
           "detail": "预期上行空间相对失效风险不够优。"
         }
       ],
@@ -24101,8 +24100,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:32+00:00",
-              "current_price": 54.89
+              "quote_timestamp": "2026-06-22T16:19:19+00:00",
+              "current_price": 54.73
             }
           },
           {
@@ -24159,14 +24158,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 54.89,
-        "current_vs_last_close_pct": 0.01479,
-        "quote_timestamp": "2026-06-22T16:15:32+00:00",
+        "current_price": 54.73,
+        "current_vs_last_close_pct": 0.01183,
+        "quote_timestamp": "2026-06-22T16:19:19+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 54.89,
-      "current_vs_last_close_pct": 0.01479,
+      "current_price": 54.73,
+      "current_vs_last_close_pct": 0.01183,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -24218,7 +24217,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:32+00:00",
+        "quote_timestamp": "2026-06-22T16:19:19+00:00",
         "news_status": "missing",
         "news_headline_count": 0
       },
@@ -25750,7 +25749,7 @@
             "reason": "当前价明显低于昨收 / 当前价回到关键均线下方",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:40+00:00",
+              "quote_timestamp": "2026-06-22T16:20:10+00:00",
               "current_price": 5.15
             }
           },
@@ -25810,7 +25809,7 @@
         "technical_adjustment": -7.0,
         "current_price": 5.15,
         "current_vs_last_close_pct": -0.03918,
-        "quote_timestamp": "2026-06-22T16:15:40+00:00",
+        "quote_timestamp": "2026-06-22T16:20:10+00:00",
         "reason": "当前价明显低于昨收 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 28.0,
@@ -25870,7 +25869,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:40+00:00",
+        "quote_timestamp": "2026-06-22T16:20:10+00:00",
         "news_status": "available",
         "news_headline_count": 8
       },
@@ -25957,7 +25956,7 @@
         "primary_headline": "Micron, FedEx Set To Headline Earnings Next Week",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 53.27,
+        "primary_event_age_hours": 53.34,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -25970,7 +25969,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=06c6f9361b3967de1d4ab2912a69abb097ab86d649d79a7cb92b70968e3c84fb",
             "published_at": "2026-06-20T11:00:00+00:00",
-            "age_hours": 53.27,
+            "age_hours": 53.34,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -25981,7 +25980,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=ba0675bf1605d967e1ffee92b04bd33b69f37b05f462e37719d634ffc4a39cd6",
             "published_at": "2026-06-18T08:57:27+00:00",
-            "age_hours": 103.31,
+            "age_hours": 103.39,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -25992,7 +25991,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=eea26ee5666967858f8c0cb5dd7e8174bbfb6165920b1acc8a1fb2d6dc463ffb",
             "published_at": "2026-06-17T12:38:48+00:00",
-            "age_hours": 123.62,
+            "age_hours": 123.7,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -26003,7 +26002,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=6bcc680a8f91ddac790394b7a572e5765133186404747d968678410885515dc8",
             "published_at": "2026-06-17T07:08:31+00:00",
-            "age_hours": 129.13,
+            "age_hours": 129.2,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -26014,7 +26013,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=bf5f452133c2b2554e74daf2b59b572f437fe8cb379849512ca13e4b4110dcca",
             "published_at": "2026-06-15T14:55:47+00:00",
-            "age_hours": 169.34,
+            "age_hours": 169.41,
             "score_contribution": 3.2,
             "strong": false,
             "relevance": "direct"
@@ -27465,8 +27464,8 @@
             "reason": "当前价明显低于昨收 / 当前价回到关键均线下方",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:19+00:00",
-              "current_price": 396.49
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 396.46
             }
           },
           {
@@ -27523,14 +27522,14 @@
         "provider_status": "available",
         "score": 28.0,
         "technical_adjustment": -7.0,
-        "current_price": 396.49,
-        "current_vs_last_close_pct": -0.03612,
-        "quote_timestamp": "2026-06-22T16:15:19+00:00",
+        "current_price": 396.46,
+        "current_vs_last_close_pct": -0.0362,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 28.0,
-      "current_price": 396.49,
-      "current_vs_last_close_pct": -0.03612,
+      "current_price": 396.46,
+      "current_vs_last_close_pct": -0.0362,
       "risk_score": 23.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -27584,7 +27583,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:19+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -27671,7 +27670,7 @@
         "primary_headline": "Got $1,000? Why Broadcom's Guidance Created the Ultimate Artificial Intelligence (AI) Buying Opportunity.",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 1.44,
+        "primary_event_age_hours": 1.51,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -27684,7 +27683,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=79766806137d78f38cf043e7a5a32b978cf261f9ad6630fcaa76d6daabf357ff",
             "published_at": "2026-06-22T15:20:58+00:00",
-            "age_hours": 0.92,
+            "age_hours": 0.99,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -27695,7 +27694,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ec286644ff724e3ff74c1e3cc8c111fa723d63bdffb54fad4e8bd212b212c153",
             "published_at": "2026-06-22T14:50:00+00:00",
-            "age_hours": 1.44,
+            "age_hours": 1.51,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -27706,7 +27705,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b0e2830982fc00796fbb2feb72eea05a3c30ce59aca5e68cafe8d717ace3c819",
             "published_at": "2026-06-22T12:00:00+00:00",
-            "age_hours": 4.27,
+            "age_hours": 4.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -27717,7 +27716,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=023ff249fc8ffe182ddb40eb582ce38c9239d6fd45bdef217342357f552d0d55",
             "published_at": "2026-06-22T11:56:03+00:00",
-            "age_hours": 4.33,
+            "age_hours": 4.41,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -27728,7 +27727,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1e1566cf2de7843b81d058d5dee90ed0e05643ac3cb02f996086c3851b3b35d1",
             "published_at": "2026-06-22T11:51:00+00:00",
-            "age_hours": 4.42,
+            "age_hours": 4.49,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -27739,7 +27738,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ca450b97ac003cfb9f9376ad385abb9732c7ca9aa1e1387bcffeef68c19d2eea",
             "published_at": "2026-06-22T11:45:00+00:00",
-            "age_hours": 4.52,
+            "age_hours": 4.59,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -27750,7 +27749,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=0115681ca030fb43353f67bd2305732d687916d06f727ce3d178d31a5dc6cafa",
             "published_at": "2026-06-22T08:59:55+00:00",
-            "age_hours": 7.27,
+            "age_hours": 7.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -27761,7 +27760,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3a36275511b084865e88b92cc1cf6b143fd420c73d6540be8158bb8e7c9b0746",
             "published_at": "2026-06-22T08:54:00+00:00",
-            "age_hours": 7.37,
+            "age_hours": 7.44,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -27774,7 +27773,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a124e103f61349c3cbe57dfb84788d30da99891ac96467faa3d681417e6a0424",
             "published_at": "2026-06-22T13:11:24+00:00",
-            "age_hours": 3.08,
+            "age_hours": 3.15,
             "score_contribution": 20.0,
             "relevance": "direct"
           }
@@ -29221,8 +29220,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:38+00:00",
-              "current_price": 13.5
+              "quote_timestamp": "2026-06-22T16:20:19+00:00",
+              "current_price": 13.52
             }
           },
           {
@@ -29277,14 +29276,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 13.5,
-        "current_vs_last_close_pct": 0.02195,
-        "quote_timestamp": "2026-06-22T16:15:38+00:00",
+        "current_price": 13.52,
+        "current_vs_last_close_pct": 0.02347,
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 13.5,
-      "current_vs_last_close_pct": 0.02195,
+      "current_price": 13.52,
+      "current_vs_last_close_pct": 0.02347,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -29336,7 +29335,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:38+00:00",
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "news_status": "available",
         "news_headline_count": 1
       },
@@ -29423,7 +29422,7 @@
         "primary_headline": "Nio Stock Falls to Key Support Level Despite Strong Delivery and Revenue Growth",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 22.64,
+        "primary_event_age_hours": 22.71,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -29436,7 +29435,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=45a150d02176cc612a3f298cde4a3cb8f148aa5a67c633894c9f83b9e501ec37",
             "published_at": "2026-06-21T17:37:50+00:00",
-            "age_hours": 22.64,
+            "age_hours": 22.71,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -30866,8 +30865,8 @@
             "reason": "当前价明显低于昨收 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:33+00:00",
-              "current_price": 26.39
+              "quote_timestamp": "2026-06-22T16:19:50+00:00",
+              "current_price": 26.32
             }
           },
           {
@@ -30921,14 +30920,14 @@
         "provider_status": "available",
         "score": 42.0,
         "technical_adjustment": -2.0,
-        "current_price": 26.39,
-        "current_vs_last_close_pct": -0.06452,
-        "quote_timestamp": "2026-06-22T16:15:33+00:00",
+        "current_price": 26.32,
+        "current_vs_last_close_pct": -0.067,
+        "quote_timestamp": "2026-06-22T16:19:50+00:00",
         "reason": "当前价明显低于昨收 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 42.0,
-      "current_price": 26.39,
-      "current_vs_last_close_pct": -0.06452,
+      "current_price": 26.32,
+      "current_vs_last_close_pct": -0.067,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -30979,7 +30978,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:33+00:00",
+        "quote_timestamp": "2026-06-22T16:19:50+00:00",
         "news_status": "available",
         "news_headline_count": 1
       },
@@ -31066,7 +31065,7 @@
         "primary_headline": "Roth Capital Initiates Coverage On Nano Nuclear Energy with Buy Rating, Announces Price Target of $45",
         "primary_event_type": "theme_buzz",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 122.45,
+        "primary_event_age_hours": 122.52,
         "catalyst_type": "theme_buzz",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -31079,7 +31078,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=b4cbae3b82707711ab84409b7cb14e459b92459aa862b657d7e9ad990ca2a6bb",
             "published_at": "2026-06-17T13:49:09+00:00",
-            "age_hours": 122.45,
+            "age_hours": 122.52,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -32518,7 +32517,7 @@
             "reason": "当前价低于昨收 / 当前价回到关键均线下方",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
+              "quote_timestamp": "2026-06-22T16:19:55+00:00",
               "current_price": 5.52
             }
           },
@@ -32579,7 +32578,7 @@
         "technical_adjustment": -5.0,
         "current_price": 5.52,
         "current_vs_last_close_pct": -0.00898,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:55+00:00",
         "reason": "当前价低于昨收 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 36.0,
@@ -32637,7 +32636,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:55+00:00",
         "news_status": "available",
         "news_headline_count": 1
       },
@@ -32724,7 +32723,7 @@
         "primary_headline": "EXCLUSIVE: Most eVTOL Companies Won't Survive — Nvidia Partner Explains Why",
         "primary_event_type": "theme_buzz",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 100.12,
+        "primary_event_age_hours": 100.19,
         "catalyst_type": "theme_buzz",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -32737,7 +32736,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=86f81c69f38735099890ae88c696b98c265d5718fcaf07f0e9707a6a18eb4f57",
             "published_at": "2026-06-18T12:09:07+00:00",
-            "age_hours": 100.12,
+            "age_hours": 100.19,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -34174,8 +34173,8 @@
             "reason": "当前价略高于昨收 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:19+00:00",
-              "current_price": 540.84
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 540.6
             }
           },
           {
@@ -34228,14 +34227,14 @@
         "provider_status": "available",
         "score": 61.0,
         "technical_adjustment": 3.5,
-        "current_price": 540.84,
-        "current_vs_last_close_pct": 0.00646,
-        "quote_timestamp": "2026-06-22T16:15:19+00:00",
+        "current_price": 540.6,
+        "current_vs_last_close_pct": 0.00601,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价略高于昨收 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 61.0,
-      "current_price": 540.84,
-      "current_vs_last_close_pct": 0.00646,
+      "current_price": 540.6,
+      "current_vs_last_close_pct": 0.00601,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -34287,7 +34286,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:19+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -34374,7 +34373,7 @@
         "primary_headline": "AI Boom and HBM Demand to Boost Micron's DRAM Revenues in Q3",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 3.05,
+        "primary_event_age_hours": 3.13,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -34387,7 +34386,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2ebaebe8ea709e065238df3d69c1c7d7095cb55957ed395f6df924d0aeb745c9",
             "published_at": "2026-06-22T15:29:38+00:00",
-            "age_hours": 0.77,
+            "age_hours": 0.85,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34398,7 +34397,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c9e01df762c46043f648e3b367847d4a0bd40b9fb2b82672068922f4c242d66c",
             "published_at": "2026-06-22T14:58:08+00:00",
-            "age_hours": 1.3,
+            "age_hours": 1.37,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34409,7 +34408,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5ed20d1f9e1f1584759dc44ce2b19277bf30cefb9b7ca0f8fb0c48a533c968af",
             "published_at": "2026-06-22T13:13:00+00:00",
-            "age_hours": 3.05,
+            "age_hours": 3.13,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -34420,7 +34419,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d005beaa9875f5f2d213fbac9941fd9dcdf4392851a3e026f350e5a97c7f9913",
             "published_at": "2026-06-22T13:10:52+00:00",
-            "age_hours": 3.09,
+            "age_hours": 3.16,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -34431,7 +34430,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8b0e2174640bcf131cac2bb27bc827cd3ac01e9bfefc4cd2be2a14ad95825cca",
             "published_at": "2026-06-22T12:43:19+00:00",
-            "age_hours": 3.55,
+            "age_hours": 3.62,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34442,7 +34441,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=023ff249fc8ffe182ddb40eb582ce38c9239d6fd45bdef217342357f552d0d55",
             "published_at": "2026-06-22T11:56:03+00:00",
-            "age_hours": 4.33,
+            "age_hours": 4.41,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34453,7 +34452,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=17d6e3e3ea58a1fd72fa77067436d21e3c6bcf4af37a3cbcc608a0b8edfc1860",
             "published_at": "2026-06-22T11:37:52+00:00",
-            "age_hours": 4.64,
+            "age_hours": 4.71,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34464,7 +34463,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=db1593ec281b047c0ff6062cd89e83105412788278f6f18b786c148dc330a9df",
             "published_at": "2026-06-22T09:30:00+00:00",
-            "age_hours": 6.77,
+            "age_hours": 6.84,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -35897,8 +35896,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:31+00:00",
-              "current_price": 35.56
+              "quote_timestamp": "2026-06-22T16:20:19+00:00",
+              "current_price": 35.54
             }
           },
           {
@@ -35953,14 +35952,14 @@
         "provider_status": "available",
         "score": 72.0,
         "technical_adjustment": 7.0,
-        "current_price": 35.56,
-        "current_vs_last_close_pct": 0.04159,
-        "quote_timestamp": "2026-06-22T16:15:31+00:00",
+        "current_price": 35.54,
+        "current_vs_last_close_pct": 0.04101,
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
       },
       "quote_confirmation_score": 72.0,
-      "current_price": 35.56,
-      "current_vs_last_close_pct": 0.04159,
+      "current_price": 35.54,
+      "current_vs_last_close_pct": 0.04101,
       "risk_score": 6.73,
       "risk_flags": [],
       "pool_filter": {
@@ -36011,7 +36010,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:31+00:00",
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "news_status": "available",
         "news_headline_count": 1
       },
@@ -36098,7 +36097,7 @@
         "primary_headline": "The FDA Clears Beam Therapeutics' Investigational New Drug Application For BEAM-304 For Phenylketonuria",
         "primary_event_type": "regulatory_catalyst",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 105.11,
+        "primary_event_age_hours": 105.18,
         "catalyst_type": "regulatory_catalyst",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -36111,7 +36110,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=7ecb524c152c12d2c492fefa0a3cc027374a55c3c0d2d0cfab828553f2825c43",
             "published_at": "2026-06-18T07:09:34+00:00",
-            "age_hours": 105.11,
+            "age_hours": 105.18,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -36124,7 +36123,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=7ecb524c152c12d2c492fefa0a3cc027374a55c3c0d2d0cfab828553f2825c43",
             "published_at": "2026-06-18T07:09:34+00:00",
-            "age_hours": 105.11,
+            "age_hours": 105.18,
             "score_contribution": 12.24,
             "relevance": "direct"
           }
@@ -37560,8 +37559,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:36+00:00",
-              "current_price": 167.02
+              "quote_timestamp": "2026-06-22T16:19:50+00:00",
+              "current_price": 167.1
             }
           },
           {
@@ -37616,14 +37615,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 167.02,
-        "current_vs_last_close_pct": 0.01997,
-        "quote_timestamp": "2026-06-22T16:15:36+00:00",
+        "current_price": 167.1,
+        "current_vs_last_close_pct": 0.02046,
+        "quote_timestamp": "2026-06-22T16:19:50+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 167.02,
-      "current_vs_last_close_pct": 0.01997,
+      "current_price": 167.1,
+      "current_vs_last_close_pct": 0.02046,
       "risk_score": 5.98,
       "risk_flags": [],
       "pool_filter": {
@@ -37674,7 +37673,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:36+00:00",
+        "quote_timestamp": "2026-06-22T16:19:50+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -37761,7 +37760,7 @@
         "primary_headline": "Vistra (VST) Stock Could Be 27.3% Undervalued After Helix AI Power Deal",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 44.11,
+        "primary_event_age_hours": 44.18,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -37774,7 +37773,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5d56a42fb93afd09b42b99ac6d5814825c9d602b3a41cbfb6de4f3d294c6e7ed",
             "published_at": "2026-06-22T09:22:31+00:00",
-            "age_hours": 6.89,
+            "age_hours": 6.97,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -37785,7 +37784,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=89d09eb75809de8d119e71f32313bd1529267ae23f1795ac912a0e156b746166",
             "published_at": "2026-06-21T11:15:08+00:00",
-            "age_hours": 29.02,
+            "age_hours": 29.09,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -37796,7 +37795,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b9792e7a8987c7fe79cb91a20dab9a5b298b248b560fd74cb24ca87a90771086",
             "published_at": "2026-06-20T20:09:31+00:00",
-            "age_hours": 44.11,
+            "age_hours": 44.18,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "direct"
@@ -37807,7 +37806,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c818e734f235787c2768b0a73f10bb43943fd26e211e14432c4e85b25dbd3fc5",
             "published_at": "2026-06-20T18:50:02+00:00",
-            "age_hours": 45.43,
+            "age_hours": 45.51,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -37818,7 +37817,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=289a84a6b3457217a8702af93980451d332cffe017bca7d00954484423db5802",
             "published_at": "2026-06-20T13:40:00+00:00",
-            "age_hours": 50.6,
+            "age_hours": 50.68,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -37829,7 +37828,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ae1696e2b3d7392cb7fcea8c43a5cba6327d21b15e5c8a1a46febd66f8086e5a",
             "published_at": "2026-06-19T13:40:00+00:00",
-            "age_hours": 74.6,
+            "age_hours": 74.68,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -37840,7 +37839,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=02b102bf5c53bac1a5ecb68a9bbc39c89d36c8f89b432fdf826613bc75817716",
             "published_at": "2026-06-19T00:00:00+00:00",
-            "age_hours": 88.27,
+            "age_hours": 88.34,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -37851,7 +37850,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4452c4c49dda04a8a7dbc128f60532e6e84e5a27c7120715ac8e0843c8ae1e30",
             "published_at": "2026-06-18T21:18:54+00:00",
-            "age_hours": 90.95,
+            "age_hours": 91.03,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -37864,7 +37863,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d6daa1db2ce21cf6b3e53a10da1ceba5c7276be9e5113ab52b9b951ed1123970",
             "published_at": "2026-06-17T13:47:56+00:00",
-            "age_hours": 122.47,
+            "age_hours": 122.54,
             "score_contribution": 10.88,
             "relevance": "provider_related"
           }
@@ -39305,8 +39304,8 @@
             "reason": "当前价没有明显新增确认或否定。",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:18+00:00",
-              "current_price": 209.68
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 209.65
             }
           },
           {
@@ -39360,14 +39359,14 @@
         "provider_status": "available",
         "score": 50.0,
         "technical_adjustment": 0.0,
-        "current_price": 209.68,
-        "current_vs_last_close_pct": -0.00479,
-        "quote_timestamp": "2026-06-22T16:15:18+00:00",
+        "current_price": 209.65,
+        "current_vs_last_close_pct": -0.00494,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价没有明显新增确认或否定。"
       },
       "quote_confirmation_score": 50.0,
-      "current_price": 209.68,
-      "current_vs_last_close_pct": -0.00479,
+      "current_price": 209.65,
+      "current_vs_last_close_pct": -0.00494,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -39419,7 +39418,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:18+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -39506,7 +39505,7 @@
         "primary_headline": "What Will Be Nvidia’s Stock Price in 2029?",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 0.58,
+        "primary_event_age_hours": 0.65,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -39519,7 +39518,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cf927366051b9be9de10bf2c924b9159fd7dfd9f13e751998bfbc6ad17403758",
             "published_at": "2026-06-22T15:50:21+00:00",
-            "age_hours": 0.43,
+            "age_hours": 0.5,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -39530,7 +39529,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d5c34bd40ac1d78b559bb93a48f1c4f9d05069fc23fc1f62c61aaf1f0ea8bb88",
             "published_at": "2026-06-22T15:46:43+00:00",
-            "age_hours": 0.49,
+            "age_hours": 0.56,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -39541,7 +39540,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=46a15c56e59adb57cd5152e7153abd07903a370ad42a241c880b07aedcaf0b69",
             "published_at": "2026-06-22T15:41:26+00:00",
-            "age_hours": 0.58,
+            "age_hours": 0.65,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -39552,7 +39551,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a2b135326ba36e4440cb9b115b2295ca77861d9623300a6cf474975f4a0a79d8",
             "published_at": "2026-06-22T15:41:21+00:00",
-            "age_hours": 0.58,
+            "age_hours": 0.65,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -39563,7 +39562,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=84668cd4a1b3f27d2747a2ade38a24de658de036e644028d0f2d7dc988a877d8",
             "published_at": "2026-06-22T15:36:23+00:00",
-            "age_hours": 0.66,
+            "age_hours": 0.74,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -39574,7 +39573,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=45457f4530d065e9b63c5a3aada0bff2ec0addfc44170684dbba55205476656d",
             "published_at": "2026-06-22T15:35:00+00:00",
-            "age_hours": 0.69,
+            "age_hours": 0.76,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -39585,7 +39584,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b0e10bb03db0817adb192a38b0f1d8e50a3d3e442da26cda6360f3d8c80a185e",
             "published_at": "2026-06-22T15:30:20+00:00",
-            "age_hours": 0.76,
+            "age_hours": 0.84,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -39596,7 +39595,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2ebaebe8ea709e065238df3d69c1c7d7095cb55957ed395f6df924d0aeb745c9",
             "published_at": "2026-06-22T15:29:38+00:00",
-            "age_hours": 0.77,
+            "age_hours": 0.85,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -40899,11 +40898,11 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 64.48,
+      "elasticity_score": 63.83,
       "elasticity_raw_potential": 67.47,
       "elasticity_confirmation_factor": 0.72,
       "elasticity_interpretation": "unconfirmed_volatility",
-      "next_day_move_probability": 0.6422,
+      "next_day_move_probability": 0.6393,
       "upside_momentum_score": 100.0,
       "bounce_score": 47.46,
       "downside_continuation_score": 39.0,
@@ -40938,7 +40937,7 @@
         ],
         "conflicting_points": [],
         "inputs": {
-          "technical_score": 65.5,
+          "technical_score": 64.0,
           "volume_score": 63.71,
           "relative_volume": 1.374,
           "volume_z_score": 1.329,
@@ -40956,13 +40955,13 @@
         "borrow_fee": "missing",
         "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
       },
-      "confluence_score": 74.17,
+      "confluence_score": 74.13,
       "catalyst_score": 54.0,
-      "expectation_gap_score": 87.85,
-      "execution_quality_score": 78.2,
-      "payoff_quality_score": 60.5,
-      "risk_reward_ratio": 0.685,
-      "expected_upside_pct": 0.08762,
+      "expectation_gap_score": 87.21,
+      "execution_quality_score": 77.37,
+      "payoff_quality_score": 60.33,
+      "risk_reward_ratio": 0.684,
+      "expected_upside_pct": 0.08751,
       "expected_downside_pct": 0.128,
       "precision_gate": {
         "level": "不具备高置信优势",
@@ -40999,8 +40998,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "confirmed",
-            "score": 65.5,
-            "reason": "技术分 65.5，收盘位置 0.97，20日新高=False，站上20日线=False",
+            "score": 64.0,
+            "reason": "技术分 64.0，收盘位置 0.97，20日新高=False，站上20日线=False",
             "blocking": false,
             "data": {}
           },
@@ -41026,20 +41025,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "partial",
-            "score": 55.0,
-            "reason": "当前价略高于昨收",
+            "score": 50.0,
+            "reason": "当前价没有明显新增确认或否定。",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:37+00:00",
-              "current_price": 10.04
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 10.0
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "partial",
-            "score": 60.5,
-            "reason": "赔率分 60.5，上/下行比 0.69，主路径概率 0.78",
+            "score": 60.33,
+            "reason": "赔率分 60.3，上/下行比 0.68，主路径概率 0.78",
             "blocking": false,
             "data": {}
           },
@@ -41082,16 +41081,16 @@
       "quote_confirmation": {
         "status": "neutral",
         "provider_status": "available",
-        "score": 55.0,
-        "technical_adjustment": 1.5,
-        "current_price": 10.04,
-        "current_vs_last_close_pct": 0.004,
-        "quote_timestamp": "2026-06-22T16:15:37+00:00",
-        "reason": "当前价略高于昨收"
+        "score": 50.0,
+        "technical_adjustment": 0.0,
+        "current_price": 10.0,
+        "current_vs_last_close_pct": 0.0,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
+        "reason": "当前价没有明显新增确认或否定。"
       },
-      "quote_confirmation_score": 55.0,
-      "current_price": 10.04,
-      "current_vs_last_close_pct": 0.004,
+      "quote_confirmation_score": 50.0,
+      "current_price": 10.0,
+      "current_vs_last_close_pct": 0.0,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -41143,7 +41142,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:37+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 5
       },
@@ -41154,19 +41153,19 @@
       "risk_scenario": "failed_breakout_or_gap_fade",
       "risk_probability": 0.1326,
       "next_day_expected_range": {
-        "expected_low": 9.2525,
-        "expected_high": 10.8762,
-        "expected_mid": 10.0644,
-        "expected_low_pct": -0.07475,
-        "expected_high_pct": 0.08762,
-        "volatility_adjusted_range": 0.10382,
+        "expected_low": 9.2535,
+        "expected_high": 10.8751,
+        "expected_mid": 10.0643,
+        "expected_low_pct": -0.07465,
+        "expected_high_pct": 0.08751,
+        "volatility_adjusted_range": 0.10368,
         "label": "9.25 to 10.88"
       },
       "scenario_prices": {
-        "base_case_price": 10.0644,
-        "upside_case_price": 10.8762,
-        "downside_case_price": 9.2525,
-        "bounce_target_price": 10.7786,
+        "base_case_price": 10.0643,
+        "upside_case_price": 10.8751,
+        "downside_case_price": 9.2535,
+        "bounce_target_price": 10.7776,
         "failed_bounce_price": 8.72
       },
       "trigger_levels": {
@@ -41208,15 +41207,15 @@
         "nearest_support": 8.72,
         "nearest_resistance": 12.475,
         "stop_condition": "无主动优势",
-        "target_low_price": 10.0644,
-        "target_high_price": 10.8762,
+        "target_low_price": 10.0643,
+        "target_high_price": 10.8751,
         "next_day_expected_range": {
-          "expected_low": 9.2525,
-          "expected_high": 10.8762,
-          "expected_mid": 10.0644,
-          "expected_low_pct": -0.07475,
-          "expected_high_pct": 0.08762,
-          "volatility_adjusted_range": 0.10382,
+          "expected_low": 9.2535,
+          "expected_high": 10.8751,
+          "expected_mid": 10.0643,
+          "expected_low_pct": -0.07465,
+          "expected_high_pct": 0.08751,
+          "volatility_adjusted_range": 0.10368,
           "label": "9.25 to 10.88"
         },
         "overnight_or_intraday": "只适合盘中确认",
@@ -41230,7 +41229,7 @@
         "primary_headline": "Joby Aviation: The Race To The Skies Is Narrowing, And Joby Is In Front",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 56.38,
+        "primary_event_age_hours": 56.45,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -41243,7 +41242,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=ec8e3e480b35715b218455e647153365cbda35b8bcd23214a6ebeae9d53efbd4",
             "published_at": "2026-06-20T07:53:20+00:00",
-            "age_hours": 56.38,
+            "age_hours": 56.45,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -41254,7 +41253,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=2218b76fffbed2063e4713a88013fd87b47443d211c90417626a6619c0743b5b",
             "published_at": "2026-06-20T07:38:37+00:00",
-            "age_hours": 56.63,
+            "age_hours": 56.7,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -41265,7 +41264,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=00b9ff8d22b243f96fd405a8ce0a9267ed870729eda2d84ae0418ae4bc04ead1",
             "published_at": "2026-06-20T04:39:29+00:00",
-            "age_hours": 59.61,
+            "age_hours": 59.68,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -41276,7 +41275,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=86f81c69f38735099890ae88c696b98c265d5718fcaf07f0e9707a6a18eb4f57",
             "published_at": "2026-06-18T12:09:07+00:00",
-            "age_hours": 100.12,
+            "age_hours": 100.19,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -41298,7 +41297,7 @@
       "relative_strength": 0.02812,
       "relative_volume": 1.374,
       "volume_score": 63.71,
-      "technical_score": 65.5,
+      "technical_score": 64.0,
       "close_position": 0.973,
       "dollar_volume_m": 449.165,
       "avg_dollar_volume_m": 341.485,
@@ -41338,7 +41337,7 @@
         "rsi_14": 40.0,
         "atr_pct": 0.07271,
         "realized_volatility_20d": 0.82838,
-        "technical_score": 65.5
+        "technical_score": 64.0
       },
       "volume_snapshot": {
         "latest_date": "2026-06-18",
@@ -42509,7 +42508,7 @@
         {
           "source": "expectation_gap",
           "name": "positive_expectation_gap",
-          "score": 87.85,
+          "score": 87.21,
           "detail": "催化、板块、价格和成交共同支持正向预期差。"
         },
         {
@@ -42521,7 +42520,7 @@
         {
           "source": "price",
           "name": "price_structure_confirmed",
-          "score": 65.5,
+          "score": 64.0,
           "detail": "价格结构有突破、收复或强收盘特征。"
         },
         {
@@ -42533,8 +42532,8 @@
         {
           "source": "payoff",
           "name": "payoff_quality_confirmed",
-          "score": 60.5,
-          "detail": "次日预期上行/下行赔率约 0.685。"
+          "score": 60.33,
+          "detail": "次日预期上行/下行赔率约 0.684。"
         },
         {
           "source": "sector",
@@ -42713,8 +42712,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 32.43
+              "quote_timestamp": "2026-06-22T16:20:19+00:00",
+              "current_price": 32.45
             }
           },
           {
@@ -42768,14 +42767,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 32.43,
-        "current_vs_last_close_pct": 0.06748,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "current_price": 32.45,
+        "current_vs_last_close_pct": 0.06814,
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 32.43,
-      "current_vs_last_close_pct": 0.06748,
+      "current_price": 32.45,
+      "current_vs_last_close_pct": 0.06814,
       "risk_score": 8.0,
       "risk_flags": [
         "weak_close_distribution_risk"
@@ -42828,7 +42827,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:20:19+00:00",
         "news_status": "missing",
         "news_headline_count": 0
       },
@@ -44353,8 +44352,8 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 408.48
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 408.06
             }
           },
           {
@@ -44406,14 +44405,14 @@
         "provider_status": "available",
         "score": 60.0,
         "technical_adjustment": 3.0,
-        "current_price": 408.48,
-        "current_vs_last_close_pct": 0.01995,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "current_price": 408.06,
+        "current_vs_last_close_pct": 0.0189,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
-      "current_price": 408.48,
-      "current_vs_last_close_pct": 0.01995,
+      "current_price": 408.06,
+      "current_vs_last_close_pct": 0.0189,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -44465,7 +44464,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -44552,7 +44551,7 @@
         "primary_headline": "Tesla's operational gains obscured by widening robotaxi lag and valuation disconnect",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.25,
+        "primary_event_age_hours": 2.33,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -44565,7 +44564,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c8b0fddb72459fef86e393846d2f52556187d6572c2679bc95f7eba825d70be2",
             "published_at": "2026-06-22T15:31:55+00:00",
-            "age_hours": 0.74,
+            "age_hours": 0.81,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -44576,7 +44575,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=79766806137d78f38cf043e7a5a32b978cf261f9ad6630fcaa76d6daabf357ff",
             "published_at": "2026-06-22T15:20:58+00:00",
-            "age_hours": 0.92,
+            "age_hours": 0.99,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -44587,7 +44586,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=968899a8f5bd7a75c3caef215afe92494cd63d484ed2445508c12b0c566b7c6c",
             "published_at": "2026-06-22T14:25:27+00:00",
-            "age_hours": 1.84,
+            "age_hours": 1.92,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -44598,7 +44597,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e41db941e2681508e80ec1b1c1083806228e3fe96fd2b4f32ccfd144bcdafbb3",
             "published_at": "2026-06-22T14:18:18+00:00",
-            "age_hours": 1.96,
+            "age_hours": 2.04,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -44609,7 +44608,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6048adcf84160af28eea6940a932991590022f783a0aa33e88c6a6a1aefb18ed",
             "published_at": "2026-06-22T14:01:00+00:00",
-            "age_hours": 2.25,
+            "age_hours": 2.33,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -44620,7 +44619,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cfca0d75738425162b40dfe908048860fec565ef4c82a910e5ac574cc02fca3b",
             "published_at": "2026-06-22T13:34:14+00:00",
-            "age_hours": 2.7,
+            "age_hours": 2.77,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -44631,7 +44630,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2542281f4d8e63105c3b4c42f920ac14c5f90478c053e7d8bb3fc470d4c8962a",
             "published_at": "2026-06-22T13:08:17+00:00",
-            "age_hours": 3.13,
+            "age_hours": 3.2,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -44642,7 +44641,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3052917b10d136a5845804519c83f01049825d69188610b418cb8aab110a0eae",
             "published_at": "2026-06-22T12:46:59+00:00",
-            "age_hours": 3.49,
+            "age_hours": 3.56,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -46082,8 +46081,8 @@
             "reason": "当前价明显低于昨收 / 当前价跌破近端支撑",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 98.94
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 98.9
             }
           },
           {
@@ -46140,14 +46139,14 @@
         "provider_status": "available",
         "score": 18.0,
         "technical_adjustment": -10.0,
-        "current_price": 98.94,
-        "current_vs_last_close_pct": -0.0774,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "current_price": 98.9,
+        "current_vs_last_close_pct": -0.07777,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价跌破近端支撑"
       },
       "quote_confirmation_score": 18.0,
-      "current_price": 98.94,
-      "current_vs_last_close_pct": -0.0774,
+      "current_price": 98.9,
+      "current_vs_last_close_pct": -0.07777,
       "risk_score": 26.96,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -46202,7 +46201,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -46289,7 +46288,7 @@
         "primary_headline": "Rocket Lab Just Got A Step Closer To Mars: Here's Why",
         "primary_event_type": "product_or_launch",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 79.39,
+        "primary_event_age_hours": 79.47,
         "catalyst_type": "product_or_launch",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -46302,7 +46301,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=1f22b2b6634f944b9ff16b32244bf56e2a1860ea3fe6a1dc8e936194683761eb",
             "published_at": "2026-06-19T08:52:35+00:00",
-            "age_hours": 79.39,
+            "age_hours": 79.47,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -46313,7 +46312,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=1fab3b5771dac8d29d4cbb9afc8e5c54d510a1b009a55fb1fb3be678f9ad9112",
             "published_at": "2026-06-18T15:56:10+00:00",
-            "age_hours": 96.33,
+            "age_hours": 96.41,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -46324,7 +46323,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=8974a7ed95a41d1f07e925f471465175de6db8506b7ff0dcc27463c770fcf48e",
             "published_at": "2026-06-17T10:50:00+00:00",
-            "age_hours": 125.44,
+            "age_hours": 125.51,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -46335,7 +46334,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=56d601567abe1cbaf705db21a9f7eb64b15b99db88af798cfa429a05af0b7616",
             "published_at": "2026-06-17T10:24:59+00:00",
-            "age_hours": 125.85,
+            "age_hours": 125.93,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -46346,7 +46345,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=7d3f564140dc5790a434d9d88686ed0ab94316a858bb797be5b83ee6483e4a3e",
             "published_at": "2026-06-17T06:47:55+00:00",
-            "age_hours": 129.47,
+            "age_hours": 129.54,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -46357,7 +46356,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=a9c8889faf0ce97e8a068b52a963fd27710596ebde94f090b4a1b49d387f9d22",
             "published_at": "2026-06-17T00:30:00+00:00",
-            "age_hours": 135.77,
+            "age_hours": 135.84,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -46368,7 +46367,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=8a34e379dfb9fce607fc615d83dd4801027cc6eee2d3e1713de0fad2a792a878",
             "published_at": "2026-06-16T14:42:36+00:00",
-            "age_hours": 145.56,
+            "age_hours": 145.63,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -46379,7 +46378,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=9fb95ec37c8810b24cafb1bca350730b94093427d398369e7dc9f2e14c4ef875",
             "published_at": "2026-06-16T14:09:46+00:00",
-            "age_hours": 146.11,
+            "age_hours": 146.18,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -46392,7 +46391,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=8974a7ed95a41d1f07e925f471465175de6db8506b7ff0dcc27463c770fcf48e",
             "published_at": "2026-06-17T10:50:00+00:00",
-            "age_hours": 125.44,
+            "age_hours": 125.51,
             "score_contribution": 10.88,
             "relevance": "direct"
           },
@@ -46402,7 +46401,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=56d601567abe1cbaf705db21a9f7eb64b15b99db88af798cfa429a05af0b7616",
             "published_at": "2026-06-17T10:24:59+00:00",
-            "age_hours": 125.85,
+            "age_hours": 125.93,
             "score_contribution": 16.32,
             "relevance": "provider_related"
           }
@@ -47850,8 +47849,8 @@
             "reason": "当前价明显低于昨收 / 当前价跌破近端支撑",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 121.31
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 120.94
             }
           },
           {
@@ -47908,14 +47907,14 @@
         "provider_status": "available",
         "score": 18.0,
         "technical_adjustment": -10.0,
-        "current_price": 121.31,
-        "current_vs_last_close_pct": -0.05573,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "current_price": 120.94,
+        "current_vs_last_close_pct": -0.05861,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价跌破近端支撑"
       },
       "quote_confirmation_score": 18.0,
-      "current_price": 121.31,
-      "current_vs_last_close_pct": -0.05573,
+      "current_price": 120.94,
+      "current_vs_last_close_pct": -0.05861,
       "risk_score": 12.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -47970,7 +47969,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -48057,7 +48056,7 @@
         "primary_headline": "Palantir (PLTR) Partners with Google Cloud to Integrate AIP and Foundry Platforms",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 77.89,
+        "primary_event_age_hours": 77.96,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -48072,7 +48071,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4295dec2efdd50960e1b728b9cfe273036787843d25b3d9731a6b0f894dae76f",
             "published_at": "2026-06-22T15:11:59+00:00",
-            "age_hours": 1.07,
+            "age_hours": 1.14,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -48083,7 +48082,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e121659f17bf2c2030c9b5530086f1e1f3dc1dbc148b5770f8e2d5de8bbba278",
             "published_at": "2026-06-22T13:00:00+00:00",
-            "age_hours": 3.27,
+            "age_hours": 3.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -48094,7 +48093,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3ff64da7e67545c31b2b49f0ae13f3095d701634398da4479d01d472a4efb9a5",
             "published_at": "2026-06-22T12:08:04+00:00",
-            "age_hours": 4.13,
+            "age_hours": 4.21,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -48105,7 +48104,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6645884d32a64280543a58afcd15f1e155723d8b6338498dfbab50292991bc8f",
             "published_at": "2026-06-22T12:00:00+00:00",
-            "age_hours": 4.27,
+            "age_hours": 4.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -48116,7 +48115,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=0c7be6ef288726423c7b530e1af50302a423f956fc4179cc4068361023baddb9",
             "published_at": "2026-06-21T21:50:56+00:00",
-            "age_hours": 18.42,
+            "age_hours": 18.49,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -48127,7 +48126,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6982cff82d932a0fecaa7d1b5d5d1b7e9b9799cf13200e2f1008b42ca9cd4762",
             "published_at": "2026-06-21T16:05:00+00:00",
-            "age_hours": 24.19,
+            "age_hours": 24.26,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -48138,7 +48137,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e1cc67f2f1b836e7426e2531025343286406eb009ed9b9c6afb0e86740bbb839",
             "published_at": "2026-06-20T12:09:48+00:00",
-            "age_hours": 52.11,
+            "age_hours": 52.18,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -48149,7 +48148,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=956b6ef5e9f6ee00fef82a826e01af6e0f75ebb3744eef66f5a1ee3e80e23e8a",
             "published_at": "2026-06-20T06:53:40+00:00",
-            "age_hours": 57.37,
+            "age_hours": 57.45,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -49597,8 +49596,8 @@
             "reason": "当前价明显低于昨收 / 当前价回到关键均线下方",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 58.24
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 58.13
             }
           },
           {
@@ -49656,14 +49655,14 @@
         "provider_status": "available",
         "score": 28.0,
         "technical_adjustment": -7.0,
-        "current_price": 58.24,
-        "current_vs_last_close_pct": -0.0479,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "current_price": 58.13,
+        "current_vs_last_close_pct": -0.0497,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价明显低于昨收 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 28.0,
-      "current_price": 58.24,
-      "current_vs_last_close_pct": -0.0479,
+      "current_price": 58.13,
+      "current_vs_last_close_pct": -0.0497,
       "risk_score": 12.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -49717,7 +49716,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "failed",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 5
       },
@@ -49804,7 +49803,7 @@
         "primary_headline": "Oklo And Centrus Energy Sign LoI Under Which LEU Will Supply Enough Domestic High-Assay Low-Enriched Uranium To Power Up To Five Aurora Powerhouses For Multiple Years; Deliveries To Begin In 2029",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 105.2,
+        "primary_event_age_hours": 105.28,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "confirmed",
         "recent_confirmed_catalyst": true,
@@ -49819,7 +49818,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=463cb0096c6aaf68bfc3246595ca9932022ab5da6503d1c6f79017689f764dee",
             "published_at": "2026-06-22T04:59:38+00:00",
-            "age_hours": 11.27,
+            "age_hours": 11.35,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -49830,7 +49829,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=8f78eaf77dd17c94a48dd0960c12d45e0a40cb5ff3cfdfa58b4d068b090162b5",
             "published_at": "2026-06-18T12:43:24+00:00",
-            "age_hours": 99.55,
+            "age_hours": 99.62,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -49841,7 +49840,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=3166fc1e91518d95017214ed1c38373902661175cac7da18d1fe547764cec83b",
             "published_at": "2026-06-18T07:03:56+00:00",
-            "age_hours": 105.2,
+            "age_hours": 105.28,
             "score_contribution": 10.2,
             "strong": true,
             "relevance": "direct"
@@ -49852,7 +49851,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=2fa909ba07d99b68796b3e0e0992ce090d030ad04d1525997d69fff4c61d5482",
             "published_at": "2026-06-16T12:50:53+00:00",
-            "age_hours": 147.42,
+            "age_hours": 147.49,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -49863,7 +49862,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=1b555825c4adf9fb0098cf59f41e718a6e96c47e7e452f0b7290f62dd718dc60",
             "published_at": "2026-06-16T06:19:17+00:00",
-            "age_hours": 153.95,
+            "age_hours": 154.02,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -51172,11 +51171,11 @@
       "raw_candidate_type": "accumulation_breakout_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 41.74,
+      "elasticity_score": 40.98,
       "elasticity_raw_potential": 61.66,
       "elasticity_confirmation_factor": 0.46,
       "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.4793,
+      "next_day_move_probability": 0.4761,
       "upside_momentum_score": 100.0,
       "bounce_score": 46.61,
       "downside_continuation_score": 25.0,
@@ -51209,7 +51208,7 @@
           "成交量不足，缺少资金发酵"
         ],
         "inputs": {
-          "technical_score": 93.0,
+          "technical_score": 91.0,
           "volume_score": 44.35,
           "relative_volume": 0.835,
           "volume_z_score": -1.031,
@@ -51230,10 +51229,10 @@
       "confluence_score": 62,
       "catalyst_score": 47.52,
       "expectation_gap_score": 54,
-      "execution_quality_score": 81.3,
-      "payoff_quality_score": 43.78,
+      "execution_quality_score": 80.26,
+      "payoff_quality_score": 43.58,
       "risk_reward_ratio": 0.343,
-      "expected_upside_pct": 0.05743,
+      "expected_upside_pct": 0.05733,
       "expected_downside_pct": 0.16737,
       "precision_gate": {
         "level": "不具备高置信优势",
@@ -51275,8 +51274,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "confirmed",
-            "score": 93.0,
-            "reason": "技术分 93.0，收盘位置 0.75，20日新高=False，站上20日线=True",
+            "score": 91.0,
+            "reason": "技术分 91.0，收盘位置 0.75，20日新高=False，站上20日线=True",
             "blocking": false,
             "data": {}
           },
@@ -51302,20 +51301,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "confirmed",
-            "score": 72.0,
-            "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
+            "score": 66.0,
+            "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:42+00:00",
-              "current_price": 15.38
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 15.26
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "weak",
-            "score": 43.78,
-            "reason": "赔率分 43.8，上/下行比 0.34，主路径概率 0.46",
+            "score": 43.58,
+            "reason": "赔率分 43.6，上/下行比 0.34，主路径概率 0.46",
             "blocking": false,
             "data": {}
           },
@@ -51361,16 +51360,16 @@
       "quote_confirmation": {
         "status": "confirming",
         "provider_status": "available",
-        "score": 72.0,
-        "technical_adjustment": 7.0,
-        "current_price": 15.38,
-        "current_vs_last_close_pct": 0.08158,
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
-        "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
+        "score": 66.0,
+        "technical_adjustment": 5.0,
+        "current_price": 15.26,
+        "current_vs_last_close_pct": 0.07314,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
+        "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
-      "quote_confirmation_score": 72.0,
-      "current_price": 15.38,
-      "current_vs_last_close_pct": 0.08158,
+      "quote_confirmation_score": 66.0,
+      "current_price": 15.26,
+      "current_vs_last_close_pct": 0.07314,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -51421,7 +51420,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-06-22T16:15:42+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 3
       },
@@ -51432,19 +51431,19 @@
       "risk_scenario": "failed_breakout_or_gap_fade",
       "risk_probability": 0.085,
       "next_day_expected_range": {
-        "expected_low": 13.2419,
-        "expected_high": 15.0366,
-        "expected_mid": 14.1392,
-        "expected_low_pct": -0.06879,
-        "expected_high_pct": 0.05743,
-        "volatility_adjusted_range": 0.07998,
+        "expected_low": 13.2435,
+        "expected_high": 15.0353,
+        "expected_mid": 14.1394,
+        "expected_low_pct": -0.06867,
+        "expected_high_pct": 0.05733,
+        "volatility_adjusted_range": 0.07985,
         "label": "13.24 to 15.04"
       },
       "scenario_prices": {
-        "base_case_price": 14.1392,
-        "upside_case_price": 15.0366,
-        "downside_case_price": 13.2419,
-        "bounce_target_price": 15.073,
+        "base_case_price": 14.1394,
+        "upside_case_price": 15.0353,
+        "downside_case_price": 13.2435,
+        "bounce_target_price": 15.0716,
         "failed_bounce_price": 11.84
       },
       "trigger_levels": {
@@ -51486,15 +51485,15 @@
         "nearest_support": 11.84,
         "nearest_resistance": 15.32,
         "stop_condition": "无主动优势",
-        "target_low_price": 14.1392,
-        "target_high_price": 15.0366,
+        "target_low_price": 14.1394,
+        "target_high_price": 15.0353,
         "next_day_expected_range": {
-          "expected_low": 13.2419,
-          "expected_high": 15.0366,
-          "expected_mid": 14.1392,
-          "expected_low_pct": -0.06879,
-          "expected_high_pct": 0.05743,
-          "volatility_adjusted_range": 0.07998,
+          "expected_low": 13.2435,
+          "expected_high": 15.0353,
+          "expected_mid": 14.1394,
+          "expected_low_pct": -0.06867,
+          "expected_high_pct": 0.05733,
+          "volatility_adjusted_range": 0.07985,
           "label": "13.24 to 15.04"
         },
         "overnight_or_intraday": "只适合盘中确认",
@@ -51508,7 +51507,7 @@
         "primary_headline": "Bitcoin Miners Flash Technical Strength Amidst Deteriorating Fundamentals",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "ChartMill",
-        "primary_event_age_hours": 124.17,
+        "primary_event_age_hours": 124.25,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -51521,7 +51520,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=5de9e1b67358f1519e2cb293a83a13b2367cfffb71a366ea3daf3da1f9430b09",
             "published_at": "2026-06-18T16:27:32+00:00",
-            "age_hours": 95.81,
+            "age_hours": 95.88,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -51532,7 +51531,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=29b5bd869b336438e3ef524fa27bd70e984238a0fe3e48a6bd009792f6b821a0",
             "published_at": "2026-06-17T16:45:00+00:00",
-            "age_hours": 119.52,
+            "age_hours": 119.59,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -51543,7 +51542,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=1518bca4a4c5af44d4bd5ca8122a206da097fab6c3ee9790fe7c5a0666a8c45f",
             "published_at": "2026-06-17T12:05:40+00:00",
-            "age_hours": 124.17,
+            "age_hours": 124.25,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -51564,7 +51563,7 @@
       "relative_strength": 0.01916,
       "relative_volume": 0.835,
       "volume_score": 44.35,
-      "technical_score": 93.0,
+      "technical_score": 91.0,
       "close_position": 0.75,
       "dollar_volume_m": 466.09,
       "avg_dollar_volume_m": 544.123,
@@ -51604,7 +51603,7 @@
         "rsi_14": 56.24,
         "atr_pct": 0.08278,
         "realized_volatility_20d": 0.79107,
-        "technical_score": 93.0
+        "technical_score": 91.0
       },
       "volume_snapshot": {
         "latest_date": "2026-06-18",
@@ -52781,14 +52780,14 @@
         {
           "source": "price",
           "name": "price_structure_confirmed",
-          "score": 93.0,
+          "score": 91.0,
           "detail": "价格结构有突破、收复或强收盘特征。"
         },
         {
           "source": "quote",
           "name": "current_price_confirming",
-          "score": 72.0,
-          "detail": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
+          "score": 66.0,
+          "detail": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
         },
         {
           "source": "sector",
@@ -52819,7 +52818,7 @@
         {
           "source": "payoff",
           "name": "payoff_quality_weak",
-          "score": 56.22,
+          "score": 56.42,
           "detail": "预期上行空间相对失效风险不够优。"
         }
       ],
@@ -52987,8 +52986,8 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-06-22T16:15:41+00:00",
-              "current_price": 58.64
+              "quote_timestamp": "2026-06-22T16:19:57+00:00",
+              "current_price": 58.68
             }
           },
           {
@@ -53043,14 +53042,14 @@
         "provider_status": "available",
         "score": 60.0,
         "technical_adjustment": 3.0,
-        "current_price": 58.64,
-        "current_vs_last_close_pct": 0.03696,
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "current_price": 58.68,
+        "current_vs_last_close_pct": 0.03767,
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
-      "current_price": 58.64,
-      "current_vs_last_close_pct": 0.03696,
+      "current_price": 58.68,
+      "current_vs_last_close_pct": 0.03767,
       "risk_score": 0.0,
       "risk_flags": [],
       "pool_filter": {
@@ -53103,7 +53102,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-06-18",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-06-22T16:15:41+00:00",
+        "quote_timestamp": "2026-06-22T16:19:57+00:00",
         "news_status": "available",
         "news_headline_count": 3
       },
@@ -53190,7 +53189,7 @@
         "primary_headline": "Quantum Computing Stocks Tilt Toward Tangible Earnings as Pure Plays Remain in the Red",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "ChartMill",
-        "primary_event_age_hours": 100.18,
+        "primary_event_age_hours": 100.25,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -53203,7 +53202,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=7a88906e7fc1dcc05c51c495160566a7539005838a85539aa6e6b4a44f11296d",
             "published_at": "2026-06-18T12:05:32+00:00",
-            "age_hours": 100.18,
+            "age_hours": 100.25,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -53214,7 +53213,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=c8cf7443ed4e17f9a814888aaf71ff57730f3ab390dfa7670717e48991221611",
             "published_at": "2026-06-17T15:27:00+00:00",
-            "age_hours": 120.82,
+            "age_hours": 120.89,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -56274,7 +56273,7 @@
   },
   "validation": {
     "version": "validation_scorecard_v2",
-    "generated_at": "2026-06-22T16:16:07.492805+00:00",
+    "generated_at": "2026-06-22T16:20:33.536194+00:00",
     "validation_status": "early_evidence",
     "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
     "pending_forecasts": 27,
@@ -57393,7 +57392,7 @@
   },
   "model_leaderboard": {
     "version": "stock_model_leaderboard_v1",
-    "generated_at": "2026-06-22T16:16:07.508626+00:00",
+    "generated_at": "2026-06-22T16:20:33.551754+00:00",
     "active_baseline": "stock_radar_baseline_v1",
     "validation_status": "validated",
     "models": [
@@ -57500,7 +57499,7 @@
   },
   "data_quality": {
     "version": "data_quality_report_v1",
-    "generated_at": "2026-06-22T16:16:07.508660+00:00",
+    "generated_at": "2026-06-22T16:20:33.551802+00:00",
     "score": 66,
     "latest_data_date": "2026-06-18",
     "expected_latest_trading_date": "2026-06-18",
@@ -57553,7 +57552,7 @@
   },
   "agency_review": {
     "version": "radar_agency_review_v1",
-    "generated_at": "2026-06-22T16:16:07.509185+00:00",
+    "generated_at": "2026-06-22T16:20:33.552456+00:00",
     "source_framework": "msitarzewski/agency-agents",
     "source_method": "specialist_agents_quality_gates_evidence_review",
     "overall_decision": "防守",
