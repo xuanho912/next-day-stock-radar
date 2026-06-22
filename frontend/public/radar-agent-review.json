@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-06-19T23:45:43.084385+00:00",
+  "generated_at": "2026-06-22T15:07:50.200965+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -10,29 +10,29 @@
     "top10_count": 8,
     "top5_count": 5,
     "strong_edge_count": 0,
-    "moderate_edge_count": 0,
-    "avg_top5_elasticity_score": 50.94,
-    "avg_top5_confluence_score": 61.26,
-    "avg_top5_expectation_gap_score": 58.97,
-    "avg_top5_payoff_quality_score": 56.35,
-    "avg_top5_execution_quality_score": 87.9,
-    "avg_top5_risk_score": 1.98,
-    "min_top5_confluence_score": 58.62,
+    "moderate_edge_count": 1,
+    "avg_top5_elasticity_score": 51.45,
+    "avg_top5_confluence_score": 66.02,
+    "avg_top5_expectation_gap_score": 69.57,
+    "avg_top5_payoff_quality_score": 58.61,
+    "avg_top5_execution_quality_score": 85.18,
+    "avg_top5_risk_score": 1.35,
+    "min_top5_confluence_score": 58.71,
     "min_top5_expectation_gap_score": 54.0,
-    "top_sector": "AI / Semiconductors",
+    "top_sector": "Nuclear / Power",
     "top_sector_count": 3,
     "top_candidate_type": "short_squeeze_candidate",
-    "top_candidate_type_count": 5,
+    "top_candidate_type_count": 4,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 8,
     "top10_proxy_squeeze_count": 8,
-    "top10_quote_confirming_count": 0,
+    "top10_quote_confirming_count": 3,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 1,
+    "top10_signal_partial_count": 3,
     "top10_signal_blocked_count": 0
   },
   "agent_findings": [
@@ -50,14 +50,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(3); top_type=short_squeeze_candidate(5)",
+      "evidence": "top_sector=Nuclear / Power(3); top_type=short_squeeze_candidate(4)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=58.97; min_top5_gap=54.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=69.57; min_top5_gap=54.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -66,17 +66,15 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=56.35; avg_execution=87.9; avg_risk=1.98",
+      "evidence": "avg_payoff=58.61; avg_execution=85.18; avg_risk=1.35",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
-      "status": "warn",
+      "status": "pass",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=0",
-      "warnings": [
-        "当前价确认数量偏少，盘前/盘中需要再次刷新。"
-      ]
+      "evidence": "confirming=3; failed=0; missing=0",
+      "warnings": []
     },
     {
       "agent_name": "风险现实校验代理",
@@ -120,10 +118,38 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
+      "ticker": "AMD",
+      "candidate_type": "gap_continuation",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 74; 预期差 84.12; 赔率 60.04; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 558.37,
+      "invalidation": 426.05,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过"
+      ]
+    },
+    {
+      "rank": 2,
+      "ticker": "JOBY",
+      "candidate_type": "next_day_upside_momentum",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 67.43; 预期差 86.89; 赔率 58.68; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 12.475,
+      "invalidation": 8.72,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过"
+      ]
+    },
+    {
+      "rank": 3,
       "ticker": "NVDA",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
-      "key_check": "共振 67.28; 预期差 78.84; 赔率 61.52; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 66.98; 预期差 68.84; 赔率 61.52; 风险 0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 232.28,
       "invalidation": 199.34,
       "warnings": [
@@ -133,11 +159,11 @@
       ]
     },
     {
-      "rank": 2,
+      "rank": 4,
       "ticker": "SMR",
       "candidate_type": "short_squeeze_candidate",
       "agency_verdict": "共振不足",
-      "key_check": "共振 63.01; 预期差 54; 赔率 60.6; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
+      "key_check": "共振 62.98; 预期差 54; 赔率 60.37; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
       "trigger": 14.3,
       "invalidation": 9.12,
       "warnings": [
@@ -148,11 +174,26 @@
       ]
     },
     {
-      "rank": 3,
+      "rank": 5,
+      "ticker": "BEAM",
+      "candidate_type": "short_squeeze_candidate",
+      "agency_verdict": "共振不足",
+      "key_check": "共振 58.71; 预期差 54; 赔率 52.46; 风险 6.73; 闸门 不具备高置信优势; 信号 incomplete",
+      "trigger": 34.9613,
+      "invalidation": 26.04,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振"
+      ]
+    },
+    {
+      "rank": 6,
       "ticker": "NNE",
       "candidate_type": "short_squeeze_candidate",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58.76; 预期差 54; 赔率 57.37; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
+      "key_check": "共振 58.7; 预期差 54; 赔率 56.86; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
       "trigger": 31.59,
       "invalidation": 21.5,
       "warnings": [
@@ -163,11 +204,11 @@
       ]
     },
     {
-      "rank": 4,
+      "rank": 7,
       "ticker": "AMC",
       "candidate_type": "short_squeeze_candidate",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58.65; 预期差 54; 赔率 50.95; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
+      "key_check": "共振 58.63; 预期差 54; 赔率 50.7; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
       "trigger": 2.9047,
       "invalidation": 1.44,
       "warnings": [
@@ -178,56 +219,11 @@
       ]
     },
     {
-      "rank": 5,
-      "ticker": "BEAM",
-      "candidate_type": "short_squeeze_candidate",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58.62; 预期差 54; 赔率 51.33; 风险 9.9; 闸门 不具备高置信优势; 信号 incomplete",
-      "trigger": 34.9613,
-      "invalidation": 26.04,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振"
-      ]
-    },
-    {
-      "rank": 6,
-      "ticker": "AMD",
-      "candidate_type": "gap_continuation",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58.46; 预期差 54; 赔率 50.39; 风险 16.5; 闸门 不具备高置信优势; 信号 incomplete",
-      "trigger": 558.37,
-      "invalidation": 426.05,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足"
-      ]
-    },
-    {
-      "rank": 7,
-      "ticker": "ARM",
-      "candidate_type": "short_squeeze_candidate",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 58.4; 预期差 54; 赔率 48.86; 风险 17.6; 闸门 不具备高置信优势; 信号 incomplete",
-      "trigger": 451.0617,
-      "invalidation": 226.085,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振"
-      ]
-    },
-    {
       "rank": 8,
       "ticker": "VST",
       "candidate_type": "next_day_upside_momentum",
       "agency_verdict": "共振不足",
-      "key_check": "共振 58.33; 预期差 54; 赔率 49.94; 风险 8.8; 闸门 不具备高置信优势; 信号 incomplete",
+      "key_check": "共振 58.38; 预期差 54; 赔率 50.81; 风险 5.98; 闸门 不具备高置信优势; 信号 incomplete",
       "trigger": 167.4,
       "invalidation": 137.81,
       "warnings": [
