@@ -17,6 +17,7 @@ def rank_candidates(prediction_payload: dict[str, Any], market_context: dict[str
         key=lambda item: (
             edge_rank(item["edge_status"]),
             1 if (item.get("precision_gate") or {}).get("passed") else 0,
+            float(item.get("trust_score") or 0),
             float(item.get("confluence_score") or 0),
             float(item.get("payoff_quality_score") or 0),
             float(item.get("elasticity_score") or 0),
@@ -129,9 +130,40 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         elasticity_score = min(elasticity_score, 74)
     edge_status = _edge_status(candidate, confluence_score, elasticity_score, support_count, conflict_count, strict, signal_quality_gate)
     rating = _rating(edge_status, confluence_score, risk_score)
+    capital_readiness = _capital_readiness_audit(
+        candidate,
+        market_context,
+        signal_quality_gate,
+        edge_status,
+        rating,
+        confluence_score,
+        elasticity_score,
+    )
+
+    if capital_readiness["readiness_status"] == "NOT_TRUSTED_FOR_REAL_MONEY":
+        edge_status = "NO_EDGE"
+        rating = "C"
+    elif capital_readiness["trust_score"] < 70 and edge_status in {"STRONG_EDGE", "MODERATE_EDGE"}:
+        edge_status = "WATCH"
+        rating = "B"
+
+    capital_readiness = _capital_readiness_audit(
+        candidate,
+        market_context,
+        signal_quality_gate,
+        edge_status,
+        rating,
+        confluence_score,
+        elasticity_score,
+    )
     scenario_overrides = _scenario_overrides(candidate, edge_status, signal_quality_gate)
     trade_plan = _trade_plan(candidate, rating, edge_status)
     reason = _reason(candidate, edge_status)
+    if capital_readiness["readiness_status"] == "NOT_TRUSTED_FOR_REAL_MONEY":
+        audit_reasons = capital_readiness["blockers"] or capital_readiness["warnings"] or ["信任分低于最低门槛"]
+        reason = "真钱审计未通过：" + " / ".join(audit_reasons[:2])
+    elif capital_readiness["warnings"] and edge_status == "WATCH":
+        reason = "只适合观察：" + " / ".join(capital_readiness["warnings"][:2])
 
     enriched = {
         **candidate,
@@ -143,6 +175,10 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         "reason": reason,
         "trade_plan": trade_plan,
         "signal_quality_gate": signal_quality_gate,
+        "capital_readiness": capital_readiness,
+        "trust_score": capital_readiness["trust_score"],
+        "readiness_status": capital_readiness["readiness_status"],
+        "readiness_label": capital_readiness["readiness_label"],
         "validation_status": "not_yet_validated",
         **scenario_overrides,
     }
@@ -303,6 +339,197 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
         "confluence_cap": cap,
         "required_sources": ["catalyst", "price", "volume", "payoff", "sector_or_market"],
         "support_sources": sorted(source for source in support_sources if source),
+    }
+
+
+def _capital_readiness_audit(
+    candidate: dict[str, Any],
+    market_context: dict[str, Any],
+    signal_quality_gate: dict[str, Any],
+    edge_status: str,
+    rating: str,
+    confluence_score: float,
+    elasticity_score: float,
+) -> dict[str, Any]:
+    features = candidate.get("features") or {}
+    quote = candidate.get("quote_confirmation") or features.get("quote_confirmation") or {}
+    matrix = candidate.get("confluence_matrix") or {}
+    analog = candidate.get("historical_analog") or {}
+    news = candidate.get("news") or {}
+    risk_flags = candidate.get("risk_flags") or []
+    pool_filter = candidate.get("pool_filter") or {}
+    squeeze_status = candidate.get("squeeze_data_status") or {}
+    candidate_type = candidate.get("candidate_type")
+    setup_type = candidate_type in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
+
+    score = 100.0
+    caps: list[float] = []
+    blockers: list[str] = []
+    warnings: list[str] = []
+    positives: list[str] = []
+
+    def penalize(points: float, message: str, *, critical: bool = False, cap: float | None = None) -> None:
+        nonlocal score
+        score -= points
+        if critical:
+            blockers.append(message)
+        else:
+            warnings.append(message)
+        if cap is not None:
+            caps.append(cap)
+
+    if features.get("real_data"):
+        positives.append("真实 OHLCV 行情可用")
+    else:
+        penalize(45, "真实行情缺失或降级", critical=True, cap=42)
+
+    freshness = market_context.get("data_freshness_status")
+    if freshness == "fresh":
+        positives.append("市场数据为最新交易日")
+    elif freshness == "partial_fallback":
+        penalize(18, "部分行情或市场数据降级", cap=68)
+    else:
+        penalize(32, "市场数据不是最新交易日", critical=True, cap=48)
+
+    quote_status = quote.get("status")
+    if quote_status == "confirming":
+        positives.append("当前价没有否定路径")
+    elif quote_status == "failed":
+        penalize(35, "当前价已经否定触发路径", critical=True, cap=45)
+    elif quote_status == "missing":
+        penalize(14, "当前价确认缺失，触发价需刷新", cap=72)
+    else:
+        penalize(8, "当前价状态不明确")
+
+    gate_level = signal_quality_gate.get("level")
+    if gate_level == "confirmed":
+        positives.append("催化、价格、成交、赔率闸门确认")
+    elif gate_level == "partial":
+        penalize(8, "信号闸门只有部分确认")
+    elif gate_level == "incomplete":
+        penalize(22, "信号闸门不完整", cap=64)
+    else:
+        penalize(35, "信号闸门阻断", critical=True, cap=46)
+
+    matrix_overall = matrix.get("overall")
+    if matrix_overall == "confirmed":
+        positives.append("多维共振确认")
+    elif matrix_overall == "partial":
+        penalize(8, "共振只有部分成立")
+    elif matrix_overall == "blocked":
+        penalize(32, "共振矩阵存在硬阻断", critical=True, cap=50)
+    else:
+        penalize(10, "共振矩阵状态缺失")
+
+    sample_size = int(analog.get("sample_size") or 0)
+    hit_rate = analog.get("next_day_hit_rate")
+    analog_avg = analog.get("next_day_return_avg")
+    if sample_size >= 20 and not analog.get("low_sample_warning"):
+        positives.append("历史相似样本数量可用")
+    elif sample_size:
+        penalize(10, "历史相似样本偏少", cap=78)
+    else:
+        penalize(16, "没有可用历史相似样本", cap=74)
+    if sample_size >= 8 and hit_rate is not None and float(hit_rate) < 0.45:
+        penalize(8, "历史相似样本次日命中率偏弱")
+    if sample_size >= 8 and analog_avg is not None and float(analog_avg) < 0:
+        penalize(8, "历史相似样本次日均值为负")
+
+    payoff = float(candidate.get("payoff_quality_score") or 0)
+    risk_reward = float(candidate.get("risk_reward_ratio") or 0)
+    if payoff >= 55 and risk_reward >= 1.0:
+        positives.append("上行空间相对失效风险有赔率")
+    elif payoff < 45 or risk_reward < 0.7:
+        penalize(16, "赔率不足，预期上行不够覆盖失效风险", cap=68)
+    else:
+        penalize(7, "赔率一般")
+
+    setup_quality = float(candidate.get("setup_quality_score") or 0)
+    extension_risk = float(candidate.get("extension_risk_score") or 0)
+    if setup_type and setup_quality >= 72:
+        positives.append("低吸/蓄势结构质量较好")
+    elif setup_type and setup_quality < 62:
+        penalize(12, "低吸/蓄势结构不够干净")
+    if extension_risk >= 82:
+        penalize(24, "追涨过热风险过高", critical=True, cap=50)
+    elif extension_risk >= 72:
+        penalize(14, "已经明显延伸，容易冲高回落", cap=66)
+    elif extension_risk < 55:
+        positives.append("没有明显追涨过热")
+
+    risk_score = float(candidate.get("risk_score") or 0)
+    if risk_score >= 75:
+        penalize(24, "综合风险过高", critical=True, cap=52)
+    elif risk_score >= 62:
+        penalize(12, "风险偏高")
+
+    if "high_liquidity_risk" in risk_flags:
+        penalize(26, "流动性风险高", critical=True, cap=48)
+    if "fallback_or_missing_price_data" in risk_flags:
+        penalize(26, "价格数据缺失或降级", critical=True, cap=46)
+    if "high_risk_high_volatility" in risk_flags:
+        penalize(10, "高波动小票风险")
+    if "gap_fade_risk" in risk_flags:
+        penalize(10, "存在跳空回落风险")
+    if pool_filter.get("hard_excluded"):
+        penalize(40, "候选池硬过滤未通过", critical=True, cap=35)
+
+    catalyst = float(candidate.get("catalyst_score") or 0)
+    news_status = news.get("news_data_status")
+    if catalyst >= 62:
+        positives.append("催化分支持")
+    elif setup_type and setup_quality >= 70:
+        warnings.append("催化偏弱，但结构型候选可继续观察")
+        score -= 5
+    else:
+        penalize(12, "催化不足，不能按强事件票处理", cap=72)
+    if news_status == "missing" and candidate_type in {"event_driven_volatility", "next_day_upside_momentum", "short_squeeze_candidate"}:
+        penalize(12, "新闻催化数据缺失")
+
+    if candidate_type == "short_squeeze_candidate" and squeeze_status.get("short_interest") == "proxy":
+        penalize(16, "逼空逻辑只有 proxy，缺少真实 short/options 数据", cap=66)
+
+    if market_context.get("market_state") == "defense":
+        penalize(12, "市场背景偏防守，个股信号需要降级")
+    elif market_context.get("market_state") == "attack":
+        positives.append("市场背景支持进攻")
+
+    if confluence_score >= 72 and elasticity_score >= 60:
+        positives.append("共振和弹性分达到候选区间")
+    elif confluence_score < 58:
+        penalize(12, "共振分不足")
+
+    if edge_status in {"STRONG_EDGE", "MODERATE_EDGE"} and rating in {"A+", "A"}:
+        positives.append("模型优势等级达到重点观察")
+    elif edge_status == "WATCH":
+        penalize(6, "优势等级仍是观察")
+
+    if caps:
+        score = min(score, min(caps))
+    score = round(max(0, min(100, score)), 2)
+
+    if blockers or score < 55:
+        status = "NOT_TRUSTED_FOR_REAL_MONEY"
+        label = "真钱审计未通过"
+    elif score < 70:
+        status = "WATCHLIST_ONLY"
+        label = "只适合观察"
+    elif score < 82:
+        status = "TRIGGER_READY_WATCH"
+        label = "触发后重点观察"
+    else:
+        status = "HIGH_CONFIDENCE_AFTER_TRIGGER"
+        label = "触发后可信度较高"
+
+    return {
+        "version": "capital_readiness_audit_v1",
+        "trust_score": score,
+        "readiness_status": status,
+        "readiness_label": label,
+        "blockers": blockers[:8],
+        "warnings": warnings[:10],
+        "positive_factors": positives[:10],
+        "not_trading_advice": "这是候选可信度审计，不是买卖建议或交易指令。",
     }
 
 

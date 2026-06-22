@@ -44,6 +44,15 @@ const LABELS = {
   risk: { low: "低", medium: "中", high: "高", elevated: "偏高" },
   freshness: { fresh: "最新", partial_fallback: "部分数据降级", fallback_only: "全部降级", missing: "缺失" },
   validation: { not_yet_validated: "样本不足", early_evidence: "早期证据", validated: "已验证" },
+  readiness: {
+    NOT_TRUSTED_FOR_REAL_MONEY: "真钱审计未通过",
+    WATCHLIST_ONLY: "只适合观察",
+    TRIGGER_READY_WATCH: "触发后重点观察",
+    HIGH_CONFIDENCE_AFTER_TRIGGER: "触发后可信度较高",
+    DATA_NOT_FRESH: "数据不新，不可依赖",
+    NO_TRUSTED_CANDIDATE: "没有可信候选",
+    TRIGGER_READY_BUT_UNVALIDATED: "触发可观察，模型未验证",
+  },
   provider: { available: "可用", partial: "局部可用", missing: "缺失" },
   bool: { true: "是", false: "否" },
   riskFlag: {
@@ -133,6 +142,7 @@ function renderDashboard() {
   const targetText = targetDates.length ? ` / 目标交易日 ${targetDates.join(" / ")}` : "";
   setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"} / 窗口 ${dashboard.forecast_horizon?.label || "次日"}${targetText}`);
   setText("validationStatus", zh("validation", dashboard.model_validation_status));
+  setText("capitalReadiness", readinessLabel(dashboard.real_money_readiness));
   setText("agencyStatus", dashboard.agency_review?.agency_quality_gate || "-");
   setText("candidateCount", `${attackCount} 只重点 / ${displayedCount} 只条件候选 / ${watchCount} 只阻断 / ${dashboard.candidate_count || 0} 只总候选`);
 
@@ -167,7 +177,7 @@ function renderCandidateTable() {
   if (!candidates.length) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="17">
+        <td colspan="18">
           当前没有 A/B 级条件候选。无优势、存在阻断、只适合观察的股票不会进入候选榜；请看“今日不要碰/观察阻断”。
         </td>
       </tr>
@@ -188,6 +198,7 @@ function renderCandidateTable() {
       <td>${scoreBlock(num(candidate.relative_volume), "相对量")}</td>
       <td>${scoreBlock(candidate.elasticity_score, "弹性")}</td>
       <td>${scoreBlock(candidate.confluence_score, "共振")}</td>
+      <td>${scoreBlock(candidate.trust_score, candidate.readiness_label || zh("readiness", candidate.readiness_status))}</td>
       <td><span class="badge ${matrixClass(candidate.confluence_matrix?.overall)}">${safe(confluenceOverallText(candidate.confluence_matrix?.overall))}</span></td>
       <td>${scoreBlock(candidate.expectation_gap_score, "预期差")}</td>
       <td>${scoreBlock(candidate.payoff_quality_score, "赔率")}</td>
@@ -259,7 +270,7 @@ function renderOpportunityStrip() {
     <button class="opportunity-card ${candidate.ticker === selectedTicker ? "active" : ""}" data-ticker="${safeAttr(candidate.ticker)}">
       <span>${safe(candidate.rank)} · ${safe(candidate.ticker)}</span>
       <strong>${safe(pct(candidate.expected_upside_pct))}</strong>
-      <small>量能 ${safe(num(candidate.relative_volume))}x · 共振 ${safe(candidate.confluence_score)}</small>
+      <small>信任 ${safe(num(candidate.trust_score))} · ${safe(candidate.readiness_label || zh("readiness", candidate.readiness_status))} · 共振 ${safe(candidate.confluence_score)}</small>
     </button>
   `).join("");
 
@@ -287,7 +298,7 @@ function renderDetail() {
 
   setText("detailTitle", `${candidate.ticker} · ${candidate.company_name || "公司名称缺失"}`);
   const rating = document.getElementById("detailRating");
-  rating.textContent = `${candidate.rating || "-"} · 弹性 ${candidate.elasticity_score ?? "-"}`;
+  rating.textContent = `${candidate.rating || "-"} · 弹性 ${candidate.elasticity_score ?? "-"} · 信任 ${candidate.trust_score ?? "-"}`;
   rating.className = `badge ${ratingClass(candidate.rating)}`;
 
   document.getElementById("candidateDetail").innerHTML = `
@@ -354,6 +365,11 @@ function renderDetail() {
       ${facts([
         ["质量闸门", candidate.precision_gate?.level || "-"],
         ["是否通过", yn(candidate.precision_gate?.passed)],
+        ["真钱可信度", candidate.readiness_label || zh("readiness", candidate.readiness_status)],
+        ["信任分", candidate.trust_score ?? "-"],
+        ["审计阻断", (candidate.capital_readiness?.blockers || []).join(" / ") || "无"],
+        ["审计警告", (candidate.capital_readiness?.warnings || []).join(" / ") || "无"],
+        ["审计支持", (candidate.capital_readiness?.positive_factors || []).join(" / ") || "-"],
         ["闸门原因", (candidate.precision_gate?.reason || []).join(" / ") || "-"],
         ["信号闸门", signalGateText(candidate.signal_quality_gate?.level)],
         ["信号缺口", (candidate.signal_quality_gate?.failures || []).join(" / ") || "-"],
@@ -558,6 +574,11 @@ function renderDataBackedSummary(candidate) {
         <strong>${safe(analogVerdict(candidate))}</strong>
         <p>样本数 ${safe(analog.sample_size ?? "-")}，次日命中率 ${safe(pct(analog.next_day_hit_rate))}，次日均值 ${safe(pct(analog.next_day_return_avg))}，有利/不利波动 ${safe(pct(analog.max_favorable_excursion_avg))} / ${safe(pct(analog.max_adverse_excursion_avg))}。</p>
       </div>
+      <div class="proof-block ${proofClass(readinessVerdict(candidate))}">
+        <span>真钱可信度</span>
+        <strong>${safe(readinessVerdict(candidate))}</strong>
+        <p>信任分 ${safe(num(candidate.trust_score))}，状态 ${safe(candidate.readiness_label || zh("readiness", candidate.readiness_status))}。阻断：${safe((candidate.capital_readiness?.blockers || []).slice(0, 2).join(" / ") || "无")}。警告：${safe((candidate.capital_readiness?.warnings || []).slice(0, 2).join(" / ") || "无")}。</p>
+      </div>
     </div>
     <div class="data-source-line">
       行情源：${safe(sourceLabel(lineage))} · 最新行情日：${safe(lineage.latest_price_date || technical.latest_date || "-")} · 当前价确认：${safe(quoteStatusText(lineage.quote_status || candidate.quote_confirmation?.status))} · 共振：${safe(confluenceOverallText(candidate.confluence_matrix?.overall))}
@@ -574,6 +595,8 @@ function renderDataWarnings(candidate) {
   if ((lineage.news_status || candidate.news?.news_data_status) === "missing") warnings.push("新闻催化缺失，不能按事件驱动高等级处理。");
   if (analog.low_sample_warning) warnings.push("历史相似样本不足，类似样本结论只能作为弱证据。");
   if (candidate.confluence_matrix?.overall !== "confirmed") warnings.push("当前不是强共振，只能算条件候选。");
+  if (candidate.readiness_status === "NOT_TRUSTED_FOR_REAL_MONEY") warnings.push("真钱可信度审计未通过，这只票不能进入重点候选。");
+  for (const blocker of (candidate.capital_readiness?.blockers || []).slice(0, 2)) warnings.push(`审计阻断：${blocker}`);
   if (!warnings.length) return "";
   return `<div class="data-warning">${warnings.map(item => `<span>${safe(item)}</span>`).join("")}</div>`;
 }
@@ -623,11 +646,28 @@ function analogVerdict(candidate) {
   return "历史样本不强";
 }
 
+function readinessVerdict(candidate) {
+  const status = candidate.readiness_status;
+  const score = Number(candidate.trust_score || 0);
+  if (status === "HIGH_CONFIDENCE_AFTER_TRIGGER" || score >= 82) return "审计通过";
+  if (status === "TRIGGER_READY_WATCH" || score >= 70) return "触发后观察";
+  if (status === "WATCHLIST_ONLY" || score >= 55) return "只适合观察";
+  return "审计未通过";
+}
+
+function readinessLabel(readiness) {
+  if (!readiness) return "-";
+  const score = readiness.best_trust_score || 0;
+  const count = readiness.trusted_candidate_count || 0;
+  const label = readiness.label || zh("readiness", readiness.status);
+  return `${label} / 可信候选 ${count} / 最高分 ${num(score)}`;
+}
+
 function proofClass(label) {
-  if (/未明显过热|较强/.test(label)) return "proof-good";
-  if (/过热|不足/.test(label)) return "proof-bad";
+  if (/未明显过热|较强|审计通过|触发后观察/.test(label)) return "proof-good";
+  if (/过热|不足|未通过/.test(label)) return "proof-bad";
   if (/支持|确认/.test(label)) return "proof-good";
-  if (/部分|温和|有新闻|样本不足|一般|已有延伸/.test(label)) return "proof-warn";
+  if (/部分|温和|有新闻|样本不足|一般|已有延伸|只适合观察/.test(label)) return "proof-warn";
   return "proof-bad";
 }
 

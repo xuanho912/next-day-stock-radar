@@ -155,7 +155,13 @@ def _dashboard_payload(
     quote_snapshots: dict[str, Any],
 ) -> dict[str, Any]:
     official = baseline["candidates"]
-    actionable = [candidate for candidate in official if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}]
+    actionable = [
+        candidate
+        for candidate in official
+        if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}
+        and float(candidate.get("trust_score") or 0) >= 70
+        and not _has_hard_display_blocker(candidate)
+    ]
     conditional = [
         candidate
         for candidate in official
@@ -172,6 +178,7 @@ def _dashboard_payload(
     effective_freshness = _effective_data_freshness(market_context, provider_status)
     stale_warning = market_context.get("stale_warning") or effective_freshness != "fresh"
     high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness in {"fresh", "partial_fallback"}
+    real_money_readiness = _dashboard_readiness(display_candidates, effective_freshness, validation)
     return {
         "version": "stock_radar_dashboard_v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -194,6 +201,7 @@ def _dashboard_payload(
             "note": "窗口按美股交易日理解，周末和美股休市日不计入自然日。",
         },
         "radar_summary": _radar_summary(market_context, display_candidates, validation, effective_freshness),
+        "real_money_readiness": real_money_readiness,
         "market_context": market_context,
         "strongest_candidate_type": strongest_type,
         "current_risk_level": market_context.get("risk_level"),
@@ -220,6 +228,10 @@ def _dashboard_payload(
 
 
 def _has_hard_display_blocker(candidate: dict[str, Any]) -> bool:
+    readiness_status = candidate.get("readiness_status")
+    trust_score = float(candidate.get("trust_score") or 0)
+    if readiness_status == "NOT_TRUSTED_FOR_REAL_MONEY" or trust_score < 55:
+        return True
     matrix = candidate.get("confluence_matrix") or {}
     blockers = set(matrix.get("blocking_dimensions") or [])
     hard_blockers = {"price", "volume", "quote", "risk", "liquidity", "payoff"}
@@ -339,6 +351,10 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "risk_score": candidate.get("risk_score"),
                 "risk_flags": candidate.get("risk_flags"),
                 "pool_filter": candidate.get("pool_filter"),
+                "capital_readiness": candidate.get("capital_readiness"),
+                "trust_score": candidate.get("trust_score"),
+                "readiness_status": candidate.get("readiness_status"),
+                "readiness_label": candidate.get("readiness_label"),
                 "data_lineage": {
                     "price_source": features.get("source"),
                     "price_source_status": features.get("source_status"),
@@ -473,6 +489,56 @@ def _radar_summary(market_context: dict[str, Any], actionable: list[dict[str, An
     if actionable:
         return f"{len(actionable)} 只候选通过市场、板块、催化、技术、成交、赔率和风险闸门；验证状态：{validation_status}。"
     return "今天没有高共振候选；少给比乱给更重要。"
+
+
+def _dashboard_readiness(candidates: list[dict[str, Any]], data_freshness_status: str, validation: dict[str, Any]) -> dict[str, Any]:
+    reasons: list[str] = []
+    if data_freshness_status != "fresh":
+        return {
+            "status": "DATA_NOT_FRESH",
+            "label": "数据不新，不可依赖",
+            "best_trust_score": 0,
+            "trusted_candidate_count": 0,
+            "reasons": ["行情或市场背景不是全量最新交易日，不能当作当日真钱级依据。"],
+        }
+
+    trusted = [candidate for candidate in candidates if float(candidate.get("trust_score") or 0) >= 70]
+    best_score = max([float(candidate.get("trust_score") or 0) for candidate in candidates] or [0])
+    validation_status = validation.get("validation_status")
+    if not candidates:
+        return {
+            "status": "NO_TRUSTED_CANDIDATE",
+            "label": "没有可信候选",
+            "best_trust_score": 0,
+            "trusted_candidate_count": 0,
+            "reasons": ["没有候选同时通过数据、共振、赔率、风险和触发审计。"],
+        }
+    if validation_status != "validated":
+        reasons.append("模型仍处于前向验证不足阶段，不能称为已验证 alpha。")
+    if not trusted:
+        reasons.append("当前没有信任分达到 70 的候选，只能作为观察名单。")
+        return {
+            "status": "WATCHLIST_ONLY",
+            "label": "只适合观察",
+            "best_trust_score": round(best_score, 2),
+            "trusted_candidate_count": 0,
+            "reasons": reasons,
+        }
+    if validation_status != "validated":
+        return {
+            "status": "TRIGGER_READY_BUT_UNVALIDATED",
+            "label": "触发可观察，模型未验证",
+            "best_trust_score": round(best_score, 2),
+            "trusted_candidate_count": len(trusted),
+            "reasons": reasons,
+        }
+    return {
+        "status": "TRIGGER_READY_WATCH",
+        "label": "触发后重点观察",
+        "best_trust_score": round(best_score, 2),
+        "trusted_candidate_count": len(trusted),
+        "reasons": ["候选通过真钱可信度审计，但仍不是买卖建议或交易指令。"],
+    }
 
 
 def _zh_validation_status(value: Any) -> str:
