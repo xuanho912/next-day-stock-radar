@@ -332,6 +332,8 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "bottom_reversal_score": candidate.get("bottom_reversal_score"),
                 "breakout_setup_score": candidate.get("breakout_setup_score"),
                 "extension_risk_score": candidate.get("extension_risk_score"),
+                "fermentation_score": candidate.get("fermentation_score"),
+                "fermentation_profile": candidate.get("fermentation_profile"),
                 "squeeze_data_status": candidate.get("squeeze_data_status"),
                 "confluence_score": candidate.get("confluence_score"),
                 "catalyst_score": candidate.get("catalyst_score"),

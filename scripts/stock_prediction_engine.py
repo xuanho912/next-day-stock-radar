@@ -128,6 +128,8 @@ def _build_candidate(
         "bottom_reversal_score": raw_scores["bottom_reversal_score"],
         "breakout_setup_score": raw_scores["breakout_setup_score"],
         "extension_risk_score": raw_scores["extension_risk_score"],
+        "fermentation_score": raw_scores["fermentation_score"],
+        "fermentation_profile": raw_scores["fermentation_profile"],
         "squeeze_data_status": raw_scores["squeeze_data_status"],
         "catalyst_score": raw_scores["catalyst_score"],
         "quote_confirmation": features.get("quote_confirmation"),
@@ -420,6 +422,18 @@ def _raw_scores(
         bottom_reversal_score=bottom_reversal_score,
         breakout_setup_score=breakout_setup_score,
     )
+    fermentation_profile = _fermentation_profile(
+        features=features,
+        news=news,
+        sector_score=sector,
+        market_context=market_context,
+        risk_score=risk_score,
+        bottom_reversal_score=bottom_reversal_score,
+        breakout_setup_score=breakout_setup_score,
+        setup_quality_score=setup_quality_score,
+        extension_risk_score=extension_risk_score,
+    )
+    fermentation_score = float(fermentation_profile["score"])
     quote_score = float(features.get("quote_confirmation_score") or 50)
     quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
     quote_bonus = quote_score - 50 if quote_available else 0
@@ -440,6 +454,7 @@ def _raw_scores(
         + volume * 0.05 * elasticity_confirmation_factor
         + technical * 0.04 * elasticity_confirmation_factor
         + setup_quality_score * 0.05
+        + max(fermentation_score - 55, 0) * 0.05
         + max(quote_bonus, 0) * 0.12
         - risk_score * 0.10
         - max(extension_risk_score - 62, 0) * 0.10
@@ -493,6 +508,7 @@ def _raw_scores(
         + setup_quality_score * 0.12
         + expectation_gap_score * 0.10
         + execution_quality_score * 0.08
+        + fermentation_score * 0.08
         + upside_momentum_score * 0.06
         + bounce_score * 0.06
         + elasticity_score * 0.02
@@ -511,6 +527,12 @@ def _raw_scores(
         features=features,
         news=news,
     )
+    if fermentation_score < 45:
+        confluence_score = min(confluence_score, 58)
+    elif fermentation_score < 55:
+        confluence_score = min(confluence_score, 64)
+    if fermentation_profile.get("profile_type") == "overextended_chase":
+        confluence_score = min(confluence_score, 62)
     next_day_move_probability = _clamp(
         (
             elasticity_score * 0.38
@@ -518,6 +540,7 @@ def _raw_scores(
             + catalyst_score * 0.12
             + volume * 0.10
             + technical * 0.04
+            + fermentation_score * 0.05
         )
         / 100
         * (0.72 + elasticity_confirmation_factor * 0.35),
@@ -528,6 +551,8 @@ def _raw_scores(
         next_day_move_probability = min(next_day_move_probability, 0.55)
     if confluence_score < 58:
         next_day_move_probability = min(next_day_move_probability, 0.62)
+    if fermentation_score < 50:
+        next_day_move_probability = min(next_day_move_probability, 0.54)
     primary_probability = _clamp((confluence_score * 0.52 + max(upside_momentum_score, bounce_score) * 0.28 + sector * 0.20) / 100, 0.05, 0.82)
     if confluence_score < 58:
         primary_probability = min(primary_probability, 0.50)
@@ -550,6 +575,8 @@ def _raw_scores(
         "bottom_reversal_score": round(bottom_reversal_score, 2),
         "breakout_setup_score": round(breakout_setup_score, 2),
         "extension_risk_score": round(extension_risk_score, 2),
+        "fermentation_score": round(fermentation_score, 2),
+        "fermentation_profile": fermentation_profile,
         "squeeze_data_status": {
             "short_interest": "proxy",
             "options_flow": "proxy",
@@ -649,6 +676,184 @@ def _setup_quality_score(
         + quote_bonus
         - risk_score * 0.08
     )
+
+
+def _fermentation_profile(
+    *,
+    features: dict[str, Any],
+    news: dict[str, Any],
+    sector_score: float,
+    market_context: dict[str, Any],
+    risk_score: float,
+    bottom_reversal_score: float,
+    breakout_setup_score: float,
+    setup_quality_score: float,
+    extension_risk_score: float,
+) -> dict[str, Any]:
+    score = 35.0
+    supporting: list[str] = []
+    conflicting: list[str] = []
+    weak: list[str] = []
+    hard_evidence = 0
+
+    technical = float(features.get("technical_score") or 0)
+    volume = float(features.get("volume_score") or 0)
+    relative_volume = float(features.get("relative_volume") or 0)
+    volume_z = float(features.get("volume_z_score") or 0)
+    close_position = float(features.get("close_position") or 0.5)
+    return_1d = float(features.get("return_1d") or 0)
+    return_5d = float(features.get("return_5d") or 0)
+    return_20d = float(features.get("return_20d") or 0)
+    pullback = abs(min(float(features.get("pullback_from_20d_high_pct") or 0), 0))
+    compression = float(features.get("compression_ratio") or 1)
+    catalyst_score = float(news.get("catalyst_score") or 35)
+    catalyst_quality = str(news.get("catalyst_quality") or "missing")
+    quote = features.get("quote_confirmation") or {}
+    quote_status = quote.get("status")
+
+    if technical >= 68 and close_position >= 0.58:
+        score += 12
+        hard_evidence += 1
+        supporting.append("价格结构站稳，收盘位置支持继续观察")
+    elif technical >= 56:
+        score += 5
+        weak.append("价格结构只有部分支持")
+    else:
+        score -= 10
+        conflicting.append("价格结构没有确认")
+
+    if volume >= 64 and relative_volume >= 1.15:
+        score += 14
+        hard_evidence += 1
+        supporting.append(f"成交量发酵，相对量 {relative_volume:.2f}x")
+    elif volume >= 55 or relative_volume >= 1.0:
+        score += 5
+        weak.append("量能温和但未强确认")
+    else:
+        score -= 10
+        conflicting.append("成交量不足，缺少资金发酵")
+
+    if catalyst_score >= 62 and catalyst_quality in {"confirmed", "strong"}:
+        score += 14
+        hard_evidence += 1
+        supporting.append("催化已确认")
+    elif catalyst_score >= 50:
+        score += 4
+        weak.append("有催化线索但强度一般")
+    else:
+        score -= 7
+        weak.append("催化偏弱，不能按事件票处理")
+
+    if sector_score >= 62:
+        score += 8
+        hard_evidence += 1
+        supporting.append("板块/主线支持")
+    elif sector_score >= 55:
+        score += 4
+        weak.append("板块只有部分支持")
+    else:
+        score -= 5
+        conflicting.append("板块不是确认主线")
+
+    if quote_status == "confirming":
+        score += 10
+        hard_evidence += 1
+        supporting.append("当前价没有否定触发路径")
+    elif quote_status == "failed":
+        score -= 22
+        conflicting.append("当前价已经否定路径")
+    elif quote_status == "missing":
+        score -= 8
+        weak.append("当前价确认缺失")
+    else:
+        weak.append("当前价中性，需要触发确认")
+
+    if bottom_reversal_score >= 72 and extension_risk_score < 62:
+        score += 9
+        supporting.append("低吸反转结构正在形成")
+    if breakout_setup_score >= 72 and extension_risk_score < 66:
+        score += 9
+        supporting.append("蓄势突破结构正在形成")
+    if setup_quality_score >= 72:
+        score += 6
+        hard_evidence += 1
+        supporting.append("低吸/蓄势质量较高")
+
+    if 0 <= return_5d <= 0.12 and close_position >= 0.52:
+        score += 5
+        supporting.append("短线没有明显透支")
+    if return_5d < 0 and close_position >= 0.55 and volume_z >= 0:
+        score += 6
+        supporting.append("回撤后出现承接")
+
+    if extension_risk_score >= 78:
+        score -= 24
+        conflicting.append("追涨过热，容易冲高回落")
+    elif extension_risk_score >= 66:
+        score -= 12
+        weak.append("已有延伸，需要更严触发")
+    if risk_score >= 68:
+        score -= 18
+        conflicting.append("综合风险偏高")
+    elif risk_score >= 58:
+        score -= 8
+        weak.append("风险不低")
+    if market_context.get("market_state") == "attack":
+        score += 5
+        supporting.append("市场状态允许选择性进攻")
+    elif market_context.get("market_state") == "defense":
+        score -= 10
+        conflicting.append("市场偏防守")
+
+    if extension_risk_score >= 72 and (return_1d >= 0.045 or return_5d >= 0.14):
+        profile_type = "overextended_chase"
+        label = "追涨过热"
+    elif bottom_reversal_score >= 72 and close_position >= 0.48 and quote_status != "failed":
+        profile_type = "pullback_reversal_fermentation"
+        label = "低吸反转发酵"
+    elif breakout_setup_score >= 72 and compression <= 0.95 and quote_status != "failed":
+        profile_type = "base_breakout_fermentation"
+        label = "蓄势突破发酵"
+    elif technical >= 68 and volume >= 62 and relative_volume >= 1.15:
+        profile_type = "upside_momentum_fermentation"
+        label = "动量发酵"
+    elif technical < 50 or volume < 50:
+        profile_type = "weak_noise"
+        label = "噪音波动"
+    else:
+        profile_type = "watch_only_fermentation"
+        label = "观察发酵"
+
+    price_phase = "extended" if extension_risk_score >= 66 else "pullback" if return_5d < 0 and pullback >= 0.04 else "base" if compression <= 0.95 else "trend"
+    volume_state = "confirmed" if volume >= 64 and relative_volume >= 1.15 else "partial" if volume >= 55 else "weak"
+    catalyst_state = "confirmed" if catalyst_score >= 62 and catalyst_quality in {"confirmed", "strong"} else "partial" if catalyst_score >= 50 else "weak"
+
+    return {
+        "version": "fermentation_profile_v1",
+        "score": round(_clamp(score), 2),
+        "profile_type": profile_type,
+        "label": label,
+        "hard_evidence_count": hard_evidence,
+        "price_phase": price_phase,
+        "volume_state": volume_state,
+        "catalyst_state": catalyst_state,
+        "quote_state": quote_status or "missing",
+        "supporting_points": supporting[:8],
+        "weak_points": weak[:8],
+        "conflicting_points": conflicting[:8],
+        "inputs": {
+            "technical_score": round(technical, 2),
+            "volume_score": round(volume, 2),
+            "relative_volume": round(relative_volume, 3),
+            "volume_z_score": round(volume_z, 3),
+            "return_1d": round(return_1d, 5),
+            "return_5d": round(return_5d, 5),
+            "return_20d": round(return_20d, 5),
+            "sector_score": round(float(sector_score or 0), 2),
+            "risk_score": round(float(risk_score or 0), 2),
+            "extension_risk_score": round(float(extension_risk_score or 0), 2),
+        },
+    }
 
 
 def _extension_risk_score(features: dict[str, Any], risk_score: float) -> float:
@@ -1371,6 +1576,14 @@ def _evidence(
         support.append(_ev("setup", "setup_quality_confirmed", scores.get("setup_quality_score"), "价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。"))
     if scores.get("extension_risk_score", 0) >= 70:
         conflict.append(_ev("extension_risk", "extension_risk_high", scores.get("extension_risk_score"), "短线涨幅、缺口或距均线过远，存在追涨过热风险。"))
+    fermentation = scores.get("fermentation_profile") or {}
+    fermentation_score = float(scores.get("fermentation_score") or 0)
+    if fermentation_score >= 66 and int(fermentation.get("hard_evidence_count") or 0) >= 3:
+        support.append(_ev("fermentation", "fermentation_confirmed", fermentation_score, f"{fermentation.get('label')}：{'; '.join((fermentation.get('supporting_points') or [])[:3])}"))
+    elif fermentation_score < 50:
+        conflict.append(_ev("fermentation", "fermentation_weak", 100 - fermentation_score, f"{fermentation.get('label') or '发酵不足'}：{'; '.join((fermentation.get('conflicting_points') or fermentation.get('weak_points') or [])[:3])}"))
+    else:
+        missing.append(_ev("fermentation", "fermentation_partial", fermentation_score, f"{fermentation.get('label') or '部分发酵'}，还需要触发价或量能继续确认。"))
     if features["technical_score"] >= 64:
         support.append(_ev("price", "price_structure_confirmed", features["technical_score"], "价格结构有突破、收复或强收盘特征。"))
     else:

@@ -77,6 +77,9 @@ const LABELS = {
     expectation_gap_not_confirmed: "预期差未确认",
     setup_quality_confirmed: "低吸/蓄势证据",
     extension_risk_high: "追涨过热风险",
+    fermentation_confirmed: "发酵共振确认",
+    fermentation_partial: "发酵共振待确认",
+    fermentation_weak: "发酵共振不足",
     price_structure_confirmed: "价格结构确认",
     price_structure_unconfirmed: "价格结构未确认",
     volume_anomaly_confirmed: "成交确认",
@@ -192,7 +195,7 @@ function renderCandidateTable() {
         <small>${safe(candidate.company_name || "")}</small>
         <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
       </td>
-      <td>${safe(zh("candidateType", candidate.candidate_type))}</td>
+      <td>${safe(zh("candidateType", candidate.candidate_type))}<small>发酵 ${safe(num(candidate.fermentation_score))} · ${safe(candidate.fermentation_profile?.label || "-")}</small></td>
       <td>${price(candidate.current_price || candidate.last_close)}<small>${safe(quoteStatusText(candidate.quote_confirmation?.status))}</small></td>
       <td>${scoreBlock(pct(candidate.expected_upside_pct), "空间")}</td>
       <td>${scoreBlock(num(candidate.relative_volume), "相对量")}</td>
@@ -423,6 +426,9 @@ function renderDetail() {
         ["低吸反转评分", candidate.bottom_reversal_score],
         ["蓄势突破评分", candidate.breakout_setup_score],
         ["潜伏质量评分", candidate.setup_quality_score],
+        ["发酵共振评分", candidate.fermentation_score],
+        ["发酵类型", candidate.fermentation_profile?.label || "-"],
+        ["发酵硬证据数", candidate.fermentation_profile?.hard_evidence_count ?? "-"],
         ["追涨过热风险", candidate.extension_risk_score],
         ["下行延续评分", candidate.downside_continuation_score],
         ["逼空评分", candidate.squeeze_score],
@@ -564,6 +570,11 @@ function renderDataBackedSummary(candidate) {
         <strong>${safe(setupVerdict(candidate))}</strong>
         <p>潜伏质量 ${safe(num(candidate.setup_quality_score))}，低吸反转 ${safe(num(candidate.bottom_reversal_score))}，蓄势突破 ${safe(num(candidate.breakout_setup_score))}，离20日高点 ${safe(pct(technical.pullback_from_20d_high_pct))}。</p>
       </div>
+      <div class="proof-block ${proofClass(fermentationVerdict(candidate))}">
+        <span>发酵共振</span>
+        <strong>${safe(fermentationVerdict(candidate))}</strong>
+        <p>发酵分 ${safe(num(candidate.fermentation_score))}，类型 ${safe(candidate.fermentation_profile?.label || "-")}，硬证据 ${safe(candidate.fermentation_profile?.hard_evidence_count ?? 0)}。支持：${safe((candidate.fermentation_profile?.supporting_points || []).slice(0, 2).join(" / ") || "无")}。冲突：${safe((candidate.fermentation_profile?.conflicting_points || []).slice(0, 2).join(" / ") || "无")}。</p>
+      </div>
       <div class="proof-block ${proofClass(extensionVerdict(candidate))}">
         <span>追涨过热风险</span>
         <strong>${safe(extensionVerdict(candidate))}</strong>
@@ -631,6 +642,16 @@ function setupVerdict(candidate) {
   return "潜伏证据不足";
 }
 
+function fermentationVerdict(candidate) {
+  const profile = candidate.fermentation_profile || {};
+  const score = Number(candidate.fermentation_score || profile.score || 0);
+  const hard = Number(profile.hard_evidence_count || 0);
+  if (profile.profile_type === "overextended_chase") return "追涨发酵过热";
+  if (score >= 68 && hard >= 3) return "发酵共振确认";
+  if (score >= 55) return "发酵部分成立";
+  return "发酵不足";
+}
+
 function extensionVerdict(candidate) {
   const risk = Number(candidate.extension_risk_score);
   if (risk >= 76) return "追涨过热";
@@ -664,7 +685,7 @@ function readinessLabel(readiness) {
 }
 
 function proofClass(label) {
-  if (/未明显过热|较强|审计通过|触发后观察/.test(label)) return "proof-good";
+  if (/未明显过热|较强|审计通过|触发后观察|发酵共振确认/.test(label)) return "proof-good";
   if (/过热|不足|未通过/.test(label)) return "proof-bad";
   if (/支持|确认/.test(label)) return "proof-good";
   if (/部分|温和|有新闻|样本不足|一般|已有延伸|只适合观察/.test(label)) return "proof-warn";

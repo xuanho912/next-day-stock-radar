@@ -276,16 +276,36 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     expectation_gap = float(candidate.get("expectation_gap_score") or 0)
     setup_quality_score = float(candidate.get("setup_quality_score") or 0)
     extension_risk_score = float(candidate.get("extension_risk_score") or 0)
+    fermentation = candidate.get("fermentation_profile") or {}
+    fermentation_score = float(candidate.get("fermentation_score") or fermentation.get("score") or 0)
+    hard_evidence_count = int(fermentation.get("hard_evidence_count") or 0)
     quote_status = (candidate.get("quote_confirmation") or {}).get("status")
     catalyst_type = news.get("catalyst_type")
     catalyst_quality = news.get("catalyst_quality")
     setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"}
+    structure_catalyst_substitute = (
+        setup_type
+        and fermentation_score >= 68
+        and hard_evidence_count >= 4
+        and setup_quality_score >= 70
+        and technical >= 64
+        and volume >= 62
+        and payoff >= 50
+        and extension_risk_score < 66
+    )
 
     failures: list[str] = []
     critical: list[str] = []
 
-    if catalyst < 58 or catalyst_type == "no_recent_confirmed_news" or catalyst_quality not in {"confirmed", "strong"} or "catalyst" not in support_sources:
+    if not structure_catalyst_substitute and (
+        catalyst < 58
+        or catalyst_type == "no_recent_confirmed_news"
+        or catalyst_quality not in {"confirmed", "strong"}
+        or "catalyst" not in support_sources
+    ):
         failures.append("催化不足或没有确认新闻")
+    elif structure_catalyst_substitute:
+        support_sources.add("structure_fermentation")
     if technical < 55 or "price" not in support_sources:
         failures.append("技术结构未确认")
     if volume < 60 or relative_volume < 1.15 or "volume" not in support_sources:
@@ -302,9 +322,9 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     if candidate.get("squeeze_data_status", {}).get("short_interest") == "proxy" and candidate.get("candidate_type") == "short_squeeze_candidate":
         failures.append("逼空逻辑只有 proxy，不能作为强共振")
 
-    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65 and not (setup_type and setup_quality_score >= 68):
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65 and not (setup_type and setup_quality_score >= 68) and not structure_catalyst_substitute:
         critical.append("催化质量未确认")
-    if catalyst < 45 and technical < 65 and not (setup_type and setup_quality_score >= 70):
+    if catalyst < 45 and technical < 65 and not (setup_type and setup_quality_score >= 70) and not structure_catalyst_substitute:
         critical.append("缺催化且技术不强")
     if volume < 52:
         critical.append("成交量弱")
@@ -319,7 +339,7 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
         cap = 100
     elif (
         len(failures) <= (3 if setup_type else 2)
-        and (catalyst >= 50 or setup_quality_score >= 68)
+        and (catalyst >= 50 or setup_quality_score >= 68 or structure_catalyst_substitute)
         and technical >= 50
         and volume >= (50 if setup_type else 55)
         and payoff >= 45
@@ -337,8 +357,9 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
         "failures": failures[:8],
         "critical_failures": critical[:5],
         "confluence_cap": cap,
-        "required_sources": ["catalyst", "price", "volume", "payoff", "sector_or_market"],
+        "required_sources": ["catalyst_or_structure_fermentation", "price", "volume", "payoff", "sector_or_market"],
         "support_sources": sorted(source for source in support_sources if source),
+        "structure_catalyst_substitute": structure_catalyst_substitute,
     }
 
 
@@ -359,6 +380,8 @@ def _capital_readiness_audit(
     risk_flags = candidate.get("risk_flags") or []
     pool_filter = candidate.get("pool_filter") or {}
     squeeze_status = candidate.get("squeeze_data_status") or {}
+    fermentation = candidate.get("fermentation_profile") or {}
+    fermentation_score = float(candidate.get("fermentation_score") or fermentation.get("score") or 0)
     candidate_type = candidate.get("candidate_type")
     setup_type = candidate_type in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
 
@@ -503,6 +526,16 @@ def _capital_readiness_audit(
         positives.append("模型优势等级达到重点观察")
     elif edge_status == "WATCH":
         penalize(6, "优势等级仍是观察")
+
+    hard_evidence = int(fermentation.get("hard_evidence_count") or 0)
+    if fermentation_score >= 68 and hard_evidence >= 3:
+        positives.append(f"发酵共振确认：{fermentation.get('label')}")
+    elif fermentation_score >= 55:
+        penalize(7, f"发酵共振只有部分成立：{fermentation.get('label') or '观察发酵'}")
+    else:
+        penalize(16, f"发酵共振不足：{fermentation.get('label') or '噪音波动'}", cap=66)
+    if fermentation.get("profile_type") == "overextended_chase":
+        penalize(18, "发酵类型为追涨过热", critical=True, cap=48)
 
     if caps:
         score = min(score, min(caps))
