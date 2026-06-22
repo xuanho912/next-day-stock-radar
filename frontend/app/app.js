@@ -223,6 +223,8 @@ function renderPrimaryVisual() {
         <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
       </div>
       ${renderPriceVolumeComposite(candidate)}
+      ${renderDataBackedSummary(candidate)}
+      ${renderDataWarnings(candidate)}
     </div>
     <div class="space-panel">
       <h3>次日上涨空间</h3>
@@ -285,6 +287,11 @@ function renderDetail() {
       <h3>价格结构 + 成交量确认</h3>
       ${renderPriceVolumeComposite(candidate)}
       ${renderVolumeAnalysis(candidate)}
+      ${renderDataWarnings(candidate)}
+    </div>
+    <div class="detail-card wide-card">
+      <h3>数据证据总览</h3>
+      ${renderDataBackedSummary(candidate)}
     </div>
     <div class="detail-card chart-card">
       <h3>次日预期图表</h3>
@@ -502,6 +509,88 @@ function renderAgencyReview() {
   ]) + findingHtml;
 }
 
+function renderDataBackedSummary(candidate) {
+  const technical = candidate.technical_snapshot || {};
+  const volume = candidate.volume_snapshot || {};
+  const analog = candidate.historical_analog || {};
+  const lineage = candidate.data_lineage || {};
+  return `
+    <div class="data-proof-grid">
+      <div class="proof-block ${proofClass(technicalVerdict(candidate))}">
+        <span>价格证据</span>
+        <strong>${safe(technicalVerdict(candidate))}</strong>
+        <p>收盘位置 ${safe(num(technical.close_position))}，5日涨跌 ${safe(pct(technical.return_5d))}，相对强弱 ${safe(pct(candidate.relative_strength))}，MA20 ${safe(price(technical.ma20))}，MA50 ${safe(price(technical.ma50))}。</p>
+      </div>
+      <div class="proof-block ${proofClass(volumeDataVerdict(candidate))}">
+        <span>成交量证据</span>
+        <strong>${safe(volumeDataVerdict(candidate))}</strong>
+        <p>最新量 ${safe(compactVolume(volume.volume))}，20日均量 ${safe(compactVolume(volume.volume_avg20))}，相对量 ${safe(num(volume.relative_volume))}x，Z 值 ${safe(num(volume.volume_z_score))}，美元成交额 ${safe(moneyM(volume.dollar_volume_m))}。</p>
+      </div>
+      <div class="proof-block ${proofClass(catalystVerdict(candidate))}">
+        <span>催化证据</span>
+        <strong>${safe(catalystVerdict(candidate))}</strong>
+        <p>新闻状态 ${safe(lineage.news_status || "-")}，标题数 ${safe(lineage.news_headline_count ?? 0)}，主新闻：${safe(candidate.news?.primary_headline || "没有确认主新闻")}。</p>
+      </div>
+      <div class="proof-block ${proofClass(analogVerdict(candidate))}">
+        <span>历史样本</span>
+        <strong>${safe(analogVerdict(candidate))}</strong>
+        <p>样本数 ${safe(analog.sample_size ?? "-")}，次日命中率 ${safe(pct(analog.next_day_hit_rate))}，次日均值 ${safe(pct(analog.next_day_return_avg))}，有利/不利波动 ${safe(pct(analog.max_favorable_excursion_avg))} / ${safe(pct(analog.max_adverse_excursion_avg))}。</p>
+      </div>
+    </div>
+    <div class="data-source-line">
+      行情源：${safe(sourceLabel(lineage))} · 最新行情日：${safe(lineage.latest_price_date || technical.latest_date || "-")} · 当前价确认：${safe(quoteStatusText(lineage.quote_status || candidate.quote_confirmation?.status))} · 共振：${safe(confluenceOverallText(candidate.confluence_matrix?.overall))}
+    </div>
+  `;
+}
+
+function renderDataWarnings(candidate) {
+  const lineage = candidate.data_lineage || {};
+  const analog = candidate.historical_analog || {};
+  const warnings = [];
+  if (lineage.real_price_data === false || lineage.price_source_status === "fallback_or_missing") warnings.push("行情数据降级，不能把图形当成完整实时证据。");
+  if ((lineage.quote_status || candidate.quote_confirmation?.status) === "missing") warnings.push("当前价确认缺失，触发价附近需要盘前/盘中刷新确认。");
+  if ((lineage.news_status || candidate.news?.news_data_status) === "missing") warnings.push("新闻催化缺失，不能按事件驱动高等级处理。");
+  if (analog.low_sample_warning) warnings.push("历史相似样本不足，类似样本结论只能作为弱证据。");
+  if (candidate.confluence_matrix?.overall !== "confirmed") warnings.push("当前不是强共振，只能算条件候选。");
+  if (!warnings.length) return "";
+  return `<div class="data-warning">${warnings.map(item => `<span>${safe(item)}</span>`).join("")}</div>`;
+}
+
+function technicalVerdict(candidate) {
+  const t = candidate.technical_snapshot || {};
+  if (t.new_20d_high && t.above_20d_ma && t.above_50d_ma && Number(t.close_position) >= 0.58) return "价格结构支持";
+  if (t.above_20d_ma && Number(t.close_position) >= 0.5) return "价格结构部分支持";
+  return "价格结构未确认";
+}
+
+function volumeDataVerdict(candidate) {
+  const v = candidate.volume_snapshot || {};
+  if (Number(v.relative_volume) >= 1.8 && Number(v.volume_z_score) >= 1.0) return "放量确认";
+  if (Number(v.relative_volume) >= 1.15 || Number(v.volume_z_score) >= 0.5) return "温和放量";
+  return "量能不足";
+}
+
+function catalystVerdict(candidate) {
+  const news = candidate.news || {};
+  if (news.recent_confirmed_catalyst || Number(news.strong_event_count || 0) > 0) return "催化确认";
+  if ((news.headline_count || 0) > 0) return "有新闻但不强";
+  return "催化缺失";
+}
+
+function analogVerdict(candidate) {
+  const analog = candidate.historical_analog || {};
+  if (!analog.sample_size) return "无可用样本";
+  if (analog.low_sample_warning) return "样本不足";
+  if (Number(analog.next_day_hit_rate) >= 0.55 && Number(analog.next_day_return_avg) > 0) return "历史样本支持";
+  return "历史样本不强";
+}
+
+function proofClass(label) {
+  if (/支持|确认/.test(label)) return "proof-good";
+  if (/部分|温和|有新闻|样本不足/.test(label)) return "proof-warn";
+  return "proof-bad";
+}
+
 function analogSummary(analog) {
   if (!analog) return "<p>暂无相似样本。</p>";
   return facts([
@@ -533,47 +622,89 @@ function spaceTiles(candidate) {
 }
 
 function renderPriceVolumeComposite(candidate) {
-  const rows = (candidate.price_history || []).slice(-70);
+  const rows = (candidate.price_history || []).slice(-90);
   if (!rows.length) return `<svg class="chart large-chart" role="img" aria-label="暂无价格成交量数据"></svg>`;
-  const width = 620;
-  const height = 270;
-  const priceTop = 18;
-  const priceBottom = 162;
-  const volumeTop = 184;
-  const volumeBottom = 252;
+  const width = 760;
+  const height = 360;
+  const chartLeft = 54;
+  const chartRight = width - 118;
+  const priceTop = 28;
+  const priceBottom = 218;
+  const volumeTop = 250;
+  const volumeBottom = 328;
   const closes = rows.map(row => Number(row.close || 0));
   const highs = rows.map(row => Number(row.high || row.close || 0));
   const lows = rows.map(row => Number(row.low || row.close || 0));
   const volumes = rows.map(row => Number(row.volume || 0));
-  const maxPrice = Math.max(...highs, Number(candidate.next_day_expected_range?.expected_high || 0), Number(candidate.upside_trigger_level || 0));
-  const minPrice = Math.min(...lows, Number(candidate.next_day_expected_range?.expected_low || Infinity), Number(candidate.invalidation_level || Infinity));
+  const ma20 = movingAverage(closes, 20);
+  const ma50 = movingAverage(closes, 50);
+  const range = candidate.next_day_expected_range || {};
+  const levels = [
+    candidate.nearest_support || candidate.trigger_levels?.nearest_support,
+    candidate.nearest_resistance || candidate.trigger_levels?.nearest_resistance,
+    candidate.upside_trigger_level || candidate.trigger_levels?.upside_trigger_level,
+    candidate.downside_risk_level || candidate.trigger_levels?.downside_risk_level,
+    candidate.gap_fill_level || candidate.trigger_levels?.gap_fill_level,
+    range.expected_high,
+    range.expected_low,
+    candidate.technical_snapshot?.ma20,
+    candidate.technical_snapshot?.ma50,
+  ].map(Number).filter(Number.isFinite);
+  const maxPrice = Math.max(...highs, ...levels);
+  const minPrice = Math.min(...lows, ...levels);
   const pricePad = Math.max(0.01, (maxPrice - minPrice) * 0.08);
   const yPrice = value => priceBottom - ((Number(value) - minPrice + pricePad) / Math.max(0.0001, maxPrice - minPrice + pricePad * 2)) * (priceBottom - priceTop);
-  const x = index => (index / Math.max(1, rows.length - 1)) * (width - 24) + 12;
-  const maxVolume = Math.max(...volumes, 1);
+  const x = index => chartLeft + (index / Math.max(1, rows.length - 1)) * (chartRight - chartLeft);
+  const maxVolume = Math.max(...volumes, Number(candidate.volume_snapshot?.volume_avg20 || 0), 1);
+  const yVolume = value => volumeBottom - (Number(value || 0) / maxVolume) * (volumeBottom - volumeTop);
+  const avgVolume = Number(candidate.volume_snapshot?.volume_avg20 || 0);
   const pricePoints = closes.map((value, index) => `${x(index).toFixed(2)},${yPrice(value).toFixed(2)}`).join(" ");
+  const ma20Points = linePoints(ma20, x, yPrice);
+  const ma50Points = linePoints(ma50, x, yPrice);
+  const barWidth = Math.max(2.5, (chartRight - chartLeft) / rows.length * 0.68);
   const bars = volumes.map((value, index) => {
-    const barH = (value / maxVolume) * (volumeBottom - volumeTop);
-    return `<rect x="${(x(index) - 2).toFixed(2)}" y="${(volumeBottom - barH).toFixed(2)}" width="3.5" height="${barH.toFixed(2)}" fill="#276c9f" opacity="${index === volumes.length - 1 ? "0.9" : "0.42"}" />`;
+    const barH = volumeBottom - yVolume(value);
+    const isLatest = index === volumes.length - 1;
+    const isAboveAvg = avgVolume && value >= avgVolume * 1.25;
+    const fill = isLatest ? "#127657" : isAboveAvg ? "#276c9f" : "#9aa8ad";
+    const opacity = isLatest ? "0.95" : isAboveAvg ? "0.62" : "0.38";
+    return `<rect x="${(x(index) - barWidth / 2).toFixed(2)}" y="${(volumeBottom - barH).toFixed(2)}" width="${barWidth.toFixed(2)}" height="${barH.toFixed(2)}" fill="${fill}" opacity="${opacity}" />`;
   }).join("");
   const support = candidate.nearest_support || candidate.trigger_levels?.nearest_support;
   const resistance = candidate.nearest_resistance || candidate.trigger_levels?.nearest_resistance;
   const trigger = candidate.upside_trigger_level || candidate.trigger_levels?.upside_trigger_level;
-  const invalidation = candidate.invalidation_level || candidate.trigger_levels?.invalidation_level;
-  const current = candidate.current_price;
+  const risk = candidate.downside_risk_level || candidate.trigger_levels?.downside_risk_level;
+  const expectedHigh = range.expected_high;
+  const expectedLow = range.expected_low;
+  const current = candidate.current_price || candidate.last_close;
+  const gridValues = [maxPrice, (maxPrice + minPrice) / 2, minPrice];
   return `
-    <svg class="chart large-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="价格结构与成交量图">
+    <svg class="chart evidence-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="价格、均线、成交量与关键点位证据图">
       <rect x="0" y="0" width="${width}" height="${height}" fill="#fff" rx="8" />
-      ${levelLine(width, yPrice(resistance), "#9b6500", "压力")}
-      ${levelLine(width, yPrice(support), "#687781", "支撑")}
-      ${levelLine(width, yPrice(trigger), "#127657", "触发")}
-      ${levelLine(width, yPrice(invalidation), "#b83232", "失效")}
-      <polyline points="${pricePoints}" fill="none" stroke="#172026" stroke-width="2.8" />
-      ${current ? `<circle cx="${x(rows.length - 1).toFixed(2)}" cy="${yPrice(current).toFixed(2)}" r="5" fill="#127657" />` : ""}
-      <line x1="12" y1="${volumeTop}" x2="${width - 12}" y2="${volumeTop}" stroke="#d7e0e4" />
+      ${gridValues.map(value => `
+        <line x1="${chartLeft}" y1="${yPrice(value).toFixed(2)}" x2="${chartRight}" y2="${yPrice(value).toFixed(2)}" stroke="#edf1f3" />
+        <text x="10" y="${(yPrice(value) + 4).toFixed(2)}" fill="#687781" font-size="11">${fmtPriceShort(value)}</text>
+      `).join("")}
+      ${levelLine(chartRight + 86, yPrice(expectedHigh), "#127657", `预期高 ${fmtPriceShort(expectedHigh)}`, chartLeft)}
+      ${levelLine(chartRight + 86, yPrice(expectedLow), "#b83232", `预期低 ${fmtPriceShort(expectedLow)}`, chartLeft)}
+      ${levelLine(chartRight + 86, yPrice(resistance), "#9b6500", `压力 ${fmtPriceShort(resistance)}`, chartLeft)}
+      ${levelLine(chartRight + 86, yPrice(support), "#687781", `支撑 ${fmtPriceShort(support)}`, chartLeft)}
+      ${levelLine(chartRight + 86, yPrice(trigger), "#127657", `触发 ${fmtPriceShort(trigger)}`, chartLeft)}
+      ${levelLine(chartRight + 86, yPrice(risk), "#b83232", `风险 ${fmtPriceShort(risk)}`, chartLeft)}
+      <polyline points="${pricePoints}" fill="none" stroke="#172026" stroke-width="2.7" />
+      ${ma20Points ? `<polyline points="${ma20Points}" fill="none" stroke="#276c9f" stroke-width="1.8" opacity="0.9" />` : ""}
+      ${ma50Points ? `<polyline points="${ma50Points}" fill="none" stroke="#9b6500" stroke-width="1.8" opacity="0.72" />` : ""}
+      <circle cx="${x(rows.length - 1).toFixed(2)}" cy="${yPrice(current).toFixed(2)}" r="5" fill="#127657" />
+      <text x="${chartLeft}" y="18" fill="#172026" font-size="13" font-weight="700">价格结构：收盘位置 ${num(candidate.close_position)} · 技术分 ${num(candidate.technical_score)} · ${boolText(candidate.technical_snapshot?.new_20d_high, "20日新高")}</text>
+      <text x="${chartRight - 142}" y="18" fill="#276c9f" font-size="12">MA20</text>
+      <text x="${chartRight - 92}" y="18" fill="#9b6500" font-size="12">MA50</text>
+      <line x1="${chartLeft}" y1="${volumeTop}" x2="${chartRight}" y2="${volumeTop}" stroke="#d7e0e4" />
       ${bars}
-      <text x="14" y="16" fill="#687781" font-size="12">价格结构</text>
-      <text x="14" y="${volumeTop - 8}" fill="#687781" font-size="12">成交量</text>
+      ${avgVolume ? `<line x1="${chartLeft}" y1="${yVolume(avgVolume).toFixed(2)}" x2="${chartRight}" y2="${yVolume(avgVolume).toFixed(2)}" stroke="#b98100" stroke-width="1.6" stroke-dasharray="5 4" />` : ""}
+      <text x="${chartLeft}" y="${volumeTop - 10}" fill="#687781" font-size="12">成交量：最新 ${compactVolume(candidate.volume_snapshot?.volume)} · 20日均量 ${compactVolume(candidate.volume_snapshot?.volume_avg20)} · 相对量 ${num(candidate.relative_volume)}x · Z ${num(candidate.volume_z_score)}</text>
+      <text x="${chartLeft}" y="${height - 12}" fill="#687781" font-size="11">${safe(rows[0]?.date || "")}</text>
+      <text x="${chartRight - 72}" y="${height - 12}" fill="#687781" font-size="11">${safe(rows[rows.length - 1]?.date || "")}</text>
+      <text x="${chartRight + 8}" y="${height - 12}" fill="#687781" font-size="11">源：${safe(sourceLabel(candidate.data_lineage))}</text>
     </svg>
   `;
 }
@@ -761,12 +892,48 @@ function similarSamples(items) {
   `).join("")}</div>`;
 }
 
-function levelLine(width, y, color, label) {
+function movingAverage(values, period) {
+  return values.map((_, index) => {
+    if (index + 1 < period) return null;
+    const window = values.slice(index + 1 - period, index + 1).filter(Number.isFinite);
+    if (window.length < period) return null;
+    return window.reduce((sum, value) => sum + value, 0) / period;
+  });
+}
+
+function linePoints(values, xScale, yScale) {
+  return values
+    .map((value, index) => Number.isFinite(value) ? `${xScale(index).toFixed(2)},${yScale(value).toFixed(2)}` : "")
+    .filter(Boolean)
+    .join(" ");
+}
+
+function levelLine(width, y, color, label, xStart = 12) {
   if (!Number.isFinite(y)) return "";
   return `
-    <line x1="12" y1="${y.toFixed(2)}" x2="${width - 12}" y2="${y.toFixed(2)}" stroke="${color}" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.75" />
-    <text x="${width - 52}" y="${Math.max(14, y - 4).toFixed(2)}" fill="${color}" font-size="11">${safe(label)}</text>
+    <line x1="${xStart}" y1="${y.toFixed(2)}" x2="${width - 12}" y2="${y.toFixed(2)}" stroke="${color}" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.75" />
+    <text x="${width - 106}" y="${Math.max(14, y - 4).toFixed(2)}" fill="${color}" font-size="11">${safe(label)}</text>
   `;
+}
+
+function compactVolume(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "-";
+  if (Math.abs(number) >= 1_000_000_000) return `${(number / 1_000_000_000).toFixed(2)}B`;
+  if (Math.abs(number) >= 1_000_000) return `${(number / 1_000_000).toFixed(1)}M`;
+  if (Math.abs(number) >= 1_000) return `${(number / 1_000).toFixed(1)}K`;
+  return number.toFixed(0);
+}
+
+function sourceLabel(lineage) {
+  if (!lineage) return "-";
+  const source = lineage.price_source || "-";
+  const real = lineage.real_price_data === false ? "降级/模拟" : "真实行情";
+  return `${source} / ${real}`;
+}
+
+function boolText(value, label) {
+  return `${label}:${value ? "是" : "否"}`;
 }
 
 function rangeMarker(x, y, color, label) {

@@ -234,9 +234,54 @@ def _has_hard_display_blocker(candidate: dict[str, Any]) -> bool:
     return False
 
 
+def _technical_snapshot(features: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "latest_date": features.get("latest_date"),
+        "last_close": features.get("last_close"),
+        "previous_close": features.get("previous_close"),
+        "open": features.get("open"),
+        "ma20": features.get("ma20"),
+        "ma50": features.get("ma50"),
+        "return_1d": features.get("return_1d"),
+        "return_5d": features.get("return_5d"),
+        "return_20d": features.get("return_20d"),
+        "gap_pct": features.get("gap_pct"),
+        "close_position": features.get("close_position"),
+        "intraday_range_pct": features.get("intraday_range_pct"),
+        "above_20d_ma": features.get("above_20d_ma"),
+        "above_50d_ma": features.get("above_50d_ma"),
+        "new_20d_high": features.get("new_20d_high"),
+        "new_50d_high": features.get("new_50d_high"),
+        "recent_support": features.get("recent_support"),
+        "recent_resistance": features.get("recent_resistance"),
+        "recent_support_50d": features.get("recent_support_50d"),
+        "recent_resistance_50d": features.get("recent_resistance_50d"),
+        "vwap_proxy": features.get("vwap_proxy"),
+        "rsi_14": features.get("rsi_14"),
+        "atr_pct": features.get("atr_pct"),
+        "realized_volatility_20d": features.get("realized_volatility_20d"),
+        "technical_score": features.get("technical_score"),
+    }
+
+
+def _volume_snapshot(features: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "latest_date": features.get("latest_date"),
+        "volume": features.get("volume"),
+        "volume_avg20": features.get("volume_avg20"),
+        "volume_std20": features.get("volume_std20"),
+        "relative_volume": features.get("relative_volume"),
+        "volume_z_score": features.get("volume_z_score"),
+        "volume_score": features.get("volume_score"),
+        "dollar_volume_m": features.get("dollar_volume_m"),
+        "avg_dollar_volume_m": features.get("avg_dollar_volume_m"),
+    }
+
+
 def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
     rows = []
     for candidate in candidates:
+        features = candidate.get("features") or {}
         rows.append(
             {
                 "rank": candidate.get("rank"),
@@ -271,11 +316,21 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "signal_quality_gate": candidate.get("signal_quality_gate"),
                 "quote_confirmation": candidate.get("quote_confirmation"),
                 "quote_confirmation_score": candidate.get("quote_confirmation_score"),
-                "current_price": (candidate.get("features") or {}).get("current_price"),
-                "current_vs_last_close_pct": (candidate.get("features") or {}).get("current_vs_last_close_pct"),
+                "current_price": features.get("current_price"),
+                "current_vs_last_close_pct": features.get("current_vs_last_close_pct"),
                 "risk_score": candidate.get("risk_score"),
                 "risk_flags": candidate.get("risk_flags"),
                 "pool_filter": candidate.get("pool_filter"),
+                "data_lineage": {
+                    "price_source": features.get("source"),
+                    "price_source_status": features.get("source_status"),
+                    "real_price_data": features.get("real_data"),
+                    "latest_price_date": features.get("latest_date"),
+                    "quote_status": (candidate.get("quote_confirmation") or {}).get("status"),
+                    "quote_timestamp": (candidate.get("quote_confirmation") or {}).get("quote_timestamp"),
+                    "news_status": (candidate.get("news") or {}).get("news_data_status"),
+                    "news_headline_count": (candidate.get("news") or {}).get("headline_count"),
+                },
                 "primary_scenario": candidate.get("primary_scenario"),
                 "primary_probability": candidate.get("primary_probability"),
                 "secondary_scenario": candidate.get("secondary_scenario"),
@@ -297,17 +352,19 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "reason": candidate.get("reason"),
                 "trade_plan": candidate.get("trade_plan"),
                 "news": candidate.get("news"),
-                "relative_strength": (candidate.get("features") or {}).get("relative_strength_5d"),
-                "relative_volume": (candidate.get("features") or {}).get("relative_volume"),
-                "volume_score": (candidate.get("features") or {}).get("volume_score"),
-                "technical_score": (candidate.get("features") or {}).get("technical_score"),
-                "close_position": (candidate.get("features") or {}).get("close_position"),
-                "dollar_volume_m": (candidate.get("features") or {}).get("dollar_volume_m"),
-                "avg_dollar_volume_m": (candidate.get("features") or {}).get("avg_dollar_volume_m"),
-                "atr_pct": (candidate.get("features") or {}).get("atr_pct"),
-                "realized_volatility_20d": (candidate.get("features") or {}).get("realized_volatility_20d"),
-                "volume_z_score": (candidate.get("features") or {}).get("volume_z_score"),
-                "price_history": (candidate.get("features") or {}).get("price_history"),
+                "relative_strength": features.get("relative_strength_5d"),
+                "relative_volume": features.get("relative_volume"),
+                "volume_score": features.get("volume_score"),
+                "technical_score": features.get("technical_score"),
+                "close_position": features.get("close_position"),
+                "dollar_volume_m": features.get("dollar_volume_m"),
+                "avg_dollar_volume_m": features.get("avg_dollar_volume_m"),
+                "atr_pct": features.get("atr_pct"),
+                "realized_volatility_20d": features.get("realized_volatility_20d"),
+                "volume_z_score": features.get("volume_z_score"),
+                "technical_snapshot": _technical_snapshot(features),
+                "volume_snapshot": _volume_snapshot(features),
+                "price_history": features.get("price_history"),
                 "historical_analog": candidate.get("historical_analog"),
                 "historical_similar_samples": candidate.get("historical_similar_samples"),
                 "supporting_evidence": candidate.get("supporting_evidence"),

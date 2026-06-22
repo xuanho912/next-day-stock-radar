@@ -425,6 +425,81 @@ tr[data-ticker].selected {
   height: 260px;
 }
 
+.evidence-chart {
+  height: 360px;
+}
+
+.data-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.proof-block {
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--muted);
+  border-radius: 8px;
+  background: white;
+  padding: 10px;
+}
+
+.proof-block span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.proof-block strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+.proof-block p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.proof-good {
+  border-left-color: var(--green);
+}
+
+.proof-warn {
+  border-left-color: var(--amber);
+}
+
+.proof-bad {
+  border-left-color: var(--red);
+}
+
+.data-source-line,
+.data-warning {
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.data-source-line {
+  border: 1px solid var(--line);
+  background: #f8fafb;
+  color: var(--muted);
+}
+
+.data-warning {
+  display: grid;
+  gap: 6px;
+  border: 1px solid #f4c8bd;
+  background: var(--red-bg);
+  color: var(--red);
+  font-weight: 750;
+}
+
 .wide-card {
   grid-column: span 2;
 }
@@ -633,6 +708,7 @@ tr[data-ticker].selected {
 
   .opportunity-strip,
   .volume-analysis,
+  .data-proof-grid,
   .matrix-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -654,7 +730,12 @@ tr[data-ticker].selected {
   .space-tiles,
   .opportunity-strip,
   .volume-analysis,
+  .data-proof-grid,
   .matrix-grid {
     grid-template-columns: 1fr;
+  }
+
+  .evidence-chart {
+    height: 320px;
   }
 }
