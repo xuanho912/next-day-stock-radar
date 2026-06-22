@@ -1,38 +1,38 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-06-22T15:28:23.557587+00:00",
+  "generated_at": "2026-06-22T15:52:24.936953+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
-  "overall_decision": "观察",
-  "agency_quality_gate": "谨慎通过",
-  "market_permission": "只观察候选，不强行追逐；等待盘前刷新和触发确认。",
+  "overall_decision": "防守",
+  "agency_quality_gate": "不通过",
+  "market_permission": "防守优先；候选降级，避免把弱信号当成机会。",
   "top10_metric_snapshot": {
-    "top10_count": 8,
-    "top5_count": 5,
+    "top10_count": 0,
+    "top5_count": 0,
     "strong_edge_count": 0,
-    "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 53.38,
-    "avg_top5_confluence_score": 70.83,
-    "avg_top5_expectation_gap_score": 69.63,
-    "avg_top5_payoff_quality_score": 57.17,
-    "avg_top5_execution_quality_score": 82.11,
-    "avg_top5_risk_score": 2.54,
-    "min_top5_confluence_score": 63.61,
-    "min_top5_expectation_gap_score": 54.0,
-    "top_sector": "AI / Semiconductors",
-    "top_sector_count": 2,
-    "top_candidate_type": "pullback_reversal_setup",
-    "top_candidate_type_count": 4,
+    "moderate_edge_count": 0,
+    "avg_top5_elasticity_score": null,
+    "avg_top5_confluence_score": null,
+    "avg_top5_expectation_gap_score": null,
+    "avg_top5_payoff_quality_score": null,
+    "avg_top5_execution_quality_score": null,
+    "avg_top5_risk_score": null,
+    "min_top5_confluence_score": null,
+    "min_top5_expectation_gap_score": null,
+    "top_sector": "unknown",
+    "top_sector_count": 0,
+    "top_candidate_type": "unknown",
+    "top_candidate_type_count": 0,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
-    "top10_low_sample_warning_count": 8,
-    "top10_proxy_squeeze_count": 8,
-    "top10_quote_confirming_count": 4,
+    "top10_low_sample_warning_count": 0,
+    "top10_proxy_squeeze_count": 0,
+    "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 5,
+    "top10_signal_partial_count": 0,
     "top10_signal_blocked_count": 0
   },
   "agent_findings": [
@@ -48,44 +48,50 @@
     },
     {
       "agent_name": "板块主线代理",
-      "status": "pass",
+      "status": "fail",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(2); top_type=pullback_reversal_setup(4)",
-      "warnings": []
+      "evidence": "top_sector=unknown(0); top_type=unknown(0)",
+      "warnings": [
+        "没有候选，无法形成主线。"
+      ]
     },
     {
       "agent_name": "预期差代理",
-      "status": "warn",
+      "status": "fail",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=69.63; min_top5_gap=54.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=0; min_top5_gap=0; confirmed_signal_count=0",
       "warnings": [
-        "Top 5 平均预期差尚可，但最低预期差偏弱。"
+        "预期差不足，容易变成表面热闹但没有交易价值。"
       ]
     },
     {
       "agent_name": "执行质量代理",
-      "status": "pass",
+      "status": "fail",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=57.17; avg_execution=82.11; avg_risk=2.54",
-      "warnings": []
+      "evidence": "avg_payoff=0; avg_execution=0; avg_risk=0",
+      "warnings": [
+        "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。",
+        "没有 Top 5 候选。"
+      ]
     },
     {
       "agent_name": "当前价确认代理",
-      "status": "pass",
+      "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=4; failed=0; missing=0",
-      "warnings": []
+      "evidence": "confirming=0; failed=0; missing=0",
+      "warnings": [
+        "当前价确认数量偏少，盘前/盘中需要再次刷新。"
+      ]
     },
     {
       "agent_name": "风险现实校验代理",
-      "status": "warn",
+      "status": "fail",
       "conclusion": "默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。",
-      "evidence": "proxy_squeeze=8; low_sample=8; liquidity_risk=0",
+      "evidence": "proxy_squeeze=0; low_sample=0; liquidity_risk=0",
       "warnings": [
         "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
-        "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。",
-        "Top 10 没有真实共振候选，只能观察，不能进攻。"
+        "Top 10 没有真实共振候选，只能观察，不能进攻。",
+        "没有候选可供现实校验。"
       ]
     },
     {
@@ -115,131 +121,11 @@
       "warnings": []
     }
   ],
-  "top_candidate_agent_notes": [
-    {
-      "rank": 1,
-      "ticker": "AMD",
-      "candidate_type": "accumulation_breakout_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 78; 预期差 84.12; 赔率 60.62; 风险 0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 558.37,
-      "invalidation": 426.05,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 2,
-      "ticker": "JOBY",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 74.12; 预期差 87.21; 赔率 60.01; 风险 0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 12.475,
-      "invalidation": 8.72,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 3,
-      "ticker": "NVDA",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 73.62; 预期差 68.84; 赔率 61.66; 风险 0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 232.28,
-      "invalidation": 199.34,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 4,
-      "ticker": "BEAM",
-      "candidate_type": "accumulation_breakout_setup",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 64.78; 预期差 54; 赔率 52.5; 风险 6.73; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 34.9613,
-      "invalidation": 26.04,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 5,
-      "ticker": "VST",
-      "candidate_type": "accumulation_breakout_setup",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 63.61; 预期差 54; 赔率 51.04; 风险 5.98; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 167.4,
-      "invalidation": 137.81,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 6,
-      "ticker": "VKTX",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 63.36; 预期差 50; 赔率 48.99; 风险 8.0; 闸门 不具备高置信优势; 信号 incomplete",
-      "trigger": 33.16,
-      "invalidation": 27.16,
-      "warnings": [
-        "风险标记：weak_close_distribution_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足"
-      ]
-    },
-    {
-      "rank": 8,
-      "ticker": "TSLA",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 62.32; 预期差 54; 赔率 45.22; 风险 16.5; 闸门 不具备高置信优势; 信号 incomplete",
-      "trigger": 445.6,
-      "invalidation": 380.15,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 赔率质量不足 / 预期差不足"
-      ]
-    },
-    {
-      "rank": 9,
-      "ticker": "NNE",
-      "candidate_type": "short_squeeze_candidate",
-      "agency_verdict": "共振不足",
-      "key_check": "共振 60.7; 预期差 54; 赔率 56.92; 风险 0; 闸门 不具备高置信优势; 信号 incomplete",
-      "trigger": 31.59,
-      "invalidation": 21.5,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振"
-      ]
-    }
-  ],
+  "top_candidate_agent_notes": [],
   "hard_warnings": [
     "存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。",
-    "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
     "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
-    "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。",
     "Top 10 没有真实共振候选，只能观察，不能进攻。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
