@@ -158,11 +158,41 @@ function renderDashboard() {
   validationBadge.className = `badge ${dashboard.model_validation_status === "validated" ? "good" : "neutral"}`;
 
   renderAvoidList();
+  renderCoreBrief();
   renderPrimaryVisual();
   renderOpportunityStrip();
   renderCandidateTable();
   renderDetail();
   renderValidation();
+}
+
+function renderCoreBrief() {
+  const target = document.getElementById("coreBrief");
+  if (!target) return;
+  const top = dashboard.top_candidates || [];
+  const watch = sortedWatchCandidates();
+  const lead = top[0] || watch[0] || null;
+  const mode = top.length ? "可用候选" : watch.length ? "观察阻断" : "无候选";
+  const decision = top.length ? "有票通过真钱审计" : "没有票通过真钱审计";
+  const leadReason = lead?.reason || dashboard.real_money_readiness?.reasons?.[0] || "暂无";
+  target.innerHTML = `
+    <div>
+      <span>雷达结论</span>
+      <strong>${safe(decision)}</strong>
+    </div>
+    <div>
+      <span>最高发酵</span>
+      <strong>${lead ? `${safe(lead.ticker)} · ${safe(num(lead.fermentation_score))}` : "-"}</strong>
+    </div>
+    <div>
+      <span>当前榜单</span>
+      <strong>${safe(mode)} · ${safe(top.length || watch.length || 0)} 只</strong>
+    </div>
+    <div>
+      <span>第一阻断</span>
+      <strong>${safe(shortText(leadReason, 34))}</strong>
+    </div>
+  `;
 }
 
 function renderAvoidList() {
@@ -176,7 +206,9 @@ function renderAvoidList() {
 
 function renderCandidateTable() {
   const tbody = document.querySelector("#candidateTable tbody");
-  const candidates = dashboard.top_candidates || [];
+  const { rows: candidates, mode } = visibleCandidateRows();
+  setText("candidateTableEyebrow", mode === "top" ? "候选榜" : "观察阻断榜");
+  setText("candidateTableTitle", mode === "top" ? "次日候选明细" : "未放行但值得解释的股票");
   if (!candidates.length) {
     tbody.innerHTML = `
       <tr>
@@ -187,9 +219,9 @@ function renderCandidateTable() {
     `;
     return;
   }
-  tbody.innerHTML = candidates.map(candidate => `
+  tbody.innerHTML = candidates.map((candidate, index) => `
     <tr data-ticker="${safeAttr(candidate.ticker)}" class="${candidate.ticker === selectedTicker ? "selected" : ""}">
-      <td>${safe(candidate.rank)}</td>
+      <td>${safe(candidate.rank || index + 1)}</td>
       <td>
         <strong>${safe(candidate.ticker)}</strong>
         <small>${safe(candidate.company_name || "")}</small>
@@ -265,16 +297,16 @@ function renderPrimaryVisual() {
 function renderOpportunityStrip() {
   const target = document.getElementById("topCandidateCards");
   if (!target) return;
-  const candidates = dashboard.top_candidates || [];
+  const { rows: candidates, mode } = visibleCandidateRows();
   if (!candidates.length) {
     target.innerHTML = `<div class="empty-state">当前没有 A/B 级次日/近两交易日上涨候选。</div>`;
     return;
   }
-  target.innerHTML = candidates.slice(0, 5).map(candidate => `
+  target.innerHTML = candidates.slice(0, mode === "top" ? 5 : 8).map(candidate => `
     <button class="opportunity-card ${candidate.ticker === selectedTicker ? "active" : ""}" data-ticker="${safeAttr(candidate.ticker)}">
-      <span>${safe(candidate.rank)} · ${safe(candidate.ticker)}</span>
-      <strong>${safe(pct(candidate.expected_upside_pct))}</strong>
-      <small>信任 ${safe(num(candidate.trust_score))} · ${safe(candidate.readiness_label || zh("readiness", candidate.readiness_status))} · 共振 ${safe(candidate.confluence_score)}</small>
+      <span>${safe(candidate.rank || "-")} · ${safe(candidate.ticker)} · ${safe(mode === "top" ? "候选" : "阻断")}</span>
+      <strong>${safe(mode === "top" ? pct(candidate.expected_upside_pct) : `信任 ${num(candidate.trust_score)}`)}</strong>
+      <small>发酵 ${safe(num(candidate.fermentation_score))} · ${safe(candidate.fermentation_profile?.label || "-")} · ${safe(shortText(candidate.reason || "", 28))}</small>
     </button>
   `).join("");
 
@@ -546,12 +578,25 @@ function renderAgencyReview() {
 
 function selectedCandidate() {
   const top = dashboard.top_candidates || [];
-  const watch = dashboard.watch_candidates || [];
+  const watch = sortedWatchCandidates();
   return top.find(item => item.ticker === selectedTicker)
     || watch.find(item => item.ticker === selectedTicker)
     || top[0]
     || [...watch].sort((a, b) => Number(b.fermentation_score || 0) - Number(a.fermentation_score || 0))[0]
     || null;
+}
+
+function visibleCandidateRows() {
+  const top = dashboard.top_candidates || [];
+  if (top.length) return { rows: top, mode: "top" };
+  return { rows: sortedWatchCandidates().slice(0, 20), mode: "watch" };
+}
+
+function sortedWatchCandidates() {
+  return [...(dashboard.watch_candidates || [])].sort((a, b) =>
+    Number(b.trust_score || 0) - Number(a.trust_score || 0)
+    || Number(b.fermentation_score || 0) - Number(a.fermentation_score || 0)
+  );
 }
 
 function renderDataBackedSummary(candidate) {
@@ -1243,4 +1288,10 @@ function safe(value) {
 
 function safeAttr(value) {
   return safe(value).replaceAll("`", "&#096;");
+}
+
+function shortText(value, maxLength = 32) {
+  const text = String(value ?? "").trim();
+  if (text.length <= maxLength) return text || "-";
+  return `${text.slice(0, Math.max(0, maxLength - 1))}…`;
 }
