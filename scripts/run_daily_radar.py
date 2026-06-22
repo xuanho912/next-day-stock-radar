@@ -231,6 +231,12 @@ def _has_hard_display_blocker(candidate: dict[str, Any]) -> bool:
         return True
     if float(candidate.get("elasticity_score") or 0) < 30:
         return True
+    extension_risk = float(candidate.get("extension_risk_score") or 0)
+    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
+    if extension_risk >= 82:
+        return True
+    if extension_risk >= 75 and not setup_type:
+        return True
     return False
 
 
@@ -242,12 +248,20 @@ def _technical_snapshot(features: dict[str, Any]) -> dict[str, Any]:
         "open": features.get("open"),
         "ma20": features.get("ma20"),
         "ma50": features.get("ma50"),
+        "ma20_distance_pct": features.get("ma20_distance_pct"),
+        "ma50_distance_pct": features.get("ma50_distance_pct"),
         "return_1d": features.get("return_1d"),
         "return_5d": features.get("return_5d"),
         "return_20d": features.get("return_20d"),
         "gap_pct": features.get("gap_pct"),
         "close_position": features.get("close_position"),
         "intraday_range_pct": features.get("intraday_range_pct"),
+        "range_10d_pct": features.get("range_10d_pct"),
+        "range_20d_pct": features.get("range_20d_pct"),
+        "compression_ratio": features.get("compression_ratio"),
+        "distance_to_resistance_pct": features.get("distance_to_resistance_pct"),
+        "distance_to_support_pct": features.get("distance_to_support_pct"),
+        "pullback_from_20d_high_pct": features.get("pullback_from_20d_high_pct"),
         "above_20d_ma": features.get("above_20d_ma"),
         "above_50d_ma": features.get("above_50d_ma"),
         "new_20d_high": features.get("new_20d_high"),
@@ -302,6 +316,10 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "bounce_score": candidate.get("bounce_score"),
                 "downside_continuation_score": candidate.get("downside_continuation_score"),
                 "squeeze_score": candidate.get("squeeze_score"),
+                "setup_quality_score": candidate.get("setup_quality_score"),
+                "bottom_reversal_score": candidate.get("bottom_reversal_score"),
+                "breakout_setup_score": candidate.get("breakout_setup_score"),
+                "extension_risk_score": candidate.get("extension_risk_score"),
                 "squeeze_data_status": candidate.get("squeeze_data_status"),
                 "confluence_score": candidate.get("confluence_score"),
                 "catalyst_score": candidate.get("catalyst_score"),

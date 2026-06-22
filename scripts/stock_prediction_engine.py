@@ -124,6 +124,10 @@ def _build_candidate(
         "bounce_score": raw_scores["bounce_score"],
         "downside_continuation_score": raw_scores["downside_continuation_score"],
         "squeeze_score": raw_scores["squeeze_score"],
+        "setup_quality_score": raw_scores["setup_quality_score"],
+        "bottom_reversal_score": raw_scores["bottom_reversal_score"],
+        "breakout_setup_score": raw_scores["breakout_setup_score"],
+        "extension_risk_score": raw_scores["extension_risk_score"],
         "squeeze_data_status": raw_scores["squeeze_data_status"],
         "catalyst_score": raw_scores["catalyst_score"],
         "quote_confirmation": features.get("quote_confirmation"),
@@ -189,6 +193,8 @@ def _stock_features(
     recent_low_50 = min(lows[-51:-1]) if len(lows) >= 51 else recent_low_20
     ma20 = _mean(closes[-20:])
     ma50 = _mean(closes[-50:])
+    ma20_distance_pct = last / ma20 - 1 if ma20 else 0.0
+    ma50_distance_pct = last / ma50 - 1 if ma50 else 0.0
     volume_avg20 = _mean(volumes[-21:-1])
     volume_std20 = _std(volumes[-21:-1])
     relative_volume = volumes[-1] / volume_avg20 if volume_avg20 else 1.0
@@ -198,6 +204,12 @@ def _stock_features(
     close_position = (last - lows[-1]) / max(highs[-1] - lows[-1], 0.0001) if lows else 0.5
     intraday_range_pct = (highs[-1] - lows[-1]) / last if last else 0.0
     gap_pct = opens[-1] / previous - 1 if previous and opens else 0.0
+    range_10 = (max(highs[-10:]) - min(lows[-10:])) / last if len(highs) >= 10 and last else 0.0
+    range_20 = (max(highs[-20:]) - min(lows[-20:])) / last if len(highs) >= 20 and last else range_10
+    compression_ratio = range_10 / range_20 if range_20 else 1.0
+    distance_to_resistance_pct = recent_high_20 / last - 1 if last else 0.0
+    distance_to_support_pct = last / recent_low_20 - 1 if recent_low_20 else 0.0
+    pullback_from_20d_high_pct = last / recent_high_20 - 1 if recent_high_20 else 0.0
     atr = _atr(rows, 14)
     atr_pct = atr / last if last else 0.0
     realized_volatility_20d = _realized_volatility(closes, 20)
@@ -248,7 +260,15 @@ def _stock_features(
         "open": opens[-1] if opens else last,
         "ma20": round(ma20, 4),
         "ma50": round(ma50, 4),
+        "ma20_distance_pct": round(ma20_distance_pct, 5),
+        "ma50_distance_pct": round(ma50_distance_pct, 5),
         "gap_pct": round(gap_pct, 5),
+        "range_10d_pct": round(range_10, 5),
+        "range_20d_pct": round(range_20, 5),
+        "compression_ratio": round(compression_ratio, 5),
+        "distance_to_resistance_pct": round(distance_to_resistance_pct, 5),
+        "distance_to_support_pct": round(distance_to_support_pct, 5),
+        "pullback_from_20d_high_pct": round(pullback_from_20d_high_pct, 5),
         "return_1d": round(return_1d, 5),
         "return_5d": round(return_5d, 5),
         "return_20d": round(return_20d, 5),
@@ -389,6 +409,17 @@ def _raw_scores(
     risk_score = _risk_score(features, news, market_context, pool_filter)
     expectation_gap_score = _expectation_gap_score(features, news, sector, market_context, risk_score)
     execution_quality_score = _execution_quality_score(features, volume, technical, risk_score, pool_filter)
+    extension_risk_score = _extension_risk_score(features, risk_score)
+    bottom_reversal_score = _bottom_reversal_score(features, sector, risk_score)
+    breakout_setup_score = _breakout_setup_score(features, sector, risk_score)
+    setup_quality_score = _setup_quality_score(
+        features=features,
+        news=news,
+        sector_score=sector,
+        risk_score=risk_score,
+        bottom_reversal_score=bottom_reversal_score,
+        breakout_setup_score=breakout_setup_score,
+    )
     quote_score = float(features.get("quote_confirmation_score") or 50)
     quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
     quote_bonus = quote_score - 50 if quote_available else 0
@@ -408,8 +439,10 @@ def _raw_scores(
         + catalyst_score * 0.06 * elasticity_confirmation_factor
         + volume * 0.05 * elasticity_confirmation_factor
         + technical * 0.04 * elasticity_confirmation_factor
+        + setup_quality_score * 0.05
         + max(quote_bonus, 0) * 0.12
         - risk_score * 0.10
+        - max(extension_risk_score - 62, 0) * 0.10
     )
     if catalyst_type == "no_recent_confirmed_news" and volume < 60:
         elasticity_score = min(elasticity_score, 66)
@@ -457,13 +490,15 @@ def _raw_scores(
         + technical * 0.19
         + volume * 0.18
         + sector * 0.14
+        + setup_quality_score * 0.12
         + expectation_gap_score * 0.10
         + execution_quality_score * 0.08
-        + upside_momentum_score * 0.10
-        + bounce_score * 0.04
+        + upside_momentum_score * 0.06
+        + bounce_score * 0.06
         + elasticity_score * 0.02
         + quote_bonus * 0.08
         - risk_score * 0.32
+        - extension_risk_score * 0.10
         + _market_adjustment(market_context)
     )
     confluence_score = _apply_raw_signal_caps(
@@ -511,6 +546,10 @@ def _raw_scores(
         "bounce_score": round(bounce_score, 2),
         "downside_continuation_score": round(downside_continuation_score, 2),
         "squeeze_score": round(squeeze_score, 2),
+        "setup_quality_score": round(setup_quality_score, 2),
+        "bottom_reversal_score": round(bottom_reversal_score, 2),
+        "breakout_setup_score": round(breakout_setup_score, 2),
+        "extension_risk_score": round(extension_risk_score, 2),
         "squeeze_data_status": {
             "short_interest": "proxy",
             "options_flow": "proxy",
@@ -538,6 +577,100 @@ def _raw_elasticity_potential(features: dict[str, Any]) -> float:
         + max(features["beta_proxy"] - 1, 0) * 5
         + 8
     )
+
+
+def _bottom_reversal_score(features: dict[str, Any], sector_score: float, risk_score: float) -> float:
+    rsi = features.get("rsi_14")
+    pullback = abs(min(float(features.get("pullback_from_20d_high_pct") or 0), 0))
+    support_distance = abs(float(features.get("distance_to_support_pct") or 0))
+    close_position = float(features.get("close_position") or 0.5)
+    volume_z = float(features.get("volume_z_score") or 0)
+    return_5d = float(features.get("return_5d") or 0)
+    ma20_distance = float(features.get("ma20_distance_pct") or 0)
+    return _clamp(
+        24
+        + (16 if rsi is not None and rsi <= 42 else 0)
+        + (8 if rsi is not None and 42 < rsi <= 50 else 0)
+        + min(pullback, 0.22) * 130
+        + (10 if 0.02 <= support_distance <= 0.14 else 0)
+        + (10 if close_position >= 0.48 else -8)
+        + (8 if volume_z >= 0.4 else 0)
+        + (8 if return_5d < 0 and close_position >= 0.55 else 0)
+        + (7 if -0.08 <= ma20_distance <= 0.03 else 0)
+        + sector_score * 0.08
+        - risk_score * 0.18
+    )
+
+
+def _breakout_setup_score(features: dict[str, Any], sector_score: float, risk_score: float) -> float:
+    distance_to_resistance = float(features.get("distance_to_resistance_pct") or 0)
+    compression = float(features.get("compression_ratio") or 1)
+    relative_volume = float(features.get("relative_volume") or 0)
+    volume_z = float(features.get("volume_z_score") or 0)
+    close_position = float(features.get("close_position") or 0.5)
+    return_5d = float(features.get("return_5d") or 0)
+    ma20_distance = float(features.get("ma20_distance_pct") or 0)
+    return _clamp(
+        22
+        + (16 if 0 <= distance_to_resistance <= 0.06 else 0)
+        + (10 if 0.06 < distance_to_resistance <= 0.12 else 0)
+        + (12 if compression <= 0.72 else 4 if compression <= 0.92 else 0)
+        + (10 if 1.0 <= relative_volume <= 2.6 else 0)
+        + (8 if volume_z >= 0.2 else 0)
+        + (10 if close_position >= 0.55 else -8)
+        + (8 if features.get("above_20d_ma") and features.get("above_50d_ma") else 0)
+        + (8 if -0.03 <= ma20_distance <= 0.08 else 0)
+        + (6 if -0.02 <= return_5d <= 0.12 else 0)
+        + sector_score * 0.10
+        - risk_score * 0.14
+    )
+
+
+def _setup_quality_score(
+    *,
+    features: dict[str, Any],
+    news: dict[str, Any],
+    sector_score: float,
+    risk_score: float,
+    bottom_reversal_score: float,
+    breakout_setup_score: float,
+) -> float:
+    catalyst_score = float(news.get("catalyst_score") or 35)
+    catalyst_bonus = 8 if catalyst_score >= 58 else 3 if catalyst_score >= 48 else 0
+    liquidity_bonus = 8 if float(features.get("avg_dollar_volume_m") or 0) >= MIN_AVG_DOLLAR_VOLUME_M * 2 else 0
+    quote_status = (features.get("quote_confirmation") or {}).get("status")
+    quote_bonus = 5 if quote_status == "confirming" else -6 if quote_status == "failed" else 0
+    return _clamp(
+        max(bottom_reversal_score, breakout_setup_score) * 0.62
+        + min(bottom_reversal_score, breakout_setup_score) * 0.14
+        + sector_score * 0.08
+        + catalyst_bonus
+        + liquidity_bonus
+        + quote_bonus
+        - risk_score * 0.08
+    )
+
+
+def _extension_risk_score(features: dict[str, Any], risk_score: float) -> float:
+    return_1d = float(features.get("return_1d") or 0)
+    return_5d = float(features.get("return_5d") or 0)
+    gap_pct = float(features.get("gap_pct") or 0)
+    ma20_distance = float(features.get("ma20_distance_pct") or 0)
+    rsi = features.get("rsi_14")
+    close_position = float(features.get("close_position") or 0.5)
+    relative_volume = float(features.get("relative_volume") or 0)
+    score = (
+        18
+        + max(return_1d - 0.045, 0) * 420
+        + max(return_5d - 0.14, 0) * 260
+        + max(gap_pct - 0.035, 0) * 360
+        + max(ma20_distance - 0.12, 0) * 260
+        + (14 if rsi is not None and rsi >= 72 else 0)
+        + (8 if close_position < 0.42 and return_1d > 0.035 else 0)
+        + (6 if relative_volume >= 3.2 and return_1d > 0.05 else 0)
+        + risk_score * 0.18
+    )
+    return _clamp(score)
 
 
 def _elasticity_confirmation_factor(
@@ -762,6 +895,10 @@ def _risk_flags(features: dict[str, Any], news: dict[str, Any], pool_filter: dic
 def _candidate_type(stock: dict[str, Any], features: dict[str, Any], news: dict[str, Any], scores: dict[str, Any], pool_filter: dict[str, Any]) -> str:
     if pool_filter["hard_excluded"] or scores["confluence_score"] < 42:
         return "no_edge"
+    if scores.get("bottom_reversal_score", 0) >= 68 and scores.get("extension_risk_score", 0) < 62:
+        return "pullback_reversal_setup"
+    if scores.get("breakout_setup_score", 0) >= 70 and scores.get("extension_risk_score", 0) < 66:
+        return "accumulation_breakout_setup"
     if scores["downside_continuation_score"] >= 68 and scores["upside_momentum_score"] < 55:
         return "downside_continuation"
     if scores["risk_score"] >= 62 and scores["bounce_score"] >= 55:
@@ -770,11 +907,11 @@ def _candidate_type(stock: dict[str, Any], features: dict[str, Any], news: dict[
         return "short_squeeze_candidate"
     if scores["catalyst_score"] >= 68 and news.get("headline_count", 0) > 0:
         return "event_driven_volatility"
-    if features["gap_pct"] >= 0.025 and features["close_position"] >= 0.62:
+    if features["gap_pct"] >= 0.025 and features["close_position"] >= 0.62 and scores.get("extension_risk_score", 0) < 70:
         return "gap_continuation"
     if scores["bounce_score"] >= 64 and scores["upside_momentum_score"] < 70:
         return "oversold_bounce"
-    if scores["upside_momentum_score"] >= 64:
+    if scores["upside_momentum_score"] >= 64 and scores.get("extension_risk_score", 0) < 72:
         return "next_day_upside_momentum"
     return "no_edge"
 
@@ -1230,6 +1367,10 @@ def _evidence(
         support.append(_ev("expectation_gap", "positive_expectation_gap", scores["expectation_gap_score"], "催化、板块、价格和成交共同支持正向预期差。"))
     else:
         conflict.append(_ev("expectation_gap", "expectation_gap_not_confirmed", 100 - scores["expectation_gap_score"], "预期差证据不足，可能只是普通波动。"))
+    if scores.get("setup_quality_score", 0) >= 68:
+        support.append(_ev("setup", "setup_quality_confirmed", scores.get("setup_quality_score"), "价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。"))
+    if scores.get("extension_risk_score", 0) >= 70:
+        conflict.append(_ev("extension_risk", "extension_risk_high", scores.get("extension_risk_score"), "短线涨幅、缺口或距均线过远，存在追涨过热风险。"))
     if features["technical_score"] >= 64:
         support.append(_ev("price", "price_structure_confirmed", features["technical_score"], "价格结构有突破、收复或强收盘特征。"))
     else:
@@ -1301,6 +1442,10 @@ def _primary_scenario(market_context: dict[str, Any], candidate_type: str, score
         return "risk_path_continuation"
     if market_context.get("market_state") == "defense":
         return "only_if_market_reclaims_risk_on"
+    if candidate_type == "pullback_reversal_setup":
+        return "support_reversal_after_trigger"
+    if candidate_type == "accumulation_breakout_setup":
+        return "base_breakout_after_trigger"
     if candidate_type == "oversold_bounce":
         return "bounce_attempt_after_trigger"
     return "upside_path_after_trigger"
@@ -1309,6 +1454,10 @@ def _primary_scenario(market_context: dict[str, Any], candidate_type: str, score
 def _secondary_scenario(candidate_type: str, features: dict[str, Any]) -> str:
     if candidate_type in {"failed_bounce_risk", "downside_continuation"}:
         return "failed_risk_path_relief_bounce"
+    if candidate_type == "pullback_reversal_setup":
+        return "support_hold_then_reclaim"
+    if candidate_type == "accumulation_breakout_setup":
+        return "range_hold_then_breakout"
     if features["gap_pct"] > 0.035:
         return "open_drive_then_gap_fill"
     return "range_extension_after_trigger"

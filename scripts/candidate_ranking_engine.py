@@ -57,6 +57,8 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
     execution_quality_score = float(candidate.get("execution_quality_score") or 50)
     elasticity_confirmation_factor = float(candidate.get("elasticity_confirmation_factor") or 0.50)
+    setup_quality_score = float(candidate.get("setup_quality_score") or 0)
+    extension_risk_score = float(candidate.get("extension_risk_score") or 0)
     signal_quality_gate = _signal_quality_gate(candidate)
 
     if strict:
@@ -83,6 +85,8 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
             + max(expectation_gap_score - 58, 0) * 0.03
             + max(payoff_quality_score - 52, 0) * 0.03
             + max(execution_quality_score - 58, 0) * 0.02
+            + max(setup_quality_score - 62, 0) * 0.10
+            - max(extension_risk_score - 64, 0) * 0.18
         )
         if expectation_gap_score < 45 and catalyst_score < 55:
             confluence_score = min(confluence_score, 62)
@@ -93,6 +97,10 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     if candidate.get("pool_filter", {}).get("hard_excluded"):
         confluence_score = min(confluence_score, 30)
     confluence_score = min(confluence_score, signal_quality_gate["confluence_cap"])
+    if candidate.get("candidate_type") in {"next_day_upside_momentum", "gap_continuation"} and extension_risk_score >= 72:
+        confluence_score = min(confluence_score, 62)
+    if candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"} and setup_quality_score >= 70 and extension_risk_score < 62:
+        confluence_score = min(78, confluence_score + 4)
 
     confluence_score = round(max(0, min(100, confluence_score)), 2)
     elasticity_score = round(
@@ -103,7 +111,9 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
                 elasticity_score
                 + min(float(candidate["features"].get("relative_volume") or 1), 5) * 0.8
                 + max(elasticity_confirmation_factor - 0.55, 0) * 12
+                + max(setup_quality_score - 68, 0) * 0.10
                 - max(risk_score - 60, 0) * 0.22
+                - max(extension_risk_score - 70, 0) * 0.18
                 - len(signal_quality_gate["critical_failures"]) * 4,
             ),
         ),
@@ -168,6 +178,10 @@ def _edge_status(
     risk_flags = candidate.get("risk_flags") or []
     expectation_gap_score = float(candidate.get("expectation_gap_score") or 50)
     payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
+    setup_quality_score = float(candidate.get("setup_quality_score") or 0)
+    extension_risk_score = float(candidate.get("extension_risk_score") or 0)
+    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"}
+    chase_type = candidate.get("candidate_type") in {"next_day_upside_momentum", "gap_continuation"}
     if candidate.get("candidate_type") == "no_edge" or candidate.get("pool_filter", {}).get("hard_excluded"):
         return "AVOID"
     if signal_quality_gate["level"] == "blocked":
@@ -176,6 +190,8 @@ def _edge_status(
         return "WATCH"
     if risk_score >= 72 or ("high_liquidity_risk" in risk_flags and confluence < 58):
         return "AVOID"
+    if chase_type and extension_risk_score >= 76:
+        return "NO_EDGE" if confluence < 72 else "WATCH"
     if expectation_gap_score < 45 and confluence < 66:
         return "NO_EDGE"
     if payoff_quality_score < 42:
@@ -191,6 +207,15 @@ def _edge_status(
         and conflict_count <= 2
     ):
         return "STRONG_EDGE"
+    if (
+        setup_type
+        and signal_quality_gate["level"] in {"confirmed", "partial"}
+        and setup_quality_score >= 72
+        and extension_risk_score < 62
+        and confluence >= (70 if strict else 66)
+        and support_count >= 3
+    ):
+        return "MODERATE_EDGE"
     if signal_quality_gate["level"] in {"confirmed", "partial"} and confluence >= (72 if strict else 69) and support_count >= 4:
         return "MODERATE_EDGE"
     if confluence >= 52:
@@ -213,9 +238,12 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     sector = float(sector_theme.get("score") or 0)
     payoff = float(candidate.get("payoff_quality_score") or 0)
     expectation_gap = float(candidate.get("expectation_gap_score") or 0)
+    setup_quality_score = float(candidate.get("setup_quality_score") or 0)
+    extension_risk_score = float(candidate.get("extension_risk_score") or 0)
     quote_status = (candidate.get("quote_confirmation") or {}).get("status")
     catalyst_type = news.get("catalyst_type")
     catalyst_quality = news.get("catalyst_quality")
+    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"}
 
     failures: list[str] = []
     critical: list[str] = []
@@ -238,9 +266,9 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     if candidate.get("squeeze_data_status", {}).get("short_interest") == "proxy" and candidate.get("candidate_type") == "short_squeeze_candidate":
         failures.append("逼空逻辑只有 proxy，不能作为强共振")
 
-    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65:
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65 and not (setup_type and setup_quality_score >= 68):
         critical.append("催化质量未确认")
-    if catalyst < 45 and technical < 65:
+    if catalyst < 45 and technical < 65 and not (setup_type and setup_quality_score >= 70):
         critical.append("缺催化且技术不强")
     if volume < 52:
         critical.append("成交量弱")
@@ -253,7 +281,14 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     elif not failures:
         level = "confirmed"
         cap = 100
-    elif len(failures) <= 2 and catalyst >= 50 and technical >= 50 and volume >= 55 and payoff >= 48:
+    elif (
+        len(failures) <= (3 if setup_type else 2)
+        and (catalyst >= 50 or setup_quality_score >= 68)
+        and technical >= 50
+        and volume >= (50 if setup_type else 55)
+        and payoff >= 45
+        and extension_risk_score < 72
+    ):
         level = "partial"
         cap = 74
     else:

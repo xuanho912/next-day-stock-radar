@@ -5,6 +5,8 @@ const DATA_FILES = {
 const LABELS = {
   candidateType: {
     next_day_upside_momentum: "次日上冲动量",
+    accumulation_breakout_setup: "蓄势临界突破",
+    pullback_reversal_setup: "低吸反转候选",
     oversold_bounce: "超跌反抽",
     short_squeeze_candidate: "逼空候选",
     gap_continuation: "跳空延续",
@@ -23,6 +25,10 @@ const LABELS = {
   },
   scenario: {
     upside_path_after_trigger: "触发后上冲路径",
+    support_reversal_after_trigger: "支撑反转确认后路径",
+    base_breakout_after_trigger: "蓄势突破确认后路径",
+    support_hold_then_reclaim: "守住支撑后收复路径",
+    range_hold_then_breakout: "区间守住后突破路径",
     bounce_attempt_after_trigger: "触发后反抽路径",
     only_if_market_reclaims_risk_on: "仅市场转强后成立",
     risk_path_continuation: "风险路径延续",
@@ -60,6 +66,8 @@ const LABELS = {
     weak_or_missing_catalyst: "催化不足",
     positive_expectation_gap: "正向预期差",
     expectation_gap_not_confirmed: "预期差未确认",
+    setup_quality_confirmed: "低吸/蓄势证据",
+    extension_risk_high: "追涨过热风险",
     price_structure_confirmed: "价格结构确认",
     price_structure_unconfirmed: "价格结构未确认",
     volume_anomaly_confirmed: "成交确认",
@@ -396,6 +404,10 @@ function renderDetail() {
         ["次日明显波动概率", pct(candidate.next_day_move_probability)],
         ["上冲动量评分", candidate.upside_momentum_score],
         ["反抽评分", candidate.bounce_score],
+        ["低吸反转评分", candidate.bottom_reversal_score],
+        ["蓄势突破评分", candidate.breakout_setup_score],
+        ["潜伏质量评分", candidate.setup_quality_score],
+        ["追涨过热风险", candidate.extension_risk_score],
         ["下行延续评分", candidate.downside_continuation_score],
         ["逼空评分", candidate.squeeze_score],
         ["催化评分", candidate.catalyst_score],
@@ -531,6 +543,16 @@ function renderDataBackedSummary(candidate) {
         <strong>${safe(catalystVerdict(candidate))}</strong>
         <p>新闻状态 ${safe(lineage.news_status || "-")}，标题数 ${safe(lineage.news_headline_count ?? 0)}，主新闻：${safe(candidate.news?.primary_headline || "没有确认主新闻")}。</p>
       </div>
+      <div class="proof-block ${proofClass(setupVerdict(candidate))}">
+        <span>潜伏/低吸质量</span>
+        <strong>${safe(setupVerdict(candidate))}</strong>
+        <p>潜伏质量 ${safe(num(candidate.setup_quality_score))}，低吸反转 ${safe(num(candidate.bottom_reversal_score))}，蓄势突破 ${safe(num(candidate.breakout_setup_score))}，离20日高点 ${safe(pct(technical.pullback_from_20d_high_pct))}。</p>
+      </div>
+      <div class="proof-block ${proofClass(extensionVerdict(candidate))}">
+        <span>追涨过热风险</span>
+        <strong>${safe(extensionVerdict(candidate))}</strong>
+        <p>过热风险 ${safe(num(candidate.extension_risk_score))}，1日涨跌 ${safe(pct(technical.return_1d))}，5日涨跌 ${safe(pct(technical.return_5d))}，距MA20 ${safe(pct(technical.ma20_distance_pct))}。</p>
+      </div>
       <div class="proof-block ${proofClass(analogVerdict(candidate))}">
         <span>历史样本</span>
         <strong>${safe(analogVerdict(candidate))}</strong>
@@ -577,6 +599,22 @@ function catalystVerdict(candidate) {
   return "催化缺失";
 }
 
+function setupVerdict(candidate) {
+  const setup = Number(candidate.setup_quality_score);
+  const bottom = Number(candidate.bottom_reversal_score);
+  const breakout = Number(candidate.breakout_setup_score);
+  if (setup >= 72 && Math.max(bottom, breakout) >= 70) return bottom >= breakout ? "低吸反转较强" : "蓄势突破较强";
+  if (setup >= 62) return "潜伏质量一般";
+  return "潜伏证据不足";
+}
+
+function extensionVerdict(candidate) {
+  const risk = Number(candidate.extension_risk_score);
+  if (risk >= 76) return "追涨过热";
+  if (risk >= 62) return "已有延伸";
+  return "未明显过热";
+}
+
 function analogVerdict(candidate) {
   const analog = candidate.historical_analog || {};
   if (!analog.sample_size) return "无可用样本";
@@ -586,8 +624,10 @@ function analogVerdict(candidate) {
 }
 
 function proofClass(label) {
+  if (/未明显过热|较强/.test(label)) return "proof-good";
+  if (/过热|不足/.test(label)) return "proof-bad";
   if (/支持|确认/.test(label)) return "proof-good";
-  if (/部分|温和|有新闻|样本不足/.test(label)) return "proof-warn";
+  if (/部分|温和|有新闻|样本不足|一般|已有延伸/.test(label)) return "proof-warn";
   return "proof-bad";
 }
 
