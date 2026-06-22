@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-06-22T15:07:50.200965+00:00`
+- generated_at: `2026-06-22T15:28:23.557587+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -31,26 +31,26 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Nuclear / Power(3); top_type=short_squeeze_candidate(4)
+- evidence: top_sector=AI / Semiconductors(2); top_type=pullback_reversal_setup(4)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=69.57; min_top5_gap=54.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=69.63; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=58.61; avg_execution=85.18; avg_risk=1.35
+- evidence: avg_payoff=57.17; avg_execution=82.11; avg_risk=2.54
 
 ### 当前价确认代理
 
 - status: `pass`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=3; failed=0; missing=0
+- evidence: confirming=4; failed=0; missing=0
 
 ### 风险现实校验代理
 
@@ -87,13 +87,13 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AMD | 可观察候选 | 共振 74; 预期差 84.12; 赔率 60.04; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | JOBY | 共振不足 | 共振 67.43; 预期差 86.89; 赔率 58.68; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | NVDA | 共振不足 | 共振 66.98; 预期差 68.84; 赔率 61.52; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 4 | SMR | 共振不足 | 共振 62.98; 预期差 54; 赔率 60.37; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
-| 5 | BEAM | 共振不足 | 共振 58.71; 预期差 54; 赔率 52.46; 风险 6.73; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
-| 6 | NNE | 共振不足 | 共振 58.7; 预期差 54; 赔率 56.86; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
-| 7 | AMC | 共振不足 | 共振 58.63; 预期差 54; 赔率 50.7; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 板块主线不够强 / 赔率质量不足 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
-| 8 | VST | 共振不足 | 共振 58.38; 预期差 54; 赔率 50.81; 风险 5.98; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 赔率质量不足 / 预期差不足 |
+| 1 | AMD | 可观察候选 | 共振 78; 预期差 84.12; 赔率 60.62; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | JOBY | 可观察候选 | 共振 74.12; 预期差 87.21; 赔率 60.01; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | NVDA | 可观察候选 | 共振 73.62; 预期差 68.84; 赔率 61.66; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 4 | BEAM | 共振不足 | 共振 64.78; 预期差 54; 赔率 52.5; 风险 6.73; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 5 | VST | 共振不足 | 共振 63.61; 预期差 54; 赔率 51.04; 风险 5.98; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 6 | VKTX | 共振不足 | 共振 63.36; 预期差 50; 赔率 48.99; 风险 8.0; 闸门 不具备高置信优势; 信号 incomplete | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 |
+| 8 | TSLA | 共振不足 | 共振 62.32; 预期差 54; 赔率 45.22; 风险 16.5; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 赔率质量不足 / 预期差不足 |
+| 9 | NNE | 共振不足 | 共振 60.7; 预期差 54; 赔率 56.92; 风险 0; 闸门 不具备高置信优势; 信号 incomplete | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 / 逼空逻辑只有 proxy，不能作为强共振 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
