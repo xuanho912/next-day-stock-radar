@@ -1,10 +1,10 @@
 # 次日高弹性股票雷达日报
 
-- generated_at: `2026-06-26T23:46:16.458978+00:00`
-- latest_data_date: `2026-06-26`
-- expected_latest_trading_date: `2026-06-26`
+- generated_at: `2026-06-29T23:39:44.103345+00:00`
+- latest_data_date: `2026-06-29`
+- expected_latest_trading_date: `2026-06-29`
 - data_freshness_status: `partial_fallback`
-- market_state: `defense`
+- market_state: `neutral`
 - high_elasticity_opportunity: `False`
 - validation_status: `early_evidence`
 

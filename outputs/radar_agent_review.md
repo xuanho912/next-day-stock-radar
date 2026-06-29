@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-06-26T23:46:16.459566+00:00`
+- generated_at: `2026-06-29T23:39:44.103995+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -10,8 +10,7 @@
 ## Hard Warnings
 
 - 存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。
-- 市场路径偏防守，所有个股等级应自动压低。
-- 市场路径偏防守，个股信号必须降级处理。
+- 强优势候选数量不足，不能强行进攻。
 - 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - Top 10 没有真实共振候选，只能观察，不能进攻。
 
@@ -21,9 +20,9 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=defense; freshness=partial_fallback; strong_edge_count=0
+- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
 - warning: 存在数据新鲜度或降级警告，需要盘前再次刷新确认。
-- warning: 市场路径偏防守，个股信号必须降级处理。
+- warning: 强优势候选数量不足，不能强行进攻。
 
 ### 板块主线代理
 
@@ -67,7 +66,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=203; leaderboard=validated
+- evidence: validation=early_evidence; completed=223; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
