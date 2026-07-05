@@ -141,6 +141,7 @@ function renderDashboard() {
   setText("marketState", zh("market", marketState));
   setText("screeningStatus", marketState === "defense" ? "防守过滤" : "可筛选，等触发");
   setText("riskLevel", zh("risk", dashboard.current_risk_level));
+  setText("autoUpdateStatus", autoUpdateLabel(dashboard.automation_status));
   const targetDates = dashboard.forecast_horizon?.target_trading_dates || [];
   const targetText = targetDates.length ? ` / 目标交易日 ${targetDates.join(" / ")}` : "";
   setText("dataDate", `${dashboard.latest_data_date || "-"} / 应有最新交易日 ${dashboard.expected_latest_trading_date || "-"} / 窗口 ${dashboard.forecast_horizon?.label || "次日"}${targetText}`);
@@ -175,6 +176,7 @@ function renderCoreBrief() {
   const mode = top.length ? "可用候选" : watch.length ? "观察阻断" : "无候选";
   const decision = top.length ? "有票通过真钱审计" : "没有票通过真钱审计";
   const leadReason = lead?.reason || dashboard.real_money_readiness?.reasons?.[0] || "暂无";
+  const automation = dashboard.automation_status || {};
   target.innerHTML = `
     <div>
       <span>雷达结论</span>
@@ -185,8 +187,8 @@ function renderCoreBrief() {
       <strong>${lead ? `${safe(lead.ticker)} · ${safe(num(lead.fermentation_score))}` : "-"}</strong>
     </div>
     <div>
-      <span>当前榜单</span>
-      <strong>${safe(mode)} · ${safe(top.length || watch.length || 0)} 只</strong>
+      <span>自动更新</span>
+      <strong>${safe(autoUpdateLabel(automation))}</strong>
     </div>
     <div>
       <span>第一阻断</span>
@@ -738,6 +740,12 @@ function readinessLabel(readiness) {
   const count = readiness.trusted_candidate_count || 0;
   const label = readiness.label || zh("readiness", readiness.status);
   return `${label} / 可信候选 ${count} / 最高分 ${num(score)}`;
+}
+
+function autoUpdateLabel(status) {
+  if (!status) return "-";
+  const nextRun = status.next_scheduled_run_utc ? status.next_scheduled_run_utc.replace("T", " ").replace("+00:00", " UTC") : "待定";
+  return `${status.status_label || "-"} / 下次 ${nextRun}`;
 }
 
 function proofClass(label) {

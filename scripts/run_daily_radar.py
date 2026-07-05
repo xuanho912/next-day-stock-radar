@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, time, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -200,6 +201,7 @@ def _dashboard_payload(
             "target_trading_dates": market_context.get("forecast_target_trading_dates", []),
             "note": "窗口按美股交易日理解，周末和美股休市日不计入自然日。",
         },
+        "automation_status": _automation_status(market_context, effective_freshness),
         "radar_summary": _radar_summary(market_context, display_candidates, validation, effective_freshness),
         "real_money_readiness": real_money_readiness,
         "market_context": market_context,
@@ -543,6 +545,55 @@ def _dashboard_readiness(candidates: list[dict[str, Any]], data_freshness_status
         "trusted_candidate_count": len(trusted),
         "reasons": ["候选通过真钱可信度审计，但仍不是买卖建议或交易指令。"],
     }
+
+
+def _automation_status(market_context: dict[str, Any], data_freshness_status: str) -> dict[str, Any]:
+    now = datetime.now(timezone.utc)
+    latest_date = market_context.get("latest_data_date")
+    expected_date = market_context.get("expected_latest_trading_date")
+    full_day_current = bool(latest_date and expected_date and latest_date == expected_date)
+    if full_day_current:
+        status = "running"
+        label = "自动更新正常"
+        explanation = "当前数据已到系统认为应有的最新完整美股交易日。"
+    else:
+        status = "needs_attention"
+        label = "自动更新需检查"
+        explanation = "最新行情日落后于系统应有交易日，页面必须显示数据警告。"
+    if data_freshness_status == "partial_fallback":
+        explanation += " 但存在部分标的行情降级，降级标的会被逐只压制。"
+    elif data_freshness_status in {"fallback_only", "missing"}:
+        explanation += " 主要行情源缺失，本次结果只能观察。"
+
+    return {
+        "version": "automation_status_v1",
+        "status": status,
+        "status_label": label,
+        "generated_at_utc": now.isoformat(),
+        "github_event_name": os.getenv("GITHUB_EVENT_NAME") or "local_or_unknown",
+        "github_run_id": os.getenv("GITHUB_RUN_ID") or "",
+        "github_run_attempt": os.getenv("GITHUB_RUN_ATTEMPT") or "",
+        "schedule_utc": ["13:00 UTC 周一至周五盘前刷新", "22:45 UTC 周一至周五收盘后刷新"],
+        "next_scheduled_run_utc": _next_scheduled_run_utc(now),
+        "latest_data_date": latest_date,
+        "expected_latest_trading_date": expected_date,
+        "latest_full_trading_day_current": full_day_current,
+        "explanation": explanation,
+        "calendar_note": "周末、美股休市日、或美股当日收盘前，最新完整交易日会停留在上一个美股交易日。",
+    }
+
+
+def _next_scheduled_run_utc(now: datetime) -> str:
+    schedule_times = [time(13, 0), time(22, 45)]
+    for day_offset in range(8):
+        current_date = (now + timedelta(days=day_offset)).date()
+        if current_date.weekday() >= 5:
+            continue
+        for scheduled_time in schedule_times:
+            candidate = datetime.combine(current_date, scheduled_time, tzinfo=timezone.utc)
+            if candidate > now:
+                return candidate.isoformat()
+    return ""
 
 
 def _zh_validation_status(value: Any) -> str:
