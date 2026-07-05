@@ -166,7 +166,15 @@ def _dashboard_payload(
     conditional = [
         candidate
         for candidate in official
-        if candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD"}
+        if candidate not in actionable
+        and (
+            candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD"}
+            or (
+                candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}
+                and float(candidate.get("trust_score") or 0) >= 55
+                and candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"}
+            )
+        )
         and not _has_hard_display_blocker(candidate)
     ]
     display_candidates = (actionable + conditional)[:20]
