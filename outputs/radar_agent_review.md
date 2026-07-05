@@ -2,10 +2,10 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-05T15:50:26.460247+00:00`
-- overall_decision: `观察`
-- agency_quality_gate: `谨慎通过`
-- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
+- generated_at: `2026-07-05T16:10:22.918162+00:00`
+- overall_decision: `防守`
+- agency_quality_gate: `不通过`
+- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
@@ -28,22 +28,23 @@
 
 ### 板块主线代理
 
-- status: `pass`
+- status: `warn`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=China ADR / EV(2); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=China ADR / EV(1); top_type=pullback_reversal_setup(1)
+- warning: Top 10 主线集中度偏低，更多是离散机会。
 
 ### 预期差代理
 
-- status: `warn`
+- status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=59.83; min_top5_gap=54.0; confirmed_signal_count=3
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=54.0; min_top5_gap=54.0; confirmed_signal_count=1
+- warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=47.77; avg_execution=56.88; avg_risk=8.27
+- evidence: avg_payoff=48.39; avg_execution=53.78; avg_risk=8.0
 - warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
@@ -57,7 +58,7 @@
 
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
-- evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
+- evidence: proxy_squeeze=1; low_sample=1; liquidity_risk=0
 - warning: 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
@@ -88,7 +89,5 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | NIO | 可观察候选 | 共振 75.29; 预期差 54; 赔率 48.39; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | XPEV | 可观察候选 | 共振 74.67; 预期差 54; 赔率 42.22; 风险 8.8; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | TSLA | 可观察候选 | 共振 69.63; 预期差 71.49; 赔率 52.71; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
