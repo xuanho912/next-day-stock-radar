@@ -145,6 +145,9 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         confluence_score = min(82, confluence_score + 5)
 
     confluence_score = round(max(0, min(100, confluence_score)), 2)
+    low_buy_precision = _low_buy_precision_profile(candidate, confluence_score, signal_quality_gate)
+    if low_buy_precision["applies"] and not low_buy_precision["passed"]:
+        confluence_score = min(confluence_score, 68)
     elasticity_score = round(
         max(
             0,
@@ -206,6 +209,13 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         reason = "真钱审计未通过：" + " / ".join(audit_reasons[:2])
     elif capital_readiness["warnings"] and edge_status == "WATCH":
         reason = "只适合观察：" + " / ".join(capital_readiness["warnings"][:2])
+    if (
+        low_buy_precision["applies"]
+        and not low_buy_precision["passed"]
+        and edge_status in {"WATCH", "NO_EDGE"}
+        and capital_readiness["readiness_status"] != "NOT_TRUSTED_FOR_REAL_MONEY"
+    ):
+        reason = "低吸精度不足：" + " / ".join(low_buy_precision["failures"][:2])
 
     enriched = {
         **candidate,
@@ -217,6 +227,7 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         "reason": reason,
         "trade_plan": trade_plan,
         "signal_quality_gate": signal_quality_gate,
+        "low_buy_precision": low_buy_precision,
         "capital_readiness": capital_readiness,
         "trust_score": capital_readiness["trust_score"],
         "readiness_status": capital_readiness["readiness_status"],
@@ -267,6 +278,7 @@ def _edge_status(
         and swing_durability_score >= 62
         and one_day_pop_risk_score < 58
     )
+    low_buy_precision = _low_buy_precision_profile(candidate, confluence, signal_quality_gate)
     setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
     chase_type = candidate.get("candidate_type") in {"next_day_upside_momentum", "gap_continuation"}
     if candidate.get("candidate_type") == "no_edge" or candidate.get("pool_filter", {}).get("hard_excluded"):
@@ -285,6 +297,8 @@ def _edge_status(
         return "NO_EDGE"
     if payoff_quality_score < 42:
         return "WATCH" if confluence >= 64 else "NO_EDGE"
+    if low_buy_precision["applies"] and not low_buy_precision["passed"]:
+        return "WATCH" if low_buy_precision["structure_ready"] and confluence >= 58 else "NO_EDGE"
     if elasticity >= 76 and confluence >= 60 and risk_score >= 50 and not bottom_setup_ready:
         return "HIGH_RISK_HIGH_REWARD"
     if (
@@ -299,6 +313,7 @@ def _edge_status(
     if (
         setup_type
         and signal_quality_gate["level"] in {"confirmed", "partial"}
+        and (not candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"} or low_buy_precision["passed"])
         and setup_quality_score >= 72
         and extension_risk_score < 62
         and one_day_pop_risk_score < 58
@@ -312,6 +327,7 @@ def _edge_status(
         and bottom_fishing_score >= 72
         and swing_durability_score >= 62
         and one_day_pop_risk_score < 58
+        and low_buy_precision["passed"]
         and confluence >= (68 if strict else 64)
         and support_count >= 3
     ):
@@ -321,6 +337,118 @@ def _edge_status(
     if confluence >= 52:
         return "WATCH"
     return "NO_EDGE"
+
+
+def _low_buy_precision_profile(candidate: dict[str, Any], confluence: float, signal_quality_gate: dict[str, Any]) -> dict[str, Any]:
+    candidate_type = candidate.get("candidate_type")
+    applies = candidate_type in {"pullback_reversal_setup", "oversold_bounce"}
+    features = candidate.get("features") or {}
+    expected_upside = float(candidate.get("expected_upside_pct") or 0)
+    expected_downside = abs(float(candidate.get("expected_downside_pct") or 0))
+    last = float(candidate.get("current_price") or candidate.get("last_close") or features.get("last_close") or 0)
+    invalidation = float(candidate.get("invalidation_level") or 0)
+    support_distance = abs(float(features.get("distance_to_support_pct") or 0))
+    relative_volume = float(features.get("relative_volume") or 0)
+    avg_dollar_volume = float(features.get("avg_dollar_volume_m") or 0)
+    bottom = float(candidate.get("bottom_fishing_score") or 0)
+    durability = float(candidate.get("swing_durability_score") or 0)
+    pop_risk = float(candidate.get("one_day_pop_risk_score") or 0)
+    extension = float(candidate.get("extension_risk_score") or 0)
+    payoff = float(candidate.get("payoff_quality_score") or 0)
+    ratio = float(candidate.get("risk_reward_ratio") or 0)
+    risk = float(candidate.get("risk_score") or 0)
+    invalidation_distance = abs((last - invalidation) / last) if last and invalidation else 1.0
+    structure_ready = (
+        applies
+        and bottom >= 78
+        and durability >= 72
+        and pop_risk < 45
+        and extension < 55
+        and risk < 58
+        and support_distance <= 0.12
+    )
+    failures: list[str] = []
+    positives: list[str] = []
+    if not applies:
+        return {
+            "version": "low_buy_precision_v1",
+            "applies": False,
+            "passed": False,
+            "structure_ready": False,
+            "score": 0,
+            "failures": [],
+            "positive_factors": [],
+        }
+    if bottom >= 78:
+        positives.append("低吸质量足够")
+    else:
+        failures.append("低吸质量不足")
+    if durability >= 72:
+        positives.append("持续性足够")
+    else:
+        failures.append("持续性不足")
+    if pop_risk < 45:
+        positives.append("一日冲高风险低")
+    else:
+        failures.append("一日冲高风险偏高")
+    if payoff >= 48:
+        positives.append("赔率分达标")
+    else:
+        failures.append("赔率分不足")
+    if ratio >= 0.85:
+        positives.append("上行/失效比达标")
+    else:
+        failures.append("上行/失效比不足")
+    if expected_upside >= 0.045:
+        positives.append("近两交易日反弹空间达标")
+    else:
+        failures.append("反弹空间不足")
+    if invalidation_distance <= 0.085:
+        positives.append("失效距离可控")
+    else:
+        failures.append("失效距离过远")
+    if 0.75 <= relative_volume <= 2.8 and avg_dollar_volume >= 10:
+        positives.append("量能和流动性可观察")
+    else:
+        failures.append("量能或流动性不够干净")
+    if signal_quality_gate.get("level") in {"confirmed", "partial"}:
+        positives.append("信号闸门未阻断")
+    else:
+        failures.append("信号闸门阻断")
+
+    score = round(
+        max(
+            0,
+            min(
+                100,
+                bottom * 0.18
+                + durability * 0.16
+                + confluence * 0.16
+                + payoff * 0.14
+                + min(ratio, 1.6) * 16
+                + min(expected_upside / 0.06, 1.5) * 10
+                - pop_risk * 0.12
+                - extension * 0.10
+                - max(invalidation_distance - 0.06, 0) * 130,
+            ),
+        ),
+        2,
+    )
+    passed = structure_ready and payoff >= 48 and ratio >= 0.85 and expected_upside >= 0.045 and invalidation_distance <= 0.085 and signal_quality_gate.get("level") in {"confirmed", "partial"}
+    return {
+        "version": "low_buy_precision_v1",
+        "applies": True,
+        "passed": passed,
+        "structure_ready": structure_ready,
+        "score": score,
+        "failures": failures[:8],
+        "positive_factors": positives[:8],
+        "expected_upside_pct": round(expected_upside, 5),
+        "expected_downside_pct": round(expected_downside, 5),
+        "risk_reward_ratio": round(ratio, 3),
+        "invalidation_distance_pct": round(invalidation_distance, 5),
+        "support_distance_pct": round(support_distance, 5),
+    }
 
 
 def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:

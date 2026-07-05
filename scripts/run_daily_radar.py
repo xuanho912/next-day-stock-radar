@@ -161,12 +161,14 @@ def _dashboard_payload(
         for candidate in official
         if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}
         and float(candidate.get("trust_score") or 0) >= 70
+        and _passes_low_buy_display_precision(candidate)
         and not _has_hard_display_blocker(candidate)
     ]
     conditional = [
         candidate
         for candidate in official
         if candidate not in actionable
+        and _passes_low_buy_display_precision(candidate)
         and (
             candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD"}
             or (
@@ -178,10 +180,11 @@ def _dashboard_payload(
         and not _has_hard_display_blocker(candidate)
     ]
     display_candidates = (actionable + conditional)[:20]
+    display_symbols = {candidate["ticker"] for candidate in display_candidates}
     watch_candidates = [
         candidate
         for candidate in official
-        if candidate["edge_status"] in {"NO_EDGE", "AVOID"}
+        if candidate["ticker"] not in display_symbols
     ][:20]
     strongest_type = display_candidates[0]["candidate_type"] if display_candidates else "none"
     effective_freshness = _effective_data_freshness(market_context, provider_status)
@@ -260,6 +263,13 @@ def _has_hard_display_blocker(candidate: dict[str, Any]) -> bool:
     if extension_risk >= 75 and not setup_type:
         return True
     return False
+
+
+def _passes_low_buy_display_precision(candidate: dict[str, Any]) -> bool:
+    if candidate.get("candidate_type") not in {"pullback_reversal_setup", "oversold_bounce"}:
+        return True
+    precision = candidate.get("low_buy_precision") or {}
+    return bool(precision.get("passed"))
 
 
 def _technical_snapshot(features: dict[str, Any]) -> dict[str, Any]:
@@ -357,6 +367,7 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "expected_upside_pct": candidate.get("expected_upside_pct"),
                 "expected_downside_pct": candidate.get("expected_downside_pct"),
                 "precision_gate": candidate.get("precision_gate"),
+                "low_buy_precision": candidate.get("low_buy_precision"),
                 "confluence_matrix": candidate.get("confluence_matrix"),
                 "signal_quality_gate": candidate.get("signal_quality_gate"),
                 "quote_confirmation": candidate.get("quote_confirmation"),
