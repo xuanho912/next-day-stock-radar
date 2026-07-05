@@ -74,7 +74,8 @@ def _build_candidate(
     sector = stock.get("sector") or "Unknown"
     sector_payload = sector_strength.get(sector, {"score": 40, "level": "weak"})
     raw_scores = _raw_scores(features, news, sector_payload, market_context, pool_filter)
-    price_path = _price_path(features, raw_scores, _candidate_type(stock, features, news, raw_scores, pool_filter))
+    candidate_type = _candidate_type(stock, features, news, raw_scores, pool_filter)
+    price_path = _price_path(features, raw_scores, candidate_type)
     payoff_profile = _payoff_profile(features, price_path, raw_scores)
     support, conflict, missing = _evidence(
         symbol,
@@ -88,7 +89,6 @@ def _build_candidate(
         payoff_profile,
     )
     risk_flags = _risk_flags(features, news, pool_filter)
-    candidate_type = _candidate_type(stock, features, news, raw_scores, pool_filter)
     edge_status = _edge_status(raw_scores, payoff_profile, support, conflict, risk_flags, market_context, pool_filter)
     precision_gate = _precision_gate(raw_scores, payoff_profile, support, conflict, risk_flags, market_context, pool_filter)
     analog = _historical_analog(features, market_context, news)
@@ -100,6 +100,7 @@ def _build_candidate(
         scores=raw_scores,
         payoff_profile=payoff_profile,
         pool_filter=pool_filter,
+        candidate_type=candidate_type,
     )
 
     return {
@@ -126,6 +127,9 @@ def _build_candidate(
         "squeeze_score": raw_scores["squeeze_score"],
         "setup_quality_score": raw_scores["setup_quality_score"],
         "bottom_reversal_score": raw_scores["bottom_reversal_score"],
+        "bottom_fishing_score": raw_scores["bottom_fishing_score"],
+        "swing_durability_score": raw_scores["swing_durability_score"],
+        "one_day_pop_risk_score": raw_scores["one_day_pop_risk_score"],
         "breakout_setup_score": raw_scores["breakout_setup_score"],
         "extension_risk_score": raw_scores["extension_risk_score"],
         "fermentation_score": raw_scores["fermentation_score"],
@@ -434,6 +438,25 @@ def _raw_scores(
         extension_risk_score=extension_risk_score,
     )
     fermentation_score = float(fermentation_profile["score"])
+    one_day_pop_risk_score = _one_day_pop_risk_score(features, news, extension_risk_score, risk_score)
+    bottom_fishing_score = _bottom_fishing_score(
+        features=features,
+        sector_score=sector,
+        risk_score=risk_score,
+        bottom_reversal_score=bottom_reversal_score,
+        setup_quality_score=setup_quality_score,
+        fermentation_score=fermentation_score,
+        one_day_pop_risk_score=one_day_pop_risk_score,
+    )
+    swing_durability_score = _swing_durability_score(
+        features=features,
+        sector_score=sector,
+        risk_score=risk_score,
+        bottom_fishing_score=bottom_fishing_score,
+        fermentation_score=fermentation_score,
+        extension_risk_score=extension_risk_score,
+        one_day_pop_risk_score=one_day_pop_risk_score,
+    )
     quote_score = float(features.get("quote_confirmation_score") or 50)
     quote_available = (features.get("quote_confirmation") or {}).get("provider_status") == "available"
     quote_bonus = quote_score - 50 if quote_available else 0
@@ -454,10 +477,13 @@ def _raw_scores(
         + volume * 0.05 * elasticity_confirmation_factor
         + technical * 0.04 * elasticity_confirmation_factor
         + setup_quality_score * 0.05
+        + bottom_fishing_score * 0.04
+        + swing_durability_score * 0.03
         + max(fermentation_score - 55, 0) * 0.05
         + max(quote_bonus, 0) * 0.12
         - risk_score * 0.10
         - max(extension_risk_score - 62, 0) * 0.10
+        - max(one_day_pop_risk_score - 55, 0) * 0.16
     )
     if catalyst_type == "no_recent_confirmed_news" and volume < 60:
         elasticity_score = min(elasticity_score, 66)
@@ -506,15 +532,18 @@ def _raw_scores(
         + volume * 0.18
         + sector * 0.14
         + setup_quality_score * 0.12
+        + bottom_fishing_score * 0.14
+        + swing_durability_score * 0.10
         + expectation_gap_score * 0.10
         + execution_quality_score * 0.08
         + fermentation_score * 0.08
-        + upside_momentum_score * 0.06
+        + upside_momentum_score * 0.02
         + bounce_score * 0.06
         + elasticity_score * 0.02
         + quote_bonus * 0.08
         - risk_score * 0.32
         - extension_risk_score * 0.10
+        - one_day_pop_risk_score * 0.18
         + _market_adjustment(market_context)
     )
     confluence_score = _apply_raw_signal_caps(
@@ -533,6 +562,10 @@ def _raw_scores(
         confluence_score = min(confluence_score, 64)
     if fermentation_profile.get("profile_type") == "overextended_chase":
         confluence_score = min(confluence_score, 62)
+    if one_day_pop_risk_score >= 68:
+        confluence_score = min(confluence_score, 60)
+    if bottom_fishing_score < 45 and candidate_style_requires_bottom(features):
+        confluence_score = min(confluence_score, 58)
     next_day_move_probability = _clamp(
         (
             elasticity_score * 0.38
@@ -573,6 +606,9 @@ def _raw_scores(
         "squeeze_score": round(squeeze_score, 2),
         "setup_quality_score": round(setup_quality_score, 2),
         "bottom_reversal_score": round(bottom_reversal_score, 2),
+        "bottom_fishing_score": round(bottom_fishing_score, 2),
+        "swing_durability_score": round(swing_durability_score, 2),
+        "one_day_pop_risk_score": round(one_day_pop_risk_score, 2),
         "breakout_setup_score": round(breakout_setup_score, 2),
         "extension_risk_score": round(extension_risk_score, 2),
         "fermentation_score": round(fermentation_score, 2),
@@ -627,6 +663,109 @@ def _bottom_reversal_score(features: dict[str, Any], sector_score: float, risk_s
         + sector_score * 0.08
         - risk_score * 0.18
     )
+
+
+def _one_day_pop_risk_score(features: dict[str, Any], news: dict[str, Any], extension_risk_score: float, risk_score: float) -> float:
+    return_1d = float(features.get("return_1d") or 0)
+    return_5d = float(features.get("return_5d") or 0)
+    gap_pct = float(features.get("gap_pct") or 0)
+    close_position = float(features.get("close_position") or 0.5)
+    relative_volume = float(features.get("relative_volume") or 0)
+    ma20_distance = float(features.get("ma20_distance_pct") or 0)
+    catalyst_quality = str(news.get("catalyst_quality") or "missing")
+    catalyst_score = float(news.get("catalyst_score") or 35)
+    score = (
+        18
+        + max(return_1d - 0.035, 0) * 520
+        + max(return_5d - 0.12, 0) * 300
+        + max(gap_pct - 0.025, 0) * 430
+        + max(ma20_distance - 0.10, 0) * 260
+        + max(relative_volume - 2.8, 0) * 7
+        + extension_risk_score * 0.45
+        + risk_score * 0.12
+        + (12 if close_position < 0.45 and return_1d > 0.025 else 0)
+        + (8 if catalyst_score >= 60 and catalyst_quality in {"unconfirmed", "conflicted"} else 0)
+    )
+    return _clamp(score)
+
+
+def _bottom_fishing_score(
+    *,
+    features: dict[str, Any],
+    sector_score: float,
+    risk_score: float,
+    bottom_reversal_score: float,
+    setup_quality_score: float,
+    fermentation_score: float,
+    one_day_pop_risk_score: float,
+) -> float:
+    rsi = features.get("rsi_14")
+    pullback = abs(min(float(features.get("pullback_from_20d_high_pct") or 0), 0))
+    support_distance = abs(float(features.get("distance_to_support_pct") or 0))
+    close_position = float(features.get("close_position") or 0.5)
+    return_1d = float(features.get("return_1d") or 0)
+    return_5d = float(features.get("return_5d") or 0)
+    ma20_distance = float(features.get("ma20_distance_pct") or 0)
+    volume_score = float(features.get("volume_score") or 0)
+    relative_volume = float(features.get("relative_volume") or 0)
+    quote_status = (features.get("quote_confirmation") or {}).get("status")
+    score = (
+        bottom_reversal_score * 0.34
+        + setup_quality_score * 0.18
+        + fermentation_score * 0.16
+        + sector_score * 0.08
+        + volume_score * 0.08
+        + (14 if rsi is not None and 34 <= rsi <= 52 else 5 if rsi is not None and 52 < rsi <= 58 else 0)
+        + (12 if 0.04 <= pullback <= 0.24 else 6 if 0.02 <= pullback < 0.04 else 0)
+        + (10 if 0.015 <= support_distance <= 0.12 else 0)
+        + (10 if close_position >= 0.52 else -10)
+        + (8 if -0.12 <= return_5d <= 0.04 else 0)
+        + (6 if -0.05 <= return_1d <= 0.035 else 0)
+        + (6 if -0.10 <= ma20_distance <= 0.04 else 0)
+        + (5 if 0.85 <= relative_volume <= 2.4 else -6 if relative_volume > 3.4 else 0)
+        + (6 if quote_status == "confirming" else -8 if quote_status == "failed" else 0)
+        - risk_score * 0.16
+        - one_day_pop_risk_score * 0.22
+    )
+    return _clamp(score)
+
+
+def _swing_durability_score(
+    *,
+    features: dict[str, Any],
+    sector_score: float,
+    risk_score: float,
+    bottom_fishing_score: float,
+    fermentation_score: float,
+    extension_risk_score: float,
+    one_day_pop_risk_score: float,
+) -> float:
+    avg_dollar_volume = float(features.get("avg_dollar_volume_m") or 0)
+    close_position = float(features.get("close_position") or 0.5)
+    range_20d = float(features.get("range_20d_pct") or 0)
+    return_20d = float(features.get("return_20d") or 0)
+    support_distance = abs(float(features.get("distance_to_support_pct") or 0))
+    quote_status = (features.get("quote_confirmation") or {}).get("status")
+    score = (
+        26
+        + bottom_fishing_score * 0.28
+        + fermentation_score * 0.18
+        + sector_score * 0.10
+        + min(avg_dollar_volume / 40, 3.0) * 5
+        + (10 if close_position >= 0.5 else -8)
+        + (8 if 0.04 <= range_20d <= 0.35 else 0)
+        + (8 if -0.25 <= return_20d <= 0.10 else 0)
+        + (7 if 0.015 <= support_distance <= 0.14 else 0)
+        + (5 if quote_status == "confirming" else -7 if quote_status == "failed" else 0)
+        - risk_score * 0.16
+        - extension_risk_score * 0.18
+        - one_day_pop_risk_score * 0.24
+    )
+    return _clamp(score)
+
+
+def candidate_style_requires_bottom(features: dict[str, Any]) -> bool:
+    return float(features.get("return_1d") or 0) > 0.035 or float(features.get("gap_pct") or 0) > 0.025
 
 
 def _breakout_setup_score(features: dict[str, Any], sector_score: float, risk_score: float) -> float:
@@ -1098,9 +1237,26 @@ def _risk_flags(features: dict[str, Any], news: dict[str, Any], pool_filter: dic
 
 
 def _candidate_type(stock: dict[str, Any], features: dict[str, Any], news: dict[str, Any], scores: dict[str, Any], pool_filter: dict[str, Any]) -> str:
-    if pool_filter["hard_excluded"] or scores["confluence_score"] < 42:
+    bottom_prequalifies = (
+        scores.get("bottom_fishing_score", 0) >= 68
+        and scores.get("swing_durability_score", 0) >= 58
+        and scores.get("one_day_pop_risk_score", 0) < 62
+        and scores.get("extension_risk_score", 0) < 66
+        and scores.get("setup_quality_score", 0) >= 62
+    )
+    if pool_filter["hard_excluded"]:
         return "no_edge"
-    if scores.get("bottom_reversal_score", 0) >= 68 and scores.get("extension_risk_score", 0) < 62:
+    if scores["confluence_score"] < 38 and not bottom_prequalifies:
+        return "no_edge"
+    if bottom_prequalifies and scores.get("bottom_fishing_score", 0) >= 72:
+        return "pullback_reversal_setup"
+    if bottom_prequalifies:
+        return "oversold_bounce"
+    if scores.get("bottom_fishing_score", 0) >= 70 and scores.get("one_day_pop_risk_score", 0) < 58 and scores.get("extension_risk_score", 0) < 62:
+        return "pullback_reversal_setup"
+    if scores.get("bottom_fishing_score", 0) >= 62 and scores.get("bounce_score", 0) >= 58 and scores.get("one_day_pop_risk_score", 0) < 62:
+        return "oversold_bounce"
+    if scores.get("bottom_reversal_score", 0) >= 68 and scores.get("extension_risk_score", 0) < 62 and scores.get("one_day_pop_risk_score", 0) < 64:
         return "pullback_reversal_setup"
     if scores.get("breakout_setup_score", 0) >= 70 and scores.get("extension_risk_score", 0) < 66:
         return "accumulation_breakout_setup"
@@ -1110,13 +1266,13 @@ def _candidate_type(stock: dict[str, Any], features: dict[str, Any], news: dict[
         return "failed_bounce_risk"
     if scores["squeeze_score"] >= 68 and scores["squeeze_data_status"]["short_interest"] == "proxy":
         return "short_squeeze_candidate"
-    if scores["catalyst_score"] >= 68 and news.get("headline_count", 0) > 0:
+    if scores["catalyst_score"] >= 68 and news.get("headline_count", 0) > 0 and scores.get("one_day_pop_risk_score", 0) < 66:
         return "event_driven_volatility"
-    if features["gap_pct"] >= 0.025 and features["close_position"] >= 0.62 and scores.get("extension_risk_score", 0) < 70:
+    if features["gap_pct"] >= 0.025 and features["close_position"] >= 0.62 and scores.get("extension_risk_score", 0) < 70 and scores.get("one_day_pop_risk_score", 0) < 58:
         return "gap_continuation"
     if scores["bounce_score"] >= 64 and scores["upside_momentum_score"] < 70:
         return "oversold_bounce"
-    if scores["upside_momentum_score"] >= 64 and scores.get("extension_risk_score", 0) < 72:
+    if scores["upside_momentum_score"] >= 64 and scores.get("extension_risk_score", 0) < 72 and scores.get("one_day_pop_risk_score", 0) < 56:
         return "next_day_upside_momentum"
     return "no_edge"
 
@@ -1218,12 +1374,27 @@ def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type
     move_probability = scores["next_day_move_probability"]
     confirmation = float(scores.get("elasticity_confirmation_factor") or 0.50)
     confluence = float(scores.get("confluence_score") or 0)
+    bottom_mode = candidate_type in {"pullback_reversal_setup", "oversold_bounce"}
     range_pct = min(0.18, max(0.025, atr_pct * (0.78 + move_probability * 0.65 + confirmation * 0.32)))
+    if bottom_mode:
+        pullback = abs(min(float(features.get("pullback_from_20d_high_pct") or 0), 0))
+        bottom_score = float(scores.get("bottom_fishing_score") or 0)
+        range_pct = min(
+            0.18,
+            max(
+                range_pct,
+                0.04,
+                atr_pct * (1.05 + confirmation * 0.35),
+                min(pullback * 0.32 + max(bottom_score - 70, 0) * 0.0007, 0.14),
+            ),
+        )
     if confluence < 58:
         range_pct *= 0.82
     if confirmation < 0.48:
         range_pct *= 0.78
     upside_weight = 0.58 + confirmation * 0.30 + max(confluence - 58, 0) * 0.006
+    if bottom_mode:
+        upside_weight = max(upside_weight, 0.74 + max(float(scores.get("bottom_fishing_score") or 0) - 70, 0) * 0.002)
     if candidate_type in {"short_squeeze_candidate", "event_driven_volatility"} and confluence >= 62 and confirmation >= 0.58:
         upside_weight += 0.12
     if confluence < 58:
@@ -1233,13 +1404,31 @@ def _price_path(features: dict[str, Any], scores: dict[str, Any], candidate_type
         downside_weight = max(downside_weight, 0.86)
     expected_low_price = last * (1 - range_pct * downside_weight)
     expected_high_price = last * (1 + range_pct * upside_weight)
+    if bottom_mode:
+        rebound_target_pct = min(
+            0.16,
+            max(
+                range_pct * upside_weight,
+                0.045,
+                atr_pct * (0.85 + confirmation * 0.25),
+            ),
+        )
+        expected_high_price = max(expected_high_price, last * (1 + rebound_target_pct))
     expected_mid = (expected_low_price + expected_high_price) / 2
     breakout = max(features["recent_resistance"], last * 1.018)
     breakdown = min(features["recent_support"], last * 0.982)
     upside_trigger = max(breakout, last * (1.012 + min(features["atr_pct"], 0.08) * 0.18))
+    if bottom_mode:
+        low_buy_trigger = max(
+            features["vwap_proxy"],
+            last * (1.008 + min(features["atr_pct"], 0.08) * 0.10),
+        )
+        upside_trigger = min(max(low_buy_trigger, last * 1.01), expected_high_price * 0.992)
     downside_risk = min(features["vwap_proxy"], last * (1 - min(features["atr_pct"], 0.09) * 0.38))
     invalidation = min(downside_risk, breakdown)
     bounce_target = last * (1 + max(0.035, min(range_pct * 0.75, 0.16)))
+    if bottom_mode:
+        bounce_target = max(bounce_target, expected_high_price)
     failed_bounce = min(invalidation, last * (1 - range_pct * 0.55))
     return {
         "next_day_expected_range": {
@@ -1287,11 +1476,13 @@ def _confluence_matrix(
     scores: dict[str, Any],
     payoff_profile: dict[str, Any],
     pool_filter: dict[str, Any],
+    candidate_type: str,
 ) -> dict[str, Any]:
+    bottom_mode = _is_bottom_first_candidate(candidate_type, scores)
     items = [
         _matrix_catalyst(news),
-        _matrix_price(features),
-        _matrix_volume(features, pool_filter),
+        _matrix_price(features, scores, bottom_mode=bottom_mode),
+        _matrix_volume(features, pool_filter, bottom_mode=bottom_mode),
         _matrix_sector(sector_payload, market_context),
         _matrix_quote(features),
         _matrix_payoff(payoff_profile, scores),
@@ -1302,7 +1493,20 @@ def _confluence_matrix(
         counts[item["status"]] = counts.get(item["status"], 0) + 1
     blocking = [item for item in items if item.get("blocking")]
     confirmed_core = sum(1 for item in items if item["dimension"] in {"catalyst", "price", "volume", "payoff"} and item["status"] == "confirmed")
-    if blocking:
+    if bottom_mode:
+        usable_bottom_dimensions = sum(
+            1
+            for item in items
+            if item["dimension"] in {"price", "volume", "sector", "payoff", "risk"}
+            and item["status"] in {"confirmed", "partial"}
+        )
+        if blocking:
+            overall = "blocked"
+        elif usable_bottom_dimensions >= 4:
+            overall = "partial"
+        else:
+            overall = "incomplete"
+    elif blocking:
         overall = "blocked"
     elif confirmed_core >= 4 and counts.get("weak", 0) == 0 and counts.get("missing", 0) == 0:
         overall = "confirmed"
@@ -1314,6 +1518,7 @@ def _confluence_matrix(
         "version": "confluence_matrix_v1",
         "overall": overall,
         "confirmed_core_count": confirmed_core,
+        "bottom_first_mode": bottom_mode,
         "status_counts": counts,
         "blocking_dimensions": [item["dimension"] for item in blocking],
         "items": items,
@@ -1353,29 +1558,51 @@ def _matrix_catalyst(news: dict[str, Any]) -> dict[str, Any]:
     )
 
 
-def _matrix_price(features: dict[str, Any]) -> dict[str, Any]:
+def _is_bottom_first_candidate(candidate_type: str, scores: dict[str, Any]) -> bool:
+    return (
+        candidate_type in {"pullback_reversal_setup", "oversold_bounce"}
+        and float(scores.get("bottom_fishing_score") or 0) >= 68
+        and float(scores.get("swing_durability_score") or 0) >= 58
+        and float(scores.get("one_day_pop_risk_score") or 0) < 62
+    )
+
+
+def _matrix_price(features: dict[str, Any], scores: dict[str, Any], *, bottom_mode: bool = False) -> dict[str, Any]:
     score = float(features.get("technical_score") or 0)
-    if score >= 64 and float(features.get("close_position") or 0) >= 0.58:
+    close_position = float(features.get("close_position") or 0)
+    bottom_score = float(scores.get("bottom_fishing_score") or 0)
+    setup_score = float(scores.get("setup_quality_score") or 0)
+    support_distance = abs(float(features.get("distance_to_support_pct") or 0))
+    pullback = abs(min(float(features.get("pullback_from_20d_high_pct") or 0), 0))
+    if bottom_mode and bottom_score >= 72 and setup_score >= 68 and close_position >= 0.45 and support_distance <= 0.14:
+        status = "confirmed"
+    elif bottom_mode and bottom_score >= 62 and setup_score >= 60 and 0.02 <= pullback <= 0.28:
+        status = "partial"
+    elif score >= 64 and close_position >= 0.58:
         status = "confirmed"
     elif score >= 55:
         status = "partial"
-    elif score < 42:
+    elif score < 42 and not bottom_mode:
         status = "blocked"
     else:
         status = "weak"
     reason = (
-        f"技术分 {score:.1f}，收盘位置 {float(features.get('close_position') or 0):.2f}，"
-        f"20日新高={bool(features.get('new_20d_high'))}，站上20日线={bool(features.get('above_20d_ma'))}"
+        f"技术分 {score:.1f}，低吸分 {bottom_score:.1f}，收盘位置 {close_position:.2f}，"
+        f"支撑距离 {support_distance:.1%}，20日回撤 {pullback:.1%}"
     )
     return _matrix_item("price", "价格结构", status, score, reason, blocking=status == "blocked")
 
 
-def _matrix_volume(features: dict[str, Any], pool_filter: dict[str, Any]) -> dict[str, Any]:
+def _matrix_volume(features: dict[str, Any], pool_filter: dict[str, Any], *, bottom_mode: bool = False) -> dict[str, Any]:
     score = float(features.get("volume_score") or 0)
     relative_volume = float(features.get("relative_volume") or 0)
     dollar_volume = float(features.get("avg_dollar_volume_m") or 0)
     if pool_filter.get("flags", {}).get("high_liquidity_risk"):
         status = "blocked"
+    elif bottom_mode and dollar_volume >= MIN_AVG_DOLLAR_VOLUME_M and 0.75 <= relative_volume <= 2.8:
+        status = "partial" if score < 58 else "confirmed"
+    elif bottom_mode and dollar_volume >= MIN_AVG_DOLLAR_VOLUME_M and relative_volume >= 0.55:
+        status = "weak"
     elif score >= 62 and relative_volume >= 1.15:
         status = "confirmed"
     elif score >= 55 or relative_volume >= 1.0:
@@ -1383,7 +1610,7 @@ def _matrix_volume(features: dict[str, Any], pool_filter: dict[str, Any]) -> dic
     else:
         status = "weak"
     reason = f"相对量 {relative_volume:.2f}x，量能分 {score:.1f}，20日均美元成交额 {dollar_volume:.1f}M"
-    return _matrix_item("volume", "成交量确认", status, score, reason, blocking=status in {"blocked", "weak"})
+    return _matrix_item("volume", "成交量确认", status, score, reason, blocking=status == "blocked" or (status == "weak" and not bottom_mode))
 
 
 def _matrix_sector(sector_payload: dict[str, Any], market_context: dict[str, Any]) -> dict[str, Any]:
@@ -1574,6 +1801,20 @@ def _evidence(
         conflict.append(_ev("expectation_gap", "expectation_gap_not_confirmed", 100 - scores["expectation_gap_score"], "预期差证据不足，可能只是普通波动。"))
     if scores.get("setup_quality_score", 0) >= 68:
         support.append(_ev("setup", "setup_quality_confirmed", scores.get("setup_quality_score"), "价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。"))
+    if scores.get("bottom_fishing_score", 0) >= 72 and scores.get("one_day_pop_risk_score", 100) < 58:
+        support.append(
+            _ev(
+                "bottom_structure",
+                "bottom_fishing_structure_confirmed",
+                scores.get("bottom_fishing_score"),
+                (
+                    "低吸结构优先：回撤、支撑距离、RSI、收盘位置和非过热状态共同支持反转观察，"
+                    "但仍需触发价确认。"
+                ),
+            )
+        )
+    if scores.get("swing_durability_score", 0) >= 64 and scores.get("one_day_pop_risk_score", 100) < 58:
+        support.append(_ev("durability", "swing_durability_confirmed", scores.get("swing_durability_score"), "持续性评分优于一日冲高风险，候选更偏低吸反转而非追高接力。"))
     if scores.get("extension_risk_score", 0) >= 70:
         conflict.append(_ev("extension_risk", "extension_risk_high", scores.get("extension_risk_score"), "短线涨幅、缺口或距均线过远，存在追涨过热风险。"))
     fermentation = scores.get("fermentation_profile") or {}
@@ -1584,11 +1825,15 @@ def _evidence(
         conflict.append(_ev("fermentation", "fermentation_weak", 100 - fermentation_score, f"{fermentation.get('label') or '发酵不足'}：{'; '.join((fermentation.get('conflicting_points') or fermentation.get('weak_points') or [])[:3])}"))
     else:
         missing.append(_ev("fermentation", "fermentation_partial", fermentation_score, f"{fermentation.get('label') or '部分发酵'}，还需要触发价或量能继续确认。"))
-    if features["technical_score"] >= 64:
+    if scores.get("bottom_fishing_score", 0) >= 72 and scores.get("setup_quality_score", 0) >= 68:
+        support.append(_ev("price", "bottom_price_structure_confirmed", scores.get("bottom_fishing_score"), "价格没有按追涨突破确认，但低吸结构、支撑距离和回撤区间成立。"))
+    elif features["technical_score"] >= 64:
         support.append(_ev("price", "price_structure_confirmed", features["technical_score"], "价格结构有突破、收复或强收盘特征。"))
     else:
         conflict.append(_ev("price", "price_structure_unconfirmed", 100 - features["technical_score"], "价格结构没有确认高质量短线形态。"))
-    if features["volume_score"] >= 62:
+    if scores.get("bottom_fishing_score", 0) >= 72 and float(features.get("avg_dollar_volume_m") or 0) >= MIN_AVG_DOLLAR_VOLUME_M and float(features.get("relative_volume") or 0) >= 0.75:
+        support.append(_ev("volume", "bottom_volume_watchable", features["volume_score"], "低吸候选不要求提前爆量；当前美元成交额和相对量足够进入触发观察。"))
+    elif features["volume_score"] >= 62:
         support.append(_ev("volume", "volume_anomaly_confirmed", features["volume_score"], "相对成交量和美元流动性足够支撑次日交易观察。"))
     else:
         conflict.append(_ev("volume", "volume_or_liquidity_weak", 100 - features["volume_score"], "成交确认或流动性不足。"))

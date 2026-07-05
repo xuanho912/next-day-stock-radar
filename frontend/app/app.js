@@ -183,8 +183,8 @@ function renderCoreBrief() {
       <strong>${safe(decision)}</strong>
     </div>
     <div>
-      <span>最高发酵</span>
-      <strong>${lead ? `${safe(lead.ticker)} · ${safe(num(lead.fermentation_score))}` : "-"}</strong>
+      <span>最高低吸</span>
+      <strong>${lead ? `${safe(lead.ticker)} · ${safe(num(lead.bottom_fishing_score))}` : "-"}</strong>
     </div>
     <div>
       <span>自动更新</span>
@@ -229,7 +229,7 @@ function renderCandidateTable() {
         <small>${safe(candidate.company_name || "")}</small>
         <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
       </td>
-      <td>${safe(zh("candidateType", candidate.candidate_type))}<small>发酵 ${safe(num(candidate.fermentation_score))} · ${safe(candidate.fermentation_profile?.label || "-")}</small></td>
+      <td>${safe(zh("candidateType", candidate.candidate_type))}<small>低吸 ${safe(num(candidate.bottom_fishing_score))} · 持续 ${safe(num(candidate.swing_durability_score))} · 冲高险 ${safe(num(candidate.one_day_pop_risk_score))}</small></td>
       <td>${price(candidate.current_price || candidate.last_close)}<small>${safe(quoteStatusText(candidate.quote_confirmation?.status))}</small></td>
       <td>${scoreBlock(pct(candidate.expected_upside_pct), "空间")}</td>
       <td>${scoreBlock(num(candidate.relative_volume), "相对量")}</td>
@@ -308,7 +308,7 @@ function renderOpportunityStrip() {
     <button class="opportunity-card ${candidate.ticker === selectedTicker ? "active" : ""}" data-ticker="${safeAttr(candidate.ticker)}">
       <span>${safe(candidate.rank || "-")} · ${safe(candidate.ticker)} · ${safe(mode === "top" ? "候选" : "阻断")}</span>
       <strong>${safe(mode === "top" ? pct(candidate.expected_upside_pct) : `信任 ${num(candidate.trust_score)}`)}</strong>
-      <small>发酵 ${safe(num(candidate.fermentation_score))} · ${safe(candidate.fermentation_profile?.label || "-")} · ${safe(shortText(candidate.reason || "", 28))}</small>
+      <small>低吸 ${safe(num(candidate.bottom_fishing_score))} · 持续 ${safe(num(candidate.swing_durability_score))} · ${safe(shortText(candidate.reason || "", 28))}</small>
     </button>
   `).join("");
 
@@ -459,6 +459,9 @@ function renderDetail() {
         ["上冲动量评分", candidate.upside_momentum_score],
         ["反抽评分", candidate.bounce_score],
         ["低吸反转评分", candidate.bottom_reversal_score],
+        ["低吸质量评分", candidate.bottom_fishing_score],
+        ["持续性评分", candidate.swing_durability_score],
+        ["一日冲高风险", candidate.one_day_pop_risk_score],
         ["蓄势突破评分", candidate.breakout_setup_score],
         ["潜伏质量评分", candidate.setup_quality_score],
         ["发酵共振评分", candidate.fermentation_score],
@@ -584,7 +587,7 @@ function selectedCandidate() {
   return top.find(item => item.ticker === selectedTicker)
     || watch.find(item => item.ticker === selectedTicker)
     || top[0]
-    || [...watch].sort((a, b) => Number(b.fermentation_score || 0) - Number(a.fermentation_score || 0))[0]
+    || [...watch].sort((a, b) => Number(b.bottom_fishing_score || 0) - Number(a.bottom_fishing_score || 0))[0]
     || null;
 }
 
@@ -597,7 +600,8 @@ function visibleCandidateRows() {
 function sortedWatchCandidates() {
   return [...(dashboard.watch_candidates || [])].sort((a, b) =>
     Number(b.trust_score || 0) - Number(a.trust_score || 0)
-    || Number(b.fermentation_score || 0) - Number(a.fermentation_score || 0)
+    || Number(b.bottom_fishing_score || 0) - Number(a.bottom_fishing_score || 0)
+    || Number(b.swing_durability_score || 0) - Number(a.swing_durability_score || 0)
   );
 }
 
@@ -627,6 +631,11 @@ function renderDataBackedSummary(candidate) {
         <span>潜伏/低吸质量</span>
         <strong>${safe(setupVerdict(candidate))}</strong>
         <p>潜伏质量 ${safe(num(candidate.setup_quality_score))}，低吸反转 ${safe(num(candidate.bottom_reversal_score))}，蓄势突破 ${safe(num(candidate.breakout_setup_score))}，离20日高点 ${safe(pct(technical.pullback_from_20d_high_pct))}。</p>
+      </div>
+      <div class="proof-block ${proofClass(bottomFishingVerdict(candidate))}">
+        <span>低吸持续性</span>
+        <strong>${safe(bottomFishingVerdict(candidate))}</strong>
+        <p>低吸 ${safe(num(candidate.bottom_fishing_score))}，持续 ${safe(num(candidate.swing_durability_score))}，一日冲高风险 ${safe(num(candidate.one_day_pop_risk_score))}。支撑距离 ${safe(pct(technical.distance_to_support_pct))}，RSI ${safe(num(technical.rsi_14))}。</p>
       </div>
       <div class="proof-block ${proofClass(fermentationVerdict(candidate))}">
         <span>发酵共振</span>
@@ -700,6 +709,16 @@ function setupVerdict(candidate) {
   return "潜伏证据不足";
 }
 
+function bottomFishingVerdict(candidate) {
+  const bottom = Number(candidate.bottom_fishing_score || 0);
+  const durability = Number(candidate.swing_durability_score || 0);
+  const popRisk = Number(candidate.one_day_pop_risk_score || 0);
+  if (bottom >= 72 && durability >= 64 && popRisk < 55) return "低吸持续性较好";
+  if (bottom >= 62 && popRisk < 64) return "低吸条件待确认";
+  if (popRisk >= 68) return "像一日冲高";
+  return "低吸质量不足";
+}
+
 function fermentationVerdict(candidate) {
   const profile = candidate.fermentation_profile || {};
   const score = Number(candidate.fermentation_score || profile.score || 0);
@@ -749,8 +768,8 @@ function autoUpdateLabel(status) {
 }
 
 function proofClass(label) {
-  if (/未明显过热|较强|审计通过|触发后观察|发酵共振确认/.test(label)) return "proof-good";
-  if (/过热|不足|未通过/.test(label)) return "proof-bad";
+  if (/未明显过热|较强|审计通过|触发后观察|发酵共振确认|低吸持续性较好/.test(label)) return "proof-good";
+  if (/过热|不足|未通过|一日冲高/.test(label)) return "proof-bad";
   if (/支持|确认/.test(label)) return "proof-good";
   if (/部分|温和|有新闻|样本不足|一般|已有延伸|只适合观察/.test(label)) return "proof-warn";
   return "proof-bad";

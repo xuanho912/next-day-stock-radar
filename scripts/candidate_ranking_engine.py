@@ -17,10 +17,11 @@ def rank_candidates(prediction_payload: dict[str, Any], market_context: dict[str
         key=lambda item: (
             edge_rank(item["edge_status"]),
             1 if (item.get("precision_gate") or {}).get("passed") else 0,
+            _bottom_priority_score(item),
             float(item.get("trust_score") or 0),
             float(item.get("confluence_score") or 0),
             float(item.get("payoff_quality_score") or 0),
-            float(item.get("elasticity_score") or 0),
+            -float(item.get("one_day_pop_risk_score") or 0),
         ),
         reverse=True,
     )
@@ -31,7 +32,7 @@ def rank_candidates(prediction_payload: dict[str, Any], market_context: dict[str
         "model_version": model_version,
         "model_role": "challenger" if strict else "baseline",
         "candidates": ranked,
-        "top_candidates": [candidate for candidate in ranked if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE", "HIGH_RISK_HIGH_REWARD"}][:20],
+        "top_candidates": [candidate for candidate in ranked if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}][:20],
     }
 
 
@@ -44,6 +45,29 @@ def edge_rank(edge_status: str) -> int:
         "MODERATE_EDGE": 4,
         "STRONG_EDGE": 5,
     }.get(edge_status, 0)
+
+
+def _bottom_priority_score(candidate: dict[str, Any]) -> float:
+    candidate_type = candidate.get("candidate_type")
+    type_bonus = {
+        "pullback_reversal_setup": 16,
+        "oversold_bounce": 12,
+        "accumulation_breakout_setup": 7,
+        "next_day_upside_momentum": -8,
+        "gap_continuation": -10,
+        "event_driven_volatility": -6,
+        "short_squeeze_candidate": -8,
+    }.get(candidate_type, 0)
+    return round(
+        float(candidate.get("bottom_fishing_score") or 0) * 0.42
+        + float(candidate.get("swing_durability_score") or 0) * 0.34
+        + float(candidate.get("setup_quality_score") or 0) * 0.12
+        + float(candidate.get("payoff_quality_score") or 0) * 0.08
+        + type_bonus
+        - float(candidate.get("one_day_pop_risk_score") or 0) * 0.34
+        - float(candidate.get("extension_risk_score") or 0) * 0.12,
+        2,
+    )
 
 
 def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], *, strict: bool, model_version: str) -> dict[str, Any]:
@@ -60,6 +84,16 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     elasticity_confirmation_factor = float(candidate.get("elasticity_confirmation_factor") or 0.50)
     setup_quality_score = float(candidate.get("setup_quality_score") or 0)
     extension_risk_score = float(candidate.get("extension_risk_score") or 0)
+    bottom_fishing_score = float(candidate.get("bottom_fishing_score") or 0)
+    swing_durability_score = float(candidate.get("swing_durability_score") or 0)
+    one_day_pop_risk_score = float(candidate.get("one_day_pop_risk_score") or 0)
+    candidate_type = candidate.get("candidate_type")
+    bottom_setup_ready = (
+        candidate_type in {"pullback_reversal_setup", "oversold_bounce"}
+        and bottom_fishing_score >= 72
+        and swing_durability_score >= 62
+        and one_day_pop_risk_score < 58
+    )
     signal_quality_gate = _signal_quality_gate(candidate)
 
     if strict:
@@ -87,7 +121,10 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
             + max(payoff_quality_score - 52, 0) * 0.03
             + max(execution_quality_score - 58, 0) * 0.02
             + max(setup_quality_score - 62, 0) * 0.10
+            + max(bottom_fishing_score - 60, 0) * 0.12
+            + max(swing_durability_score - 60, 0) * 0.08
             - max(extension_risk_score - 64, 0) * 0.18
+            - max(one_day_pop_risk_score - 55, 0) * 0.22
         )
         if expectation_gap_score < 45 and catalyst_score < 55:
             confluence_score = min(confluence_score, 62)
@@ -100,8 +137,12 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
     confluence_score = min(confluence_score, signal_quality_gate["confluence_cap"])
     if candidate.get("candidate_type") in {"next_day_upside_momentum", "gap_continuation"} and extension_risk_score >= 72:
         confluence_score = min(confluence_score, 62)
+    if candidate.get("candidate_type") in {"next_day_upside_momentum", "gap_continuation", "event_driven_volatility"} and one_day_pop_risk_score >= 62:
+        confluence_score = min(confluence_score, 60)
     if candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"} and setup_quality_score >= 70 and extension_risk_score < 62:
         confluence_score = min(78, confluence_score + 4)
+    if candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"} and bottom_fishing_score >= 70 and swing_durability_score >= 62:
+        confluence_score = min(82, confluence_score + 5)
 
     confluence_score = round(max(0, min(100, confluence_score)), 2)
     elasticity_score = round(
@@ -113,8 +154,10 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
                 + min(float(candidate["features"].get("relative_volume") or 1), 5) * 0.8
                 + max(elasticity_confirmation_factor - 0.55, 0) * 12
                 + max(setup_quality_score - 68, 0) * 0.10
+                + max(bottom_fishing_score - 68, 0) * 0.05
                 - max(risk_score - 60, 0) * 0.22
                 - max(extension_risk_score - 70, 0) * 0.18
+                - max(one_day_pop_risk_score - 62, 0) * 0.22
                 - len(signal_quality_gate["critical_failures"]) * 4,
             ),
         ),
@@ -139,11 +182,10 @@ def _score_candidate(candidate: dict[str, Any], market_context: dict[str, Any], 
         confluence_score,
         elasticity_score,
     )
-
     if capital_readiness["readiness_status"] == "NOT_TRUSTED_FOR_REAL_MONEY":
         edge_status = "NO_EDGE"
         rating = "C"
-    elif capital_readiness["trust_score"] < 70 and edge_status in {"STRONG_EDGE", "MODERATE_EDGE"}:
+    elif capital_readiness["trust_score"] < (55 if bottom_setup_ready else 70) and edge_status in {"STRONG_EDGE", "MODERATE_EDGE"}:
         edge_status = "WATCH"
         rating = "B"
 
@@ -216,7 +258,16 @@ def _edge_status(
     payoff_quality_score = float(candidate.get("payoff_quality_score") or 50)
     setup_quality_score = float(candidate.get("setup_quality_score") or 0)
     extension_risk_score = float(candidate.get("extension_risk_score") or 0)
-    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"}
+    bottom_fishing_score = float(candidate.get("bottom_fishing_score") or 0)
+    swing_durability_score = float(candidate.get("swing_durability_score") or 0)
+    one_day_pop_risk_score = float(candidate.get("one_day_pop_risk_score") or 0)
+    bottom_setup_ready = (
+        candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"}
+        and bottom_fishing_score >= 72
+        and swing_durability_score >= 62
+        and one_day_pop_risk_score < 58
+    )
+    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
     chase_type = candidate.get("candidate_type") in {"next_day_upside_momentum", "gap_continuation"}
     if candidate.get("candidate_type") == "no_edge" or candidate.get("pool_filter", {}).get("hard_excluded"):
         return "AVOID"
@@ -228,11 +279,13 @@ def _edge_status(
         return "AVOID"
     if chase_type and extension_risk_score >= 76:
         return "NO_EDGE" if confluence < 72 else "WATCH"
-    if expectation_gap_score < 45 and confluence < 66:
+    if one_day_pop_risk_score >= 70:
+        return "NO_EDGE" if confluence < 78 else "WATCH"
+    if expectation_gap_score < 45 and confluence < 66 and not bottom_setup_ready:
         return "NO_EDGE"
     if payoff_quality_score < 42:
         return "WATCH" if confluence >= 64 else "NO_EDGE"
-    if elasticity >= 76 and confluence >= 60 and risk_score >= 50:
+    if elasticity >= 76 and confluence >= 60 and risk_score >= 50 and not bottom_setup_ready:
         return "HIGH_RISK_HIGH_REWARD"
     if (
         signal_quality_gate["level"] == "confirmed"
@@ -248,7 +301,18 @@ def _edge_status(
         and signal_quality_gate["level"] in {"confirmed", "partial"}
         and setup_quality_score >= 72
         and extension_risk_score < 62
+        and one_day_pop_risk_score < 58
         and confluence >= (70 if strict else 66)
+        and support_count >= 3
+    ):
+        return "MODERATE_EDGE"
+    if (
+        candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"}
+        and signal_quality_gate["level"] in {"confirmed", "partial"}
+        and bottom_fishing_score >= 72
+        and swing_durability_score >= 62
+        and one_day_pop_risk_score < 58
+        and confluence >= (68 if strict else 64)
         and support_count >= 3
     ):
         return "MODERATE_EDGE"
@@ -276,13 +340,17 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     expectation_gap = float(candidate.get("expectation_gap_score") or 0)
     setup_quality_score = float(candidate.get("setup_quality_score") or 0)
     extension_risk_score = float(candidate.get("extension_risk_score") or 0)
+    bottom_fishing_score = float(candidate.get("bottom_fishing_score") or 0)
+    swing_durability_score = float(candidate.get("swing_durability_score") or 0)
+    one_day_pop_risk_score = float(candidate.get("one_day_pop_risk_score") or 0)
     fermentation = candidate.get("fermentation_profile") or {}
     fermentation_score = float(candidate.get("fermentation_score") or fermentation.get("score") or 0)
     hard_evidence_count = int(fermentation.get("hard_evidence_count") or 0)
     quote_status = (candidate.get("quote_confirmation") or {}).get("status")
     catalyst_type = news.get("catalyst_type")
     catalyst_quality = news.get("catalyst_quality")
-    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup"}
+    bottom_setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"}
+    setup_type = candidate.get("candidate_type") in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
     structure_catalyst_substitute = (
         setup_type
         and fermentation_score >= 68
@@ -293,11 +361,29 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
         and payoff >= 50
         and extension_risk_score < 66
     )
+    bottom_structure_substitute = (
+        bottom_setup_type
+        and bottom_fishing_score >= 72
+        and swing_durability_score >= 62
+        and one_day_pop_risk_score < 58
+        and setup_quality_score >= 68
+        and (technical >= 24 or bottom_fishing_score >= 82)
+        and volume >= 36
+        and payoff >= 40
+        and extension_risk_score < 66
+    )
 
     failures: list[str] = []
     critical: list[str] = []
 
-    if not structure_catalyst_substitute and (
+    if bottom_structure_substitute:
+        support_sources.update({"bottom_structure", "price", "setup"})
+        if volume >= 42 or relative_volume >= 0.75:
+            support_sources.add("volume")
+        if payoff >= 40:
+            support_sources.add("payoff")
+
+    if not structure_catalyst_substitute and not bottom_structure_substitute and (
         catalyst < 58
         or catalyst_type == "no_recent_confirmed_news"
         or catalyst_quality not in {"confirmed", "strong"}
@@ -306,15 +392,15 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
         failures.append("催化不足或没有确认新闻")
     elif structure_catalyst_substitute:
         support_sources.add("structure_fermentation")
-    if technical < 55 or "price" not in support_sources:
+    if (technical < 55 or "price" not in support_sources) and not bottom_structure_substitute:
         failures.append("技术结构未确认")
-    if volume < 60 or relative_volume < 1.15 or "volume" not in support_sources:
+    if (volume < 60 or relative_volume < 1.15 or "volume" not in support_sources) and not bottom_structure_substitute:
         failures.append("成交量没有形成确认")
     if sector < 55:
         failures.append("板块主线不够强")
-    if payoff < 52 or "payoff" not in support_sources:
+    if payoff < (42 if bottom_structure_substitute else 52) or "payoff" not in support_sources:
         failures.append("赔率质量不足")
-    if expectation_gap < 58:
+    if expectation_gap < 58 and not bottom_structure_substitute:
         failures.append("预期差不足")
     if quote_status == "failed":
         failures.append("当前价确认失败")
@@ -322,13 +408,13 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     if candidate.get("squeeze_data_status", {}).get("short_interest") == "proxy" and candidate.get("candidate_type") == "short_squeeze_candidate":
         failures.append("逼空逻辑只有 proxy，不能作为强共振")
 
-    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65 and not (setup_type and setup_quality_score >= 68) and not structure_catalyst_substitute:
+    if catalyst_quality in {"missing", "unconfirmed", "conflicted"} and technical < 65 and not (setup_type and setup_quality_score >= 68) and not structure_catalyst_substitute and not bottom_structure_substitute:
         critical.append("催化质量未确认")
-    if catalyst < 45 and technical < 65 and not (setup_type and setup_quality_score >= 70) and not structure_catalyst_substitute:
+    if catalyst < 45 and technical < 65 and not (setup_type and setup_quality_score >= 70) and not structure_catalyst_substitute and not bottom_structure_substitute:
         critical.append("缺催化且技术不强")
-    if volume < 52:
+    if volume < (34 if bottom_structure_substitute else 52):
         critical.append("成交量弱")
-    if technical < 42:
+    if technical < (20 if bottom_structure_substitute else 42):
         critical.append("技术结构弱")
 
     if critical:
@@ -337,6 +423,9 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
     elif not failures:
         level = "confirmed"
         cap = 100
+    elif bottom_structure_substitute:
+        level = "partial"
+        cap = 78
     elif (
         len(failures) <= (3 if setup_type else 2)
         and (catalyst >= 50 or setup_quality_score >= 68 or structure_catalyst_substitute)
@@ -360,6 +449,7 @@ def _signal_quality_gate(candidate: dict[str, Any]) -> dict[str, Any]:
         "required_sources": ["catalyst_or_structure_fermentation", "price", "volume", "payoff", "sector_or_market"],
         "support_sources": sorted(source for source in support_sources if source),
         "structure_catalyst_substitute": structure_catalyst_substitute,
+        "bottom_structure_substitute": bottom_structure_substitute,
     }
 
 
@@ -384,6 +474,15 @@ def _capital_readiness_audit(
     fermentation_score = float(candidate.get("fermentation_score") or fermentation.get("score") or 0)
     candidate_type = candidate.get("candidate_type")
     setup_type = candidate_type in {"pullback_reversal_setup", "accumulation_breakout_setup", "oversold_bounce"}
+    bottom_fishing_score = float(candidate.get("bottom_fishing_score") or 0)
+    swing_durability_score = float(candidate.get("swing_durability_score") or 0)
+    one_day_pop_risk_score = float(candidate.get("one_day_pop_risk_score") or 0)
+    bottom_setup_ready = (
+        candidate_type in {"pullback_reversal_setup", "oversold_bounce"}
+        and bottom_fishing_score >= 72
+        and swing_durability_score >= 62
+        and one_day_pop_risk_score < 58
+    )
 
     score = 100.0
     caps: list[float] = []
@@ -420,7 +519,10 @@ def _capital_readiness_audit(
     elif quote_status == "failed":
         penalize(35, "当前价已经否定触发路径", critical=True, cap=45)
     elif quote_status == "missing":
-        penalize(14, "当前价确认缺失，触发价需刷新", cap=72)
+        if bottom_setup_ready:
+            penalize(6, "当前价确认缺失，低吸触发价需刷新", cap=84)
+        else:
+            penalize(14, "当前价确认缺失，触发价需刷新", cap=72)
     else:
         penalize(8, "当前价状态不明确")
 
@@ -438,7 +540,10 @@ def _capital_readiness_audit(
     if matrix_overall == "confirmed":
         positives.append("多维共振确认")
     elif matrix_overall == "partial":
-        penalize(8, "共振只有部分成立")
+        if bottom_setup_ready:
+            penalize(4, "低吸共振部分成立，等待触发价确认")
+        else:
+            penalize(8, "共振只有部分成立")
     elif matrix_overall == "blocked":
         penalize(32, "共振矩阵存在硬阻断", critical=True, cap=50)
     else:
@@ -450,22 +555,22 @@ def _capital_readiness_audit(
     if sample_size >= 20 and not analog.get("low_sample_warning"):
         positives.append("历史相似样本数量可用")
     elif sample_size:
-        penalize(10, "历史相似样本偏少", cap=78)
+        penalize(5 if bottom_setup_ready else 10, "历史相似样本偏少", cap=84 if bottom_setup_ready else 78)
     else:
-        penalize(16, "没有可用历史相似样本", cap=74)
+        penalize(8 if bottom_setup_ready else 16, "没有可用历史相似样本", cap=82 if bottom_setup_ready else 74)
     if sample_size >= 8 and hit_rate is not None and float(hit_rate) < 0.45:
-        penalize(8, "历史相似样本次日命中率偏弱")
+        penalize(4 if bottom_setup_ready else 8, "历史相似样本次日命中率偏弱")
     if sample_size >= 8 and analog_avg is not None and float(analog_avg) < 0:
-        penalize(8, "历史相似样本次日均值为负")
+        penalize(4 if bottom_setup_ready else 8, "历史相似样本次日均值为负")
 
     payoff = float(candidate.get("payoff_quality_score") or 0)
     risk_reward = float(candidate.get("risk_reward_ratio") or 0)
     if payoff >= 55 and risk_reward >= 1.0:
         positives.append("上行空间相对失效风险有赔率")
     elif payoff < 45 or risk_reward < 0.7:
-        penalize(16, "赔率不足，预期上行不够覆盖失效风险", cap=68)
+        penalize(8 if bottom_setup_ready else 16, "赔率不足，预期上行不够覆盖失效风险", cap=78 if bottom_setup_ready else 68)
     else:
-        penalize(7, "赔率一般")
+        penalize(3 if bottom_setup_ready else 7, "赔率一般")
 
     setup_quality = float(candidate.get("setup_quality_score") or 0)
     extension_risk = float(candidate.get("extension_risk_score") or 0)
@@ -473,6 +578,23 @@ def _capital_readiness_audit(
         positives.append("低吸/蓄势结构质量较好")
     elif setup_type and setup_quality < 62:
         penalize(12, "低吸/蓄势结构不够干净")
+    if candidate_type in {"pullback_reversal_setup", "oversold_bounce"}:
+        if bottom_fishing_score >= 72:
+            positives.append("低吸质量确认")
+        elif bottom_fishing_score >= 60:
+            penalize(7, "低吸质量只有部分成立")
+        else:
+            penalize(16, "低吸质量不足", cap=64)
+        if swing_durability_score >= 64:
+            positives.append("持续性优于单日冲高")
+        elif swing_durability_score < 52:
+            penalize(12, "持续性不足，可能只是短线反抽", cap=68)
+    if one_day_pop_risk_score >= 72:
+        penalize(24, "一日冲高后回落风险过高", critical=True, cap=48)
+    elif one_day_pop_risk_score >= 60:
+        penalize(14, "一日冲高风险偏高", cap=66)
+    elif one_day_pop_risk_score < 45:
+        positives.append("一日冲高风险较低")
     if extension_risk >= 82:
         penalize(24, "追涨过热风险过高", critical=True, cap=50)
     elif extension_risk >= 72:
@@ -501,6 +623,9 @@ def _capital_readiness_audit(
     news_status = news.get("news_data_status")
     if catalyst >= 62:
         positives.append("催化分支持")
+    elif bottom_setup_ready:
+        warnings.append("缺少强催化，低吸候选只能按触发观察处理")
+        score -= 2
     elif setup_type and setup_quality >= 70:
         warnings.append("催化偏弱，但结构型候选可继续观察")
         score -= 5
@@ -531,9 +656,9 @@ def _capital_readiness_audit(
     if fermentation_score >= 68 and hard_evidence >= 3:
         positives.append(f"发酵共振确认：{fermentation.get('label')}")
     elif fermentation_score >= 55:
-        penalize(7, f"发酵共振只有部分成立：{fermentation.get('label') or '观察发酵'}")
+        penalize(4 if bottom_setup_ready else 7, f"发酵共振只有部分成立：{fermentation.get('label') or '观察发酵'}")
     else:
-        penalize(16, f"发酵共振不足：{fermentation.get('label') or '噪音波动'}", cap=66)
+        penalize(6 if bottom_setup_ready else 16, f"发酵共振不足：{fermentation.get('label') or '噪音波动'}", cap=78 if bottom_setup_ready else 66)
     if fermentation.get("profile_type") == "overextended_chase":
         penalize(18, "发酵类型为追涨过热", critical=True, cap=48)
 
@@ -544,6 +669,12 @@ def _capital_readiness_audit(
     if blockers or score < 55:
         status = "NOT_TRUSTED_FOR_REAL_MONEY"
         label = "真钱审计未通过"
+    elif bottom_setup_ready and score < 70:
+        status = "LOW_BUY_TRIGGER_WATCH"
+        label = "低吸待触发"
+    elif bottom_setup_ready and score < 82:
+        status = "LOW_BUY_AFTER_TRIGGER"
+        label = "触发后重点观察"
     elif score < 70:
         status = "WATCHLIST_ONLY"
         label = "只适合观察"
