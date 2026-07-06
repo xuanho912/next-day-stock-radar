@@ -4,7 +4,7 @@
 - latest_data_date: `2026-07-02`
 - expected_latest_trading_date: `2026-07-02`
 - data_freshness_status: `partial_fallback`
-- stale_warning: `True`
+- stale_warning: `False`
 - candidate_count: `38`
 
 ## 数据源状态
