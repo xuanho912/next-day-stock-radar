@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-06T16:22:04.848111+00:00",
+  "generated_at": "2026-07-06T17:57:21.049700+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 39.43,
-    "avg_top5_confluence_score": 66.0,
-    "avg_top5_expectation_gap_score": 69.43,
-    "avg_top5_payoff_quality_score": 52.9,
-    "avg_top5_execution_quality_score": 57.54,
+    "avg_top5_elasticity_score": 42.61,
+    "avg_top5_confluence_score": 70.81,
+    "avg_top5_expectation_gap_score": 70.35,
+    "avg_top5_payoff_quality_score": 57.91,
+    "avg_top5_execution_quality_score": 61.83,
     "avg_top5_risk_score": 5.33,
-    "min_top5_confluence_score": 63.0,
-    "min_top5_expectation_gap_score": 55.26,
-    "top_sector": "Cloud Software",
+    "min_top5_confluence_score": 67.0,
+    "min_top5_expectation_gap_score": 58.0,
+    "top_sector": "Consumer Quality",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -31,9 +31,9 @@
     "top10_quote_confirming_count": 1,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 1,
+    "top10_signal_confirmed_count": 2,
     "top10_signal_partial_count": 0,
-    "top10_signal_blocked_count": 2
+    "top10_signal_blocked_count": 1
   },
   "agent_findings": [
     {
@@ -49,23 +49,21 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Cloud Software(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
-      "status": "warn",
+      "status": "pass",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=69.43; min_top5_gap=55.26; confirmed_signal_count=1",
-      "warnings": [
-        "Top 5 平均预期差尚可，但最低预期差偏弱。"
-      ]
+      "evidence": "avg_top5_gap=70.35; min_top5_gap=58.0; confirmed_signal_count=2",
+      "warnings": []
     },
     {
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=52.9; avg_execution=57.54; avg_risk=5.33",
+      "evidence": "avg_payoff=57.91; avg_execution=61.83; avg_risk=5.33",
       "warnings": []
     },
     {
@@ -117,6 +115,20 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
+      "ticker": "COST",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 77.44; 预期差 58; 赔率 62.75; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 961.2114,
+      "invalidation": 920.55,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过"
+      ]
+    },
+    {
+      "rank": 2,
       "ticker": "ORCL",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
@@ -132,7 +144,7 @@
       ]
     },
     {
-      "rank": 2,
+      "rank": 3,
       "ticker": "TSLA",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
@@ -144,21 +156,6 @@
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 3,
-      "ticker": "CEG",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 55.26; 赔率 47.72; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 242.2059,
-      "invalidation": 228.63,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足"
       ]
     }
   ],

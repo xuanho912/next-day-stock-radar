@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-06T16:22:04.848111+00:00`
+- generated_at: `2026-07-06T17:57:21.049700+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -27,20 +27,19 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Cloud Software(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=69.43; min_top5_gap=55.26; confirmed_signal_count=1
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=70.35; min_top5_gap=58.0; confirmed_signal_count=2
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=52.9; avg_execution=57.54; avg_risk=5.33
+- evidence: avg_payoff=57.91; avg_execution=61.83; avg_risk=5.33
 
 ### 当前价确认代理
 
@@ -82,8 +81,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ORCL | 可观察候选 | 共振 67; 预期差 78.99; 赔率 56.4; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
-| 2 | TSLA | 可观察候选 | 共振 68; 预期差 74.05; 赔率 54.59; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | CEG | 可观察候选 | 共振 63; 预期差 55.26; 赔率 47.72; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
+| 1 | COST | 可观察候选 | 共振 77.44; 预期差 58; 赔率 62.75; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | ORCL | 可观察候选 | 共振 67; 预期差 78.99; 赔率 56.4; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 3 | TSLA | 可观察候选 | 共振 68; 预期差 74.05; 赔率 54.59; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
