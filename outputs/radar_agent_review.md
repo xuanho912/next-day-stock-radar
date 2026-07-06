@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-05T16:10:22.918162+00:00`
+- generated_at: `2026-07-06T14:41:22.904530+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -44,7 +44,7 @@
 
 - status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=48.39; avg_execution=53.78; avg_risk=8.0
+- evidence: avg_payoff=48.69; avg_execution=55.44; avg_risk=8.0
 - warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
@@ -88,6 +88,6 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | NIO | 可观察候选 | 共振 75.29; 预期差 54; 赔率 48.39; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | NIO | 可观察候选 | 共振 75.29; 预期差 54; 赔率 48.69; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
