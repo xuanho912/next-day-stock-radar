@@ -1,15 +1,17 @@
 # 次日高弹性股票雷达日报
 
-- generated_at: `2026-07-06T14:46:36.764677+00:00`
+- generated_at: `2026-07-06T16:02:36.516136+00:00`
 - latest_data_date: `2026-07-02`
 - expected_latest_trading_date: `2026-07-02`
 - data_freshness_status: `partial_fallback`
 - market_state: `neutral`
-- high_elasticity_opportunity: `False`
+- high_elasticity_opportunity: `True`
 - validation_status: `early_evidence`
 
 ## 候选榜
 
 | 排名 | 股票 | 等级 | 弹性 | 共振 | 触发价 | 失效价 | 原因 |
 | ---: | --- | --- | ---: | ---: | ---: | ---: | --- |
-| 1 | NIO | A | 35.22 | 75.29 | 4.8487 | 4.66 | 价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。 / 低吸结构优先：回撤、支撑距离、RSI、收盘位置和非过热状态共同支持反转观察，但仍需触发价确认。 |
+| 1 | ORCL | A | 38.39 | 67 | 142.215 | 137.1433 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
+| 2 | TSLA | A | 56.56 | 68 | 405.0333 | 368.6 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
+| 3 | CEG | A | 19.79 | 63 | 242.2059 | 228.63 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |

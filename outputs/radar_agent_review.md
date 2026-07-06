@@ -2,10 +2,10 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-06T14:46:36.776949+00:00`
-- overall_decision: `防守`
-- agency_quality_gate: `不通过`
-- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
+- generated_at: `2026-07-06T16:02:36.527186+00:00`
+- overall_decision: `观察`
+- agency_quality_gate: `谨慎通过`
+- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
 
 ## Hard Warnings
 
@@ -25,37 +25,35 @@
 
 ### 板块主线代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=China ADR / EV(1); top_type=pullback_reversal_setup(1)
-- warning: Top 10 主线集中度偏低，更多是离散机会。
+- evidence: top_sector=Cloud Software(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
-- status: `fail`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=54.0; min_top5_gap=54.0; confirmed_signal_count=1
-- warning: 预期差不足，容易变成表面热闹但没有交易价值。
+- evidence: avg_top5_gap=63.91; min_top5_gap=55.26; confirmed_signal_count=1
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=48.69; avg_execution=55.44; avg_risk=8.0
-- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
+- evidence: avg_payoff=52.83; avg_execution=57.54; avg_risk=5.33
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=0
+- evidence: confirming=1; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
 
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
-- evidence: proxy_squeeze=1; low_sample=1; liquidity_risk=0
+- evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -78,12 +76,14 @@
 
 - status: `pass`
 - conclusion: 确认前端只读取静态 JSON，并把复杂推理放到后面。
-- evidence: static_payload=True; candidate_count=38
+- evidence: static_payload=True; candidate_count=61
 
 ## Top Candidate Notes
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | NIO | 可观察候选 | 共振 75.29; 预期差 54; 赔率 48.69; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | ORCL | 可观察候选 | 共振 67; 预期差 62.43; 赔率 56.19; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 2 | TSLA | 可观察候选 | 共振 68; 预期差 74.05; 赔率 54.59; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | CEG | 可观察候选 | 共振 63; 预期差 55.26; 赔率 47.72; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
