@@ -3,9 +3,12 @@
   "market_benchmarks": ["SPY", "QQQ", "IWM", "DIA"],
   "risk_benchmarks": ["^VIX", "^TNX", "TLT", "UUP", "HYG", "LQD"],
   "sector_benchmarks": {
+    "Mega Cap Tech": ["QQQ", "XLK", "AAPL", "MSFT"],
+    "Consumer Internet": ["QQQ", "XLC", "META", "AMZN"],
     "AI / Semiconductors": ["SMH", "QQQ", "NVDA"],
     "AI Infrastructure": ["SMH", "QQQ", "NVDA"],
     "AI Software": ["IGV", "QQQ", "PLTR"],
+    "Cloud Software": ["IGV", "QQQ", "CRM"],
     "Quantum / High Beta": ["IWM", "QQQ"],
     "High Beta / EV": ["IWM", "TSLA"],
     "Crypto Proxy": ["BTC-USD", "COIN", "MSTR"],
@@ -17,6 +20,9 @@
     "Biotech / AI Drug": ["XBI", "IBB"],
     "Meme / Squeeze": ["IWM", "GME"],
     "Fintech / Trading": ["ARKF", "QQQ"],
+    "Financial Leaders": ["XLF", "SPY", "JPM"],
+    "Consumer Quality": ["XLP", "SPY", "COST"],
+    "Healthcare Quality": ["XLV", "SPY", "UNH"],
     "China ADR": ["KWEB", "FXI"],
     "China ADR / AI": ["KWEB", "FXI"],
     "China ADR / EV": ["KWEB", "FXI"]

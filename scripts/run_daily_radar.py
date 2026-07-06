@@ -156,30 +156,34 @@ def _dashboard_payload(
     quote_snapshots: dict[str, Any],
 ) -> dict[str, Any]:
     official = baseline["candidates"]
-    actionable = [
+    for candidate in official:
+        candidate["reliable_bottom_profile"] = _reliable_bottom_profile(candidate)
+    reliable_primary = [
         candidate
         for candidate in official
-        if candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}
-        and float(candidate.get("trust_score") or 0) >= 70
-        and _passes_low_buy_display_precision(candidate)
-        and not _has_hard_display_blocker(candidate)
+        if (candidate.get("reliable_bottom_profile") or {}).get("passed")
+    ]
+    reliable_secondary = [
+        candidate
+        for candidate in official
+        if candidate not in reliable_primary
+        and (candidate.get("reliable_bottom_profile") or {}).get("watch_eligible")
+    ]
+    reliable_primary.sort(key=lambda item: (item["reliable_bottom_profile"]["score"], float(item.get("trust_score") or 0)), reverse=True)
+    reliable_secondary.sort(key=lambda item: (item["reliable_bottom_profile"]["score"], float(item.get("trust_score") or 0)), reverse=True)
+    display_candidates = (reliable_primary + reliable_secondary)[:3]
+    for index, candidate in enumerate(display_candidates, start=1):
+        _mark_reliable_display_candidate(candidate, index)
+    actionable = [
+        candidate
+        for candidate in display_candidates
+        if (candidate.get("reliable_bottom_profile") or {}).get("passed")
     ]
     conditional = [
         candidate
-        for candidate in official
+        for candidate in display_candidates
         if candidate not in actionable
-        and _passes_low_buy_display_precision(candidate)
-        and (
-            candidate["edge_status"] in {"WATCH", "HIGH_RISK_HIGH_REWARD"}
-            or (
-                candidate["edge_status"] in {"STRONG_EDGE", "MODERATE_EDGE"}
-                and float(candidate.get("trust_score") or 0) >= 55
-                and candidate.get("candidate_type") in {"pullback_reversal_setup", "oversold_bounce"}
-            )
-        )
-        and not _has_hard_display_blocker(candidate)
     ]
-    display_candidates = (actionable + conditional)[:20]
     display_symbols = {candidate["ticker"] for candidate in display_candidates}
     watch_candidates = [
         candidate
@@ -269,6 +273,149 @@ def _has_hard_display_blocker(candidate: dict[str, Any]) -> bool:
     return False
 
 
+def _reliable_bottom_profile(candidate: dict[str, Any]) -> dict[str, Any]:
+    features = candidate.get("features") or {}
+    price = float(features.get("current_price") or candidate.get("current_price") or candidate.get("last_close") or features.get("last_close") or 0)
+    avg_dollar = float(features.get("avg_dollar_volume_m") or 0)
+    relative_volume = float(features.get("relative_volume") or 0)
+    sector = str(candidate.get("sector") or "")
+    candidate_type = candidate.get("candidate_type")
+    raw_type = candidate.get("raw_candidate_type") or candidate_type
+    low_buy_type = raw_type in {"pullback_reversal_setup", "oversold_bounce", "accumulation_breakout_setup"}
+    bottom = float(candidate.get("bottom_fishing_score") or 0)
+    durability = float(candidate.get("swing_durability_score") or 0)
+    pop_risk = float(candidate.get("one_day_pop_risk_score") or 0)
+    extension = float(candidate.get("extension_risk_score") or 0)
+    confluence = float(candidate.get("confluence_score") or 0)
+    trust = float(candidate.get("trust_score") or 0)
+    payoff = float(candidate.get("payoff_quality_score") or 0)
+    ratio = float(candidate.get("risk_reward_ratio") or 0)
+    upside = float(candidate.get("expected_upside_pct") or 0)
+    risk = float(candidate.get("risk_score") or 0)
+    support_distance = abs(float(features.get("distance_to_support_pct") or 0))
+    precision = candidate.get("low_buy_precision") or {}
+    risk_flags = set(candidate.get("risk_flags") or [])
+    pool_flags = (candidate.get("pool_filter") or {}).get("flags") or {}
+    excluded_sector_terms = ("Meme", "Crypto Miners", "Aviation / High Beta", "Quantum / High Beta")
+    warnings: list[str] = []
+    positives: list[str] = []
+
+    if price >= 20:
+        positives.append("价格不属于低价小票")
+    else:
+        warnings.append("价格低于20美元，不进可靠主推")
+    if avg_dollar >= 80:
+        positives.append("20日均美元成交额充足")
+    else:
+        warnings.append("20日均美元成交额不足")
+    if low_buy_type:
+        positives.append("属于低吸/回撤/修复结构")
+    else:
+        warnings.append("不是低吸/回撤/修复结构")
+    if any(term in sector for term in excluded_sector_terms):
+        warnings.append("题材高波动板块，不进可靠主推")
+    if pool_flags.get("high_liquidity_risk") or pool_flags.get("fallback_or_missing_price_data"):
+        warnings.append("流动性或行情数据存在硬风险")
+    if "current_quote_failed_risk" in risk_flags:
+        warnings.append("当前价已经否定触发路径")
+    if bottom < 64:
+        warnings.append("低吸质量不足")
+    if durability < 60:
+        warnings.append("持续性不足")
+    if pop_risk >= 50:
+        warnings.append("一日冲高风险偏高")
+    if extension >= 62:
+        warnings.append("短线延伸风险偏高")
+    if support_distance > 0.18:
+        warnings.append("距离支撑过远")
+    if upside < 0.025:
+        warnings.append("反弹空间不足")
+    if payoff < 37:
+        warnings.append("赔率分过低")
+    if ratio < 0.35:
+        warnings.append("上行/失效比过低")
+
+    quality_penalty = 0
+    if "China ADR" in sector:
+        quality_penalty += 5
+        warnings.append("中概监管/情绪风险需要折价")
+    if "Biotech" in sector:
+        quality_penalty += 8
+        warnings.append("生物科技事件风险需要折价")
+    if "High Beta" in sector:
+        quality_penalty += 4
+
+    score = round(
+        max(
+            0,
+            min(
+                100,
+                bottom * 0.16
+                + durability * 0.14
+                + confluence * 0.12
+                + max(trust, 45) * 0.10
+                + payoff * 0.12
+                + min(ratio, 1.4) * 12
+                + min(upside / 0.05, 1.4) * 8
+                + min(avg_dollar / 500, 1.6) * 8
+                + (8 if precision.get("passed") else 0)
+                - pop_risk * 0.08
+                - extension * 0.08
+                - max(support_distance - 0.08, 0) * 50
+                - quality_penalty,
+            ),
+        ),
+        2,
+    )
+    watch_eligible = (
+        price >= 20
+        and avg_dollar >= 80
+        and low_buy_type
+        and not any(term in sector for term in excluded_sector_terms)
+        and not pool_flags.get("high_liquidity_risk")
+        and not pool_flags.get("fallback_or_missing_price_data")
+        and "current_quote_failed_risk" not in risk_flags
+        and bottom >= 64
+        and durability >= 60
+        and pop_risk < 50
+        and extension < 62
+        and support_distance <= 0.18
+        and upside >= 0.025
+        and payoff >= 37
+        and ratio >= 0.35
+        and risk < 60
+    )
+    passed = watch_eligible and score >= 58 and (precision.get("passed") or ratio >= 0.70 or payoff >= 48)
+    return {
+        "version": "reliable_bottom_profile_v1",
+        "passed": bool(passed),
+        "watch_eligible": bool(watch_eligible),
+        "score": score,
+        "price": round(price, 4),
+        "avg_dollar_volume_m": round(avg_dollar, 3),
+        "relative_volume": round(relative_volume, 3),
+        "risk_reward_ratio": round(ratio, 3),
+        "expected_upside_pct": round(upside, 5),
+        "support_distance_pct": round(support_distance, 5),
+        "positive_factors": positives[:8],
+        "warnings": warnings[:8],
+        "not_trading_advice": "这是可靠低吸候选过滤，不是买卖建议或交易指令。",
+    }
+
+
+def _mark_reliable_display_candidate(candidate: dict[str, Any], display_rank: int) -> None:
+    profile = candidate.get("reliable_bottom_profile") or {}
+    raw_type = candidate.get("raw_candidate_type") or candidate.get("candidate_type")
+    candidate["display_rank"] = display_rank
+    candidate["display_candidate_type"] = raw_type if raw_type != "no_edge" else "pullback_reversal_setup"
+    candidate["display_edge_status"] = "MODERATE_EDGE" if profile.get("passed") else "WATCH"
+    candidate["display_rating"] = "A" if profile.get("passed") else "B"
+    if profile.get("passed"):
+        candidate["display_reason"] = "可靠低吸通过：" + " / ".join((profile.get("positive_factors") or [])[:2])
+    else:
+        candidate["display_reason"] = "可靠低吸观察：" + " / ".join((profile.get("warnings") or [])[:2])
+
+
 def _passes_low_buy_display_precision(candidate: dict[str, Any]) -> bool:
     if candidate.get("candidate_type") not in {"pullback_reversal_setup", "oversold_bounce"}:
         return True
@@ -334,15 +481,15 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
         features = candidate.get("features") or {}
         rows.append(
             {
-                "rank": candidate.get("rank"),
+                "rank": candidate.get("display_rank") or candidate.get("rank"),
                 "ticker": candidate.get("ticker"),
                 "company_name": candidate.get("company_name"),
                 "sector": candidate.get("sector"),
                 "last_close": candidate.get("last_close"),
-                "candidate_type": candidate.get("candidate_type"),
+                "candidate_type": candidate.get("display_candidate_type") or candidate.get("candidate_type"),
                 "raw_candidate_type": candidate.get("raw_candidate_type"),
-                "edge_status": candidate.get("edge_status"),
-                "rating": candidate.get("rating"),
+                "edge_status": candidate.get("display_edge_status") or candidate.get("edge_status"),
+                "rating": candidate.get("display_rating") or candidate.get("rating"),
                 "elasticity_score": candidate.get("elasticity_score"),
                 "elasticity_raw_potential": candidate.get("elasticity_raw_potential"),
                 "elasticity_confirmation_factor": candidate.get("elasticity_confirmation_factor"),
@@ -372,6 +519,7 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "expected_downside_pct": candidate.get("expected_downside_pct"),
                 "precision_gate": candidate.get("precision_gate"),
                 "low_buy_precision": candidate.get("low_buy_precision"),
+                "reliable_bottom_profile": candidate.get("reliable_bottom_profile"),
                 "confluence_matrix": candidate.get("confluence_matrix"),
                 "signal_quality_gate": candidate.get("signal_quality_gate"),
                 "quote_confirmation": candidate.get("quote_confirmation"),
@@ -413,7 +561,7 @@ def _public_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "nearest_support": candidate.get("nearest_support"),
                 "nearest_resistance": candidate.get("nearest_resistance"),
                 "trigger_meaning": candidate.get("trigger_meaning"),
-                "reason": candidate.get("reason"),
+                "reason": candidate.get("display_reason") or candidate.get("reason"),
                 "trade_plan": candidate.get("trade_plan"),
                 "news": candidate.get("news"),
                 "relative_strength": features.get("relative_strength_5d"),

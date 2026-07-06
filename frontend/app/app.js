@@ -231,7 +231,7 @@ function renderCandidateTable() {
         <small>${safe(candidate.company_name || "")}</small>
         <span class="badge ${edgeClass(candidate.edge_status)}">${safe(zh("edge", candidate.edge_status))}</span>
       </td>
-      <td>${safe(zh("candidateType", candidate.candidate_type))}<small>精度 ${safe(lowBuyPrecisionVerdict(candidate))} · 低吸 ${safe(num(candidate.bottom_fishing_score))} · 持续 ${safe(num(candidate.swing_durability_score))} · 冲高险 ${safe(num(candidate.one_day_pop_risk_score))}</small></td>
+      <td>${safe(zh("candidateType", candidate.candidate_type))}<small>可靠 ${safe(num(candidate.reliable_bottom_profile?.score))} · ${safe(reliableBottomVerdict(candidate))} · 低吸 ${safe(num(candidate.bottom_fishing_score))} · 持续 ${safe(num(candidate.swing_durability_score))}</small></td>
       <td>${price(candidate.current_price || candidate.last_close)}<small>${safe(quoteStatusText(candidate.quote_confirmation?.status))}</small></td>
       <td>${scoreBlock(pct(candidate.expected_upside_pct), "空间")}</td>
       <td>${scoreBlock(num(candidate.relative_volume), "相对量")}</td>
@@ -645,6 +645,11 @@ function renderDataBackedSummary(candidate) {
         <strong>${safe(lowBuyPrecisionVerdict(candidate))}</strong>
         <p>精度分 ${safe(num(candidate.low_buy_precision?.score))}，赔率比 ${safe(num(candidate.low_buy_precision?.risk_reward_ratio ?? candidate.risk_reward_ratio))}，失效距离 ${safe(pct(candidate.low_buy_precision?.invalidation_distance_pct))}。未过项：${safe((candidate.low_buy_precision?.failures || []).slice(0, 3).join(" / ") || "无")}。</p>
       </div>
+      <div class="proof-block ${proofClass(reliableBottomVerdict(candidate))}">
+        <span>可靠主推闸门</span>
+        <strong>${safe(reliableBottomVerdict(candidate))}</strong>
+        <p>可靠分 ${safe(num(candidate.reliable_bottom_profile?.score))}，价格 ${safe(price(candidate.reliable_bottom_profile?.price || candidate.current_price || candidate.last_close))}，20日均美元成交额 ${safe(num(candidate.reliable_bottom_profile?.avg_dollar_volume_m))}M。警告：${safe((candidate.reliable_bottom_profile?.warnings || []).slice(0, 3).join(" / ") || "无")}。</p>
+      </div>
       <div class="proof-block ${proofClass(fermentationVerdict(candidate))}">
         <span>发酵共振</span>
         <strong>${safe(fermentationVerdict(candidate))}</strong>
@@ -735,6 +740,13 @@ function lowBuyPrecisionVerdict(candidate) {
   return "精度未通过";
 }
 
+function reliableBottomVerdict(candidate) {
+  const profile = candidate.reliable_bottom_profile || {};
+  if (profile.passed) return "可靠通过";
+  if (profile.watch_eligible) return "可靠观察";
+  return "不进可靠主推";
+}
+
 function fermentationVerdict(candidate) {
   const profile = candidate.fermentation_profile || {};
   const score = Number(candidate.fermentation_score || profile.score || 0);
@@ -784,10 +796,10 @@ function autoUpdateLabel(status) {
 }
 
 function proofClass(label) {
-  if (/未明显过热|较强|审计通过|触发后观察|发酵共振确认|低吸持续性较好|精度通过/.test(label)) return "proof-good";
+  if (/未明显过热|较强|审计通过|触发后观察|发酵共振确认|低吸持续性较好|精度通过|可靠通过/.test(label)) return "proof-good";
   if (/过热|不足|未通过|一日冲高|精度未通过/.test(label)) return "proof-bad";
   if (/支持|确认/.test(label)) return "proof-good";
-  if (/部分|温和|有新闻|样本不足|一般|已有延伸|只适合观察|结构好但赔率不足/.test(label)) return "proof-warn";
+  if (/部分|温和|有新闻|样本不足|一般|已有延伸|只适合观察|结构好但赔率不足|可靠观察/.test(label)) return "proof-warn";
   return "proof-bad";
 }
 
