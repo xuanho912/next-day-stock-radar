@@ -595,7 +595,15 @@ def _automation_status(market_context: dict[str, Any], data_freshness_status: st
         "github_event_name": os.getenv("GITHUB_EVENT_NAME") or "local_or_unknown",
         "github_run_id": os.getenv("GITHUB_RUN_ID") or "",
         "github_run_attempt": os.getenv("GITHUB_RUN_ATTEMPT") or "",
-        "schedule_utc": ["13:00 UTC 周一至周五盘前刷新", "22:45 UTC 周一至周五收盘后刷新"],
+        "schedule_utc": [
+            "13:00 UTC 周一至周五盘前刷新",
+            "14:00 UTC 周一至周五开盘前后刷新",
+            "15:30 UTC 周一至周五盘中补刷",
+            "20:30 UTC 周一至周五收盘后初刷",
+            "22:45 UTC 周一至周五收盘后确认",
+            "23:30 UTC 周一至周五数据源延迟补刷",
+            "01:30 UTC 周二至周六隔夜补刷",
+        ],
         "next_scheduled_run_utc": _next_scheduled_run_utc(now),
         "latest_data_date": latest_date,
         "expected_latest_trading_date": expected_date,
@@ -606,11 +614,18 @@ def _automation_status(market_context: dict[str, Any], data_freshness_status: st
 
 
 def _next_scheduled_run_utc(now: datetime) -> str:
-    schedule_times = [time(13, 0), time(22, 45)]
+    schedule_times = [time(13, 0), time(14, 0), time(15, 30), time(20, 30), time(22, 45), time(23, 30)]
     for day_offset in range(8):
         current_date = (now + timedelta(days=day_offset)).date()
         if current_date.weekday() >= 5:
+            if current_date.weekday() == 5:
+                overnight_candidate = datetime.combine(current_date, time(1, 30), tzinfo=timezone.utc)
+                if overnight_candidate > now:
+                    return overnight_candidate.isoformat()
             continue
+        overnight_candidate = datetime.combine(current_date, time(1, 30), tzinfo=timezone.utc)
+        if current_date.weekday() >= 1 and overnight_candidate > now:
+            return overnight_candidate.isoformat()
         for scheduled_time in schedule_times:
             candidate = datetime.combine(current_date, scheduled_time, tzinfo=timezone.utc)
             if candidate > now:
