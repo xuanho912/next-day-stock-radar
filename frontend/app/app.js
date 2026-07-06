@@ -124,7 +124,9 @@ async function loadJson(paths) {
 }
 
 function renderDashboard() {
-  const fresh = dashboard.data_freshness_status === "fresh";
+  const dateStale = Boolean(dashboard.stale_warning);
+  const qualityWarning = Boolean(dashboard.data_quality_warning || dashboard.data_freshness_status !== "fresh");
+  const fresh = !dateStale && !qualityWarning;
   const marketState = dashboard.market_context?.market_state || "-";
   const actionable = dashboard.top_candidates || [];
   const topCandidate = actionable[0] || null;
@@ -151,8 +153,8 @@ function renderDashboard() {
   setText("candidateCount", `${attackCount} 只重点 / ${displayedCount} 只条件候选 / ${watchCount} 只阻断 / ${dashboard.candidate_count || 0} 只总候选`);
 
   const freshnessBadge = document.getElementById("freshnessBadge");
-  freshnessBadge.textContent = fresh ? "数据最新" : "数据警告";
-  freshnessBadge.className = `badge ${fresh ? "good" : "bad"}`;
+  freshnessBadge.textContent = dateStale ? "日期落后" : qualityWarning ? "有降级" : "数据最新";
+  freshnessBadge.className = `badge ${dateStale ? "bad" : qualityWarning ? "neutral" : "good"}`;
 
   const validationBadge = document.getElementById("validationBadge");
   validationBadge.textContent = zh("validation", dashboard.model_validation_status);
@@ -543,7 +545,8 @@ function renderValidation() {
   document.getElementById("dataQuality").innerHTML = facts([
     ["数据质量分", quality.score],
     ["新鲜度", zh("freshness", quality.data_freshness_status)],
-    ["是否警告", yn(quality.stale_warning)],
+    ["日期是否落后", yn(quality.stale_warning)],
+    ["数据源是否降级", yn(quality.data_quality_warning)],
     ["Yahoo 降级数量", quality.provider_status?.yahoo?.fallback_count],
     ["Finnhub 状态", zh("provider", quality.provider_status?.finnhub?.availability_status)],
     ["Finnhub 核心可用", yn(quality.provider_status?.finnhub?.core_available)],

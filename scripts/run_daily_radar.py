@@ -188,7 +188,10 @@ def _dashboard_payload(
     ][:20]
     strongest_type = display_candidates[0]["candidate_type"] if display_candidates else "none"
     effective_freshness = _effective_data_freshness(market_context, provider_status)
-    stale_warning = market_context.get("stale_warning") or effective_freshness != "fresh"
+    latest_date = market_context.get("latest_data_date")
+    expected_date = market_context.get("expected_latest_trading_date")
+    stale_warning = bool(market_context.get("stale_warning") or (latest_date and expected_date and latest_date != expected_date))
+    data_quality_warning = effective_freshness != "fresh"
     high_elasticity_opportunity = bool(actionable) and market_context.get("market_state") != "defense" and effective_freshness in {"fresh", "partial_fallback"}
     real_money_readiness = _dashboard_readiness(display_candidates, effective_freshness, validation)
     return {
@@ -198,6 +201,7 @@ def _dashboard_payload(
         "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
         "data_freshness_status": effective_freshness,
         "stale_warning": stale_warning,
+        "data_quality_warning": data_quality_warning,
         "provider_status": provider_status,
         "candidate_count": len(official),
         "top_candidate_count": len(display_candidates),
@@ -458,7 +462,8 @@ def _data_quality_report(market_context: dict[str, Any], provider_status: dict[s
         "latest_data_date": market_context.get("latest_data_date"),
         "expected_latest_trading_date": market_context.get("expected_latest_trading_date"),
         "data_freshness_status": effective_freshness,
-        "stale_warning": bool(market_context.get("stale_warning") or effective_freshness != "fresh"),
+        "stale_warning": bool(market_context.get("stale_warning") or (market_context.get("latest_data_date") and market_context.get("expected_latest_trading_date") and market_context.get("latest_data_date") != market_context.get("expected_latest_trading_date"))),
+        "data_quality_warning": effective_freshness != "fresh",
         "provider_status": provider_status,
         "candidate_count": candidate_count,
     }
