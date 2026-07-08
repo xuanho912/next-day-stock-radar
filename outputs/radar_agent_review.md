@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-08T16:03:55.118682+00:00`
+- generated_at: `2026-07-08T16:55:33.826087+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -41,7 +41,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=57.83; avg_execution=67.85; avg_risk=3.67
+- evidence: avg_payoff=58.87; avg_execution=67.19; avg_risk=9.17
 
 ### 当前价确认代理
 
@@ -84,8 +84,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | LRCX | 可观察候选 | 共振 76.28; 预期差 58; 赔率 53.26; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | NVDA | 可观察候选 | 共振 72.06; 预期差 58; 赔率 60.13; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | LRCX | 可观察候选 | 共振 76.29; 预期差 58; 赔率 53.26; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | NVDA | 可观察候选 | 共振 71.99; 预期差 58; 赔率 63.24; 风险 16.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | AVGO | 可观察候选 | 共振 76.93; 预期差 58; 赔率 60.11; 风险 11.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
