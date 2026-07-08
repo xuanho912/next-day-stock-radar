@@ -2,15 +2,16 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-08T16:55:33.826087+00:00`
-- overall_decision: `观察`
+- generated_at: `2026-07-08T21:37:42.487511+00:00`
+- overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
-- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
+- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
+- 市场路径偏防守，所有个股等级应自动压低。
 - 逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。
-- 强优势候选数量不足，不能强行进攻。
+- 市场路径偏防守，个股信号必须降级处理。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
 - Top 10 没有真实共振候选，只能观察，不能进攻。
@@ -21,8 +22,8 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
-- warning: 强优势候选数量不足，不能强行进攻。
+- evidence: market_state=defense; freshness=partial_fallback; strong_edge_count=0
+- warning: 市场路径偏防守，个股信号必须降级处理。
 
 ### 板块主线代理
 
@@ -39,9 +40,10 @@
 
 ### 执行质量代理
 
-- status: `pass`
+- status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=58.87; avg_execution=67.19; avg_risk=9.17
+- evidence: avg_payoff=48.8; avg_execution=63.53; avg_risk=12.0
+- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
 
@@ -63,7 +65,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=350; leaderboard=validated
+- evidence: validation=early_evidence; completed=376; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -84,8 +86,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | LRCX | 可观察候选 | 共振 76.29; 预期差 58; 赔率 53.26; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | NVDA | 可观察候选 | 共振 71.99; 预期差 58; 赔率 63.24; 风险 16.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | AVGO | 可观察候选 | 共振 76.93; 预期差 58; 赔率 60.11; 风险 11.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | LRCX | 可观察候选 | 共振 68.3; 预期差 58; 赔率 48.44; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | QCOM | 可观察候选 | 共振 63; 预期差 58; 赔率 50.08; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 |
+| 3 | MU | 可观察候选 | 共振 68; 预期差 58; 赔率 47.87; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
