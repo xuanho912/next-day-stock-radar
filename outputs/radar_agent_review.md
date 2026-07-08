@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-07T23:34:30.976353+00:00`
+- generated_at: `2026-07-08T01:01:35.738863+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -85,7 +85,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | LRCX | 可观察候选 | 共振 73.98; 预期差 54; 赔率 51.09; 风险 16.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | AVGO | 可观察候选 | 共振 75.15; 预期差 58; 赔率 52.99; 风险 44.0; 闸门 不具备高置信优势; 信号 partial | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | MU | 可观察候选 | 共振 68; 预期差 58; 赔率 53.04; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | AVGO | 可观察候选 | 共振 75.15; 预期差 58; 赔率 52.98; 风险 44.0; 闸门 不具备高置信优势; 信号 partial | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | MU | 可观察候选 | 共振 68; 预期差 58; 赔率 53.03; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
