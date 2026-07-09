@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-09T01:10:47.426123+00:00",
+  "generated_at": "2026-07-09T05:40:03.830103+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -12,11 +12,11 @@
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
     "avg_top5_elasticity_score": 47.8,
-    "avg_top5_confluence_score": 66.43,
+    "avg_top5_confluence_score": 66.45,
     "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 48.99,
-    "avg_top5_execution_quality_score": 63.53,
-    "avg_top5_risk_score": 12.0,
+    "avg_top5_payoff_quality_score": 48.33,
+    "avg_top5_execution_quality_score": 62.75,
+    "avg_top5_risk_score": 15.67,
     "min_top5_confluence_score": 63.0,
     "min_top5_expectation_gap_score": 58.0,
     "top_sector": "AI / Semiconductors",
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "warn",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=48.99; avg_execution=63.53; avg_risk=12.0",
+      "evidence": "avg_payoff=48.33; avg_execution=62.75; avg_risk=15.67",
       "warnings": [
         "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
       ]
@@ -123,7 +123,7 @@
       "ticker": "LRCX",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68.3; 预期差 58; 赔率 48.44; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 68.35; 预期差 58; 赔率 48.44; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 338.4804,
       "invalidation": 306.01,
       "warnings": [
@@ -134,20 +134,6 @@
     },
     {
       "rank": 2,
-      "ticker": "MU",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 58; 赔率 48.44; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 963.9808,
-      "invalidation": 854.35,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 3,
       "ticker": "QCOM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
@@ -159,6 +145,20 @@
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
         "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "MU",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 68; 预期差 58; 赔率 46.48; 风险 23.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 963.9808,
+      "invalidation": 854.35,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过"
       ]
     }
   ],
