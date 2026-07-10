@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-07-10T21:32:09.463521+00:00",
+  "generated_at": "2026-07-10T23:37:09.860761+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 20,
+  "pending_forecasts": 21,
   "completed_next_day_forecasts": 426,
   "baseline": {
-    "total_forecasts": 446,
-    "pending_forecasts": 20,
+    "total_forecasts": 447,
+    "pending_forecasts": 21,
     "completed_next_day_forecasts": 426,
     "top_10_avg_next_day_volatility": 0.273747,
     "top_10_next_day_direction_hit_rate": 0.136364,
@@ -38,8 +38,8 @@
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 447,
-    "pending_forecasts": 20,
+    "total_forecasts": 448,
+    "pending_forecasts": 21,
     "completed_next_day_forecasts": 427,
     "top_10_avg_next_day_volatility": 0.276557,
     "top_10_next_day_direction_hit_rate": 0.107143,
@@ -144,8 +144,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "neutral": {
-      "total_forecasts": 294,
-      "pending_forecasts": 20,
+      "total_forecasts": 295,
+      "pending_forecasts": 21,
       "completed_next_day_forecasts": 274,
       "top_10_avg_next_day_volatility": 0.063923,
       "top_10_next_day_direction_hit_rate": 0.054264,
@@ -722,8 +722,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "High Beta / EV": {
-      "total_forecasts": 31,
-      "pending_forecasts": 0,
+      "total_forecasts": 32,
+      "pending_forecasts": 1,
       "completed_next_day_forecasts": 31,
       "top_10_avg_next_day_volatility": 0.059047,
       "top_10_next_day_direction_hit_rate": 0.153846,
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 338,
-      "pending_forecasts": 18,
+      "total_forecasts": 339,
+      "pending_forecasts": 19,
       "completed_next_day_forecasts": 320,
       "top_10_avg_next_day_volatility": 0.066258,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 380,
-      "pending_forecasts": 18,
+      "total_forecasts": 381,
+      "pending_forecasts": 19,
       "completed_next_day_forecasts": 362,
       "top_10_avg_next_day_volatility": 0.322142,
       "top_10_next_day_direction_hit_rate": 0.068323,
