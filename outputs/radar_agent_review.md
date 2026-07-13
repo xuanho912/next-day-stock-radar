@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-11T04:42:18.469515+00:00`
+- generated_at: `2026-07-13T15:43:27.596481+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -33,14 +33,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=2
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=2
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=59.16; avg_execution=61.77; avg_risk=5.5
+- evidence: avg_payoff=57.41; avg_execution=58.45; avg_risk=1.99
 
 ### 当前价确认代理
 
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ASML | 可观察候选 | 共振 76.64; 预期差 58; 赔率 58.54; 风险 16.5; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | KLAC | 可观察候选 | 共振 68; 预期差 58; 赔率 54.51; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | COST | 可观察候选 | 共振 63; 预期差 58; 赔率 64.44; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 1 | ASML | 可观察候选 | 共振 77.07; 预期差 58; 赔率 61.41; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | COST | 可观察候选 | 共振 63; 预期差 58; 赔率 64.59; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 3 | TSM | 可观察候选 | 共振 68; 预期差 54; 赔率 46.22; 风险 5.98; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
