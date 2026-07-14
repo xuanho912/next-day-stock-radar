@@ -1,17 +1,17 @@
 # 次日高弹性股票雷达日报
 
-- generated_at: `2026-07-14T16:43:26.930112+00:00`
-- latest_data_date: `2026-07-13`
-- expected_latest_trading_date: `2026-07-13`
+- generated_at: `2026-07-14T21:28:42.639816+00:00`
+- latest_data_date: `2026-07-14`
+- expected_latest_trading_date: `2026-07-14`
 - data_freshness_status: `partial_fallback`
-- market_state: `defense`
-- high_elasticity_opportunity: `False`
+- market_state: `neutral`
+- high_elasticity_opportunity: `True`
 - validation_status: `early_evidence`
 
 ## 候选榜
 
 | 排名 | 股票 | 等级 | 弹性 | 共振 | 触发价 | 失效价 | 原因 |
 | ---: | --- | --- | ---: | ---: | ---: | ---: | --- |
-| 1 | MU | A | 58 | 75.96 | 951.992 | 891.66 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
-| 2 | COST | A | 4.56 | 52.28 | 935.8694 | 907.21 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
-| 3 | UNH | A | 29.39 | 68 | 433.5581 | 398.59 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
+| 1 | ASML | A | 52.72 | 77.57 | 1798.8601 | 1717.3101 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
+| 2 | NFLX | A | 32.14 | 76.44 | 74.3693 | 70.86 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
+| 3 | OKLO | A | 38.55 | 63 | 46.9543 | 44.9315 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
