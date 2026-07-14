@@ -5,4 +5,4 @@
 - completed_next_day_forecasts: `451`
 - top5_hit_rate: `0.117647`
 - avg_trigger_condition_return: `0.254469`
-- avg_max_drawdown: `0.042428`
+- avg_max_drawdown: `0.042429`
