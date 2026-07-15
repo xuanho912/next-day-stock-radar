@@ -2,10 +2,10 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-15T21:27:27.510053+00:00`
-- overall_decision: `防守`
-- agency_quality_gate: `不通过`
-- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
+- generated_at: `2026-07-15T23:38:56.765667+00:00`
+- overall_decision: `观察`
+- agency_quality_gate: `谨慎通过`
+- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
 
 ## Hard Warnings
 
@@ -31,16 +31,16 @@
 
 ### 预期差代理
 
-- status: `fail`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=53.19; min_top5_gap=51.58; confirmed_signal_count=1
-- warning: 预期差不足，容易变成表面热闹但没有交易价值。
+- evidence: avg_top5_gap=69.33; min_top5_gap=54.0; confirmed_signal_count=1
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=51.95; avg_execution=66.63; avg_risk=19.07
+- evidence: avg_payoff=57.97; avg_execution=67.84; avg_risk=13.57
 
 ### 当前价确认代理
 
@@ -68,7 +68,7 @@
 
 - status: `warn`
 - conclusion: 检查 provider 状态、降级数量、最新交易日和数据质量分。
-- evidence: score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial
+- evidence: score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial
 - warning: 存在数据源降级，候选已被过滤或压制，但仍需人工确认。
 - warning: Finnhub 非完全可用，新闻/事件催化可能不完整。
 
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ASML | 可观察候选 | 共振 76.82; 预期差 54; 赔率 62.13; 风险 27.5; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | ASML | 可观察候选 | 共振 82; 预期差 100.0; 赔率 80.18; 风险 11.0; 闸门 强共振; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
 | 2 | QCOM | 可观察候选 | 共振 63; 预期差 54; 赔率 46.63; 风险 13.2; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 |
-| 3 | ORCL | 可观察候选 | 共振 68; 预期差 51.58; 赔率 47.09; 风险 16.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | ORCL | 可观察候选 | 共振 68; 预期差 54; 赔率 47.09; 风险 16.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
