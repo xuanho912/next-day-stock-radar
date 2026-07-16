@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-15T23:38:56.765667+00:00",
+  "generated_at": "2026-07-16T00:57:39.403542+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,12 +11,12 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 46.79,
+    "avg_top5_elasticity_score": 47.26,
     "avg_top5_confluence_score": 71.0,
     "avg_top5_expectation_gap_score": 69.33,
-    "avg_top5_payoff_quality_score": 57.97,
-    "avg_top5_execution_quality_score": 67.84,
-    "avg_top5_risk_score": 13.57,
+    "avg_top5_payoff_quality_score": 58.68,
+    "avg_top5_execution_quality_score": 68.65,
+    "avg_top5_risk_score": 9.9,
     "min_top5_confluence_score": 63.0,
     "min_top5_expectation_gap_score": 54.0,
     "top_sector": "AI / Semiconductors",
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=57.97; avg_execution=67.84; avg_risk=13.57",
+      "evidence": "avg_payoff=58.68; avg_execution=68.65; avg_risk=9.9",
       "warnings": []
     },
     {
@@ -120,7 +120,7 @@
       "ticker": "ASML",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 82; 预期差 100.0; 赔率 80.18; 风险 11.0; 闸门 强共振; 信号 confirmed",
+      "key_check": "共振 82; 预期差 100.0; 赔率 82.31; 风险 0; 闸门 强共振; 信号 confirmed",
       "trigger": 1839.1281,
       "invalidation": 1717.3101,
       "warnings": [
