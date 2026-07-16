@@ -1,76 +1,78 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-16T16:48:22.874468+00:00",
+  "generated_at": "2026-07-16T21:30:08.153039+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
-  "overall_decision": "观察",
+  "overall_decision": "防守",
   "agency_quality_gate": "谨慎通过",
-  "market_permission": "只观察候选，不强行追逐；等待盘前刷新和触发确认。",
+  "market_permission": "防守优先；候选降级，避免把弱信号当成机会。",
   "top10_metric_snapshot": {
     "top10_count": 3,
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 47.2,
-    "avg_top5_confluence_score": 71.0,
-    "avg_top5_expectation_gap_score": 72.0,
-    "avg_top5_payoff_quality_score": 61.11,
-    "avg_top5_execution_quality_score": 73.74,
-    "avg_top5_risk_score": 12.83,
+    "avg_top5_elasticity_score": 30.86,
+    "avg_top5_confluence_score": 67.97,
+    "avg_top5_expectation_gap_score": 67.21,
+    "avg_top5_payoff_quality_score": 54.74,
+    "avg_top5_execution_quality_score": 64.06,
+    "avg_top5_risk_score": 18.79,
     "min_top5_confluence_score": 63.0,
     "min_top5_expectation_gap_score": 58.0,
-    "top_sector": "AI / Semiconductors",
+    "top_sector": "Consumer Internet",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
-    "top_candidate_type_count": 2,
+    "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 1,
+    "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 1,
-    "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 1
+    "top10_signal_partial_count": 0,
+    "top10_signal_blocked_count": 2
   },
   "agent_findings": [
     {
       "agent_name": "市场路径代理",
       "status": "warn",
       "conclusion": "检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。",
-      "evidence": "market_state=neutral; freshness=partial_fallback; strong_edge_count=0",
+      "evidence": "market_state=defense; freshness=partial_fallback; strong_edge_count=0",
       "warnings": [
-        "强优势候选数量不足，不能强行进攻。"
+        "市场路径偏防守，个股信号必须降级处理。"
       ]
     },
     {
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(2)",
+      "evidence": "top_sector=Consumer Internet(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
-      "status": "pass",
+      "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=72.0; min_top5_gap=58.0; confirmed_signal_count=1",
-      "warnings": []
+      "evidence": "avg_top5_gap=67.21; min_top5_gap=58.0; confirmed_signal_count=1",
+      "warnings": [
+        "Top 5 平均预期差尚可，但最低预期差偏弱。"
+      ]
     },
     {
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=61.11; avg_execution=73.74; avg_risk=12.83",
+      "evidence": "avg_payoff=54.74; avg_execution=64.06; avg_risk=18.79",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=1; failed=0; missing=0",
+      "evidence": "confirming=0; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -89,7 +91,7 @@
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=507; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=532; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -115,25 +117,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "ASML",
+      "ticker": "NFLX",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 82; 预期差 100.0; 赔率 80.19; 风险 11.0; 闸门 强共振; 信号 confirmed",
-      "trigger": 1839.1281,
-      "invalidation": 1717.3101,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy"
-      ]
-    },
-    {
-      "rank": 2,
-      "ticker": "UNH",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 58; 赔率 54.99; 风险 11.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 422.9086,
-      "invalidation": 398.59,
+      "key_check": "共振 77.91; 预期差 85.64; 赔率 56.12; 风险 24.38; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 75.1939,
+      "invalidation": 70.86,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -141,24 +130,41 @@
       ]
     },
     {
-      "rank": 3,
-      "ticker": "GOOGL",
-      "candidate_type": "oversold_bounce",
+      "rank": 2,
+      "ticker": "COST",
+      "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 58; 赔率 48.15; 风险 16.5; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 374.9211,
-      "invalidation": 330.2,
+      "key_check": "共振 63; 预期差 58; 赔率 56.76; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 955.2252,
+      "invalidation": 907.21,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：成交量没有形成确认 / 赔率质量不足"
+        "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认"
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "ASML",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 63; 预期差 58; 赔率 51.35; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 1808.35,
+      "invalidation": 1717.3101,
+      "warnings": [
+        "风险标记：weak_close_distribution_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
       ]
     }
   ],
   "hard_warnings": [
+    "市场路径偏防守，所有个股等级应自动压低。",
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
-    "强优势候选数量不足，不能强行进攻。",
+    "市场路径偏防守，个股信号必须降级处理。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
     "部分历史相似样本不足，不能把相似样本结论当作验证。"
   ],

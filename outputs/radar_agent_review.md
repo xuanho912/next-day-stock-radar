@@ -2,15 +2,16 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-16T16:48:22.874468+00:00`
-- overall_decision: `观察`
+- generated_at: `2026-07-16T21:30:08.153039+00:00`
+- overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
-- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
+- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
+- 市场路径偏防守，所有个股等级应自动压低。
 - 逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。
-- 强优势候选数量不足，不能强行进攻。
+- 市场路径偏防守，个股信号必须降级处理。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -20,32 +21,33 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
-- warning: 强优势候选数量不足，不能强行进攻。
+- evidence: market_state=defense; freshness=partial_fallback; strong_edge_count=0
+- warning: 市场路径偏防守，个股信号必须降级处理。
 
 ### 板块主线代理
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(2)
+- evidence: top_sector=Consumer Internet(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
-- status: `pass`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=72.0; min_top5_gap=58.0; confirmed_signal_count=1
+- evidence: avg_top5_gap=67.21; min_top5_gap=58.0; confirmed_signal_count=1
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=61.11; avg_execution=73.74; avg_risk=12.83
+- evidence: avg_payoff=54.74; avg_execution=64.06; avg_risk=18.79
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=1; failed=0; missing=0
+- evidence: confirming=0; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
@@ -60,7 +62,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=507; leaderboard=validated
+- evidence: validation=early_evidence; completed=532; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -81,8 +83,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ASML | 可观察候选 | 共振 82; 预期差 100.0; 赔率 80.19; 风险 11.0; 闸门 强共振; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy |
-| 2 | UNH | 可观察候选 | 共振 68; 预期差 58; 赔率 54.99; 风险 11.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | GOOGL | 可观察候选 | 共振 63; 预期差 58; 赔率 48.15; 风险 16.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：成交量没有形成确认 / 赔率质量不足 |
+| 1 | NFLX | 可观察候选 | 共振 77.91; 预期差 85.64; 赔率 56.12; 风险 24.38; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | COST | 可观察候选 | 共振 63; 预期差 58; 赔率 56.76; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 |
+| 3 | ASML | 可观察候选 | 共振 63; 预期差 58; 赔率 51.35; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
