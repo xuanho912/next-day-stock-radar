@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-17T04:41:34.338955+00:00`
+- generated_at: `2026-07-17T14:45:49.311779+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -14,6 +14,7 @@
 - 市场路径偏防守，个股信号必须降级处理。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
+- Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ## Agent Findings
 
@@ -28,20 +29,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Consumer Internet(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=64.22; min_top5_gap=54.0; confirmed_signal_count=1
+- evidence: avg_top5_gap=55.33; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=55.97; avg_execution=63.64; avg_risk=27.77
+- evidence: avg_payoff=55.83; avg_execution=60.13; avg_risk=23.1
 
 ### 当前价确认代理
 
@@ -57,6 +58,7 @@
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
+- warning: Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ### 验证代理
 
@@ -83,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | NFLX | 可观察候选 | 共振 77.64; 预期差 84.67; 赔率 54.68; 风险 34.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | COST | 可观察候选 | 共振 63; 预期差 54; 赔率 53.64; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 |
-| 3 | VST | 可观察候选 | 共振 48.27; 预期差 54; 赔率 59.59; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
+| 1 | COST | 可观察候选 | 共振 63; 预期差 54; 赔率 53.64; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 预期差不足 |
+| 2 | ASML | 可观察候选 | 共振 54.56; 预期差 58; 赔率 53.88; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 3 | VST | 可观察候选 | 共振 49.06; 预期差 54; 赔率 59.98; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
