@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-17T16:39:57.006219+00:00`
+- generated_at: `2026-07-17T21:12:57.545189+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -29,20 +29,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=AI / Semiconductors(3); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=54.22; avg_execution=64.3; avg_risk=17.6
+- evidence: avg_payoff=53.32; avg_execution=55.78; avg_risk=12.0
 
 ### 当前价确认代理
 
@@ -64,7 +64,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=532; leaderboard=validated
+- evidence: validation=early_evidence; completed=559; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -79,14 +79,14 @@
 
 - status: `pass`
 - conclusion: 确认前端只读取静态 JSON，并把复杂推理放到后面。
-- evidence: static_payload=True; candidate_count=62
+- evidence: static_payload=True; candidate_count=61
 
 ## Top Candidate Notes
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ASML | 可观察候选 | 共振 55.53; 预期差 58; 赔率 54.07; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
-| 2 | VST | 可观察候选 | 共振 51.33; 预期差 54; 赔率 60.11; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
-| 3 | MRK | 可观察候选 | 共振 68; 预期差 58; 赔率 48.47; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | AMD | 可观察候选 | 共振 71.21; 预期差 58; 赔率 49.82; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | KLAC | 可观察候选 | 共振 50.21; 预期差 58; 赔率 56.02; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 3 | LRCX | 可观察候选 | 共振 46.7; 预期差 58; 赔率 54.12; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
