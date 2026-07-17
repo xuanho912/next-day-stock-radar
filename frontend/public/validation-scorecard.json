@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-07-17T21:12:57.459940+00:00",
+  "generated_at": "2026-07-17T23:32:21.953306+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 20,
+  "pending_forecasts": 21,
   "completed_next_day_forecasts": 559,
   "baseline": {
-    "total_forecasts": 579,
-    "pending_forecasts": 20,
+    "total_forecasts": 580,
+    "pending_forecasts": 21,
     "completed_next_day_forecasts": 559,
     "top_10_avg_next_day_volatility": 0.225061,
     "top_10_next_day_direction_hit_rate": 0.115079,
@@ -17,8 +17,8 @@
     "primary_scenario_hit_rate": 0.035778,
     "avg_next_day_high_gain": 0.071919,
     "avg_next_day_close_gain": 0.040037,
-    "avg_max_drawdown": 0.029399,
-    "avg_open_condition_return": -0.000263,
+    "avg_max_drawdown": 0.029407,
+    "avg_open_condition_return": -0.000254,
     "avg_trigger_condition_return": 0.178412,
     "profit_factor": 19.04844664700852,
     "high_confluence_avg_next_day_return": -0.015895,
@@ -34,12 +34,12 @@
     "low_payoff_quality_avg_return": 0.050303,
     "high_payoff_quality_beats_low": false,
     "high_risk_avg_volatility": 0.07334,
-    "lower_risk_avg_volatility": 0.188628,
+    "lower_risk_avg_volatility": 0.18862,
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 580,
-    "pending_forecasts": 20,
+    "total_forecasts": 581,
+    "pending_forecasts": 21,
     "completed_next_day_forecasts": 560,
     "top_10_avg_next_day_volatility": 0.226809,
     "top_10_next_day_direction_hit_rate": 0.092,
@@ -49,8 +49,8 @@
     "primary_scenario_hit_rate": 0.035714,
     "avg_next_day_high_gain": 0.072394,
     "avg_next_day_close_gain": 0.040563,
-    "avg_max_drawdown": 0.029194,
-    "avg_open_condition_return": 0.00013,
+    "avg_max_drawdown": 0.029202,
+    "avg_open_condition_return": 0.000139,
     "avg_trigger_condition_return": 0.174845,
     "profit_factor": 17.492599852574664,
     "high_confluence_avg_next_day_return": 0.004806,
@@ -66,7 +66,7 @@
     "low_payoff_quality_avg_return": 0.050598,
     "high_payoff_quality_beats_low": false,
     "high_risk_avg_volatility": 0.07334,
-    "lower_risk_avg_volatility": 0.189045,
+    "lower_risk_avg_volatility": 0.189037,
     "high_risk_candidates_more_volatile": false
   },
   "baseline_vs_challenger": {
@@ -112,8 +112,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "defense": {
-      "total_forecasts": 157,
-      "pending_forecasts": 20,
+      "total_forecasts": 158,
+      "pending_forecasts": 21,
       "completed_next_day_forecasts": 137,
       "top_10_avg_next_day_volatility": 0.747657,
       "top_10_next_day_direction_hit_rate": 0.066667,
@@ -123,8 +123,8 @@
       "primary_scenario_hit_rate": 0.058394,
       "avg_next_day_high_gain": 0.209891,
       "avg_next_day_close_gain": 0.175843,
-      "avg_max_drawdown": 0.201527,
-      "avg_open_condition_return": -0.000581,
+      "avg_max_drawdown": 0.20156,
+      "avg_open_condition_return": -0.000547,
       "avg_trigger_condition_return": 0.714733,
       "profit_factor": 135.62783290666712,
       "high_confluence_avg_next_day_return": -0.01737,
@@ -140,7 +140,7 @@
       "low_payoff_quality_avg_return": 0.18929,
       "high_payoff_quality_beats_low": false,
       "high_risk_avg_volatility": 0.12653,
-      "lower_risk_avg_volatility": 0.585577,
+      "lower_risk_avg_volatility": 0.585544,
       "high_risk_candidates_more_volatile": false
     },
     "neutral": {
@@ -253,8 +253,8 @@
       "primary_scenario_hit_rate": 0.0,
       "avg_next_day_high_gain": -0.001926,
       "avg_next_day_close_gain": -0.029968,
-      "avg_max_drawdown": -0.029353,
-      "avg_open_condition_return": 0.001497,
+      "avg_max_drawdown": -0.029298,
+      "avg_open_condition_return": 0.001554,
       "avg_trigger_condition_return": -0.008009,
       "profit_factor": 0.4569856584093872,
       "high_confluence_avg_next_day_return": -0.069199,
@@ -270,7 +270,7 @@
       "low_payoff_quality_avg_return": -0.031389,
       "high_payoff_quality_beats_low": true,
       "high_risk_avg_volatility": null,
-      "lower_risk_avg_volatility": 0.082762,
+      "lower_risk_avg_volatility": 0.082707,
       "high_risk_candidates_more_volatile": false
     },
     "Aviation / High Beta": {
@@ -498,8 +498,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Consumer Internet": {
-      "total_forecasts": 19,
-      "pending_forecasts": 1,
+      "total_forecasts": 20,
+      "pending_forecasts": 2,
       "completed_next_day_forecasts": 18,
       "top_10_avg_next_day_volatility": 0.04659,
       "top_10_next_day_direction_hit_rate": 0.111111,
@@ -733,8 +733,8 @@
       "primary_scenario_hit_rate": 0.027778,
       "avg_next_day_high_gain": 0.18839,
       "avg_next_day_close_gain": 0.160761,
-      "avg_max_drawdown": 0.142798,
-      "avg_open_condition_return": 0.015928,
+      "avg_max_drawdown": 0.142864,
+      "avg_open_condition_return": 0.015998,
       "avg_trigger_condition_return": 1.21243,
       "profit_factor": 608.0650911275786,
       "high_confluence_avg_next_day_return": 0.014197,
@@ -750,7 +750,7 @@
       "low_payoff_quality_avg_return": 0.182811,
       "high_payoff_quality_beats_low": false,
       "high_risk_avg_volatility": 0.12653,
-      "lower_risk_avg_volatility": 0.43271,
+      "lower_risk_avg_volatility": 0.432642,
       "high_risk_candidates_more_volatile": false
     },
     "Mega Cap Tech": {
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 466,
-      "pending_forecasts": 20,
+      "total_forecasts": 467,
+      "pending_forecasts": 21,
       "completed_next_day_forecasts": 446,
       "top_10_avg_next_day_volatility": 0.060743,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1055,8 +1055,8 @@
       "primary_scenario_hit_rate": 0.0,
       "avg_next_day_high_gain": 0.027773,
       "avg_next_day_close_gain": -0.000407,
-      "avg_max_drawdown": -0.025231,
-      "avg_open_condition_return": 0.00118,
+      "avg_max_drawdown": -0.025221,
+      "avg_open_condition_return": 0.001191,
       "avg_trigger_condition_return": 0.000279,
       "profit_factor": 1.0293089243663678,
       "high_confluence_avg_next_day_return": -0.000852,
@@ -1072,7 +1072,7 @@
       "low_payoff_quality_avg_return": -0.000486,
       "high_payoff_quality_beats_low": true,
       "high_risk_avg_volatility": 0.07334,
-      "lower_risk_avg_volatility": 0.058778,
+      "lower_risk_avg_volatility": 0.058768,
       "high_risk_candidates_more_volatile": true
     },
     "oversold_bounce": {
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 508,
-      "pending_forecasts": 20,
+      "total_forecasts": 509,
+      "pending_forecasts": 21,
       "completed_next_day_forecasts": 488,
       "top_10_avg_next_day_volatility": 0.259483,
       "top_10_next_day_direction_hit_rate": 0.052885,
@@ -1217,8 +1217,8 @@
       "primary_scenario_hit_rate": 0.022541,
       "avg_next_day_high_gain": 0.079136,
       "avg_next_day_close_gain": 0.048611,
-      "avg_max_drawdown": 0.037985,
-      "avg_open_condition_return": 0.000361,
+      "avg_max_drawdown": 0.037994,
+      "avg_open_condition_return": 0.00037,
       "avg_trigger_condition_return": 0.199058,
       "profit_factor": 23.177726778236437,
       "high_confluence_avg_next_day_return": -0.000852,
@@ -1234,7 +1234,7 @@
       "low_payoff_quality_avg_return": 0.057775,
       "high_payoff_quality_beats_low": false,
       "high_risk_avg_volatility": 0.07334,
-      "lower_risk_avg_volatility": 0.206808,
+      "lower_risk_avg_volatility": 0.206799,
       "high_risk_candidates_more_volatile": false
     },
     "STRONG_EDGE": {
