@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-21T16:53:09.255765+00:00",
+  "generated_at": "2026-07-21T21:38:03.864396+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,16 +11,16 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 35.19,
-    "avg_top5_confluence_score": 60.7,
-    "avg_top5_expectation_gap_score": 56.25,
-    "avg_top5_payoff_quality_score": 47.84,
-    "avg_top5_execution_quality_score": 60.81,
-    "avg_top5_risk_score": 19.33,
-    "min_top5_confluence_score": 51.1,
-    "min_top5_expectation_gap_score": 54.0,
-    "top_sector": "AI / Semiconductors",
-    "top_sector_count": 2,
+    "avg_top5_elasticity_score": 27.68,
+    "avg_top5_confluence_score": 63.05,
+    "avg_top5_expectation_gap_score": 56.91,
+    "avg_top5_payoff_quality_score": 55.04,
+    "avg_top5_execution_quality_score": 50.04,
+    "avg_top5_risk_score": 12.0,
+    "min_top5_confluence_score": 58.07,
+    "min_top5_expectation_gap_score": 54.73,
+    "top_sector": "Consumer Quality",
+    "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -28,12 +28,12 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 3,
+    "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 2
+    "top10_signal_partial_count": 0,
+    "top10_signal_blocked_count": 3
   },
   "agent_findings": [
     {
@@ -49,33 +49,33 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(2); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=56.25; min_top5_gap=54.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=56.91; min_top5_gap=54.73; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
     },
     {
       "agent_name": "执行质量代理",
-      "status": "warn",
+      "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=47.84; avg_execution=60.81; avg_risk=19.33",
-      "warnings": [
-        "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
-      ]
+      "evidence": "avg_payoff=55.04; avg_execution=50.04; avg_risk=12.0",
+      "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
-      "status": "pass",
+      "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=3; failed=0; missing=0",
-      "warnings": []
+      "evidence": "confirming=0; failed=0; missing=0",
+      "warnings": [
+        "当前价确认数量偏少，盘前/盘中需要再次刷新。"
+      ]
     },
     {
       "agent_name": "风险现实校验代理",
@@ -92,7 +92,7 @@
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=585; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=611; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -101,7 +101,7 @@
       "agent_name": "数据质量代理",
       "status": "warn",
       "conclusion": "检查 provider 状态、降级数量、最新交易日和数据质量分。",
-      "evidence": "score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial",
+      "evidence": "score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial",
       "warnings": [
         "存在数据源降级，候选已被过滤或压制，但仍需人工确认。",
         "Finnhub 非完全可用，新闻/事件催化可能不完整。"
@@ -118,48 +118,47 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "ASML",
+      "ticker": "COST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 58; 赔率 55.55; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 1761.9212,
-      "invalidation": 1703.4,
+      "key_check": "共振 58.07; 预期差 54.73; 赔率 69.64; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 938.7138,
+      "invalidation": 907.21,
       "warnings": [
-        "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
       ]
     },
     {
       "rank": 2,
-      "ticker": "VST",
+      "ticker": "TSLA",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 54; 赔率 45.84; 风险 17.98; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 159.9519,
-      "invalidation": 148.14,
+      "key_check": "共振 67; 预期差 58; 赔率 49.76; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 383.6776,
+      "invalidation": 368.6,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
+        "精准闸门未通过",
+        "信号闸门：板块主线不够强"
       ]
     },
     {
       "rank": 3,
-      "ticker": "AMD",
+      "ticker": "QCOM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 51.1; 预期差 56.75; 赔率 42.12; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 511.5244,
-      "invalidation": 460.21,
+      "key_check": "共振 64.07; 预期差 58; 赔率 45.73; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 175.7355,
+      "invalidation": 164.77,
       "warnings": [
-        "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足"
+        "信号闸门：板块主线不够强"
       ]
     }
   ],
