@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-21T15:46:47.902927+00:00`
+- generated_at: `2026-07-21T16:53:09.255765+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -79,7 +79,7 @@
 
 - status: `pass`
 - conclusion: 确认前端只读取静态 JSON，并把复杂推理放到后面。
-- evidence: static_payload=True; candidate_count=61
+- evidence: static_payload=True; candidate_count=62
 
 ## Top Candidate Notes
 

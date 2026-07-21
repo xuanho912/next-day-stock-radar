@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-21T15:46:47.902927+00:00",
+  "generated_at": "2026-07-21T16:53:09.255765+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -111,7 +111,7 @@
       "agent_name": "中文仪表盘代理",
       "status": "pass",
       "conclusion": "确认前端只读取静态 JSON，并把复杂推理放到后面。",
-      "evidence": "static_payload=True; candidate_count=61",
+      "evidence": "static_payload=True; candidate_count=62",
       "warnings": []
     }
   ],
