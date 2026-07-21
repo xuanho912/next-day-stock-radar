@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-21T01:00:32.186219+00:00",
+  "generated_at": "2026-07-21T04:47:44.286847+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,13 +11,13 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 22.14,
-    "avg_top5_confluence_score": 57.86,
+    "avg_top5_elasticity_score": 24.06,
+    "avg_top5_confluence_score": 58.04,
     "avg_top5_expectation_gap_score": 56.67,
-    "avg_top5_payoff_quality_score": 49.74,
-    "avg_top5_execution_quality_score": 55.25,
-    "avg_top5_risk_score": 25.39,
-    "min_top5_confluence_score": 49.9,
+    "avg_top5_payoff_quality_score": 50.49,
+    "avg_top5_execution_quality_score": 56.27,
+    "avg_top5_risk_score": 21.73,
+    "min_top5_confluence_score": 49.94,
     "min_top5_expectation_gap_score": 54.0,
     "top_sector": "Consumer Internet",
     "top_sector_count": 1,
@@ -63,12 +63,10 @@
     },
     {
       "agent_name": "执行质量代理",
-      "status": "warn",
+      "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=49.74; avg_execution=55.25; avg_risk=25.39",
-      "warnings": [
-        "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
-      ]
+      "evidence": "avg_payoff=50.49; avg_execution=56.27; avg_risk=21.73",
+      "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
@@ -123,15 +121,14 @@
       "ticker": "NFLX",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 58; 赔率 45.96; 风险 35.38; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 63; 预期差 58; 赔率 48.11; 风险 24.38; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 68.4251,
       "invalidation": 65.08,
       "warnings": [
-        "风险标记：news_reversal_or_event_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
+        "信号闸门：板块主线不够强"
       ]
     },
     {
@@ -139,7 +136,7 @@
       "ticker": "ASML",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 49.9; 预期差 58; 赔率 58.55; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 49.94; 预期差 58; 赔率 58.56; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 1761.9212,
       "invalidation": 1703.4,
       "warnings": [
@@ -155,7 +152,7 @@
       "ticker": "VST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 60.68; 预期差 54; 赔率 44.72; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 61.18; 预期差 54; 赔率 44.81; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 159.9519,
       "invalidation": 148.14,
       "warnings": [
