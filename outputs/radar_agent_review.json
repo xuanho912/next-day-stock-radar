@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-23T01:03:41.313107+00:00",
+  "generated_at": "2026-07-23T04:52:45.294823+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,16 +11,16 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 37.5,
-    "avg_top5_confluence_score": 66.33,
+    "avg_top5_elasticity_score": 45.74,
+    "avg_top5_confluence_score": 69.4,
     "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 57.11,
-    "avg_top5_execution_quality_score": 53.15,
+    "avg_top5_payoff_quality_score": 48.0,
+    "avg_top5_execution_quality_score": 52.04,
     "avg_top5_risk_score": 12.0,
-    "min_top5_confluence_score": 57.79,
+    "min_top5_confluence_score": 67.0,
     "min_top5_expectation_gap_score": 58.0,
     "top_sector": "AI / Semiconductors",
-    "top_sector_count": 2,
+    "top_sector_count": 3,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -49,7 +49,7 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(2); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=AI / Semiconductors(3); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
@@ -63,10 +63,12 @@
     },
     {
       "agent_name": "执行质量代理",
-      "status": "pass",
+      "status": "warn",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=57.11; avg_execution=53.15; avg_risk=12.0",
-      "warnings": []
+      "evidence": "avg_payoff=48.0; avg_execution=52.04; avg_risk=12.0",
+      "warnings": [
+        "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
+      ]
     },
     {
       "agent_name": "当前价确认代理",
@@ -121,7 +123,7 @@
       "ticker": "LRCX",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 74.2; 预期差 58; 赔率 52.23; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 74.21; 预期差 58; 赔率 52.23; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 324.3868,
       "invalidation": 298.65,
       "warnings": [
@@ -132,27 +134,27 @@
     },
     {
       "rank": 2,
-      "ticker": "COST",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 57.79; 预期差 58; 赔率 72.85; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 936.7324,
-      "invalidation": 907.21,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
-      ]
-    },
-    {
-      "rank": 3,
       "ticker": "KLAC",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
       "key_check": "共振 67; 预期差 58; 赔率 46.25; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 218.0699,
       "invalidation": 204.58,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：板块主线不够强"
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "QCOM",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 67; 预期差 58; 赔率 45.52; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 177.873,
+      "invalidation": 164.77,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
