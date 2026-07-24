@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-24T04:48:46.176597+00:00",
+  "generated_at": "2026-07-24T14:57:30.068835+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 38.96,
-    "avg_top5_confluence_score": 69.23,
-    "avg_top5_expectation_gap_score": 56.58,
-    "avg_top5_payoff_quality_score": 58.53,
-    "avg_top5_execution_quality_score": 61.54,
-    "avg_top5_risk_score": 12.0,
-    "min_top5_confluence_score": 56.98,
-    "min_top5_expectation_gap_score": 53.74,
-    "top_sector": "AI / Semiconductors",
+    "avg_top5_elasticity_score": 31.9,
+    "avg_top5_confluence_score": 62.93,
+    "avg_top5_expectation_gap_score": 61.12,
+    "avg_top5_payoff_quality_score": 58.56,
+    "avg_top5_execution_quality_score": 61.25,
+    "avg_top5_risk_score": 14.67,
+    "min_top5_confluence_score": 57.8,
+    "min_top5_expectation_gap_score": 53.98,
+    "top_sector": "Consumer Quality",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -32,8 +32,8 @@
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 2,
-    "top10_signal_blocked_count": 1
+    "top10_signal_partial_count": 1,
+    "top10_signal_blocked_count": 2
   },
   "agent_findings": [
     {
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=56.58; min_top5_gap=53.74; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=61.12; min_top5_gap=53.98; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=58.53; avg_execution=61.54; avg_risk=12.0",
+      "evidence": "avg_payoff=58.56; avg_execution=61.25; avg_risk=14.67",
       "warnings": []
     },
     {
@@ -118,26 +118,27 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "KLAC",
+      "ticker": "COST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.91; 预期差 58; 赔率 49.75; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 221.9053,
-      "invalidation": 204.58,
+      "key_check": "共振 57.8; 预期差 53.98; 赔率 73.68; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 935.3521,
+      "invalidation": 907.21,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
       ]
     },
     {
       "rank": 2,
-      "ticker": "RKLB",
+      "ticker": "ASML",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 73.79; 预期差 58; 赔率 52.31; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 71.1098,
-      "invalidation": 64.51,
+      "key_check": "共振 68; 预期差 58; 赔率 48.21; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 1824.9425,
+      "invalidation": 1703.4,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -146,17 +147,18 @@
     },
     {
       "rank": 3,
-      "ticker": "COST",
+      "ticker": "NOW",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 56.98; 预期差 53.74; 赔率 73.53; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 935.3521,
-      "invalidation": 907.21,
+      "key_check": "共振 63; 预期差 71.37; 赔率 53.78; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 94.5733,
+      "invalidation": 89.39,
       "warnings": [
+        "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
+        "信号闸门：技术结构未确认 / 板块主线不够强"
       ]
     }
   ],
