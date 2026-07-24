@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-24T15:27:29.892173+00:00",
+  "generated_at": "2026-07-24T17:01:56.791892+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,12 +11,12 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 31.9,
-    "avg_top5_confluence_score": 62.93,
-    "avg_top5_expectation_gap_score": 61.12,
-    "avg_top5_payoff_quality_score": 58.56,
-    "avg_top5_execution_quality_score": 61.25,
-    "avg_top5_risk_score": 14.67,
+    "avg_top5_elasticity_score": 26.9,
+    "avg_top5_confluence_score": 64.6,
+    "avg_top5_expectation_gap_score": 56.66,
+    "avg_top5_payoff_quality_score": 55.47,
+    "avg_top5_execution_quality_score": 60.55,
+    "avg_top5_risk_score": 12.0,
     "min_top5_confluence_score": 57.8,
     "min_top5_expectation_gap_score": 53.98,
     "top_sector": "Consumer Quality",
@@ -32,8 +32,8 @@
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 2
+    "top10_signal_partial_count": 2,
+    "top10_signal_blocked_count": 1
   },
   "agent_findings": [
     {
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=61.12; min_top5_gap=53.98; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=56.66; min_top5_gap=53.98; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=58.56; avg_execution=61.25; avg_risk=14.67",
+      "evidence": "avg_payoff=55.47; avg_execution=60.55; avg_risk=12.0",
       "warnings": []
     },
     {
@@ -147,18 +147,16 @@
     },
     {
       "rank": 3,
-      "ticker": "NOW",
+      "ticker": "NFLX",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 71.37; 赔率 53.78; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 94.5733,
-      "invalidation": 89.39,
+      "key_check": "共振 68; 预期差 58; 赔率 44.53; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 69.6965,
+      "invalidation": 65.08,
       "warnings": [
-        "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：技术结构未确认 / 板块主线不够强"
+        "精准闸门未通过"
       ]
     }
   ],
