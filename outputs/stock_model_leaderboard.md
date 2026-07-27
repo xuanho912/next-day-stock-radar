@@ -5,5 +5,5 @@
 
 | Model | Role | Status | Completed | Top10 Volatility | Direction Hit | Range Hit | Primary Hit | Promotion |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| stock_radar_baseline_v1 | baseline | active | 226 | 0.043264 | 0.021505 | 0.982301 | 0.0 | active_baseline |
-| stock_radar_challenger_strict_v1 | challenger | shadow | 228 | 0.042435 | 0.021053 | 0.982456 | 0.0 | shadow_observation_required |
+| stock_radar_baseline_v1 | baseline | active | 218 | 0.043544 | 0.023529 | 0.981651 | 0.0 | active_baseline |
+| stock_radar_challenger_strict_v1 | challenger | shadow | 228 | 0.042425 | 0.021053 | 0.982456 | 0.0 | shadow_observation_required |
