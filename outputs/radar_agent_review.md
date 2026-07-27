@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-27T15:44:03.183248+00:00`
+- generated_at: `2026-07-27T16:23:53.076085+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -28,7 +28,7 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Financial Leaders(2); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(2)
 
 ### 预期差代理
 
@@ -41,7 +41,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=55.52; avg_execution=71.96; avg_risk=14.93
+- evidence: avg_payoff=53.31; avg_execution=62.05; avg_risk=17.6
 
 ### 当前价确认代理
 
@@ -85,6 +85,6 @@
 | ---: | --- | --- | --- | --- |
 | 1 | COST | 可观察候选 | 共振 54.66; 预期差 54; 赔率 63.03; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
 | 2 | MA | 可观察候选 | 共振 68; 预期差 58; 赔率 49.18; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | JPM | 可观察候选 | 共振 63; 预期差 58; 赔率 54.34; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：成交量没有形成确认 |
+| 3 | ORCL | 可观察候选 | 共振 52.31; 预期差 58; 赔率 47.72; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
