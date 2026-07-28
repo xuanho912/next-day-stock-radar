@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-28T16:07:03.242934+00:00",
+  "generated_at": "2026-07-28T16:58:40.451585+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -17,8 +17,8 @@
     "avg_top5_payoff_quality_score": 49.24,
     "avg_top5_execution_quality_score": 56.55,
     "avg_top5_risk_score": 20.17,
-    "min_top5_confluence_score": 51.24,
-    "min_top5_expectation_gap_score": 43.02,
+    "min_top5_confluence_score": 50.41,
+    "min_top5_expectation_gap_score": 43.42,
     "top_sector": "Healthcare Quality",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "fail",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=51.81; min_top5_gap=43.02; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=51.81; min_top5_gap=43.42; confirmed_signal_count=0",
       "warnings": [
         "预期差不足，容易变成表面热闹但没有交易价值。"
       ]
@@ -137,7 +137,7 @@
       "ticker": "ORCL",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 52.1; 预期差 43.02; 赔率 44.97; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 52.91; 预期差 43.42; 赔率 45.37; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 121.529,
       "invalidation": 114.75,
       "warnings": [
@@ -152,7 +152,7 @@
       "ticker": "NVDA",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 51.24; 预期差 54.41; 赔率 52.95; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 50.41; 预期差 54.01; 赔率 52.56; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 200.2333,
       "invalidation": 189.8,
       "warnings": [
