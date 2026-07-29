@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-28T23:37:34.270098+00:00`
+- generated_at: `2026-07-29T00:59:19.315535+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -41,7 +41,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=54.44; avg_execution=60.82; avg_risk=17.5
+- evidence: avg_payoff=50.57; avg_execution=57.93; avg_risk=17.5
 
 ### 当前价确认代理
 
@@ -84,7 +84,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | UNH | 可观察候选 | 共振 77.16; 预期差 58; 赔率 63.69; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | NVDA | 可观察候选 | 共振 59.23; 预期差 58; 赔率 52.96; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
-| 3 | ORCL | 可观察候选 | 共振 60.57; 预期差 53.86; 赔率 46.68; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 2 | ORCL | 可观察候选 | 共振 60.57; 预期差 53.86; 赔率 46.68; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 3 | PLTR | 可观察候选 | 共振 67; 预期差 58; 赔率 41.33; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 / 赔率质量不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
