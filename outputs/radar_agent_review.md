@@ -2,16 +2,18 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-07-29T15:50:51.849501+00:00`
+- generated_at: `2026-07-29T16:47:21.407783+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
+- 存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。
 - 市场路径偏防守，所有个股等级应自动压低。
 - 逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。
 - 市场路径偏防守，个股信号必须降级处理。
+- 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -22,6 +24,7 @@
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
 - evidence: market_state=defense; freshness=partial_fallback; strong_edge_count=0
+- warning: 存在数据新鲜度或降级警告，需要盘前再次刷新确认。
 - warning: 市场路径偏防守，个股信号必须降级处理。
 
 ### 板块主线代理
@@ -39,23 +42,22 @@
 
 ### 执行质量代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=48.1; avg_execution=58.51; avg_risk=23.0
-- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
+- evidence: avg_payoff=53.65; avg_execution=72.54; avg_risk=14.93
 
 ### 当前价确认代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=0
-- warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
+- evidence: confirming=3; failed=0; missing=0
 
 ### 风险现实校验代理
 
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
+- warning: 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -84,8 +86,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | UNH | 可观察候选 | 共振 77.17; 预期差 58; 赔率 63.72; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | PLTR | 可观察候选 | 共振 67; 预期差 58; 赔率 38.31; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 |
-| 3 | GOOGL | 可观察候选 | 共振 52.36; 预期差 54; 赔率 42.27; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
+| 1 | LLY | 可观察候选 | 共振 68; 预期差 58; 赔率 56.61; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | COST | 可观察候选 | 共振 63; 预期差 54; 赔率 52.23; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 3 | V | 可观察候选 | 共振 68; 预期差 58; 赔率 52.12; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
