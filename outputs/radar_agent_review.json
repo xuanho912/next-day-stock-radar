@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-30T15:53:03.460522+00:00",
+  "generated_at": "2026-07-30T16:59:22.211803+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,12 +11,12 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 30.21,
+    "avg_top5_elasticity_score": 28.72,
     "avg_top5_confluence_score": 62.02,
-    "avg_top5_expectation_gap_score": 69.97,
-    "avg_top5_payoff_quality_score": 54.3,
-    "avg_top5_execution_quality_score": 58.1,
-    "avg_top5_risk_score": 17.33,
+    "avg_top5_expectation_gap_score": 66.46,
+    "avg_top5_payoff_quality_score": 53.84,
+    "avg_top5_execution_quality_score": 54.7,
+    "avg_top5_risk_score": 20.0,
     "min_top5_confluence_score": 57.22,
     "min_top5_expectation_gap_score": 54.08,
     "top_sector": "AI / Semiconductors",
@@ -28,7 +28,7 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 0,
+    "top10_quote_confirming_count": 1,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=69.97; min_top5_gap=54.08; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=66.46; min_top5_gap=54.08; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,14 +65,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=54.3; avg_execution=58.1; avg_risk=17.33",
+      "evidence": "avg_payoff=53.84; avg_execution=54.7; avg_risk=20.0",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=0",
+      "evidence": "confirming=1; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -150,13 +150,14 @@
     },
     {
       "rank": 3,
-      "ticker": "V",
+      "ticker": "MSFT",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 98.6; 赔率 54.01; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 372.4981,
-      "invalidation": 339.08,
+      "key_check": "共振 68; 预期差 88.09; 赔率 52.61; 风险 20.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 394.8391,
+      "invalidation": 367.45,
       "warnings": [
+        "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
