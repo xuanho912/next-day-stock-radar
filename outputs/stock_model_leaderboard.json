@@ -1,6 +1,6 @@
 {
   "version": "stock_model_leaderboard_v1",
-  "generated_at": "2026-07-30T00:55:39.383750+00:00",
+  "generated_at": "2026-07-30T04:35:21.091886+00:00",
   "active_baseline": "stock_radar_baseline_v1",
   "validation_status": "validated",
   "models": [
@@ -18,10 +18,10 @@
         "top10_hit_rate": 0.048193,
         "range_hit_rate": 0.977477,
         "primary_scenario_hit_rate": 0.0,
-        "avg_next_day_high_gain": 0.020574,
+        "avg_next_day_high_gain": 0.02058,
         "avg_next_day_close_gain": -0.001407,
-        "avg_max_drawdown": -0.022982,
-        "avg_open_condition_return": -0.000185,
+        "avg_max_drawdown": -0.022992,
+        "avg_open_condition_return": -0.000203,
         "avg_trigger_condition_return": 0.003906,
         "profit_factor": 1.43664026701557,
         "high_confluence_avg_next_day_return": -0.018425,
@@ -37,7 +37,7 @@
         "low_payoff_quality_avg_return": -0.001108,
         "high_payoff_quality_beats_low": false,
         "high_risk_avg_volatility": 0.017735,
-        "lower_risk_avg_volatility": 0.049886,
+        "lower_risk_avg_volatility": 0.049902,
         "high_risk_candidates_more_volatile": false
       },
       "promotion_status": "active_baseline"
@@ -56,10 +56,10 @@
         "top10_hit_rate": 0.043011,
         "range_hit_rate": 0.970588,
         "primary_scenario_hit_rate": 0.0,
-        "avg_next_day_high_gain": 0.019389,
+        "avg_next_day_high_gain": 0.019395,
         "avg_next_day_close_gain": -0.002469,
-        "avg_max_drawdown": -0.02263,
-        "avg_open_condition_return": 0.00032,
+        "avg_max_drawdown": -0.02264,
+        "avg_open_condition_return": 0.000302,
         "avg_trigger_condition_return": 0.003254,
         "profit_factor": 1.3578931139028696,
         "high_confluence_avg_next_day_return": null,
@@ -75,7 +75,7 @@
         "low_payoff_quality_avg_return": -0.002019,
         "high_payoff_quality_beats_low": false,
         "high_risk_avg_volatility": 0.017735,
-        "lower_risk_avg_volatility": 0.049103,
+        "lower_risk_avg_volatility": 0.049118,
         "high_risk_candidates_more_volatile": false
       },
       "promotion_status": "shadow_observation_required"
