@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-07-30T04:35:21.094716+00:00",
+  "generated_at": "2026-07-30T15:12:12.953496+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,18 +11,18 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 29.4,
-    "avg_top5_confluence_score": 58.34,
-    "avg_top5_expectation_gap_score": 71.8,
-    "avg_top5_payoff_quality_score": 51.31,
-    "avg_top5_execution_quality_score": 62.27,
+    "avg_top5_elasticity_score": 30.21,
+    "avg_top5_confluence_score": 62.02,
+    "avg_top5_expectation_gap_score": 69.97,
+    "avg_top5_payoff_quality_score": 54.3,
+    "avg_top5_execution_quality_score": 58.1,
     "avg_top5_risk_score": 17.33,
-    "min_top5_confluence_score": 49.03,
-    "min_top5_expectation_gap_score": 58.0,
-    "top_sector": "Financial Leaders",
+    "min_top5_confluence_score": 57.22,
+    "min_top5_expectation_gap_score": 54.08,
+    "top_sector": "AI / Semiconductors",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
-    "top_candidate_type_count": 2,
+    "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(2)",
+      "evidence": "top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=71.8; min_top5_gap=58.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=69.97; min_top5_gap=54.08; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=51.31; avg_execution=62.27; avg_risk=17.33",
+      "evidence": "avg_payoff=54.3; avg_execution=58.1; avg_risk=17.33",
       "warnings": []
     },
     {
@@ -118,48 +118,48 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
+      "ticker": "NVDA",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 57.22; 预期差 54.08; 赔率 59.87; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 192.3633,
+      "invalidation": 186.5898,
+      "warnings": [
+        "风险标记：weak_close_distribution_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
+      ]
+    },
+    {
+      "rank": 2,
+      "ticker": "ORCL",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 60.84; 预期差 57.22; 赔率 49.03; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 119.3565,
+      "invalidation": 114.5,
+      "warnings": [
+        "风险标记：weak_close_distribution_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足"
+      ]
+    },
+    {
+      "rank": 3,
       "ticker": "V",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 99.4; 赔率 54.19; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 68; 预期差 98.6; 赔率 54.01; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 372.4981,
       "invalidation": 339.08,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 2,
-      "ticker": "AVGO",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 49.03; 预期差 58; 赔率 48.8; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 375.3167,
-      "invalidation": 356.43,
-      "warnings": [
-        "风险标记：weak_close_distribution_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
-      ]
-    },
-    {
-      "rank": 3,
-      "ticker": "LLY",
-      "candidate_type": "oversold_bounce",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 58; 预期差 58; 赔率 50.94; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 1223.0846,
-      "invalidation": 1134.4,
-      "warnings": [
-        "风险标记：weak_close_distribution_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
       ]
     }
   ],
