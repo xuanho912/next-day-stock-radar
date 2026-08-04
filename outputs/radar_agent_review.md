@@ -2,15 +2,18 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-04T01:01:44.013701+00:00`
-- overall_decision: `观察`
+- generated_at: `2026-08-04T04:43:30.480792+00:00`
+- overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
-- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
+- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
+- 存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。
+- 市场路径偏防守，所有个股等级应自动压低。
 - 逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。
-- 强优势候选数量不足，不能强行进攻。
+- 市场路径偏防守，个股信号必须降级处理。
+- 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -20,27 +23,28 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
-- warning: 强优势候选数量不足，不能强行进攻。
+- evidence: market_state=defense; freshness=partial_fallback; strong_edge_count=0
+- warning: 存在数据新鲜度或降级警告，需要盘前再次刷新确认。
+- warning: 市场路径偏防守，个股信号必须降级处理。
 
 ### 板块主线代理
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=AI / Semiconductors(3); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=3
+- evidence: avg_top5_gap=58.84; min_top5_gap=58.0; confirmed_signal_count=2
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=52.1; avg_execution=63.39; avg_risk=0
+- evidence: avg_payoff=54.83; avg_execution=65.21; avg_risk=12.0
 
 ### 当前价确认代理
 
@@ -54,6 +58,7 @@
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
+- warning: 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -82,8 +87,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ARM | 可观察候选 | 共振 77.17; 预期差 58; 赔率 58.53; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | KLAC | 可观察候选 | 共振 76.96; 预期差 58; 赔率 50.08; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | QCOM | 可观察候选 | 共振 68; 预期差 58; 赔率 47.69; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | MSTR | 可观察候选 | 共振 71.84; 预期差 58; 赔率 56.56; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | PLTR | 可观察候选 | 共振 76.71; 预期差 58; 赔率 61.02; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | META | 可观察候选 | 共振 68; 预期差 60.53; 赔率 46.9; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
