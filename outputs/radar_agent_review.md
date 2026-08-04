@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-04T16:14:26.948874+00:00`
+- generated_at: `2026-08-04T17:11:50.682038+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -40,7 +40,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=51.96; avg_execution=63.95; avg_risk=4.4
+- evidence: avg_payoff=55.0; avg_execution=64.44; avg_risk=4.4
 
 ### 当前价确认代理
 
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | ARM | 可观察候选 | 共振 77.21; 预期差 58; 赔率 58.84; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | KLAC | 可观察候选 | 共振 68; 预期差 54; 赔率 47.67; 风险 13.2; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | MU | 可观察候选 | 共振 68; 预期差 58; 赔率 49.37; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | ARM | 可观察候选 | 共振 77.25; 预期差 58; 赔率 59.1; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | MU | 可观察候选 | 共振 68; 预期差 58; 赔率 58.22; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | KLAC | 可观察候选 | 共振 68; 预期差 54; 赔率 47.67; 风险 13.2; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
