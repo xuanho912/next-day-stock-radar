@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-04T21:45:31.318845+00:00`
+- generated_at: `2026-08-04T23:41:02.625762+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -40,7 +40,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=53.03; avg_execution=62.26; avg_risk=11.0
+- evidence: avg_payoff=52.93; avg_execution=62.16; avg_risk=11.46
 
 ### 当前价确认代理
 
@@ -82,7 +82,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AAPL | 可观察候选 | 共振 78.42; 预期差 58; 赔率 59.14; 风险 22.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | AAPL | 可观察候选 | 共振 78.39; 预期差 58; 赔率 58.85; 风险 23.38; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | COST | 可观察候选 | 共振 77.17; 预期差 58; 赔率 56.31; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | COIN | 可观察候选 | 共振 67; 预期差 54; 赔率 43.63; 风险 11.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
 
