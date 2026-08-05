@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-05T16:58:33.532651+00:00`
+- generated_at: `2026-08-05T21:40:26.453472+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -20,7 +20,7 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
+- evidence: market_state=attack; freshness=partial_fallback; strong_edge_count=0
 - warning: 强优势候选数量不足，不能强行进攻。
 
 ### 板块主线代理
@@ -33,14 +33,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=64.38; min_top5_gap=58.0; confirmed_signal_count=1
+- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=2
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=61.01; avg_execution=66.55; avg_risk=2.67
+- evidence: avg_payoff=57.78; avg_execution=69.53; avg_risk=0
 
 ### 当前价确认代理
 
@@ -61,7 +61,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=868; leaderboard=validated
+- evidence: validation=early_evidence; completed=891; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AAPL | 可观察候选 | 共振 78.37; 预期差 58; 赔率 63.64; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | COST | 可观察候选 | 共振 77.15; 预期差 58; 赔率 56.13; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | LLY | 可观察候选 | 共振 63; 预期差 77.14; 赔率 63.26; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 板块主线不够强 |
+| 1 | AAPL | 可观察候选 | 共振 78.49; 预期差 58; 赔率 66.51; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | UNH | 可观察候选 | 共振 76.06; 预期差 58; 赔率 58.82; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | MSTR | 可观察候选 | 共振 68; 预期差 58; 赔率 48.0; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
