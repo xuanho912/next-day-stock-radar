@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-06T00:52:55.607378+00:00`
+- generated_at: `2026-08-06T04:43:56.919988+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -20,27 +20,27 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=attack; freshness=partial_fallback; strong_edge_count=0
+- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
 - warning: 强优势候选数量不足，不能强行进攻。
 
 ### 板块主线代理
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Healthcare Quality(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=2
+- evidence: avg_top5_gap=55.33; min_top5_gap=54.0; confirmed_signal_count=3
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=54.68; avg_execution=69.53; avg_risk=0
+- evidence: avg_payoff=53.8; avg_execution=65.26; avg_risk=8.53
 
 ### 当前价确认代理
 
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AAPL | 可观察候选 | 共振 77.72; 预期差 58; 赔率 57.21; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | UNH | 可观察候选 | 共振 76.06; 预期差 58; 赔率 58.82; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | MSTR | 可观察候选 | 共振 68; 预期差 58; 赔率 48.0; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | UNH | 可观察候选 | 共振 76.06; 预期差 58; 赔率 58.87; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | AAPL | 可观察候选 | 共振 77.03; 预期差 54; 赔率 54.85; 风险 12.38; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | KLAC | 可观察候选 | 共振 68; 预期差 54; 赔率 47.67; 风险 13.2; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
