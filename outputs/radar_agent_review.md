@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-07T14:15:27.135592+00:00`
+- generated_at: `2026-08-07T14:56:33.833396+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -33,14 +33,14 @@
 
 - status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=50.52; min_top5_gap=37.71; confirmed_signal_count=1
+- evidence: avg_top5_gap=50.65; min_top5_gap=37.71; confirmed_signal_count=1
 - warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=59.07; avg_execution=49.51; avg_risk=19.27
+- evidence: avg_payoff=59.12; avg_execution=49.79; avg_risk=19.27
 
 ### 当前价确认代理
 
@@ -83,7 +83,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | TSLA | 可观察候选 | 共振 76.55; 预期差 58; 赔率 53.06; 风险 33.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | UNH | 可观察候选 | 共振 63; 预期差 55.85; 赔率 70.12; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 2 | UNH | 可观察候选 | 共振 63; 预期差 56.25; 赔率 70.27; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
 | 3 | COIN | 可观察候选 | 共振 53.6; 预期差 37.71; 赔率 54.02; 风险 16.8; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
