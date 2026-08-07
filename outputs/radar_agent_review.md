@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-06T15:14:45.977572+00:00`
+- generated_at: `2026-08-07T00:57:17.022997+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -20,27 +20,27 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=attack; freshness=partial_fallback; strong_edge_count=0
+- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
 - warning: 强优势候选数量不足，不能强行进攻。
 
 ### 板块主线代理
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Healthcare Quality(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=1
+- evidence: avg_top5_gap=57.11; min_top5_gap=55.34; confirmed_signal_count=1
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=51.74; avg_execution=61.97; avg_risk=15.04
+- evidence: avg_payoff=55.88; avg_execution=50.24; avg_risk=9.0
 
 ### 当前价确认代理
 
@@ -61,7 +61,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=891; leaderboard=validated
+- evidence: validation=early_evidence; completed=924; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AAPL | 可观察候选 | 共振 76.33; 预期差 54; 赔率 50.21; 风险 37.12; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | VST | 可观察候选 | 共振 67; 预期差 58; 赔率 57.0; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
-| 3 | MSTR | 可观察候选 | 共振 68; 预期差 58; 赔率 48.0; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | UNH | 可观察候选 | 共振 62.97; 预期差 55.34; 赔率 70.09; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 2 | TSLA | 可观察候选 | 共振 68; 预期差 58; 赔率 48.69; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | COIN | 可观察候选 | 共振 63; 预期差 58; 赔率 48.86; 风险 19.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。

@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-06T15:14:45.977572+00:00",
+  "generated_at": "2026-08-07T00:57:17.022997+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 35.29,
-    "avg_top5_confluence_score": 70.44,
-    "avg_top5_expectation_gap_score": 56.67,
-    "avg_top5_payoff_quality_score": 51.74,
-    "avg_top5_execution_quality_score": 61.97,
-    "avg_top5_risk_score": 15.04,
-    "min_top5_confluence_score": 67.0,
-    "min_top5_expectation_gap_score": 54.0,
-    "top_sector": "Mega Cap Tech",
+    "avg_top5_elasticity_score": 29.08,
+    "avg_top5_confluence_score": 64.66,
+    "avg_top5_expectation_gap_score": 57.11,
+    "avg_top5_payoff_quality_score": 55.88,
+    "avg_top5_execution_quality_score": 50.24,
+    "avg_top5_risk_score": 9.0,
+    "min_top5_confluence_score": 62.97,
+    "min_top5_expectation_gap_score": 55.34,
+    "top_sector": "Healthcare Quality",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -32,15 +32,15 @@
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 1,
-    "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 1
+    "top10_signal_partial_count": 0,
+    "top10_signal_blocked_count": 2
   },
   "agent_findings": [
     {
       "agent_name": "市场路径代理",
       "status": "warn",
       "conclusion": "检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。",
-      "evidence": "market_state=attack; freshness=partial_fallback; strong_edge_count=0",
+      "evidence": "market_state=neutral; freshness=partial_fallback; strong_edge_count=0",
       "warnings": [
         "强优势候选数量不足，不能强行进攻。"
       ]
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Healthcare Quality(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=1",
+      "evidence": "avg_top5_gap=57.11; min_top5_gap=55.34; confirmed_signal_count=1",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=51.74; avg_execution=61.97; avg_risk=15.04",
+      "evidence": "avg_payoff=55.88; avg_execution=50.24; avg_risk=9.0",
       "warnings": []
     },
     {
@@ -91,7 +91,7 @@
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=891; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=924; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -117,47 +117,48 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "AAPL",
+      "ticker": "UNH",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.33; 预期差 54; 赔率 50.21; 风险 37.12; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 314.4583,
-      "invalidation": 300.0,
-      "warnings": [
-        "风险标记：news_reversal_or_event_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
-      ]
-    },
-    {
-      "rank": 2,
-      "ticker": "VST",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 67; 预期差 58; 赔率 57.0; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 142.5104,
-      "invalidation": 137.5179,
+      "key_check": "共振 62.97; 预期差 55.34; 赔率 70.09; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 408.4024,
+      "invalidation": 396.6985,
       "warnings": [
         "风险标记：weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：blocked"
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
       ]
     },
     {
-      "rank": 3,
-      "ticker": "MSTR",
+      "rank": 2,
+      "ticker": "TSLA",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 58; 赔率 48.0; 风险 0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 99.73,
-      "invalidation": 89.21,
+      "key_check": "共振 68; 预期差 58; 赔率 48.69; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 323.6018,
+      "invalidation": 297.38,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "COIN",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 63; 预期差 58; 赔率 48.86; 风险 19.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 147.614,
+      "invalidation": 139.11,
+      "warnings": [
+        "风险标记：weak_close_distribution_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
       ]
     }
   ],
