@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-10T21:09:16.119866+00:00`
+- generated_at: `2026-08-10T23:17:09.095048+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -34,7 +34,7 @@
 
 - status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=51.27; min_top5_gap=45.8; confirmed_signal_count=0
+- evidence: avg_top5_gap=48.1; min_top5_gap=44.5; confirmed_signal_count=0
 - warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
@@ -85,7 +85,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | COST | 可观察候选 | 共振 74.65; 预期差 54; 赔率 54.74; 风险 11.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | AAPL | 可观察候选 | 共振 63; 预期差 54; 赔率 43.44; 风险 55.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 |
+| 2 | AAPL | 可观察候选 | 共振 57.49; 预期差 44.5; 赔率 43.44; 风险 55.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 |
 | 3 | UNH | 可观察候选 | 共振 63; 预期差 45.8; 赔率 58.03; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
