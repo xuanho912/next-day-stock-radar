@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-08-11T21:11:05.297022+00:00",
+  "generated_at": "2026-08-11T23:22:56.608326+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 20,
+  "pending_forecasts": 21,
   "completed_next_day_forecasts": 998,
   "baseline": {
-    "total_forecasts": 1018,
-    "pending_forecasts": 20,
+    "total_forecasts": 1019,
+    "pending_forecasts": 21,
     "completed_next_day_forecasts": 998,
     "top_10_avg_next_day_volatility": 0.151863,
     "top_10_next_day_direction_hit_rate": 0.118329,
@@ -18,7 +18,7 @@
     "avg_next_day_high_gain": 0.051539,
     "avg_next_day_close_gain": 0.024788,
     "avg_max_drawdown": 0.00836,
-    "avg_open_condition_return": 0.000274,
+    "avg_open_condition_return": 0.000273,
     "avg_trigger_condition_return": 0.081194,
     "profit_factor": 10.21692769794853,
     "high_confluence_avg_next_day_return": -0.006529,
@@ -33,13 +33,13 @@
     "high_payoff_quality_avg_return": 0.001094,
     "low_payoff_quality_avg_return": 0.030578,
     "high_payoff_quality_beats_low": false,
-    "high_risk_avg_volatility": 0.044635,
+    "high_risk_avg_volatility": 0.04464,
     "lower_risk_avg_volatility": 0.128809,
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 1019,
-    "pending_forecasts": 20,
+    "total_forecasts": 1020,
+    "pending_forecasts": 21,
     "completed_next_day_forecasts": 999,
     "top_10_avg_next_day_volatility": 0.15254,
     "top_10_next_day_direction_hit_rate": 0.102564,
@@ -50,7 +50,7 @@
     "avg_next_day_high_gain": 0.051825,
     "avg_next_day_close_gain": 0.025098,
     "avg_max_drawdown": 0.008266,
-    "avg_open_condition_return": 0.000494,
+    "avg_open_condition_return": 0.000493,
     "avg_trigger_condition_return": 0.080365,
     "profit_factor": 9.807141009850096,
     "high_confluence_avg_next_day_return": 0.004806,
@@ -65,7 +65,7 @@
     "high_payoff_quality_avg_return": 0.002108,
     "low_payoff_quality_avg_return": 0.030745,
     "high_payoff_quality_beats_low": false,
-    "high_risk_avg_volatility": 0.044635,
+    "high_risk_avg_volatility": 0.04464,
     "lower_risk_avg_volatility": 0.129103,
     "high_risk_candidates_more_volatile": false
   },
@@ -144,8 +144,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "neutral": {
-      "total_forecasts": 503,
-      "pending_forecasts": 20,
+      "total_forecasts": 504,
+      "pending_forecasts": 21,
       "completed_next_day_forecasts": 483,
       "top_10_avg_next_day_volatility": 0.059,
       "top_10_next_day_direction_hit_rate": 0.12844,
@@ -171,7 +171,7 @@
       "high_payoff_quality_avg_return": -0.000925,
       "low_payoff_quality_avg_return": 0.00197,
       "high_payoff_quality_beats_low": false,
-      "high_risk_avg_volatility": 0.026303,
+      "high_risk_avg_volatility": 0.026312,
       "lower_risk_avg_volatility": 0.057171,
       "high_risk_candidates_more_volatile": false
     }
@@ -498,8 +498,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Consumer Internet": {
-      "total_forecasts": 42,
-      "pending_forecasts": 0,
+      "total_forecasts": 43,
+      "pending_forecasts": 1,
       "completed_next_day_forecasts": 42,
       "top_10_avg_next_day_volatility": 0.043544,
       "top_10_next_day_direction_hit_rate": 0.058824,
@@ -606,7 +606,7 @@
       "avg_next_day_high_gain": 0.145734,
       "avg_next_day_close_gain": 0.110261,
       "avg_max_drawdown": 0.08443,
-      "avg_open_condition_return": -0.000664,
+      "avg_open_condition_return": -0.000667,
       "avg_trigger_condition_return": 0.333817,
       "profit_factor": 38.80095497824877,
       "high_confluence_avg_next_day_return": -0.045547,
@@ -765,7 +765,7 @@
       "primary_scenario_hit_rate": 0.0,
       "avg_next_day_high_gain": 0.018082,
       "avg_next_day_close_gain": 0.005155,
-      "avg_max_drawdown": -0.011667,
+      "avg_max_drawdown": -0.011668,
       "avg_open_condition_return": 0.003234,
       "avg_trigger_condition_return": 0.009723,
       "profit_factor": 2.4609185039477643,
@@ -781,7 +781,7 @@
       "high_payoff_quality_avg_return": 0.003387,
       "low_payoff_quality_avg_return": 0.005623,
       "high_payoff_quality_beats_low": false,
-      "high_risk_avg_volatility": 0.02938,
+      "high_risk_avg_volatility": 0.029393,
       "lower_risk_avg_volatility": 0.041577,
       "high_risk_candidates_more_volatile": false
     },
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 863,
-      "pending_forecasts": 17,
+      "total_forecasts": 864,
+      "pending_forecasts": 18,
       "completed_next_day_forecasts": 846,
       "top_10_avg_next_day_volatility": 0.055719,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1071,7 +1071,7 @@
       "high_payoff_quality_avg_return": 0.00377,
       "low_payoff_quality_avg_return": 0.001557,
       "high_payoff_quality_beats_low": true,
-      "high_risk_avg_volatility": 0.044635,
+      "high_risk_avg_volatility": 0.04464,
       "lower_risk_avg_volatility": 0.05596,
       "high_risk_candidates_more_volatile": false
     },
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 905,
-      "pending_forecasts": 17,
+      "total_forecasts": 906,
+      "pending_forecasts": 18,
       "completed_next_day_forecasts": 888,
       "top_10_avg_next_day_volatility": 0.174763,
       "top_10_next_day_direction_hit_rate": 0.031609,
@@ -1233,7 +1233,7 @@
       "high_payoff_quality_avg_return": 0.003809,
       "low_payoff_quality_avg_return": 0.033897,
       "high_payoff_quality_beats_low": false,
-      "high_risk_avg_volatility": 0.044635,
+      "high_risk_avg_volatility": 0.04464,
       "lower_risk_avg_volatility": 0.137551,
       "high_risk_candidates_more_volatile": false
     },

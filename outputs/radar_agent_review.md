@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-11T21:11:05.443057+00:00`
+- generated_at: `2026-08-11T23:22:56.769933+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
