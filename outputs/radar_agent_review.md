@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-11T14:20:45.092630+00:00`
+- generated_at: `2026-08-11T15:01:58.738628+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -28,20 +28,21 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=54.68; min_top5_gap=52.05; confirmed_signal_count=0
+- evidence: avg_top5_gap=51.42; min_top5_gap=44.22; confirmed_signal_count=0
 - warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
-- status: `pass`
+- status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=53.2; avg_execution=60.09; avg_risk=15.77
+- evidence: avg_payoff=49.13; avg_execution=52.8; avg_risk=24.42
+- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
 
@@ -84,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | COST | 可观察候选 | 共振 74.86; 预期差 54; 赔率 55.0; 风险 8.8; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | AAPL | 可观察候选 | 共振 63; 预期差 52.05; 赔率 57.76; 风险 38.5; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足 |
-| 3 | VST | 可观察候选 | 共振 63; 预期差 58; 赔率 46.85; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 |
+| 1 | AAPL | 可观察候选 | 共振 63; 预期差 52.05; 赔率 57.76; 风险 38.5; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足 |
+| 2 | VST | 可观察候选 | 共振 63; 预期差 58; 赔率 46.85; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 |
+| 3 | COIN | 可观察候选 | 共振 51.54; 预期差 44.22; 赔率 42.77; 风险 34.75; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
