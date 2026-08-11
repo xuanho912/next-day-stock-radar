@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-11T16:16:31.728630+00:00",
+  "generated_at": "2026-08-11T21:11:05.443057+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 22.37,
-    "avg_top5_confluence_score": 61.81,
-    "avg_top5_expectation_gap_score": 51.99,
-    "avg_top5_payoff_quality_score": 47.81,
-    "avg_top5_execution_quality_score": 53.33,
-    "avg_top5_risk_score": 20.75,
-    "min_top5_confluence_score": 50.74,
-    "min_top5_expectation_gap_score": 43.98,
-    "top_sector": "Mega Cap Tech",
+    "avg_top5_elasticity_score": 19.09,
+    "avg_top5_confluence_score": 63.56,
+    "avg_top5_expectation_gap_score": 50.95,
+    "avg_top5_payoff_quality_score": 57.82,
+    "avg_top5_execution_quality_score": 53.98,
+    "avg_top5_risk_score": 5.5,
+    "min_top5_confluence_score": 52.79,
+    "min_top5_expectation_gap_score": 36.84,
+    "top_sector": "Financial Leaders",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -31,8 +31,8 @@
     "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 1,
-    "top10_signal_partial_count": 0,
+    "top10_signal_confirmed_count": 0,
+    "top10_signal_partial_count": 1,
     "top10_signal_blocked_count": 2
   },
   "agent_findings": [
@@ -49,26 +49,24 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "fail",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=51.99; min_top5_gap=43.98; confirmed_signal_count=1",
+      "evidence": "avg_top5_gap=50.95; min_top5_gap=36.84; confirmed_signal_count=0",
       "warnings": [
         "预期差不足，容易变成表面热闹但没有交易价值。"
       ]
     },
     {
       "agent_name": "执行质量代理",
-      "status": "warn",
+      "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=47.81; avg_execution=53.33; avg_risk=20.75",
-      "warnings": [
-        "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
-      ]
+      "evidence": "avg_payoff=57.82; avg_execution=53.98; avg_risk=5.5",
+      "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
@@ -86,14 +84,15 @@
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。",
+        "Top 10 没有真实共振候选，只能观察，不能进攻。"
       ]
     },
     {
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=975; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=998; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -119,14 +118,13 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "AAPL",
+      "ticker": "V",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 71.68; 预期差 54; 赔率 53.97; 风险 27.5; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 311.6709,
-      "invalidation": 300.0,
+      "key_check": "共振 74.88; 预期差 58; 赔率 56.81; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 366.4976,
+      "invalidation": 348.5,
       "warnings": [
-        "风险标记：news_reversal_or_event_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
@@ -134,11 +132,26 @@
     },
     {
       "rank": 2,
+      "ticker": "AAPL",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 52.79; 预期差 36.84; 赔率 70.83; 风险 16.5; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 308.3049,
+      "invalidation": 299.4216,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
+      ]
+    },
+    {
+      "rank": 3,
       "ticker": "VST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 58; 赔率 46.85; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 144.7929,
+      "key_check": "共振 63; 预期差 58; 赔率 45.82; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 146.8296,
       "invalidation": 134.75,
       "warnings": [
         "历史相似样本不足",
@@ -146,29 +159,14 @@
         "精准闸门未通过",
         "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足"
       ]
-    },
-    {
-      "rank": 3,
-      "ticker": "COIN",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 50.74; 预期差 43.98; 赔率 42.62; 风险 34.75; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 150.8039,
-      "invalidation": 139.11,
-      "warnings": [
-        "风险标记：news_reversal_or_event_risk / weak_close_distribution_risk",
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足"
-      ]
     }
   ],
   "hard_warnings": [
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。",
+    "Top 10 没有真实共振候选，只能观察，不能进攻。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
