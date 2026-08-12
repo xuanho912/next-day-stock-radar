@@ -1,26 +1,26 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-12T15:01:00.255220+00:00",
+  "generated_at": "2026-08-12T16:24:32.761522+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
-  "overall_decision": "观察",
-  "agency_quality_gate": "谨慎通过",
-  "market_permission": "只观察候选，不强行追逐；等待盘前刷新和触发确认。",
+  "overall_decision": "防守",
+  "agency_quality_gate": "不通过",
+  "market_permission": "防守优先；候选降级，避免把弱信号当成机会。",
   "top10_metric_snapshot": {
     "top10_count": 3,
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 31.17,
-    "avg_top5_confluence_score": 68.61,
-    "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 51.96,
-    "avg_top5_execution_quality_score": 64.86,
-    "avg_top5_risk_score": 0.0,
-    "min_top5_confluence_score": 63.0,
-    "min_top5_expectation_gap_score": 58.0,
-    "top_sector": "Nuclear / Power",
-    "top_sector_count": 2,
+    "avg_top5_elasticity_score": 21.99,
+    "avg_top5_confluence_score": 61.16,
+    "avg_top5_expectation_gap_score": 52.58,
+    "avg_top5_payoff_quality_score": 48.3,
+    "avg_top5_execution_quality_score": 53.32,
+    "avg_top5_risk_score": 8.92,
+    "min_top5_confluence_score": 45.64,
+    "min_top5_expectation_gap_score": 41.75,
+    "top_sector": "Financial Leaders",
+    "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -28,12 +28,12 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 1,
+    "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 1,
+    "top10_signal_confirmed_count": 0,
     "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 1
+    "top10_signal_blocked_count": 2
   },
   "agent_findings": [
     {
@@ -49,30 +49,32 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Nuclear / Power(2); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
-      "status": "warn",
+      "status": "fail",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=1",
+      "evidence": "avg_top5_gap=52.58; min_top5_gap=41.75; confirmed_signal_count=0",
       "warnings": [
-        "Top 5 平均预期差尚可，但最低预期差偏弱。"
+        "预期差不足，容易变成表面热闹但没有交易价值。"
       ]
     },
     {
       "agent_name": "执行质量代理",
-      "status": "pass",
+      "status": "warn",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=51.96; avg_execution=64.86; avg_risk=0",
-      "warnings": []
+      "evidence": "avg_payoff=48.3; avg_execution=53.32; avg_risk=8.92",
+      "warnings": [
+        "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
+      ]
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=1; failed=0; missing=0",
+      "evidence": "confirming=0; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -84,7 +86,8 @@
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。",
+        "Top 10 没有真实共振候选，只能观察，不能进攻。"
       ]
     },
     {
@@ -100,7 +103,7 @@
       "agent_name": "数据质量代理",
       "status": "warn",
       "conclusion": "检查 provider 状态、降级数量、最新交易日和数据质量分。",
-      "evidence": "score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial",
+      "evidence": "score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial",
       "warnings": [
         "存在数据源降级，候选已被过滤或压制，但仍需人工确认。",
         "Finnhub 非完全可用，新闻/事件催化可能不完整。"
@@ -146,16 +149,18 @@
     },
     {
       "rank": 3,
-      "ticker": "CEG",
+      "ticker": "COIN",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 58; 赔率 53.31; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 281.6416,
-      "invalidation": 244.95,
+      "key_check": "共振 45.64; 预期差 41.75; 赔率 42.33; 风险 26.75; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 150.68,
+      "invalidation": 139.11,
       "warnings": [
+        "风险标记：news_reversal_or_event_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足"
       ]
     }
   ],
@@ -163,7 +168,8 @@
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。",
+    "Top 10 没有真实共振候选，只能观察，不能进攻。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
