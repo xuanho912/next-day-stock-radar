@@ -1,6 +1,6 @@
 {
   "version": "top_candidates_v1",
-  "generated_at": "2026-08-14T00:08:27.109371+00:00",
+  "generated_at": "2026-08-14T03:39:22.401381+00:00",
   "model_version": "stock_radar_baseline_v1",
   "candidates": [
     {
@@ -398,7 +398,7 @@
         "primary_headline": "The Lowest-Beta Mega-Cap Just Got a $358 Target",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 7.64,
+        "primary_event_age_hours": 11.15,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -407,11 +407,33 @@
         "supporting_events": [
           {
             "event_type": "theme_buzz",
+            "headline": "Apple’s next iPhone battle just got more complicated",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=95fe7aef1fb6fbcf3d9a5e828d0fccf54d2632551988d90ad4940d90d29485ee",
+            "published_at": "2026-08-14T01:17:00+00:00",
+            "age_hours": 2.37,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "How Apple’s New Houston AI Manufacturing Hub Could Reshape the AAPL Investment Narrative",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=3781cb7939b0d43f1026127ec1a502c95d00b6f3cd1a141d0bba04ac37a9774f",
+            "published_at": "2026-08-13T22:13:22+00:00",
+            "age_hours": 5.43,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "theme_buzz",
             "headline": "Fidelity’s Contrafund, FCNTX, Bet Against the Crowd and Got Enormous Doing It",
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8fd9ab5b9f93dcf3a7bb6363af7368aa7f680fa85d1ac4e677af32dd8d8b6660",
             "published_at": "2026-08-13T21:50:44+00:00",
-            "age_hours": 2.3,
+            "age_hours": 5.81,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -422,7 +444,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=19ea28d746a9c2068c4f0a583e9bb523312261c425920053980621a1365dc353",
             "published_at": "2026-08-13T21:20:00+00:00",
-            "age_hours": 2.81,
+            "age_hours": 6.32,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -433,7 +455,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b1568ef924ebb492102e73103db3ae216f8794b301ac1e0c0c732802d4ba96ed",
             "published_at": "2026-08-13T19:46:00+00:00",
-            "age_hours": 4.37,
+            "age_hours": 7.89,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -444,7 +466,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=920102748a703896a9e07809103bab989f6846e6ede4b2ed2d58650ff50c6bf1",
             "published_at": "2026-08-13T18:47:12+00:00",
-            "age_hours": 5.35,
+            "age_hours": 8.87,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -455,7 +477,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5567aaf2435db11c9ee3ac05a643b069e0a7d91b43700caa228f92b4e6604ac3",
             "published_at": "2026-08-13T18:30:00+00:00",
-            "age_hours": 5.64,
+            "age_hours": 9.16,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -466,29 +488,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=bed0605500bb85b4763cdaed02bdeed8b8f7dea0d5a597dfdde2d9965da76877",
             "published_at": "2026-08-13T17:38:00+00:00",
-            "age_hours": 6.51,
-            "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "Apple Makes Big iPhone Move in AI Race",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=c28b65b2d35fa4d5bf87b88c99d70f04bd154308e757a3bb1b5f4b3513ae05ca",
-            "published_at": "2026-08-13T16:55:57+00:00",
-            "age_hours": 7.21,
-            "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "Discover which dow jones stocks are making waves on Thursday.",
-            "source": "ChartMill",
-            "url": "https://finnhub.io/api/news?id=85ac2b07ff18479aadb4467b3e1330bac9629e06dd155f57eff0fc402eb245f3",
-            "published_at": "2026-08-13T16:40:06+00:00",
-            "age_hours": 7.47,
+            "age_hours": 10.02,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -499,11 +499,11 @@
           "status": "missing"
         },
         "supporting_headlines": [
+          "Apple’s next iPhone battle just got more complicated",
+          "How Apple’s New Houston AI Manufacturing Hub Could Reshape the AAPL Investment Narrative",
           "Fidelity’s Contrafund, FCNTX, Bet Against the Crowd and Got Enormous Doing It",
           "MP Materials Just Signed a Secret Aerospace Deal. Here's Why It Matters.",
-          "Amazon Is the Only $3 Trillion Company That Has Never Paid a Dividend",
-          "Nvidia Stock Gains While Norway Fund Reveals Top Holding",
-          "Apple opens Advanced Manufacturing Center in Houston"
+          "Amazon Is the Only $3 Trillion Company That Has Never Paid a Dividend"
         ],
         "conflicting_headlines": [],
         "news_data_status": "available"
@@ -1795,6 +1795,1808 @@
     },
     {
       "rank": 2,
+      "ticker": "COST",
+      "company_name": "Costco Wholesale Corp",
+      "sector": "Consumer Quality",
+      "last_close": 961.85,
+      "candidate_type": "pullback_reversal_setup",
+      "raw_candidate_type": null,
+      "edge_status": "MODERATE_EDGE",
+      "rating": "A",
+      "elasticity_score": 24.61,
+      "elasticity_raw_potential": 16.69,
+      "elasticity_confirmation_factor": 0.46,
+      "elasticity_interpretation": "normal_volatility",
+      "next_day_move_probability": 0.3866,
+      "upside_momentum_score": 83.2,
+      "bounce_score": 43.26,
+      "downside_continuation_score": 27.38,
+      "squeeze_score": 33.21,
+      "setup_quality_score": 72.65,
+      "bottom_reversal_score": 56.57,
+      "bottom_fishing_score": 91.49,
+      "swing_durability_score": 100.0,
+      "one_day_pop_risk_score": 28.75,
+      "breakout_setup_score": 85.85,
+      "extension_risk_score": 20.38,
+      "fermentation_score": 54.0,
+      "fermentation_profile": {
+        "version": "fermentation_profile_v1",
+        "score": 54.0,
+        "profile_type": "base_breakout_fermentation",
+        "label": "蓄势突破发酵",
+        "hard_evidence_count": 2,
+        "price_phase": "base",
+        "volume_state": "weak",
+        "catalyst_state": "weak",
+        "quote_state": "neutral",
+        "supporting_points": [
+          "价格结构站稳，收盘位置支持继续观察",
+          "蓄势突破结构正在形成",
+          "低吸/蓄势质量较高",
+          "短线没有明显透支"
+        ],
+        "weak_points": [
+          "催化偏弱，不能按事件票处理",
+          "板块只有部分支持",
+          "当前价中性，需要触发确认"
+        ],
+        "conflicting_points": [
+          "成交量不足，缺少资金发酵"
+        ],
+        "inputs": {
+          "technical_score": 74.0,
+          "volume_score": 42.66,
+          "relative_volume": 0.666,
+          "volume_z_score": -1.576,
+          "return_1d": 0.01292,
+          "return_5d": 0.01338,
+          "return_20d": 0.01722,
+          "sector_score": 57.01,
+          "risk_score": 13.2,
+          "extension_risk_score": 20.38
+        }
+      },
+      "squeeze_data_status": {
+        "short_interest": "proxy",
+        "options_flow": "proxy",
+        "borrow_fee": "missing",
+        "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
+      },
+      "confluence_score": 75.38,
+      "catalyst_score": 37.92,
+      "expectation_gap_score": 54,
+      "execution_quality_score": 72.21,
+      "payoff_quality_score": 53.69,
+      "risk_reward_ratio": 0.96,
+      "expected_upside_pct": 0.045,
+      "expected_downside_pct": 0.04688,
+      "precision_gate": {
+        "level": "不具备高置信优势",
+        "passed": false,
+        "reason": [
+          "缺少确认催化",
+          "成交量未确认"
+        ]
+      },
+      "low_buy_precision": {
+        "version": "low_buy_precision_v1",
+        "applies": true,
+        "passed": true,
+        "structure_ready": true,
+        "score": 69.42,
+        "failures": [
+          "量能或流动性不够干净"
+        ],
+        "positive_factors": [
+          "低吸质量足够",
+          "持续性足够",
+          "一日冲高风险低",
+          "赔率分达标",
+          "上行/失效比达标",
+          "近两交易日反弹空间达标",
+          "失效距离可控",
+          "信号闸门未阻断"
+        ],
+        "expected_upside_pct": 0.045,
+        "expected_downside_pct": 0.04688,
+        "risk_reward_ratio": 0.96,
+        "invalidation_distance_pct": 0.04688,
+        "support_distance_pct": 0.04918
+      },
+      "reliable_bottom_profile": {
+        "version": "reliable_bottom_profile_v1",
+        "passed": true,
+        "watch_eligible": true,
+        "score": 86.12,
+        "price": 961.85,
+        "avg_dollar_volume_m": 1844.644,
+        "relative_volume": 0.666,
+        "risk_reward_ratio": 0.96,
+        "expected_upside_pct": 0.045,
+        "support_distance_pct": 0.04918,
+        "positive_factors": [
+          "价格不属于低价小票",
+          "20日均美元成交额充足",
+          "属于低吸/回撤/修复结构"
+        ],
+        "warnings": [],
+        "not_trading_advice": "这是可靠低吸候选过滤，不是买卖建议或交易指令。"
+      },
+      "confluence_matrix": {
+        "version": "confluence_matrix_v1",
+        "overall": "partial",
+        "confirmed_core_count": 1,
+        "bottom_first_mode": true,
+        "status_counts": {
+          "weak": 2,
+          "confirmed": 2,
+          "partial": 3
+        },
+        "blocking_dimensions": [],
+        "items": [
+          {
+            "dimension": "catalyst",
+            "label": "事件催化",
+            "status": "weak",
+            "score": 37.92,
+            "reason": "BranchOut Food Q2 Earnings Call Highlights",
+            "blocking": false,
+            "data": {
+              "quality": "conflicted",
+              "event_type": "earnings_momentum",
+              "risk_event_score": 24.0,
+              "strong_event_count": 0
+            }
+          },
+          {
+            "dimension": "price",
+            "label": "价格结构",
+            "status": "confirmed",
+            "score": 74.0,
+            "reason": "技术分 74.0，低吸分 91.5，收盘位置 0.94，支撑距离 4.9%，20日回撤 2.6%",
+            "blocking": false,
+            "data": {}
+          },
+          {
+            "dimension": "volume",
+            "label": "成交量确认",
+            "status": "weak",
+            "score": 42.66,
+            "reason": "相对量 0.67x，量能分 42.7，20日均美元成交额 1844.6M",
+            "blocking": false,
+            "data": {}
+          },
+          {
+            "dimension": "sector",
+            "label": "板块/市场",
+            "status": "partial",
+            "score": 57.01,
+            "reason": "板块分 57.0，市场状态 neutral",
+            "blocking": false,
+            "data": {}
+          },
+          {
+            "dimension": "quote",
+            "label": "当前价确认",
+            "status": "partial",
+            "score": 56.0,
+            "reason": "当前价仍在关键均线之上",
+            "blocking": false,
+            "data": {
+              "quote_timestamp": "2026-08-13T20:00:00+00:00",
+              "current_price": 961.85
+            }
+          },
+          {
+            "dimension": "payoff",
+            "label": "赔率/路径",
+            "status": "partial",
+            "score": 53.69,
+            "reason": "赔率分 53.7，上/下行比 0.96，主路径概率 0.46",
+            "blocking": false,
+            "data": {}
+          },
+          {
+            "dimension": "risk",
+            "label": "风险现实校验",
+            "status": "confirmed",
+            "score": 86.8,
+            "reason": "风险分 13.2，风险标记 无硬风险标记",
+            "blocking": false,
+            "data": {}
+          }
+        ]
+      },
+      "signal_quality_gate": {
+        "level": "confirmed",
+        "passed": true,
+        "failures": [],
+        "critical_failures": [],
+        "confluence_cap": 100,
+        "required_sources": [
+          "catalyst_or_structure_fermentation",
+          "price",
+          "volume",
+          "payoff",
+          "sector_or_market"
+        ],
+        "support_sources": [
+          "bottom_structure",
+          "durability",
+          "payoff",
+          "price",
+          "setup",
+          "volume"
+        ],
+        "structure_catalyst_substitute": false,
+        "bottom_structure_substitute": true
+      },
+      "quote_confirmation": {
+        "status": "neutral",
+        "provider_status": "available",
+        "score": 56.0,
+        "technical_adjustment": 2.0,
+        "current_price": 961.85,
+        "current_vs_last_close_pct": 0.0,
+        "quote_timestamp": "2026-08-13T20:00:00+00:00",
+        "reason": "当前价仍在关键均线之上"
+      },
+      "quote_confirmation_score": 56.0,
+      "current_price": 961.85,
+      "current_vs_last_close_pct": 0.0,
+      "risk_score": 13.2,
+      "risk_flags": [],
+      "pool_filter": {
+        "symbol": "COST",
+        "passes_price_filter": true,
+        "passes_liquidity_filter": true,
+        "passes_exchange_filter": true,
+        "hard_excluded": false,
+        "flags": {
+          "price_below_minimum": false,
+          "high_liquidity_risk": false,
+          "otc_or_pink": false,
+          "high_risk_high_volatility": false,
+          "fallback_or_missing_price_data": false
+        },
+        "reason": []
+      },
+      "capital_readiness": {
+        "version": "capital_readiness_audit_v1",
+        "trust_score": 64.0,
+        "readiness_status": "LOW_BUY_TRIGGER_WATCH",
+        "readiness_label": "低吸待触发",
+        "blockers": [],
+        "warnings": [
+          "当前价状态不明确",
+          "低吸共振部分成立，等待触发价确认",
+          "历史相似样本偏少",
+          "历史相似样本次日命中率偏弱",
+          "历史相似样本次日均值为负",
+          "赔率一般",
+          "缺少强催化，低吸候选只能按触发观察处理",
+          "发酵共振不足：蓄势突破发酵"
+        ],
+        "positive_factors": [
+          "真实 OHLCV 行情可用",
+          "市场数据为最新交易日",
+          "催化、价格、成交、赔率闸门确认",
+          "低吸/蓄势结构质量较好",
+          "低吸质量确认",
+          "持续性优于单日冲高",
+          "一日冲高风险较低",
+          "没有明显追涨过热",
+          "模型优势等级达到重点观察"
+        ],
+        "not_trading_advice": "这是候选可信度审计，不是买卖建议或交易指令。"
+      },
+      "trust_score": 64.0,
+      "readiness_status": "LOW_BUY_TRIGGER_WATCH",
+      "readiness_label": "低吸待触发",
+      "data_lineage": {
+        "price_source": "yahoo-chart",
+        "price_source_status": "available",
+        "real_price_data": true,
+        "latest_price_date": "2026-08-13",
+        "quote_status": "neutral",
+        "quote_timestamp": "2026-08-13T20:00:00+00:00",
+        "news_status": "available",
+        "news_headline_count": 18
+      },
+      "primary_scenario": "support_reversal_after_trigger",
+      "primary_probability": 0.46,
+      "secondary_scenario": "support_hold_then_reclaim",
+      "secondary_probability": 0.3704,
+      "risk_scenario": "failed_breakout_or_gap_fade",
+      "risk_probability": 0.1696,
+      "next_day_expected_range": {
+        "expected_low": 936.0416,
+        "expected_high": 1005.1332,
+        "expected_mid": 970.5874,
+        "expected_low_pct": -0.02683,
+        "expected_high_pct": 0.045,
+        "volatility_adjusted_range": 0.0312,
+        "label": "936.04 to 1005.13"
+      },
+      "scenario_prices": {
+        "base_case_price": 970.5874,
+        "upside_case_price": 1005.1332,
+        "downside_case_price": 936.0416,
+        "bounce_target_price": 1005.1332,
+        "failed_bounce_price": 916.76
+      },
+      "trigger_levels": {
+        "upside_trigger_level": 971.4685,
+        "downside_risk_level": 954.5472,
+        "invalidation_level": 916.76,
+        "gap_fill_level": 949.58,
+        "breakout_level": 987.55,
+        "breakdown_level": 916.76,
+        "nearest_support": 916.76,
+        "nearest_resistance": 987.55
+      },
+      "upside_trigger_level": 971.4685,
+      "downside_risk_level": 954.5472,
+      "invalidation_level": 916.76,
+      "gap_fill_level": 949.58,
+      "breakout_level": 987.55,
+      "breakdown_level": 916.76,
+      "nearest_support": 916.76,
+      "nearest_resistance": 987.55,
+      "trigger_meaning": {
+        "upside_trigger_level": "站上并维持在该价位上方，说明上冲路径开始被确认。",
+        "invalidation_level": "跌破该价位，说明反抽或上冲路径失效。",
+        "downside_risk_level": "跌破该价位，说明风险路径开始接管。",
+        "gap_fill_level": "回补该缺口，说明跳空延续失败概率上升。",
+        "note": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。"
+      },
+      "reason": "可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足",
+      "trade_plan": {
+        "actionable": true,
+        "edge_status_note": "edge_status 是预测优势等级，不是交易建议。",
+        "entry_condition": "只有站上并维持在 971.47 上方，上冲路径才开始确认",
+        "upside_trigger_level": 971.4685,
+        "downside_risk_level": 954.5472,
+        "invalidation_level": 916.76,
+        "gap_fill_level": 949.58,
+        "breakout_level": 987.55,
+        "breakdown_level": 916.76,
+        "nearest_support": 916.76,
+        "nearest_resistance": 987.55,
+        "stop_condition": "跌破 916.76，当前上冲/反抽路径失效",
+        "target_low_price": 970.5874,
+        "target_high_price": 1005.1332,
+        "next_day_expected_range": {
+          "expected_low": 936.0416,
+          "expected_high": 1005.1332,
+          "expected_mid": 970.5874,
+          "expected_low_pct": -0.02683,
+          "expected_high_pct": 0.045,
+          "volatility_adjusted_range": 0.0312,
+          "label": "936.04 to 1005.13"
+        },
+        "overnight_or_intraday": "只适合盘中确认",
+        "not_trading_advice": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。"
+      },
+      "news": {
+        "symbol": "COST",
+        "catalyst_score": 37.92,
+        "risk_event_score": 24.0,
+        "headline_count": 18,
+        "primary_headline": "BranchOut Food Q2 Earnings Call Highlights",
+        "primary_event_type": "earnings_momentum",
+        "primary_event_source": "Yahoo",
+        "primary_event_age_hours": 5.59,
+        "catalyst_type": "earnings_momentum",
+        "catalyst_quality": "conflicted",
+        "recent_confirmed_catalyst": false,
+        "strong_event_count": 0,
+        "concrete_event_types": [],
+        "supporting_events": [
+          {
+            "event_type": "theme_buzz",
+            "headline": "Costco makes a pricing promise members need to know",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=a43d874a2cb30ab9176707f7f5122cd902290a18646c8d8b7dee335c1063e75f",
+            "published_at": "2026-08-14T00:55:53+00:00",
+            "age_hours": 2.72,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "earnings_momentum",
+            "headline": "BranchOut Food Q2 Earnings Call Highlights",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=e08d9ddc8abb1c47261e3b1337f82d12fdf5a6d5f741a513a312b58fb9d057fa",
+            "published_at": "2026-08-13T22:04:06+00:00",
+            "age_hours": 5.59,
+            "score_contribution": 10.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "Costco (COST) Outpaces Stock Market Gains: What You Should Know",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=abb31046002262e3e1530228236767a3a7f3c3fa7363a49d793f4000a41797d3",
+            "published_at": "2026-08-13T21:45:02+00:00",
+            "age_hours": 5.91,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "product_or_launch",
+            "headline": "Costco (COST) Debuts Reusable Tote Trio In West Coast Stores And Online Soon",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=75e29c7b0d16a6279f8d08d44659a12618eb02bccc0b58b07743fd9dc49324c3",
+            "published_at": "2026-08-13T20:09:37+00:00",
+            "age_hours": 7.5,
+            "score_contribution": 10.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "earnings_momentum",
+            "headline": "Walmart’s E-Commerce Engine Roars, Here’s Where It’ll End The Year",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=915b7a884997acf93eebc3203d24ba59cc4cdc4c604fed04c46b4a79e6205eeb",
+            "published_at": "2026-08-13T18:30:42+00:00",
+            "age_hours": 9.14,
+            "score_contribution": 7.5,
+            "strong": false,
+            "relevance": "provider_related"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "BrightFarms Brings Georgia-Grown Salad Greens to Atlanta-Area Costco Stores",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=56a1588d6338940fa74a5d100e4b73c5dcb9964f383b849d4ff84d6d9f85db1a",
+            "published_at": "2026-08-13T17:25:00+00:00",
+            "age_hours": 10.24,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "earnings_momentum",
+            "headline": "Prediction: MercadoLibre Will Join Amazon, Walmart, and Costco in the $100 Billion Revenue Club by 2029",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=e738886fbd181317c05e3abd989a46e1844b06747fdc8fde4baf1b1b8682458d",
+            "published_at": "2026-08-13T16:13:00+00:00",
+            "age_hours": 11.44,
+            "score_contribution": 10.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "There's No Denying Macy's Is a Great Buy Now, but This Stock Could Be an Even Better Buy Over the Next 10 Years",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=5ce2ce99ac8bca085bfb695987e8a18ed99d5fb5a39b6b203a85e4dfb1a8a2d2",
+            "published_at": "2026-08-13T08:35:00+00:00",
+            "age_hours": 19.07,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
+          }
+        ],
+        "risk_events": [
+          {
+            "risk_type": "dilution_or_offering",
+            "headline": "Costco's new service beats Amazon at its own game",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=261ead71fdd73cf49ab3b848d72deda9de1192209a23b07b2aa7d8a919624b8e",
+            "published_at": "2026-08-12T00:37:00+00:00",
+            "age_hours": 51.04,
+            "score_contribution": 24.0,
+            "relevance": "direct"
+          }
+        ],
+        "sentiment_signal": {
+          "status": "missing"
+        },
+        "supporting_headlines": [
+          "Costco makes a pricing promise members need to know",
+          "BranchOut Food Q2 Earnings Call Highlights",
+          "Costco (COST) Outpaces Stock Market Gains: What You Should Know",
+          "Costco (COST) Debuts Reusable Tote Trio In West Coast Stores And Online Soon",
+          "Walmart’s E-Commerce Engine Roars, Here’s Where It’ll End The Year"
+        ],
+        "conflicting_headlines": [
+          "Costco's new service beats Amazon at its own game"
+        ],
+        "news_data_status": "available"
+      },
+      "relative_strength": 0.00209,
+      "relative_volume": 0.666,
+      "volume_score": 42.66,
+      "technical_score": 74.0,
+      "close_position": 0.944,
+      "dollar_volume_m": 1246.87,
+      "avg_dollar_volume_m": 1844.644,
+      "atr_pct": 0.01998,
+      "realized_volatility_20d": 0.14922,
+      "volume_z_score": -1.576,
+      "technical_snapshot": {
+        "latest_date": "2026-08-13",
+        "last_close": 961.8499755859375,
+        "previous_close": 949.5800170898438,
+        "open": 954.2449951171875,
+        "ma20": 947.0965,
+        "ma50": 950.5936,
+        "ma20_distance_pct": 0.01558,
+        "ma50_distance_pct": 0.01184,
+        "return_1d": 0.01292,
+        "return_5d": 0.01338,
+        "return_20d": 0.01722,
+        "gap_pct": 0.00491,
+        "close_position": 0.944,
+        "intraday_range_pct": 0.01358,
+        "range_10d_pct": 0.03424,
+        "range_20d_pct": 0.0736,
+        "compression_ratio": 0.46518,
+        "distance_to_resistance_pct": 0.02672,
+        "distance_to_support_pct": 0.04918,
+        "pullback_from_20d_high_pct": -0.02602,
+        "above_20d_ma": true,
+        "above_50d_ma": true,
+        "new_20d_high": false,
+        "new_50d_high": false,
+        "recent_support": 916.760009765625,
+        "recent_resistance": 987.5499877929688,
+        "recent_support_50d": 907.2100219726562,
+        "recent_resistance_50d": 997.4099731445312,
+        "vwap_proxy": 957.9813232421875,
+        "rsi_14": 54.69,
+        "atr_pct": 0.01998,
+        "realized_volatility_20d": 0.14922,
+        "technical_score": 74.0
+      },
+      "volume_snapshot": {
+        "latest_date": "2026-08-13",
+        "volume": 1296325,
+        "volume_avg20": 1947790.0,
+        "volume_std20": 413374.01,
+        "relative_volume": 0.666,
+        "volume_z_score": -1.576,
+        "volume_score": 42.66,
+        "dollar_volume_m": 1246.87,
+        "avg_dollar_volume_m": 1844.644
+      },
+      "price_history": [
+        {
+          "date": "2026-02-23",
+          "open": 981.7999877929688,
+          "high": 991.3099975585938,
+          "low": 978.0599975585938,
+          "close": 986.02001953125,
+          "volume": 1489300
+        },
+        {
+          "date": "2026-02-24",
+          "open": 986.3800048828125,
+          "high": 998.8800048828125,
+          "low": 985.0399780273438,
+          "close": 998.4299926757812,
+          "volume": 1671100
+        },
+        {
+          "date": "2026-02-25",
+          "open": 997.6799926757812,
+          "high": 1002.5,
+          "low": 991.4400024414062,
+          "close": 994.760009765625,
+          "volume": 1554600
+        },
+        {
+          "date": "2026-02-26",
+          "open": 996.9199829101562,
+          "high": 1005.52001953125,
+          "low": 983.530029296875,
+          "close": 986.739990234375,
+          "volume": 1804400
+        },
+        {
+          "date": "2026-02-27",
+          "open": 990.530029296875,
+          "high": 1014.1900024414062,
+          "low": 989.5800170898438,
+          "close": 1010.7899780273438,
+          "volume": 3935000
+        },
+        {
+          "date": "2026-03-02",
+          "open": 1010.9099731445312,
+          "high": 1020.8200073242188,
+          "low": 1002.489990234375,
+          "close": 1002.77001953125,
+          "volume": 1986900
+        },
+        {
+          "date": "2026-03-03",
+          "open": 1002.5399780273438,
+          "high": 1015.75,
+          "low": 1000.6300048828125,
+          "close": 1007.77001953125,
+          "volume": 1947100
+        },
+        {
+          "date": "2026-03-04",
+          "open": 1005.0,
+          "high": 1014.0,
+          "low": 997.0,
+          "close": 1006.739990234375,
+          "volume": 1806600
+        },
+        {
+          "date": "2026-03-05",
+          "open": 996.5,
+          "high": 999.25,
+          "low": 978.8099975585938,
+          "close": 982.5700073242188,
+          "volume": 2766000
+        },
+        {
+          "date": "2026-03-06",
+          "open": 967.010009765625,
+          "high": 1002.5,
+          "low": 960.4600219726562,
+          "close": 998.0999755859375,
+          "volume": 2708900
+        },
+        {
+          "date": "2026-03-09",
+          "open": 999.6300048828125,
+          "high": 1007.4099731445312,
+          "low": 987.989990234375,
+          "close": 1005.2999877929688,
+          "volume": 2348200
+        },
+        {
+          "date": "2026-03-10",
+          "open": 1000.5,
+          "high": 1010.0999755859375,
+          "low": 996.0,
+          "close": 997.3599853515625,
+          "volume": 1613400
+        },
+        {
+          "date": "2026-03-11",
+          "open": 996.3200073242188,
+          "high": 997.3900146484375,
+          "low": 987.8900146484375,
+          "close": 992.22998046875,
+          "volume": 1260500
+        },
+        {
+          "date": "2026-03-12",
+          "open": 988.6099853515625,
+          "high": 1006.2100219726562,
+          "low": 984.0,
+          "close": 1003.3200073242188,
+          "volume": 1669200
+        },
+        {
+          "date": "2026-03-13",
+          "open": 1005.9000244140625,
+          "high": 1012.8300170898438,
+          "low": 1002.0,
+          "close": 1008.4299926757812,
+          "volume": 1469700
+        },
+        {
+          "date": "2026-03-16",
+          "open": 1010.5,
+          "high": 1012.6500244140625,
+          "low": 995.4299926757812,
+          "close": 1001.739990234375,
+          "volume": 1243400
+        },
+        {
+          "date": "2026-03-17",
+          "open": 1006.489990234375,
+          "high": 1008.0999755859375,
+          "low": 994.75,
+          "close": 996.1599731445312,
+          "volume": 1210400
+        },
+        {
+          "date": "2026-03-18",
+          "open": 990.3699951171875,
+          "high": 993.97998046875,
+          "low": 978.1400146484375,
+          "close": 979.9199829101562,
+          "volume": 1434400
+        },
+        {
+          "date": "2026-03-19",
+          "open": 985.8400268554688,
+          "high": 988.7899780273438,
+          "low": 970.4099731445312,
+          "close": 974.780029296875,
+          "volume": 1340200
+        },
+        {
+          "date": "2026-03-20",
+          "open": 975.0800170898438,
+          "high": 980.760009765625,
+          "low": 970.5399780273438,
+          "close": 972.3300170898438,
+          "volume": 2621600
+        },
+        {
+          "date": "2026-03-23",
+          "open": 985.6699829101562,
+          "high": 986.6400146484375,
+          "low": 964.530029296875,
+          "close": 965.72998046875,
+          "volume": 1779100
+        },
+        {
+          "date": "2026-03-24",
+          "open": 962.0599975585938,
+          "high": 981.280029296875,
+          "low": 961.0,
+          "close": 973.8200073242188,
+          "volume": 1259300
+        },
+        {
+          "date": "2026-03-25",
+          "open": 978.0,
+          "high": 980.8099975585938,
+          "low": 968.0499877929688,
+          "close": 974.8599853515625,
+          "volume": 1067100
+        },
+        {
+          "date": "2026-03-26",
+          "open": 975.6900024414062,
+          "high": 987.1900024414062,
+          "low": 972.719970703125,
+          "close": 979.6500244140625,
+          "volume": 1498300
+        },
+        {
+          "date": "2026-03-27",
+          "open": 982.02001953125,
+          "high": 987.1099853515625,
+          "low": 978.1099853515625,
+          "close": 983.8599853515625,
+          "volume": 1540900
+        },
+        {
+          "date": "2026-03-30",
+          "open": 987.6500244140625,
+          "high": 1005.5399780273438,
+          "low": 985.010009765625,
+          "close": 996.5800170898438,
+          "volume": 2129100
+        },
+        {
+          "date": "2026-03-31",
+          "open": 997.0,
+          "high": 1008.5999755859375,
+          "low": 985.8499755859375,
+          "close": 996.4299926757812,
+          "volume": 2447900
+        },
+        {
+          "date": "2026-04-01",
+          "open": 995.030029296875,
+          "high": 1003.1300048828125,
+          "low": 990.5900268554688,
+          "close": 996.5599975585938,
+          "volume": 1769800
+        },
+        {
+          "date": "2026-04-02",
+          "open": 1008.0,
+          "high": 1016.0,
+          "low": 999.2100219726562,
+          "close": 1014.9600219726562,
+          "volume": 1828600
+        },
+        {
+          "date": "2026-04-06",
+          "open": 1014.9600219726562,
+          "high": 1020.6900024414062,
+          "low": 1004.010009765625,
+          "close": 1018.5499877929688,
+          "volume": 1448600
+        },
+        {
+          "date": "2026-04-07",
+          "open": 1020.260009765625,
+          "high": 1020.8599853515625,
+          "low": 1004.8499755859375,
+          "close": 1013.2100219726562,
+          "volume": 1428500
+        },
+        {
+          "date": "2026-04-08",
+          "open": 1004.4400024414062,
+          "high": 1030.4599609375,
+          "low": 1000.0,
+          "close": 1030.27001953125,
+          "volume": 2265700
+        },
+        {
+          "date": "2026-04-09",
+          "open": 1029.489990234375,
+          "high": 1035.8199462890625,
+          "low": 1025.06005859375,
+          "close": 1032.030029296875,
+          "volume": 1433300
+        },
+        {
+          "date": "2026-04-10",
+          "open": 1026.510009765625,
+          "high": 1029.0,
+          "low": 995.5,
+          "close": 998.469970703125,
+          "volume": 2333000
+        },
+        {
+          "date": "2026-04-13",
+          "open": 998.469970703125,
+          "high": 1000.0499877929688,
+          "low": 979.3599853515625,
+          "close": 980.8499755859375,
+          "volume": 2255500
+        },
+        {
+          "date": "2026-04-14",
+          "open": 973.6799926757812,
+          "high": 977.6099853515625,
+          "low": 966.0,
+          "close": 974.7999877929688,
+          "volume": 2136500
+        },
+        {
+          "date": "2026-04-15",
+          "open": 970.3099975585938,
+          "high": 985.3800048828125,
+          "low": 968.2999877929688,
+          "close": 984.75,
+          "volume": 2346200
+        },
+        {
+          "date": "2026-04-16",
+          "open": 985.0,
+          "high": 995.75,
+          "low": 981.6099853515625,
+          "close": 987.2100219726562,
+          "volume": 1484300
+        },
+        {
+          "date": "2026-04-17",
+          "open": 985.0,
+          "high": 1000.6699829101562,
+          "low": 977.0,
+          "close": 999.8900146484375,
+          "volume": 2346500
+        },
+        {
+          "date": "2026-04-20",
+          "open": 1003.8499755859375,
+          "high": 1011.2999877929688,
+          "low": 994.1400146484375,
+          "close": 997.8400268554688,
+          "volume": 1475400
+        },
+        {
+          "date": "2026-04-21",
+          "open": 994.3699951171875,
+          "high": 1006.5,
+          "low": 986.7000122070312,
+          "close": 1005.8099975585938,
+          "volume": 1367100
+        },
+        {
+          "date": "2026-04-22",
+          "open": 1004.97998046875,
+          "high": 1008.1099853515625,
+          "low": 998.2899780273438,
+          "close": 1003.7000122070312,
+          "volume": 1215200
+        },
+        {
+          "date": "2026-04-23",
+          "open": 1007.5800170898438,
+          "high": 1016.5999755859375,
+          "low": 1007.030029296875,
+          "close": 1014.3800048828125,
+          "volume": 1570700
+        },
+        {
+          "date": "2026-04-24",
+          "open": 1012.0,
+          "high": 1013.4500122070312,
+          "low": 1002.5,
+          "close": 1011.1500244140625,
+          "volume": 1695200
+        },
+        {
+          "date": "2026-04-27",
+          "open": 1008.6300048828125,
+          "high": 1014.4099731445312,
+          "low": 996.6300048828125,
+          "close": 998.010009765625,
+          "volume": 1620400
+        },
+        {
+          "date": "2026-04-28",
+          "open": 1010.47998046875,
+          "high": 1012.6500244140625,
+          "low": 986.0,
+          "close": 994.0,
+          "volume": 1776000
+        },
+        {
+          "date": "2026-04-29",
+          "open": 988.3699951171875,
+          "high": 998.969970703125,
+          "low": 985.1199951171875,
+          "close": 998.6699829101562,
+          "volume": 1516900
+        },
+        {
+          "date": "2026-04-30",
+          "open": 996.4500122070312,
+          "high": 1017.6900024414062,
+          "low": 996.3200073242188,
+          "close": 1014.530029296875,
+          "volume": 2049300
+        },
+        {
+          "date": "2026-05-01",
+          "open": 1015.3800048828125,
+          "high": 1031.27001953125,
+          "low": 1006.3200073242188,
+          "close": 1011.7000122070312,
+          "volume": 1509700
+        },
+        {
+          "date": "2026-05-04",
+          "open": 1007.02001953125,
+          "high": 1024.719970703125,
+          "low": 1002.2100219726562,
+          "close": 1012.7899780273438,
+          "volume": 1479400
+        },
+        {
+          "date": "2026-05-05",
+          "open": 1010.510009765625,
+          "high": 1020.780029296875,
+          "low": 1009.0700073242188,
+          "close": 1016.4199829101562,
+          "volume": 1456300
+        },
+        {
+          "date": "2026-05-06",
+          "open": 1011.3099975585938,
+          "high": 1012.22998046875,
+          "low": 992.4199829101562,
+          "close": 995.75,
+          "volume": 2619100
+        },
+        {
+          "date": "2026-05-07",
+          "open": 993.5,
+          "high": 1012.6599731445312,
+          "low": 990.6599731445312,
+          "close": 1012.0599975585938,
+          "volume": 2014000
+        },
+        {
+          "date": "2026-05-08",
+          "open": 1011.739990234375,
+          "high": 1016.0,
+          "low": 1005.1099853515625,
+          "close": 1008.7899780273438,
+          "volume": 1805200
+        },
+        {
+          "date": "2026-05-11",
+          "open": 1005.8200073242188,
+          "high": 1007.0,
+          "low": 985.1500244140625,
+          "close": 999.469970703125,
+          "volume": 2053500
+        },
+        {
+          "date": "2026-05-12",
+          "open": 1002.5399780273438,
+          "high": 1026.0,
+          "low": 1001.1400146484375,
+          "close": 1021.8800048828125,
+          "volume": 2143200
+        },
+        {
+          "date": "2026-05-13",
+          "open": 1017.9400024414062,
+          "high": 1042.52001953125,
+          "low": 1017.9400024414062,
+          "close": 1033.0799560546875,
+          "volume": 1654600
+        },
+        {
+          "date": "2026-05-14",
+          "open": 1034.949951171875,
+          "high": 1041.7900390625,
+          "low": 1026.0999755859375,
+          "close": 1041.25,
+          "volume": 1606600
+        },
+        {
+          "date": "2026-05-15",
+          "open": 1049.3599853515625,
+          "high": 1057.5,
+          "low": 1039.219970703125,
+          "close": 1048.949951171875,
+          "volume": 1967000
+        },
+        {
+          "date": "2026-05-18",
+          "open": 1050.0,
+          "high": 1079.8299560546875,
+          "low": 1045.0,
+          "close": 1076.469970703125,
+          "volume": 2295200
+        },
+        {
+          "date": "2026-05-19",
+          "open": 1077.0,
+          "high": 1096.5,
+          "low": 1072.0999755859375,
+          "close": 1094.3199462890625,
+          "volume": 2853300
+        },
+        {
+          "date": "2026-05-20",
+          "open": 1089.3699951171875,
+          "high": 1089.739990234375,
+          "low": 1072.0,
+          "close": 1074.010009765625,
+          "volume": 2223400
+        },
+        {
+          "date": "2026-05-21",
+          "open": 1063.4100341796875,
+          "high": 1064.72998046875,
+          "low": 1039.010009765625,
+          "close": 1050.449951171875,
+          "volume": 2149700
+        },
+        {
+          "date": "2026-05-22",
+          "open": 1039.989990234375,
+          "high": 1045.6400146484375,
+          "low": 1025.18994140625,
+          "close": 1028.239990234375,
+          "volume": 2048300
+        },
+        {
+          "date": "2026-05-26",
+          "open": 1026.1300048828125,
+          "high": 1027.5,
+          "low": 996.1599731445312,
+          "close": 1002.9299926757812,
+          "volume": 2704600
+        },
+        {
+          "date": "2026-05-27",
+          "open": 1003.8599853515625,
+          "high": 1013.510009765625,
+          "low": 999.6900024414062,
+          "close": 1003.6900024414062,
+          "volume": 2390100
+        },
+        {
+          "date": "2026-05-28",
+          "open": 1011.6099853515625,
+          "high": 1012.0,
+          "low": 994.27001953125,
+          "close": 995.2000122070312,
+          "volume": 2844300
+        },
+        {
+          "date": "2026-05-29",
+          "open": 986.5700073242188,
+          "high": 998.8200073242188,
+          "low": 945.4500122070312,
+          "close": 956.3200073242188,
+          "volume": 7028000
+        },
+        {
+          "date": "2026-06-01",
+          "open": 955.0,
+          "high": 959.2100219726562,
+          "low": 936.510009765625,
+          "close": 946.1099853515625,
+          "volume": 2816300
+        },
+        {
+          "date": "2026-06-02",
+          "open": 942.2899780273438,
+          "high": 955.3900146484375,
+          "low": 939.4500122070312,
+          "close": 954.27001953125,
+          "volume": 2218200
+        },
+        {
+          "date": "2026-06-03",
+          "open": 952.8800048828125,
+          "high": 969.1799926757812,
+          "low": 951.97998046875,
+          "close": 961.8300170898438,
+          "volume": 2174100
+        },
+        {
+          "date": "2026-06-04",
+          "open": 986.9600219726562,
+          "high": 990.010009765625,
+          "low": 968.2100219726562,
+          "close": 972.3499755859375,
+          "volume": 2345200
+        },
+        {
+          "date": "2026-06-05",
+          "open": 977.5,
+          "high": 997.4099731445312,
+          "low": 971.5999755859375,
+          "close": 971.8699951171875,
+          "volume": 3092000
+        },
+        {
+          "date": "2026-06-08",
+          "open": 963.4600219726562,
+          "high": 978.97998046875,
+          "low": 961.0,
+          "close": 974.75,
+          "volume": 2086100
+        },
+        {
+          "date": "2026-06-09",
+          "open": 974.2100219726562,
+          "high": 981.969970703125,
+          "low": 964.9400024414062,
+          "close": 968.5900268554688,
+          "volume": 1998600
+        },
+        {
+          "date": "2026-06-10",
+          "open": 977.4400024414062,
+          "high": 985.260009765625,
+          "low": 964.3099975585938,
+          "close": 983.3699951171875,
+          "volume": 1715600
+        },
+        {
+          "date": "2026-06-11",
+          "open": 986.9099731445312,
+          "high": 989.1199951171875,
+          "low": 974.0,
+          "close": 975.6900024414062,
+          "volume": 1903400
+        },
+        {
+          "date": "2026-06-12",
+          "open": 975.52001953125,
+          "high": 984.780029296875,
+          "low": 970.0,
+          "close": 982.3499755859375,
+          "volume": 1737300
+        },
+        {
+          "date": "2026-06-15",
+          "open": 974.1900024414062,
+          "high": 987.0,
+          "low": 968.0,
+          "close": 979.4500122070312,
+          "volume": 1893700
+        },
+        {
+          "date": "2026-06-16",
+          "open": 980.3900146484375,
+          "high": 995.3800048828125,
+          "low": 973.1599731445312,
+          "close": 986.6799926757812,
+          "volume": 1523400
+        },
+        {
+          "date": "2026-06-17",
+          "open": 980.0,
+          "high": 983.7100219726562,
+          "low": 961.1599731445312,
+          "close": 965.5900268554688,
+          "volume": 1928000
+        },
+        {
+          "date": "2026-06-18",
+          "open": 962.7000122070312,
+          "high": 964.0,
+          "low": 948.3099975585938,
+          "close": 951.4500122070312,
+          "volume": 3742900
+        },
+        {
+          "date": "2026-06-22",
+          "open": 948.5700073242188,
+          "high": 956.22998046875,
+          "low": 942.530029296875,
+          "close": 951.3499755859375,
+          "volume": 2191900
+        },
+        {
+          "date": "2026-06-23",
+          "open": 964.5,
+          "high": 966.3800048828125,
+          "low": 953.489990234375,
+          "close": 957.6799926757812,
+          "volume": 2529800
+        },
+        {
+          "date": "2026-06-24",
+          "open": 962.030029296875,
+          "high": 967.9400024414062,
+          "low": 957.0,
+          "close": 961.0900268554688,
+          "volume": 2020200
+        },
+        {
+          "date": "2026-06-25",
+          "open": 949.5700073242188,
+          "high": 955.75,
+          "low": 938.5999755859375,
+          "close": 942.239990234375,
+          "volume": 2492700
+        },
+        {
+          "date": "2026-06-26",
+          "open": 953.25,
+          "high": 961.6400146484375,
+          "low": 943.0,
+          "close": 952.5399780273438,
+          "volume": 8239200
+        },
+        {
+          "date": "2026-06-29",
+          "open": 958.5499877929688,
+          "high": 969.8599853515625,
+          "low": 942.3800048828125,
+          "close": 946.6799926757812,
+          "volume": 2450000
+        },
+        {
+          "date": "2026-06-30",
+          "open": 942.0,
+          "high": 946.0,
+          "low": 932.4099731445312,
+          "close": 935.469970703125,
+          "volume": 2870900
+        },
+        {
+          "date": "2026-07-01",
+          "open": 940.4299926757812,
+          "high": 940.4299926757812,
+          "low": 920.5499877929688,
+          "close": 924.6699829101562,
+          "volume": 2909700
+        },
+        {
+          "date": "2026-07-02",
+          "open": 927.0,
+          "high": 952.6400146484375,
+          "low": 924.8400268554688,
+          "close": 951.6699829101562,
+          "volume": 2785800
+        },
+        {
+          "date": "2026-07-06",
+          "open": 949.0999755859375,
+          "high": 955.5,
+          "low": 941.4000244140625,
+          "close": 950.25,
+          "volume": 2327500
+        },
+        {
+          "date": "2026-07-07",
+          "open": 967.52001953125,
+          "high": 969.0,
+          "low": 945.3300170898438,
+          "close": 947.5,
+          "volume": 1940200
+        },
+        {
+          "date": "2026-07-08",
+          "open": 959.0,
+          "high": 966.510009765625,
+          "low": 948.0,
+          "close": 953.1300048828125,
+          "volume": 1645500
+        },
+        {
+          "date": "2026-07-09",
+          "open": 934.9400024414062,
+          "high": 935.0,
+          "low": 907.6799926757812,
+          "close": 912.969970703125,
+          "volume": 4545200
+        },
+        {
+          "date": "2026-07-10",
+          "open": 913.739990234375,
+          "high": 916.72998046875,
+          "low": 907.2100219726562,
+          "close": 916.25,
+          "volume": 2102300
+        },
+        {
+          "date": "2026-07-13",
+          "open": 918.4299926757812,
+          "high": 930.97998046875,
+          "low": 916.8800048828125,
+          "close": 926.4299926757812,
+          "volume": 2373300
+        },
+        {
+          "date": "2026-07-14",
+          "open": 921.3800048828125,
+          "high": 929.4199829101562,
+          "low": 918.5599975585938,
+          "close": 921.75,
+          "volume": 2409200
+        },
+        {
+          "date": "2026-07-15",
+          "open": 917.75,
+          "high": 927.5800170898438,
+          "low": 910.5,
+          "close": 916.5399780273438,
+          "volume": 2423200
+        },
+        {
+          "date": "2026-07-16",
+          "open": 924.0,
+          "high": 945.760009765625,
+          "low": 921.5,
+          "close": 945.5700073242188,
+          "volume": 2735300
+        },
+        {
+          "date": "2026-07-17",
+          "open": 961.52001953125,
+          "high": 964.3300170898438,
+          "low": 933.760009765625,
+          "close": 940.8699951171875,
+          "volume": 2508000
+        },
+        {
+          "date": "2026-07-20",
+          "open": 938.75,
+          "high": 946.97998046875,
+          "low": 932.010009765625,
+          "close": 935.7999877929688,
+          "volume": 1507900
+        },
+        {
+          "date": "2026-07-21",
+          "open": 930.25,
+          "high": 931.989990234375,
+          "low": 924.4400024414062,
+          "close": 929.219970703125,
+          "volume": 1833500
+        },
+        {
+          "date": "2026-07-22",
+          "open": 930.8800048828125,
+          "high": 933.5999755859375,
+          "low": 920.969970703125,
+          "close": 927.3099975585938,
+          "volume": 1762700
+        },
+        {
+          "date": "2026-07-23",
+          "open": 920.510009765625,
+          "high": 926.530029296875,
+          "low": 916.760009765625,
+          "close": 926.0599975585938,
+          "volume": 1785200
+        },
+        {
+          "date": "2026-07-24",
+          "open": 925.010009765625,
+          "high": 936.6599731445312,
+          "low": 921.280029296875,
+          "close": 935.030029296875,
+          "volume": 1586300
+        },
+        {
+          "date": "2026-07-27",
+          "open": 938.1099853515625,
+          "high": 956.6099853515625,
+          "low": 936.6599731445312,
+          "close": 951.5800170898438,
+          "volume": 2109500
+        },
+        {
+          "date": "2026-07-28",
+          "open": 970.5499877929688,
+          "high": 987.5499877929688,
+          "low": 965.8699951171875,
+          "close": 966.5800170898438,
+          "volume": 2682800
+        },
+        {
+          "date": "2026-07-29",
+          "open": 968.0700073242188,
+          "high": 978.7999877929688,
+          "low": 963.0,
+          "close": 974.030029296875,
+          "volume": 1973400
+        },
+        {
+          "date": "2026-07-30",
+          "open": 955.0399780273438,
+          "high": 960.760009765625,
+          "low": 949.6799926757812,
+          "close": 954.1699829101562,
+          "volume": 2334500
+        },
+        {
+          "date": "2026-07-31",
+          "open": 945.739990234375,
+          "high": 955.5599975585938,
+          "low": 937.510009765625,
+          "close": 951.8900146484375,
+          "volume": 1760200
+        },
+        {
+          "date": "2026-08-03",
+          "open": 965.1500244140625,
+          "high": 967.97998046875,
+          "low": 948.75,
+          "close": 954.0800170898438,
+          "volume": 2014100
+        },
+        {
+          "date": "2026-08-04",
+          "open": 945.0,
+          "high": 950.8599853515625,
+          "low": 937.010009765625,
+          "close": 947.8499755859375,
+          "volume": 2437300
+        },
+        {
+          "date": "2026-08-05",
+          "open": 956.989990234375,
+          "high": 956.989990234375,
+          "low": 935.219970703125,
+          "close": 941.989990234375,
+          "volume": 1692400
+        },
+        {
+          "date": "2026-08-06",
+          "open": 959.5499877929688,
+          "high": 966.1400146484375,
+          "low": 941.780029296875,
+          "close": 949.1500244140625,
+          "volume": 2116500
+        },
+        {
+          "date": "2026-08-07",
+          "open": 943.510009765625,
+          "high": 949.7899780273438,
+          "low": 937.510009765625,
+          "close": 947.8200073242188,
+          "volume": 1523800
+        },
+        {
+          "date": "2026-08-10",
+          "open": 942.469970703125,
+          "high": 952.8900146484375,
+          "low": 940.5599975585938,
+          "close": 952.75,
+          "volume": 1479200
+        },
+        {
+          "date": "2026-08-11",
+          "open": 950.0499877929688,
+          "high": 954.9000244140625,
+          "low": 938.0900268554688,
+          "close": 944.3200073242188,
+          "volume": 1801400
+        },
+        {
+          "date": "2026-08-12",
+          "open": 937.4000244140625,
+          "high": 951.3900146484375,
+          "low": 935.0499877929688,
+          "close": 949.5800170898438,
+          "volume": 1311800
+        },
+        {
+          "date": "2026-08-13",
+          "open": 954.2449951171875,
+          "high": 962.5800170898438,
+          "low": 949.5139770507812,
+          "close": 961.8499755859375,
+          "volume": 1296325
+        }
+      ],
+      "historical_analog": {
+        "top_similar_dates": [
+          {
+            "date": "2026-04-22",
+            "distance": 0.2776,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": 0.01064,
+            "return_3d": -0.00567,
+            "return_5d": -0.00501,
+            "max_favorable_excursion": 0.01285,
+            "max_adverse_excursion": -0.01851
+          },
+          {
+            "date": "2026-07-20",
+            "distance": 0.3361,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": -0.00703,
+            "return_3d": -0.01041,
+            "return_5d": 0.01686,
+            "max_favorable_excursion": 0.02224,
+            "max_adverse_excursion": -0.02035
+          },
+          {
+            "date": "2026-07-24",
+            "distance": 0.4227,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": 0.0177,
+            "return_3d": 0.04171,
+            "return_5d": 0.01803,
+            "max_favorable_excursion": 0.05617,
+            "max_adverse_excursion": 0.00174
+          },
+          {
+            "date": "2026-07-08",
+            "distance": 0.4243,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": -0.04213,
+            "return_3d": -0.02801,
+            "return_5d": -0.03839,
+            "max_favorable_excursion": -0.01902,
+            "max_adverse_excursion": -0.04818
+          },
+          {
+            "date": "2026-05-05",
+            "distance": 0.4268,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": -0.02034,
+            "return_3d": -0.00751,
+            "return_5d": 0.00537,
+            "max_favorable_excursion": 0.00943,
+            "max_adverse_excursion": -0.03076
+          },
+          {
+            "date": "2026-06-16",
+            "distance": 0.4295,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": -0.02137,
+            "return_3d": -0.03581,
+            "return_5d": -0.02594,
+            "max_favorable_excursion": -0.00301,
+            "max_adverse_excursion": -0.04475
+          },
+          {
+            "date": "2026-05-04",
+            "distance": 0.4465,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": 0.00358,
+            "return_3d": -0.00072,
+            "return_5d": -0.01315,
+            "max_favorable_excursion": 0.00789,
+            "max_adverse_excursion": -0.02729
+          },
+          {
+            "date": "2026-07-21",
+            "distance": 0.4554,
+            "market_state": "neutral",
+            "news_catalyst_proxy": true,
+            "next_day_return": -0.00206,
+            "return_3d": 0.00625,
+            "return_5d": 0.04021,
+            "max_favorable_excursion": 0.06277,
+            "max_adverse_excursion": -0.01341
+          }
+        ],
+        "next_day_return_avg": -0.0016,
+        "next_day_hit_rate": 0.0,
+        "forward_return_3d_avg": -0.00331,
+        "forward_return_5d_avg": -0.0038,
+        "max_favorable_excursion_avg": 0.01966,
+        "max_adverse_excursion_avg": -0.02386,
+        "worst_case": -0.04213,
+        "best_case": 0.0177,
+        "sample_size": 12,
+        "low_sample_warning": true
+      },
+      "historical_similar_samples": [
+        {
+          "date": "2026-04-22",
+          "distance": 0.2776,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": 0.01064,
+          "return_3d": -0.00567,
+          "return_5d": -0.00501,
+          "max_favorable_excursion": 0.01285,
+          "max_adverse_excursion": -0.01851
+        },
+        {
+          "date": "2026-07-20",
+          "distance": 0.3361,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": -0.00703,
+          "return_3d": -0.01041,
+          "return_5d": 0.01686,
+          "max_favorable_excursion": 0.02224,
+          "max_adverse_excursion": -0.02035
+        },
+        {
+          "date": "2026-07-24",
+          "distance": 0.4227,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": 0.0177,
+          "return_3d": 0.04171,
+          "return_5d": 0.01803,
+          "max_favorable_excursion": 0.05617,
+          "max_adverse_excursion": 0.00174
+        },
+        {
+          "date": "2026-07-08",
+          "distance": 0.4243,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": -0.04213,
+          "return_3d": -0.02801,
+          "return_5d": -0.03839,
+          "max_favorable_excursion": -0.01902,
+          "max_adverse_excursion": -0.04818
+        },
+        {
+          "date": "2026-05-05",
+          "distance": 0.4268,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": -0.02034,
+          "return_3d": -0.00751,
+          "return_5d": 0.00537,
+          "max_favorable_excursion": 0.00943,
+          "max_adverse_excursion": -0.03076
+        },
+        {
+          "date": "2026-06-16",
+          "distance": 0.4295,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": -0.02137,
+          "return_3d": -0.03581,
+          "return_5d": -0.02594,
+          "max_favorable_excursion": -0.00301,
+          "max_adverse_excursion": -0.04475
+        },
+        {
+          "date": "2026-05-04",
+          "distance": 0.4465,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": 0.00358,
+          "return_3d": -0.00072,
+          "return_5d": -0.01315,
+          "max_favorable_excursion": 0.00789,
+          "max_adverse_excursion": -0.02729
+        },
+        {
+          "date": "2026-07-21",
+          "distance": 0.4554,
+          "market_state": "neutral",
+          "news_catalyst_proxy": true,
+          "next_day_return": -0.00206,
+          "return_3d": 0.00625,
+          "return_5d": 0.04021,
+          "max_favorable_excursion": 0.06277,
+          "max_adverse_excursion": -0.01341
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "source": "setup",
+          "name": "setup_quality_confirmed",
+          "score": 72.65,
+          "detail": "价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。"
+        },
+        {
+          "source": "bottom_structure",
+          "name": "bottom_fishing_structure_confirmed",
+          "score": 91.49,
+          "detail": "低吸结构优先：回撤、支撑距离、RSI、收盘位置和非过热状态共同支持反转观察，但仍需触发价确认。"
+        },
+        {
+          "source": "durability",
+          "name": "swing_durability_confirmed",
+          "score": 100.0,
+          "detail": "持续性评分优于一日冲高风险，候选更偏低吸反转而非追高接力。"
+        },
+        {
+          "source": "price",
+          "name": "bottom_price_structure_confirmed",
+          "score": 91.49,
+          "detail": "价格没有按追涨突破确认，但低吸结构、支撑距离和回撤区间成立。"
+        },
+        {
+          "source": "payoff",
+          "name": "payoff_quality_confirmed",
+          "score": 53.69,
+          "detail": "次日预期上行/下行赔率约 0.96。"
+        }
+      ],
+      "conflicting_evidence": [
+        {
+          "source": "catalyst",
+          "name": "weak_or_missing_catalyst",
+          "score": 62.08,
+          "detail": "近期没有强确认催化，不能只靠热度给高等级。"
+        },
+        {
+          "source": "expectation_gap",
+          "name": "expectation_gap_not_confirmed",
+          "score": 46.0,
+          "detail": "预期差证据不足，可能只是普通波动。"
+        },
+        {
+          "source": "volume",
+          "name": "volume_or_liquidity_weak",
+          "score": 57.34,
+          "detail": "成交确认或流动性不足。"
+        },
+        {
+          "source": "sector",
+          "name": "sector_context_weak",
+          "score": 42.99,
+          "detail": "Consumer Quality 还不是确认的资金主线。"
+        }
+      ],
+      "missing_evidence": [
+        {
+          "source": "fermentation",
+          "name": "fermentation_partial",
+          "score": 54.0,
+          "detail": "蓄势突破发酵，还需要触发价或量能继续确认。"
+        },
+        {
+          "source": "short_interest",
+          "name": "real_short_interest_missing",
+          "score": 0.0,
+          "detail": "逼空分暂用 proxy；真实 short interest / options 数据尚未接入。"
+        }
+      ],
+      "validation_status": "not_yet_validated",
+      "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
+    },
+    {
+      "rank": 3,
       "ticker": "V",
       "company_name": "Visa Inc",
       "sector": "Financial Leaders",
@@ -1939,11 +3741,11 @@
             "label": "事件催化",
             "status": "weak",
             "score": 35.4,
-            "reason": "Ackman unveils six new investments including Netflix, Visa, Mastercard in biggest portfolio overhaul in years",
+            "reason": "Visa’s Stablecoin Settlement Push Might Change The Case For Investing In Visa (V)",
             "blocking": false,
             "data": {
               "quality": "conflicted",
-              "event_type": "mna_or_strategic_review",
+              "event_type": "confirmed_business_catalyst",
               "risk_event_score": 30.0,
               "strong_event_count": 0
             }
@@ -2181,23 +3983,34 @@
         "catalyst_score": 35.4,
         "risk_event_score": 30.0,
         "headline_count": 18,
-        "primary_headline": "Ackman unveils six new investments including Netflix, Visa, Mastercard in biggest portfolio overhaul in years",
-        "primary_event_type": "mna_or_strategic_review",
+        "primary_headline": "Visa’s Stablecoin Settlement Push Might Change The Case For Investing In Visa (V)",
+        "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 12.02,
-        "catalyst_type": "mna_or_strategic_review",
+        "primary_event_age_hours": 2.44,
+        "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
         "strong_event_count": 0,
         "concrete_event_types": [],
         "supporting_events": [
           {
+            "event_type": "confirmed_business_catalyst",
+            "headline": "Visa’s Stablecoin Settlement Push Might Change The Case For Investing In Visa (V)",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=0edeabe5782b27a234bc3ec92d7fd897e0f0da2f63072d3f0cb4dc3a37eb6162",
+            "published_at": "2026-08-14T01:12:57+00:00",
+            "age_hours": 2.44,
+            "score_contribution": 10.0,
+            "strong": false,
+            "relevance": "direct"
+          },
+          {
             "event_type": "theme_buzz",
             "headline": "Mastercard Stock Rises as Ackman Targets Agentic Commerce",
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b14a9ce4f7246cadc904195add365f6d7130c194ec02c1a9c02cc1ed5e530457",
             "published_at": "2026-08-13T19:11:28+00:00",
-            "age_hours": 4.95,
+            "age_hours": 8.46,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -2208,7 +4021,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=92c096938947c1dde881d91c166602212aa54b3bf79c8d63a255e5d88bb87b28",
             "published_at": "2026-08-13T14:31:19+00:00",
-            "age_hours": 9.62,
+            "age_hours": 13.13,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -2219,7 +4032,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a3e05b1849e26b5d4a7f2f6677b9b25468b013a4435cafdf971c233d080e5c71",
             "published_at": "2026-08-13T12:07:01+00:00",
-            "age_hours": 12.02,
+            "age_hours": 15.54,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -2230,7 +4043,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e686e3278d8a2cae2f4ecb8d160b142b441217badb8f6bf0254a91567554cee2",
             "published_at": "2026-08-13T00:00:00+00:00",
-            "age_hours": 24.14,
+            "age_hours": 27.66,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -2241,18 +4054,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=78e6af217bf3b8ef504efd01eebe1e228efe4df12fa1c3ac18a373b2e6fb651e",
             "published_at": "2026-08-12T19:10:05+00:00",
-            "age_hours": 28.97,
-            "score_contribution": 4.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "Circle Lines Up Major Financial Institutions For Its New Arc Blockchain. Here's Why Circle Stock is Now a Buy.",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=401b554e3c39cc0740c0266469e0523ff3133983ba774fd5c3648b0ef2daa8a9",
-            "published_at": "2026-08-12T16:45:00+00:00",
-            "age_hours": 31.39,
+            "age_hours": 32.49,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -2265,7 +4067,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a3e05b1849e26b5d4a7f2f6677b9b25468b013a4435cafdf971c233d080e5c71",
             "published_at": "2026-08-13T12:07:01+00:00",
-            "age_hours": 12.02,
+            "age_hours": 15.54,
             "score_contribution": 30.0,
             "relevance": "direct"
           }
@@ -2274,11 +4076,11 @@
           "status": "missing"
         },
         "supporting_headlines": [
+          "Visa’s Stablecoin Settlement Push Might Change The Case For Investing In Visa (V)",
           "Mastercard Stock Rises as Ackman Targets Agentic Commerce",
           "Bill Ackman’s New Stock Picks Are Here. These ETFs Could Be Worth Watching",
           "Ackman unveils six new investments including Netflix, Visa, Mastercard in biggest portfolio overhaul in years",
-          "Agentic AI Foundation Welcomes 57 New Members, Gaining Major Financial Services Players and APAC Leaders",
-          "Wednesday's session: top gainers and losers in the dow jones index"
+          "Agentic AI Foundation Welcomes 57 New Members, Gaining Major Financial Services Players and APAC Leaders"
         ],
         "conflicting_headlines": [
           "Ackman unveils six new investments including Netflix, Visa, Mastercard in biggest portfolio overhaul in years"
@@ -3571,7 +5373,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 3,
+      "rank": 4,
       "ticker": "VST",
       "company_name": "Vistra Corp",
       "sector": "Nuclear / Power",
@@ -3965,7 +5767,7 @@
         "primary_headline": "Vistra Q2 Earnings Beat Estimates on Pricing and Lotus, Revenues Miss",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 34.34,
+        "primary_event_age_hours": 37.86,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -3980,7 +5782,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a9ae7556e06f8d3e2df664eb238c61731b908fb9938e3752b179764da99a64bc",
             "published_at": "2026-08-13T17:17:15+00:00",
-            "age_hours": 6.85,
+            "age_hours": 10.37,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -3991,7 +5793,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=776f46bd4d1de542a6674f46e5faf68ab8d49641efb9ef04d733493ebb69b525",
             "published_at": "2026-08-13T12:50:00+00:00",
-            "age_hours": 11.31,
+            "age_hours": 14.82,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -4002,7 +5804,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=daad1bd4278321e67454a4069a9e2340d9ee6d4c5842f654343bb39877995660",
             "published_at": "2026-08-13T08:00:58+00:00",
-            "age_hours": 16.12,
+            "age_hours": 19.64,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -4013,7 +5815,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d5229e09eb51df2c0c20d7ae09af1f8d1a0a9b7ce8664d8e5edbde7294a74d17",
             "published_at": "2026-08-12T13:48:00+00:00",
-            "age_hours": 34.34,
+            "age_hours": 37.86,
             "score_contribution": 18.0,
             "strong": true,
             "relevance": "direct"
@@ -4024,7 +5826,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1f127d9d8cbf0e9483065c6bb4e1cb4939bf73f0cc0442c9d1ef4c8658979934",
             "published_at": "2026-08-11T15:41:00+00:00",
-            "age_hours": 56.46,
+            "age_hours": 59.97,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -4035,7 +5837,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d0ece1bc15bd5074007f15cb1ffd954e282c140028d0f8a99ddc681e201c7a37",
             "published_at": "2026-08-10T18:30:01+00:00",
-            "age_hours": 77.64,
+            "age_hours": 81.16,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -4046,7 +5848,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=391434e63cfe14cc05a1a33e34d32ae152b1bf9ee60769bc35ca91d9151f818a",
             "published_at": "2026-08-10T10:19:41+00:00",
-            "age_hours": 85.81,
+            "age_hours": 89.33,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -4057,7 +5859,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=60953e459899adb7cd6b848a876e1741ae86d411e9c12fae46cb917264ea29ad",
             "published_at": "2026-08-09T15:04:18+00:00",
-            "age_hours": 105.07,
+            "age_hours": 108.58,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -5363,7 +7165,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "ticker": "MSTR",
       "company_name": "Strategy Inc",
       "sector": "Crypto Proxy",
@@ -5756,7 +7558,7 @@
         "primary_headline": "New ETF eyes 95% allocation to MicroStrategy’s STRC",
         "primary_event_type": "product_or_launch",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 5.44,
+        "primary_event_age_hours": 8.95,
         "catalyst_type": "product_or_launch",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -5764,12 +7566,23 @@
         "concrete_event_types": [],
         "supporting_events": [
           {
+            "event_type": "earnings_momentum",
+            "headline": "Trump Accounts Just Became More Attractive to Working Parents: Employers Can Contribute $2,500 Tax-Free Under New Treasury Guidance",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=29613bad5da349fe81e8bcf934b0fe041fdaa6613f2f62149f0c804e07872177",
+            "published_at": "2026-08-13T23:30:47+00:00",
+            "age_hours": 4.14,
+            "score_contribution": 7.5,
+            "strong": false,
+            "relevance": "provider_related"
+          },
+          {
             "event_type": "theme_buzz",
             "headline": "$10,000 in MSTY Became $6,614 Before the Tax Bill: The Cost of Riding MSTR’s Volatility",
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c785c3c9563b744f282c1c107d55eb0a7926b86f0af6577232ab7d4b000eae55",
             "published_at": "2026-08-13T21:55:55+00:00",
-            "age_hours": 2.21,
+            "age_hours": 5.72,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -5780,7 +7593,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ab95bb2b9002574e27f86cc3c8501e1546abdc29570d1046b5fb0831b69119e4",
             "published_at": "2026-08-13T20:40:36+00:00",
-            "age_hours": 3.46,
+            "age_hours": 6.98,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5791,7 +7604,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3644e7eef0f3e1ea7c32f5650c4a458891385a3324fadb50c27932f1576b9bb1",
             "published_at": "2026-08-13T18:42:17+00:00",
-            "age_hours": 5.44,
+            "age_hours": 8.95,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -5802,7 +7615,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=fbcf74dd6acce1b10b5383a8ec9e7561c4c74ffcbc6cbd5b3728c90dcf4fdf8d",
             "published_at": "2026-08-13T17:17:04+00:00",
-            "age_hours": 6.86,
+            "age_hours": 10.37,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5813,7 +7626,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=9d301997e61842f34a6398e8b6c7e3a73f73e56041f46689dbf62f135359a34b",
             "published_at": "2026-08-13T16:40:49+00:00",
-            "age_hours": 7.46,
+            "age_hours": 10.98,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5824,7 +7637,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d9f3a832bfd8b9e0b3abbd7f3e910c85e2d16ce0c1eb3379581966234151d094",
             "published_at": "2026-08-13T13:42:00+00:00",
-            "age_hours": 10.44,
+            "age_hours": 13.96,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5835,19 +7648,8 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=a4430c8ef489afffbf9f1d8d76ca8dac7b5bacb23ebe3ef559d7064e807dcccf",
             "published_at": "2026-08-13T05:15:36+00:00",
-            "age_hours": 18.88,
+            "age_hours": 22.4,
             "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "Bitcoin, Ethereum, XRP, Dogecoin Slide Even as CPI Figures Ease Rate Hike Odds: Analyst Says BTC 'Displaying a Condition' Associated With Market Bottoms",
-            "source": "Benzinga",
-            "url": "https://finnhub.io/api/news?id=cedee28b255b0f2e2f99477b62707206c163e0f354915db738452e5f84840561",
-            "published_at": "2026-08-12T22:12:22+00:00",
-            "age_hours": 25.93,
-            "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
           }
@@ -5857,11 +7659,11 @@
           "status": "missing"
         },
         "supporting_headlines": [
+          "Trump Accounts Just Became More Attractive to Working Parents: Employers Can Contribute $2,500 Tax-Free Under New Treasury Guidance",
           "$10,000 in MSTY Became $6,614 Before the Tax Bill: The Cost of Riding MSTR’s Volatility",
           "Trump and Saylor said never sell your Bitcoin, but scorecard says otherwise",
           "New ETF eyes 95% allocation to MicroStrategy’s STRC",
-          "SEC May Advance Crypto Rules, 24/7 Trading Without Clarity Act. OCC Paves Way For Crypto Banks.",
-          "Metaplanet Denies Selling $320M in Bitcoin as Firm Launches BitBonds"
+          "SEC May Advance Crypto Rules, 24/7 Trading Without Clarity Act. OCC Paves Way For Crypto Banks."
         ],
         "conflicting_headlines": [],
         "news_data_status": "available"
@@ -7152,7 +8954,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "ticker": "META",
       "company_name": "Meta Platforms Inc",
       "sector": "Consumer Internet",
@@ -7206,7 +9008,7 @@
           "technical_score": 37.0,
           "volume_score": 42.54,
           "relative_volume": 0.654,
-          "volume_z_score": -0.743,
+          "volume_z_score": -0.744,
           "return_1d": 0.02785,
           "return_5d": 0.00859,
           "return_20d": -0.10469,
@@ -7553,7 +9355,7 @@
         "primary_headline": "Meta Remains a Deeply Discounted Giant: Wall Street Expects 30% Gains, One Analyst Expects 100%",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 7.53,
+        "primary_event_age_hours": 11.04,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -7562,14 +9364,47 @@
         "supporting_events": [
           {
             "event_type": "theme_buzz",
+            "headline": "Reddit Stock Pops 11% on S&P 500 Inclusion Despite Google AI Traffic Concerns",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=8779c6371be369a612911e24be9a229182268618d00f42c948bdb46e63729cd4",
+            "published_at": "2026-08-13T22:55:17+00:00",
+            "age_hours": 4.73,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "provider_related"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "Reddit Shares Surge on S&P 500 Inclusion Later This Month",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=df74461fa32777da7648704a62412957f1c8b31eefed8a37f41062c37ae03de1",
+            "published_at": "2026-08-13T22:09:37+00:00",
+            "age_hours": 5.5,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "provider_related"
+          },
+          {
+            "event_type": "theme_buzz",
             "headline": "Fidelity’s Contrafund, FCNTX, Bet Against the Crowd and Got Enormous Doing It",
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8fd9ab5b9f93dcf3a7bb6363af7368aa7f680fa85d1ac4e677af32dd8d8b6660",
             "published_at": "2026-08-13T21:50:44+00:00",
-            "age_hours": 2.3,
+            "age_hours": 5.81,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "Meta taps skilled trades workers to power America’s AI infrastructure boom",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=4f699ba2b3e5299b5741972debabc454f860022e853a4dbbe0dd90ff5148e1b0",
+            "published_at": "2026-08-13T20:10:57+00:00",
+            "age_hours": 7.47,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
           },
           {
             "event_type": "theme_buzz",
@@ -7577,7 +9412,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=666f9d2d7a5e16e1dc1048b3fb79fc9186a2ae4adfdab8310aaeaa21e158371d",
             "published_at": "2026-08-13T19:18:28+00:00",
-            "age_hours": 4.83,
+            "age_hours": 8.35,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -7588,10 +9423,21 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4136a4be5d63d394bd302f15c4b40dd2f32ea15387a6bf1fd6f93ecba1b90f8e",
             "published_at": "2026-08-13T19:17:38+00:00",
-            "age_hours": 4.85,
+            "age_hours": 8.36,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
+          },
+          {
+            "event_type": "theme_buzz",
+            "headline": "Alberta’s AI data centre gamble: Big investment or local burden?",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=db43ca0e6e66bc732c625729ced53afc679d71587a9dc66a78726443ce2bd9cf",
+            "published_at": "2026-08-13T18:21:02+00:00",
+            "age_hours": 9.31,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "direct"
           },
           {
             "event_type": "theme_buzz",
@@ -7599,52 +9445,8 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2057776cf3bec3ce61e438d1ba9189777df50c4adb70a427ea9af0a97f84130b",
             "published_at": "2026-08-13T16:51:00+00:00",
-            "age_hours": 7.29,
+            "age_hours": 10.81,
             "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "earnings_momentum",
-            "headline": "Meta Remains a Deeply Discounted Giant: Wall Street Expects 30% Gains, One Analyst Expects 100%",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=1b33a83bba9de3a1974a8b5c8137b51cc8cb96d5f7711efd82a7df3acc8fc567",
-            "published_at": "2026-08-13T16:36:53+00:00",
-            "age_hours": 7.53,
-            "score_contribution": 10.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "4 Nuclear Stocks Riding the AI Power Boom Into 2027 and Beyond",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=9f42be0e3d6a40c84f6f0defa582561735b9b45905f174f55aa6c08547aa5f78",
-            "published_at": "2026-08-13T16:25:00+00:00",
-            "age_hours": 7.72,
-            "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "Zuckerberg Reaffirms Faith In 'Open Weight' AI. Will It Pay Off For Meta Stock?",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=d144c834703dddce1d07af1e1b2be102a8cafbd107958ad5951dccbd1095d08f",
-            "published_at": "2026-08-13T16:13:45+00:00",
-            "age_hours": 7.91,
-            "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "confirmed_business_catalyst",
-            "headline": "Jeff Bezos takes bold new turn amid $4B Amazon sell-off",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=c4a211ec262c1e75ee2d57bc42d3c4bfd9b93390594ba95226096b502bd2ddfc",
-            "published_at": "2026-08-13T16:03:00+00:00",
-            "age_hours": 8.09,
-            "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
           }
@@ -7654,11 +9456,11 @@
           "status": "missing"
         },
         "supporting_headlines": [
+          "Reddit Stock Pops 11% on S&P 500 Inclusion Despite Google AI Traffic Concerns",
+          "Reddit Shares Surge on S&P 500 Inclusion Later This Month",
           "Fidelity’s Contrafund, FCNTX, Bet Against the Crowd and Got Enormous Doing It",
-          "Meta Removes 756,000 Teen Accounts in Australia",
-          "Nvidia Rallies 7% as Goldman Warns Earnings Bar Is High",
-          "The Numbers Get Larger and Larger: Inside the AI Financing Scramble",
-          "Meta Remains a Deeply Discounted Giant: Wall Street Expects 30% Gains, One Analyst Expects 100%"
+          "Meta taps skilled trades workers to power America’s AI infrastructure boom",
+          "Meta Removes 756,000 Teen Accounts in Australia"
         ],
         "conflicting_headlines": [],
         "news_data_status": "available"
@@ -7668,11 +9470,11 @@
       "volume_score": 42.54,
       "technical_score": 37.0,
       "close_position": 0.946,
-      "dollar_volume_m": 6493.035,
+      "dollar_volume_m": 6488.897,
       "avg_dollar_volume_m": 9906.045,
       "atr_pct": 0.03691,
       "realized_volatility_20d": 0.45516,
-      "volume_z_score": -0.743,
+      "volume_z_score": -0.744,
       "technical_snapshot": {
         "latest_date": "2026-08-13",
         "last_close": 594.969970703125,
@@ -7710,13 +9512,13 @@
       },
       "volume_snapshot": {
         "latest_date": "2026-08-13",
-        "volume": 10913215,
+        "volume": 10906259,
         "volume_avg20": 16686680.0,
         "volume_std20": 7768966.88,
         "relative_volume": 0.654,
-        "volume_z_score": -0.743,
+        "volume_z_score": -0.744,
         "volume_score": 42.54,
-        "dollar_volume_m": 6493.035,
+        "dollar_volume_m": 6488.897,
         "avg_dollar_volume_m": 9906.045
       },
       "price_history": [
@@ -8678,14 +10480,14 @@
           "high": 595.8499755859375,
           "low": 579.4299926757812,
           "close": 594.969970703125,
-          "volume": 10913215
+          "volume": 10906259
         }
       ],
       "historical_analog": {
         "top_similar_dates": [
           {
             "date": "2026-05-22",
-            "distance": 0.1884,
+            "distance": 0.1886,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": 0.00341,
@@ -8707,7 +10509,7 @@
           },
           {
             "date": "2026-05-26",
-            "distance": 0.1983,
+            "distance": 0.1986,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": 0.03743,
@@ -8718,7 +10520,7 @@
           },
           {
             "date": "2026-04-27",
-            "distance": 0.2775,
+            "distance": 0.2776,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": -0.01073,
@@ -8729,7 +10531,7 @@
           },
           {
             "date": "2026-05-20",
-            "distance": 0.2783,
+            "distance": 0.2785,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": 0.00383,
@@ -8740,7 +10542,7 @@
           },
           {
             "date": "2026-05-07",
-            "distance": 0.3115,
+            "distance": 0.3116,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": -0.01164,
@@ -8751,7 +10553,7 @@
           },
           {
             "date": "2026-05-08",
-            "distance": 0.3175,
+            "distance": 0.3178,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": -0.01767,
@@ -8762,7 +10564,7 @@
           },
           {
             "date": "2026-06-30",
-            "distance": 0.3261,
+            "distance": 0.3265,
             "market_state": "neutral",
             "news_catalyst_proxy": true,
             "next_day_return": 0.08809,
@@ -8786,7 +10588,7 @@
       "historical_similar_samples": [
         {
           "date": "2026-05-22",
-          "distance": 0.1884,
+          "distance": 0.1886,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": 0.00341,
@@ -8808,7 +10610,7 @@
         },
         {
           "date": "2026-05-26",
-          "distance": 0.1983,
+          "distance": 0.1986,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": 0.03743,
@@ -8819,7 +10621,7 @@
         },
         {
           "date": "2026-04-27",
-          "distance": 0.2775,
+          "distance": 0.2776,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": -0.01073,
@@ -8830,7 +10632,7 @@
         },
         {
           "date": "2026-05-20",
-          "distance": 0.2783,
+          "distance": 0.2785,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": 0.00383,
@@ -8841,7 +10643,7 @@
         },
         {
           "date": "2026-05-07",
-          "distance": 0.3115,
+          "distance": 0.3116,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": -0.01164,
@@ -8852,7 +10654,7 @@
         },
         {
           "date": "2026-05-08",
-          "distance": 0.3175,
+          "distance": 0.3178,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": -0.01767,
@@ -8863,7 +10665,7 @@
         },
         {
           "date": "2026-06-30",
-          "distance": 0.3261,
+          "distance": 0.3265,
           "market_state": "neutral",
           "news_catalyst_proxy": true,
           "next_day_return": 0.08809,
@@ -8949,7 +10751,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 6,
+      "rank": 7,
       "ticker": "QCOM",
       "company_name": "Qualcomm Inc",
       "sector": "AI / Semiconductors",
@@ -9355,7 +11157,7 @@
         "primary_headline": "Amid Polycom's 2026 End-of-Life Shift and Cisco's Hardware Upgrades, New Patent Landscape Report Identifies Key IP Holdings in the Video Conferencing Market",
         "primary_event_type": "analyst_upgrade",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 39.79,
+        "primary_event_age_hours": 43.31,
         "catalyst_type": "analyst_upgrade",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -9368,7 +11170,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=440c3cea64045e87ceffe228cbf5e06d724e0a50a10de76f99a741252b5169eb",
             "published_at": "2026-08-13T20:55:54+00:00",
-            "age_hours": 3.21,
+            "age_hours": 6.72,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -9379,7 +11181,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=672c9e9396a7a7b8666b7cd4a3b31fcb75eb9587db3c47c7e479d793cb5b1f5c",
             "published_at": "2026-08-13T16:43:05+00:00",
-            "age_hours": 7.42,
+            "age_hours": 10.94,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -9390,7 +11192,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a8889447cbd8aadb1383c72161ad67c2f5faa62f34ee8146c880e025925c4637",
             "published_at": "2026-08-13T13:04:28+00:00",
-            "age_hours": 11.07,
+            "age_hours": 14.58,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -9401,7 +11203,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1c36b5ab8d28aaaf8dff62fe950f977fe2839c24a3a5c071c39f3b432cb11955",
             "published_at": "2026-08-12T17:14:41+00:00",
-            "age_hours": 30.9,
+            "age_hours": 34.41,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -9412,7 +11214,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2c735624fb50ccd89a37ffa477005a31cd44fe916a417b6d1b71673a990792f4",
             "published_at": "2026-08-12T16:11:49+00:00",
-            "age_hours": 31.94,
+            "age_hours": 35.46,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -9423,7 +11225,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=54815327760a5d23da6a941acfa8ec54b642eb1f16a985ce7c73477ccf25dcf7",
             "published_at": "2026-08-12T14:30:41+00:00",
-            "age_hours": 33.63,
+            "age_hours": 37.14,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "direct"
@@ -9434,7 +11236,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=67f7d59416e69f5758e09474eed789c4214ea8bba7ede49f69d7641cbb4c5c07",
             "published_at": "2026-08-12T14:22:07+00:00",
-            "age_hours": 33.77,
+            "age_hours": 37.29,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -9445,7 +11247,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=862dc6f11f68ce6fdc66ed0e42dbf6fe86ba366191d6854087c11088a0a10030",
             "published_at": "2026-08-12T13:26:35+00:00",
-            "age_hours": 34.7,
+            "age_hours": 38.21,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -10751,7 +12553,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 7,
+      "rank": 8,
       "ticker": "XPEV",
       "company_name": "XPeng",
       "sector": "China ADR / EV",
@@ -12454,7 +14256,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 8,
+      "rank": 9,
       "ticker": "COIN",
       "company_name": "Coinbase Global Inc",
       "sector": "Crypto Proxy",
@@ -12860,7 +14662,7 @@
         "primary_headline": "Crypto's 'Revenue Revolution' Could Double HYPE, UNI, AAVE Valuations, Bitwise Exec Says",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 15.14,
+        "primary_event_age_hours": 18.65,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -12873,7 +14675,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1332edb9403cdfacc03b3c87a3b4cde1c861db5c1db559916a42f692098e4abe",
             "published_at": "2026-08-13T20:50:00+00:00",
-            "age_hours": 3.31,
+            "age_hours": 6.82,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -12884,7 +14686,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=76aa4dd623451c7b36432a5c08028f60605614ee165be5f50faffe9db756bb08",
             "published_at": "2026-08-13T19:30:19+00:00",
-            "age_hours": 4.64,
+            "age_hours": 8.15,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -12895,7 +14697,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c493648e2545c2459d81781f11937fcc5fa505d27b199cd837641c104e52083c",
             "published_at": "2026-08-13T19:00:00+00:00",
-            "age_hours": 5.14,
+            "age_hours": 8.66,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -12906,7 +14708,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=03c5ebd22532c1a0ba005d3a82e0381e774d5a5be45eecd38e4fda5923a9aa7f",
             "published_at": "2026-08-13T18:04:00+00:00",
-            "age_hours": 6.07,
+            "age_hours": 9.59,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -12917,7 +14719,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=fbcf74dd6acce1b10b5383a8ec9e7561c4c74ffcbc6cbd5b3728c90dcf4fdf8d",
             "published_at": "2026-08-13T17:17:04+00:00",
-            "age_hours": 6.86,
+            "age_hours": 10.37,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -12928,7 +14730,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=215e951b43f178dd46574c21da4b0a23c86296df9e884db81b53fc3aef128d4c",
             "published_at": "2026-08-13T16:20:00+00:00",
-            "age_hours": 7.81,
+            "age_hours": 11.32,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -12939,7 +14741,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c728d2c2c9fa80574dcb3650c8005bc4baaba0ead62d528620e3e2c297d09d03",
             "published_at": "2026-08-13T13:49:53+00:00",
-            "age_hours": 10.31,
+            "age_hours": 13.82,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -12950,7 +14752,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=916901a73d7a6a066f689c88cd97c357ed2722f317c727be5ab78cdc32de44aa",
             "published_at": "2026-08-13T10:57:10+00:00",
-            "age_hours": 13.19,
+            "age_hours": 16.7,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -12963,7 +14765,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c728d2c2c9fa80574dcb3650c8005bc4baaba0ead62d528620e3e2c297d09d03",
             "published_at": "2026-08-13T13:49:53+00:00",
-            "age_hours": 10.31,
+            "age_hours": 13.82,
             "score_contribution": 30.0,
             "relevance": "provider_related"
           },
@@ -12973,7 +14775,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b799ca9397d3195b42c569b491873d6c183f2d6dc0c1d5d294229cece704c358",
             "published_at": "2026-08-13T09:11:13+00:00",
-            "age_hours": 14.95,
+            "age_hours": 18.47,
             "score_contribution": 22.5,
             "relevance": "direct"
           }
@@ -14280,7 +16082,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 9,
+      "rank": 10,
       "ticker": "VKTX",
       "company_name": "Viking Therapeutics Inc",
       "sector": "Biotech",
@@ -14675,7 +16477,7 @@
         "primary_headline": "Viking Therapeutics: Mysterious GLP-1 Player With A Key Catalyst Due Q3 (Q2 Earnings Overview)",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 152.92,
+        "primary_event_age_hours": 156.44,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -14688,7 +16490,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=64d1b813adb7797d2d94bc1c60fa72d8ace8a9ecdb0d9bcd5e6d7d834748d392",
             "published_at": "2026-08-11T10:50:45+00:00",
-            "age_hours": 61.29,
+            "age_hours": 64.81,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -14699,7 +16501,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=87a12d58cab57b01cb892f8ce892253085a1039e385e7fe9538053d4348a2053",
             "published_at": "2026-08-07T15:13:11+00:00",
-            "age_hours": 152.92,
+            "age_hours": 156.44,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -16002,7 +17804,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 10,
+      "rank": 11,
       "ticker": "BIDU",
       "company_name": "Baidu",
       "sector": "China ADR / AI",
@@ -17705,7 +19507,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 11,
+      "rank": 12,
       "ticker": "LCID",
       "company_name": "Lucid Group Inc",
       "sector": "High Beta / EV",
@@ -18107,7 +19909,7 @@
         "primary_headline": "Short Sellers Attack Ondas, Avis Budget, RH: Here Are the 10 Most Shorted Stocks",
         "primary_event_type": "theme_buzz",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 10.09,
+        "primary_event_age_hours": 13.6,
         "catalyst_type": "theme_buzz",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -18120,7 +19922,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=e7ccd4389f7365627eb91a845a45123a63c258b2078b39b1e449215c186f2bb1",
             "published_at": "2026-08-13T14:03:04+00:00",
-            "age_hours": 10.09,
+            "age_hours": 13.6,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -18131,7 +19933,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=d070905f3988ddbff3599c72aa904f17b721dc41231d549df5bfdf0cfcf405af",
             "published_at": "2026-08-10T04:56:08+00:00",
-            "age_hours": 91.21,
+            "age_hours": 94.72,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "provider_related"
@@ -18142,7 +19944,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=08be8640c79181ae47f5cfe22d06b5b63ebfe0dcbb2431a8baab80470a5b8d5d",
             "published_at": "2026-08-07T10:37:15+00:00",
-            "age_hours": 157.52,
+            "age_hours": 161.04,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -18155,7 +19957,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=083e63ff76b40c5a67f80544d5afcab11c9a836b507f2dd1572a5dd42ef518c0",
             "published_at": "2026-08-11T11:55:53+00:00",
-            "age_hours": 60.21,
+            "age_hours": 63.72,
             "score_contribution": 16.0,
             "relevance": "direct"
           }
@@ -19459,7 +21261,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 12,
+      "rank": 13,
       "ticker": "GOOGL",
       "company_name": "Alphabet Inc",
       "sector": "Mega Cap Tech",
@@ -19864,7 +21666,7 @@
         "primary_headline": "OpenAI's New Revenue Officer Comes From Alphabet's Wiz",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 3.89,
+        "primary_event_age_hours": 7.41,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -19877,7 +21679,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8fd9ab5b9f93dcf3a7bb6363af7368aa7f680fa85d1ac4e677af32dd8d8b6660",
             "published_at": "2026-08-13T21:50:44+00:00",
-            "age_hours": 2.3,
+            "age_hours": 5.81,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -19888,7 +21690,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1fddc9e7e42a9fdd628ac7985a476e301b1b61f906250a57b2d02f319cd35764",
             "published_at": "2026-08-13T20:14:50+00:00",
-            "age_hours": 3.89,
+            "age_hours": 7.41,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -19899,7 +21701,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=bae8b34106631d354f1e6e8a7e57c4af2039050c0da7448d2178f8a6e09c4d8a",
             "published_at": "2026-08-13T19:59:32+00:00",
-            "age_hours": 4.15,
+            "age_hours": 7.66,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -19910,7 +21712,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b1568ef924ebb492102e73103db3ae216f8794b301ac1e0c0c732802d4ba96ed",
             "published_at": "2026-08-13T19:46:00+00:00",
-            "age_hours": 4.37,
+            "age_hours": 7.89,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -19921,7 +21723,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=512f5c06e627570d8ec4d37330ab373169fec6269c32dd4ddc855d6949963df0",
             "published_at": "2026-08-13T19:25:38+00:00",
-            "age_hours": 4.71,
+            "age_hours": 8.23,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -19932,7 +21734,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=0a2f7e1d4f2e9c354741e9c183d6c8dd894703f393609f8217f88e2b8908c452",
             "published_at": "2026-08-13T19:22:40+00:00",
-            "age_hours": 4.76,
+            "age_hours": 8.28,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -19943,7 +21745,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4136a4be5d63d394bd302f15c4b40dd2f32ea15387a6bf1fd6f93ecba1b90f8e",
             "published_at": "2026-08-13T19:17:38+00:00",
-            "age_hours": 4.85,
+            "age_hours": 8.36,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -19954,7 +21756,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a602172674e65020f9a4180654fc788d29f7252422da2c1cd9150ee2e4aa38d5",
             "published_at": "2026-08-13T18:56:39+00:00",
-            "age_hours": 5.2,
+            "age_hours": 8.71,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -19967,7 +21769,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=512f5c06e627570d8ec4d37330ab373169fec6269c32dd4ddc855d6949963df0",
             "published_at": "2026-08-13T19:25:38+00:00",
-            "age_hours": 4.71,
+            "age_hours": 8.23,
             "score_contribution": 30.0,
             "relevance": "provider_related"
           }
@@ -21267,7 +23069,7 @@
       "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
     },
     {
-      "rank": 13,
+      "rank": 14,
       "ticker": "MA",
       "company_name": "Mastercard Inc",
       "sector": "Financial Leaders",
@@ -21276,8 +23078,8 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 24.61,
-      "elasticity_raw_potential": 19.31,
+      "elasticity_score": 24.6,
+      "elasticity_raw_potential": 19.3,
       "elasticity_confirmation_factor": 0.435,
       "elasticity_interpretation": "normal_volatility",
       "next_day_move_probability": 0.3709,
@@ -21428,7 +23230,7 @@
             "label": "价格结构",
             "status": "confirmed",
             "score": 61.0,
-            "reason": "技术分 61.0，低吸分 86.6，收盘位置 0.88，支撑距离 8.3%，20日回撤 2.9%",
+            "reason": "技术分 61.0，低吸分 86.6，收盘位置 0.89，支撑距离 8.3%，20日回撤 2.9%",
             "blocking": false,
             "data": {}
           },
@@ -21599,8 +23401,8 @@
         "failed_bounce_price": 523.61
       },
       "trigger_levels": {
-        "upside_trigger_level": 572.7535,
-        "downside_risk_level": 562.5667,
+        "upside_trigger_level": 572.7529,
+        "downside_risk_level": 562.5689,
         "invalidation_level": 523.61,
         "gap_fill_level": 559.73,
         "breakout_level": 583.71,
@@ -21608,8 +23410,8 @@
         "nearest_support": 523.61,
         "nearest_resistance": 583.71
       },
-      "upside_trigger_level": 572.7535,
-      "downside_risk_level": 562.5667,
+      "upside_trigger_level": 572.7529,
+      "downside_risk_level": 562.5689,
       "invalidation_level": 523.61,
       "gap_fill_level": 559.73,
       "breakout_level": 583.71,
@@ -21628,8 +23430,8 @@
         "actionable": false,
         "edge_status_note": "edge_status 是预测优势等级，不是交易建议。",
         "entry_condition": "无主动优势，仅观察",
-        "upside_trigger_level": 572.7535,
-        "downside_risk_level": 562.5667,
+        "upside_trigger_level": 572.7529,
+        "downside_risk_level": 562.5689,
         "invalidation_level": 523.61,
         "gap_fill_level": 559.73,
         "breakout_level": 583.71,
@@ -21659,7 +23461,7 @@
         "primary_headline": "Priori Expands Client Advisory Board with New Members from Fortune 500 Corporate Legal Departments",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 11.14,
+        "primary_event_age_hours": 14.66,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -21672,7 +23474,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b14a9ce4f7246cadc904195add365f6d7130c194ec02c1a9c02cc1ed5e530457",
             "published_at": "2026-08-13T19:11:28+00:00",
-            "age_hours": 4.95,
+            "age_hours": 8.46,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -21683,7 +23485,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2c54a8b37d68f0f31ef938ce910857bcd677a902ee03b20e7f070de9a21b50d3",
             "published_at": "2026-08-13T14:35:35+00:00",
-            "age_hours": 9.55,
+            "age_hours": 13.06,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -21694,7 +23496,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=92c096938947c1dde881d91c166602212aa54b3bf79c8d63a255e5d88bb87b28",
             "published_at": "2026-08-13T14:31:19+00:00",
-            "age_hours": 9.62,
+            "age_hours": 13.13,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -21705,7 +23507,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=853577aa633e93860d75f9ff7530b7873d635678b36378631c23c1a8006b36ab",
             "published_at": "2026-08-13T13:00:00+00:00",
-            "age_hours": 11.14,
+            "age_hours": 14.66,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -21716,7 +23518,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=51f516f429febf28f6c5e79007b051ac660b6822ab9a1b7d2ae3528af49000f7",
             "published_at": "2026-08-13T13:00:00+00:00",
-            "age_hours": 11.14,
+            "age_hours": 14.66,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -21727,7 +23529,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a3e05b1849e26b5d4a7f2f6677b9b25468b013a4435cafdf971c233d080e5c71",
             "published_at": "2026-08-13T12:07:01+00:00",
-            "age_hours": 12.02,
+            "age_hours": 15.54,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -21738,7 +23540,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=401b554e3c39cc0740c0266469e0523ff3133983ba774fd5c3648b0ef2daa8a9",
             "published_at": "2026-08-12T16:45:00+00:00",
-            "age_hours": 31.39,
+            "age_hours": 34.91,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -21751,7 +23553,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a3e05b1849e26b5d4a7f2f6677b9b25468b013a4435cafdf971c233d080e5c71",
             "published_at": "2026-08-13T12:07:01+00:00",
-            "age_hours": 12.02,
+            "age_hours": 15.54,
             "score_contribution": 30.0,
             "relevance": "direct"
           }
@@ -21775,10 +23577,10 @@
       "relative_volume": 0.651,
       "volume_score": 42.51,
       "technical_score": 61.0,
-      "close_position": 0.883,
+      "close_position": 0.889,
       "dollar_volume_m": 1123.756,
       "avg_dollar_volume_m": 1702.899,
-      "atr_pct": 0.02076,
+      "atr_pct": 0.02075,
       "realized_volatility_20d": 0.21026,
       "volume_z_score": -1.379,
       "technical_snapshot": {
@@ -21794,8 +23596,8 @@
         "return_5d": -0.01547,
         "return_20d": 0.0281,
         "gap_pct": 0.01051,
-        "close_position": 0.883,
-        "intraday_range_pct": 0.01865,
+        "close_position": 0.889,
+        "intraday_range_pct": 0.01853,
         "range_10d_pct": 0.04876,
         "range_20d_pct": 0.10599,
         "compression_ratio": 0.46007,
@@ -21810,9 +23612,9 @@
         "recent_resistance": 583.7100219726562,
         "recent_support_50d": 464.5199890136719,
         "recent_resistance_50d": 583.7100219726562,
-        "vwap_proxy": 564.3383382161459,
+        "vwap_proxy": 564.3166707356771,
         "rsi_14": 61.92,
-        "atr_pct": 0.02076,
+        "atr_pct": 0.02075,
         "realized_volatility_20d": 0.21026,
         "technical_score": 61.0
       },
@@ -22783,7 +24585,7 @@
         {
           "date": "2026-08-13",
           "open": 565.6099853515625,
-          "high": 568.2750244140625,
+          "high": 568.2100219726562,
           "low": 557.7000122070312,
           "close": 567.0399780273438,
           "volume": 1981794
@@ -23043,1823 +24845,6 @@
           "name": "sector_context_weak",
           "score": 43.09,
           "detail": "Financial Leaders 还不是确认的资金主线。"
-        }
-      ],
-      "missing_evidence": [
-        {
-          "source": "short_interest",
-          "name": "real_short_interest_missing",
-          "score": 0.0,
-          "detail": "逼空分暂用 proxy；真实 short interest / options 数据尚未接入。"
-        }
-      ],
-      "validation_status": "not_yet_validated",
-      "not_trading_advice_note": "这些是次日概率路径点位，不是投资建议、买卖指令或仓位建议。"
-    },
-    {
-      "rank": 3,
-      "ticker": "COST",
-      "company_name": "Costco Wholesale Corp",
-      "sector": "Consumer Quality",
-      "last_close": 961.85,
-      "candidate_type": "pullback_reversal_setup",
-      "raw_candidate_type": "pullback_reversal_setup",
-      "edge_status": "MODERATE_EDGE",
-      "rating": "A",
-      "elasticity_score": 22.09,
-      "elasticity_raw_potential": 16.69,
-      "elasticity_confirmation_factor": 0.46,
-      "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.3666,
-      "upside_momentum_score": 83.2,
-      "bounce_score": 41.67,
-      "downside_continuation_score": 29.75,
-      "squeeze_score": 33.21,
-      "setup_quality_score": 70.12,
-      "bottom_reversal_score": 54.19,
-      "bottom_fishing_score": 86.57,
-      "swing_durability_score": 96.72,
-      "one_day_pop_risk_score": 31.41,
-      "breakout_setup_score": 84.0,
-      "extension_risk_score": 22.75,
-      "fermentation_score": 48.0,
-      "fermentation_profile": {
-        "version": "fermentation_profile_v1",
-        "score": 48.0,
-        "profile_type": "base_breakout_fermentation",
-        "label": "蓄势突破发酵",
-        "hard_evidence_count": 1,
-        "price_phase": "base",
-        "volume_state": "weak",
-        "catalyst_state": "weak",
-        "quote_state": "neutral",
-        "supporting_points": [
-          "价格结构站稳，收盘位置支持继续观察",
-          "蓄势突破结构正在形成",
-          "短线没有明显透支"
-        ],
-        "weak_points": [
-          "催化偏弱，不能按事件票处理",
-          "板块只有部分支持",
-          "当前价中性，需要触发确认"
-        ],
-        "conflicting_points": [
-          "成交量不足，缺少资金发酵"
-        ],
-        "inputs": {
-          "technical_score": 74.0,
-          "volume_score": 42.66,
-          "relative_volume": 0.666,
-          "volume_z_score": -1.576,
-          "return_1d": 0.01292,
-          "return_5d": 0.01338,
-          "return_20d": 0.01722,
-          "sector_score": 57.01,
-          "risk_score": 26.4,
-          "extension_risk_score": 22.75
-        }
-      },
-      "squeeze_data_status": {
-        "short_interest": "proxy",
-        "options_flow": "proxy",
-        "borrow_fee": "missing",
-        "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
-      },
-      "confluence_score": 74.16,
-      "catalyst_score": 27.84,
-      "expectation_gap_score": 52.41,
-      "execution_quality_score": 69.31,
-      "payoff_quality_score": 51.13,
-      "risk_reward_ratio": 0.96,
-      "expected_upside_pct": 0.045,
-      "expected_downside_pct": 0.04688,
-      "precision_gate": {
-        "level": "不具备高置信优势",
-        "passed": false,
-        "reason": [
-          "缺少确认催化",
-          "成交量未确认",
-          "赔率质量未确认"
-        ]
-      },
-      "low_buy_precision": {
-        "version": "low_buy_precision_v1",
-        "applies": true,
-        "passed": true,
-        "structure_ready": true,
-        "score": 66.9,
-        "failures": [
-          "量能或流动性不够干净"
-        ],
-        "positive_factors": [
-          "低吸质量足够",
-          "持续性足够",
-          "一日冲高风险低",
-          "赔率分达标",
-          "上行/失效比达标",
-          "近两交易日反弹空间达标",
-          "失效距离可控",
-          "信号闸门未阻断"
-        ],
-        "expected_upside_pct": 0.045,
-        "expected_downside_pct": 0.04688,
-        "risk_reward_ratio": 0.96,
-        "invalidation_distance_pct": 0.04688,
-        "support_distance_pct": 0.04918
-      },
-      "reliable_bottom_profile": {
-        "version": "reliable_bottom_profile_v1",
-        "passed": true,
-        "watch_eligible": true,
-        "score": 82.11,
-        "price": 961.85,
-        "avg_dollar_volume_m": 1844.644,
-        "relative_volume": 0.666,
-        "risk_reward_ratio": 0.96,
-        "expected_upside_pct": 0.045,
-        "support_distance_pct": 0.04918,
-        "positive_factors": [
-          "价格不属于低价小票",
-          "20日均美元成交额充足",
-          "属于低吸/回撤/修复结构"
-        ],
-        "warnings": [],
-        "not_trading_advice": "这是可靠低吸候选过滤，不是买卖建议或交易指令。"
-      },
-      "confluence_matrix": {
-        "version": "confluence_matrix_v1",
-        "overall": "blocked",
-        "confirmed_core_count": 1,
-        "bottom_first_mode": true,
-        "status_counts": {
-          "blocked": 1,
-          "confirmed": 2,
-          "weak": 2,
-          "partial": 2
-        },
-        "blocking_dimensions": [
-          "catalyst"
-        ],
-        "items": [
-          {
-            "dimension": "catalyst",
-            "label": "事件催化",
-            "status": "blocked",
-            "score": 27.84,
-            "reason": "Costco (COST) Debuts Reusable Tote Trio In West Coast Stores And Online Soon",
-            "blocking": true,
-            "data": {
-              "quality": "conflicted",
-              "event_type": "product_or_launch",
-              "risk_event_score": 48.0,
-              "strong_event_count": 0
-            }
-          },
-          {
-            "dimension": "price",
-            "label": "价格结构",
-            "status": "confirmed",
-            "score": 74.0,
-            "reason": "技术分 74.0，低吸分 86.6，收盘位置 0.94，支撑距离 4.9%，20日回撤 2.6%",
-            "blocking": false,
-            "data": {}
-          },
-          {
-            "dimension": "volume",
-            "label": "成交量确认",
-            "status": "weak",
-            "score": 42.66,
-            "reason": "相对量 0.67x，量能分 42.7，20日均美元成交额 1844.6M",
-            "blocking": false,
-            "data": {}
-          },
-          {
-            "dimension": "sector",
-            "label": "板块/市场",
-            "status": "partial",
-            "score": 57.01,
-            "reason": "板块分 57.0，市场状态 neutral",
-            "blocking": false,
-            "data": {}
-          },
-          {
-            "dimension": "quote",
-            "label": "当前价确认",
-            "status": "partial",
-            "score": 56.0,
-            "reason": "当前价仍在关键均线之上",
-            "blocking": false,
-            "data": {
-              "quote_timestamp": "2026-08-13T20:00:00+00:00",
-              "current_price": 961.85
-            }
-          },
-          {
-            "dimension": "payoff",
-            "label": "赔率/路径",
-            "status": "weak",
-            "score": 51.13,
-            "reason": "赔率分 51.1，上/下行比 0.96，主路径概率 0.46",
-            "blocking": false,
-            "data": {}
-          },
-          {
-            "dimension": "risk",
-            "label": "风险现实校验",
-            "status": "confirmed",
-            "score": 73.6,
-            "reason": "风险分 26.4，风险标记 无硬风险标记",
-            "blocking": false,
-            "data": {}
-          }
-        ]
-      },
-      "signal_quality_gate": {
-        "level": "confirmed",
-        "passed": true,
-        "failures": [],
-        "critical_failures": [],
-        "confluence_cap": 100,
-        "required_sources": [
-          "catalyst_or_structure_fermentation",
-          "price",
-          "volume",
-          "payoff",
-          "sector_or_market"
-        ],
-        "support_sources": [
-          "bottom_structure",
-          "durability",
-          "payoff",
-          "price",
-          "setup",
-          "volume"
-        ],
-        "structure_catalyst_substitute": false,
-        "bottom_structure_substitute": true
-      },
-      "quote_confirmation": {
-        "status": "neutral",
-        "provider_status": "available",
-        "score": 56.0,
-        "technical_adjustment": 2.0,
-        "current_price": 961.85,
-        "current_vs_last_close_pct": 0.0,
-        "quote_timestamp": "2026-08-13T20:00:00+00:00",
-        "reason": "当前价仍在关键均线之上"
-      },
-      "quote_confirmation_score": 56.0,
-      "current_price": 961.85,
-      "current_vs_last_close_pct": 0.0,
-      "risk_score": 26.4,
-      "risk_flags": [
-        "news_reversal_or_event_risk"
-      ],
-      "pool_filter": {
-        "symbol": "COST",
-        "passes_price_filter": true,
-        "passes_liquidity_filter": true,
-        "passes_exchange_filter": true,
-        "hard_excluded": false,
-        "flags": {
-          "price_below_minimum": false,
-          "high_liquidity_risk": false,
-          "otc_or_pink": false,
-          "high_risk_high_volatility": false,
-          "fallback_or_missing_price_data": false
-        },
-        "reason": []
-      },
-      "capital_readiness": {
-        "version": "capital_readiness_audit_v1",
-        "trust_score": 36.0,
-        "readiness_status": "NOT_TRUSTED_FOR_REAL_MONEY",
-        "readiness_label": "真钱审计未通过",
-        "blockers": [
-          "共振矩阵存在硬阻断"
-        ],
-        "warnings": [
-          "当前价状态不明确",
-          "历史相似样本偏少",
-          "历史相似样本次日命中率偏弱",
-          "历史相似样本次日均值为负",
-          "赔率一般",
-          "缺少强催化，低吸候选只能按触发观察处理",
-          "发酵共振不足：蓄势突破发酵"
-        ],
-        "positive_factors": [
-          "真实 OHLCV 行情可用",
-          "市场数据为最新交易日",
-          "催化、价格、成交、赔率闸门确认",
-          "低吸质量确认",
-          "持续性优于单日冲高",
-          "一日冲高风险较低",
-          "没有明显追涨过热"
-        ],
-        "not_trading_advice": "这是候选可信度审计，不是买卖建议或交易指令。"
-      },
-      "trust_score": 36.0,
-      "readiness_status": "NOT_TRUSTED_FOR_REAL_MONEY",
-      "readiness_label": "真钱审计未通过",
-      "data_lineage": {
-        "price_source": "yahoo-chart",
-        "price_source_status": "available",
-        "real_price_data": true,
-        "latest_price_date": "2026-08-13",
-        "quote_status": "neutral",
-        "quote_timestamp": "2026-08-13T20:00:00+00:00",
-        "news_status": "available",
-        "news_headline_count": 18
-      },
-      "primary_scenario": "no_edge",
-      "primary_probability": 0.15,
-      "secondary_scenario": "no_edge",
-      "secondary_probability": 0.2,
-      "risk_scenario": "failed_breakout_or_gap_fade",
-      "risk_probability": 0.2543,
-      "next_day_expected_range": {
-        "expected_low": 936.0416,
-        "expected_high": 1005.1332,
-        "expected_mid": 970.5874,
-        "expected_low_pct": -0.02683,
-        "expected_high_pct": 0.045,
-        "volatility_adjusted_range": 0.0312,
-        "label": "936.04 to 1005.13"
-      },
-      "scenario_prices": {
-        "base_case_price": 970.5874,
-        "upside_case_price": 1005.1332,
-        "downside_case_price": 936.0416,
-        "bounce_target_price": 1005.1332,
-        "failed_bounce_price": 916.76
-      },
-      "trigger_levels": {
-        "upside_trigger_level": 971.4685,
-        "downside_risk_level": 954.5472,
-        "invalidation_level": 916.76,
-        "gap_fill_level": 949.58,
-        "breakout_level": 987.55,
-        "breakdown_level": 916.76,
-        "nearest_support": 916.76,
-        "nearest_resistance": 987.55
-      },
-      "upside_trigger_level": 971.4685,
-      "downside_risk_level": 954.5472,
-      "invalidation_level": 916.76,
-      "gap_fill_level": 949.58,
-      "breakout_level": 987.55,
-      "breakdown_level": 916.76,
-      "nearest_support": 916.76,
-      "nearest_resistance": 987.55,
-      "trigger_meaning": {
-        "upside_trigger_level": "站上并维持在该价位上方，说明上冲路径开始被确认。",
-        "invalidation_level": "跌破该价位，说明反抽或上冲路径失效。",
-        "downside_risk_level": "跌破该价位，说明风险路径开始接管。",
-        "gap_fill_level": "回补该缺口，说明跳空延续失败概率上升。",
-        "note": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。"
-      },
-      "reason": "可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足",
-      "trade_plan": {
-        "actionable": false,
-        "edge_status_note": "edge_status 是预测优势等级，不是交易建议。",
-        "entry_condition": "无主动优势，仅观察",
-        "upside_trigger_level": 971.4685,
-        "downside_risk_level": 954.5472,
-        "invalidation_level": 916.76,
-        "gap_fill_level": 949.58,
-        "breakout_level": 987.55,
-        "breakdown_level": 916.76,
-        "nearest_support": 916.76,
-        "nearest_resistance": 987.55,
-        "stop_condition": "无主动优势",
-        "target_low_price": 970.5874,
-        "target_high_price": 1005.1332,
-        "next_day_expected_range": {
-          "expected_low": 936.0416,
-          "expected_high": 1005.1332,
-          "expected_mid": 970.5874,
-          "expected_low_pct": -0.02683,
-          "expected_high_pct": 0.045,
-          "volatility_adjusted_range": 0.0312,
-          "label": "936.04 to 1005.13"
-        },
-        "overnight_or_intraday": "只适合盘中确认",
-        "not_trading_advice": "这些是概率路径点位，不是投资建议、买卖指令或仓位建议。"
-      },
-      "news": {
-        "symbol": "COST",
-        "catalyst_score": 27.84,
-        "risk_event_score": 48.0,
-        "headline_count": 18,
-        "primary_headline": "Costco (COST) Debuts Reusable Tote Trio In West Coast Stores And Online Soon",
-        "primary_event_type": "product_or_launch",
-        "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 3.98,
-        "catalyst_type": "product_or_launch",
-        "catalyst_quality": "conflicted",
-        "recent_confirmed_catalyst": false,
-        "strong_event_count": 0,
-        "concrete_event_types": [],
-        "supporting_events": [
-          {
-            "event_type": "product_or_launch",
-            "headline": "Costco (COST) Debuts Reusable Tote Trio In West Coast Stores And Online Soon",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=75e29c7b0d16a6279f8d08d44659a12618eb02bccc0b58b07743fd9dc49324c3",
-            "published_at": "2026-08-13T20:09:37+00:00",
-            "age_hours": 3.98,
-            "score_contribution": 10.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "earnings_momentum",
-            "headline": "Walmart’s E-Commerce Engine Roars, Here’s Where It’ll End The Year",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=915b7a884997acf93eebc3203d24ba59cc4cdc4c604fed04c46b4a79e6205eeb",
-            "published_at": "2026-08-13T18:30:42+00:00",
-            "age_hours": 5.63,
-            "score_contribution": 7.5,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "BrightFarms Brings Georgia-Grown Salad Greens to Atlanta-Area Costco Stores",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=56a1588d6338940fa74a5d100e4b73c5dcb9964f383b849d4ff84d6d9f85db1a",
-            "published_at": "2026-08-13T17:25:00+00:00",
-            "age_hours": 6.72,
-            "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "earnings_momentum",
-            "headline": "Prediction: MercadoLibre Will Join Amazon, Walmart, and Costco in the $100 Billion Revenue Club by 2029",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=e738886fbd181317c05e3abd989a46e1844b06747fdc8fde4baf1b1b8682458d",
-            "published_at": "2026-08-13T16:13:00+00:00",
-            "age_hours": 7.92,
-            "score_contribution": 10.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "There's No Denying Macy's Is a Great Buy Now, but This Stock Could Be an Even Better Buy Over the Next 10 Years",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=5ce2ce99ac8bca085bfb695987e8a18ed99d5fb5a39b6b203a85e4dfb1a8a2d2",
-            "published_at": "2026-08-13T08:35:00+00:00",
-            "age_hours": 15.56,
-            "score_contribution": 5.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "earnings_momentum",
-            "headline": "CJ CheilJedang Corp (XKRX:097950) (Q2 2026) Earnings Call Highlights: US Growth and Bio ...",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=f1cd8518325a0263d635003e5b46c4cacae89b1b9f6424d56c5539e7f49c78f5",
-            "published_at": "2026-08-13T01:09:11+00:00",
-            "age_hours": 22.99,
-            "score_contribution": 10.0,
-            "strong": false,
-            "relevance": "direct"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "What HD Holders Got Paid While The Stock Fell Behind",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=6746f655a826a8bc6c5af21e92249d7cc1be7d581954560250ce813bf2971bc5",
-            "published_at": "2026-08-12T23:21:15+00:00",
-            "age_hours": 24.79,
-            "score_contribution": 4.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "earnings_momentum",
-            "headline": "Why Costco Keeps Gas So Cheap",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=68c29235efe75f99d2e5bcd4806c16ad8e79e22482172f8cd1aba8cebeac0a99",
-            "published_at": "2026-08-12T22:02:17+00:00",
-            "age_hours": 26.1,
-            "score_contribution": 8.0,
-            "strong": false,
-            "relevance": "direct"
-          }
-        ],
-        "risk_events": [
-          {
-            "risk_type": "dilution_or_offering",
-            "headline": "Costco's new service beats Amazon at its own game",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=261ead71fdd73cf49ab3b848d72deda9de1192209a23b07b2aa7d8a919624b8e",
-            "published_at": "2026-08-12T00:37:00+00:00",
-            "age_hours": 47.52,
-            "score_contribution": 24.0,
-            "relevance": "direct"
-          },
-          {
-            "risk_type": "dilution_or_offering",
-            "headline": "Should Costco’s Double‑Digit July Sales and New Brand Rollouts Prompt Action From Costco Wholesale (COST) Investors?",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=818151207e83b6d8f361884de2f9e09b560fbbe6f0f6c33c201640b2232fdcbe",
-            "published_at": "2026-08-11T15:14:33+00:00",
-            "age_hours": 56.9,
-            "score_contribution": 24.0,
-            "relevance": "direct"
-          }
-        ],
-        "sentiment_signal": {
-          "status": "missing"
-        },
-        "supporting_headlines": [
-          "Costco (COST) Debuts Reusable Tote Trio In West Coast Stores And Online Soon",
-          "Walmart’s E-Commerce Engine Roars, Here’s Where It’ll End The Year",
-          "BrightFarms Brings Georgia-Grown Salad Greens to Atlanta-Area Costco Stores",
-          "Prediction: MercadoLibre Will Join Amazon, Walmart, and Costco in the $100 Billion Revenue Club by 2029",
-          "There's No Denying Macy's Is a Great Buy Now, but This Stock Could Be an Even Better Buy Over the Next 10 Years"
-        ],
-        "conflicting_headlines": [
-          "Costco's new service beats Amazon at its own game",
-          "Should Costco’s Double‑Digit July Sales and New Brand Rollouts Prompt Action From Costco Wholesale (COST) Investors?"
-        ],
-        "news_data_status": "available"
-      },
-      "relative_strength": 0.00209,
-      "relative_volume": 0.666,
-      "volume_score": 42.66,
-      "technical_score": 74.0,
-      "close_position": 0.944,
-      "dollar_volume_m": 1246.87,
-      "avg_dollar_volume_m": 1844.644,
-      "atr_pct": 0.01998,
-      "realized_volatility_20d": 0.14922,
-      "volume_z_score": -1.576,
-      "technical_snapshot": {
-        "latest_date": "2026-08-13",
-        "last_close": 961.8499755859375,
-        "previous_close": 949.5800170898438,
-        "open": 954.2449951171875,
-        "ma20": 947.0965,
-        "ma50": 950.5936,
-        "ma20_distance_pct": 0.01558,
-        "ma50_distance_pct": 0.01184,
-        "return_1d": 0.01292,
-        "return_5d": 0.01338,
-        "return_20d": 0.01722,
-        "gap_pct": 0.00491,
-        "close_position": 0.944,
-        "intraday_range_pct": 0.01358,
-        "range_10d_pct": 0.03424,
-        "range_20d_pct": 0.0736,
-        "compression_ratio": 0.46518,
-        "distance_to_resistance_pct": 0.02672,
-        "distance_to_support_pct": 0.04918,
-        "pullback_from_20d_high_pct": -0.02602,
-        "above_20d_ma": true,
-        "above_50d_ma": true,
-        "new_20d_high": false,
-        "new_50d_high": false,
-        "recent_support": 916.760009765625,
-        "recent_resistance": 987.5499877929688,
-        "recent_support_50d": 907.2100219726562,
-        "recent_resistance_50d": 997.4099731445312,
-        "vwap_proxy": 957.9813232421875,
-        "rsi_14": 54.69,
-        "atr_pct": 0.01998,
-        "realized_volatility_20d": 0.14922,
-        "technical_score": 74.0
-      },
-      "volume_snapshot": {
-        "latest_date": "2026-08-13",
-        "volume": 1296325,
-        "volume_avg20": 1947790.0,
-        "volume_std20": 413374.01,
-        "relative_volume": 0.666,
-        "volume_z_score": -1.576,
-        "volume_score": 42.66,
-        "dollar_volume_m": 1246.87,
-        "avg_dollar_volume_m": 1844.644
-      },
-      "price_history": [
-        {
-          "date": "2026-02-23",
-          "open": 981.7999877929688,
-          "high": 991.3099975585938,
-          "low": 978.0599975585938,
-          "close": 986.02001953125,
-          "volume": 1489300
-        },
-        {
-          "date": "2026-02-24",
-          "open": 986.3800048828125,
-          "high": 998.8800048828125,
-          "low": 985.0399780273438,
-          "close": 998.4299926757812,
-          "volume": 1671100
-        },
-        {
-          "date": "2026-02-25",
-          "open": 997.6799926757812,
-          "high": 1002.5,
-          "low": 991.4400024414062,
-          "close": 994.760009765625,
-          "volume": 1554600
-        },
-        {
-          "date": "2026-02-26",
-          "open": 996.9199829101562,
-          "high": 1005.52001953125,
-          "low": 983.530029296875,
-          "close": 986.739990234375,
-          "volume": 1804400
-        },
-        {
-          "date": "2026-02-27",
-          "open": 990.530029296875,
-          "high": 1014.1900024414062,
-          "low": 989.5800170898438,
-          "close": 1010.7899780273438,
-          "volume": 3935000
-        },
-        {
-          "date": "2026-03-02",
-          "open": 1010.9099731445312,
-          "high": 1020.8200073242188,
-          "low": 1002.489990234375,
-          "close": 1002.77001953125,
-          "volume": 1986900
-        },
-        {
-          "date": "2026-03-03",
-          "open": 1002.5399780273438,
-          "high": 1015.75,
-          "low": 1000.6300048828125,
-          "close": 1007.77001953125,
-          "volume": 1947100
-        },
-        {
-          "date": "2026-03-04",
-          "open": 1005.0,
-          "high": 1014.0,
-          "low": 997.0,
-          "close": 1006.739990234375,
-          "volume": 1806600
-        },
-        {
-          "date": "2026-03-05",
-          "open": 996.5,
-          "high": 999.25,
-          "low": 978.8099975585938,
-          "close": 982.5700073242188,
-          "volume": 2766000
-        },
-        {
-          "date": "2026-03-06",
-          "open": 967.010009765625,
-          "high": 1002.5,
-          "low": 960.4600219726562,
-          "close": 998.0999755859375,
-          "volume": 2708900
-        },
-        {
-          "date": "2026-03-09",
-          "open": 999.6300048828125,
-          "high": 1007.4099731445312,
-          "low": 987.989990234375,
-          "close": 1005.2999877929688,
-          "volume": 2348200
-        },
-        {
-          "date": "2026-03-10",
-          "open": 1000.5,
-          "high": 1010.0999755859375,
-          "low": 996.0,
-          "close": 997.3599853515625,
-          "volume": 1613400
-        },
-        {
-          "date": "2026-03-11",
-          "open": 996.3200073242188,
-          "high": 997.3900146484375,
-          "low": 987.8900146484375,
-          "close": 992.22998046875,
-          "volume": 1260500
-        },
-        {
-          "date": "2026-03-12",
-          "open": 988.6099853515625,
-          "high": 1006.2100219726562,
-          "low": 984.0,
-          "close": 1003.3200073242188,
-          "volume": 1669200
-        },
-        {
-          "date": "2026-03-13",
-          "open": 1005.9000244140625,
-          "high": 1012.8300170898438,
-          "low": 1002.0,
-          "close": 1008.4299926757812,
-          "volume": 1469700
-        },
-        {
-          "date": "2026-03-16",
-          "open": 1010.5,
-          "high": 1012.6500244140625,
-          "low": 995.4299926757812,
-          "close": 1001.739990234375,
-          "volume": 1243400
-        },
-        {
-          "date": "2026-03-17",
-          "open": 1006.489990234375,
-          "high": 1008.0999755859375,
-          "low": 994.75,
-          "close": 996.1599731445312,
-          "volume": 1210400
-        },
-        {
-          "date": "2026-03-18",
-          "open": 990.3699951171875,
-          "high": 993.97998046875,
-          "low": 978.1400146484375,
-          "close": 979.9199829101562,
-          "volume": 1434400
-        },
-        {
-          "date": "2026-03-19",
-          "open": 985.8400268554688,
-          "high": 988.7899780273438,
-          "low": 970.4099731445312,
-          "close": 974.780029296875,
-          "volume": 1340200
-        },
-        {
-          "date": "2026-03-20",
-          "open": 975.0800170898438,
-          "high": 980.760009765625,
-          "low": 970.5399780273438,
-          "close": 972.3300170898438,
-          "volume": 2621600
-        },
-        {
-          "date": "2026-03-23",
-          "open": 985.6699829101562,
-          "high": 986.6400146484375,
-          "low": 964.530029296875,
-          "close": 965.72998046875,
-          "volume": 1779100
-        },
-        {
-          "date": "2026-03-24",
-          "open": 962.0599975585938,
-          "high": 981.280029296875,
-          "low": 961.0,
-          "close": 973.8200073242188,
-          "volume": 1259300
-        },
-        {
-          "date": "2026-03-25",
-          "open": 978.0,
-          "high": 980.8099975585938,
-          "low": 968.0499877929688,
-          "close": 974.8599853515625,
-          "volume": 1067100
-        },
-        {
-          "date": "2026-03-26",
-          "open": 975.6900024414062,
-          "high": 987.1900024414062,
-          "low": 972.719970703125,
-          "close": 979.6500244140625,
-          "volume": 1498300
-        },
-        {
-          "date": "2026-03-27",
-          "open": 982.02001953125,
-          "high": 987.1099853515625,
-          "low": 978.1099853515625,
-          "close": 983.8599853515625,
-          "volume": 1540900
-        },
-        {
-          "date": "2026-03-30",
-          "open": 987.6500244140625,
-          "high": 1005.5399780273438,
-          "low": 985.010009765625,
-          "close": 996.5800170898438,
-          "volume": 2129100
-        },
-        {
-          "date": "2026-03-31",
-          "open": 997.0,
-          "high": 1008.5999755859375,
-          "low": 985.8499755859375,
-          "close": 996.4299926757812,
-          "volume": 2447900
-        },
-        {
-          "date": "2026-04-01",
-          "open": 995.030029296875,
-          "high": 1003.1300048828125,
-          "low": 990.5900268554688,
-          "close": 996.5599975585938,
-          "volume": 1769800
-        },
-        {
-          "date": "2026-04-02",
-          "open": 1008.0,
-          "high": 1016.0,
-          "low": 999.2100219726562,
-          "close": 1014.9600219726562,
-          "volume": 1828600
-        },
-        {
-          "date": "2026-04-06",
-          "open": 1014.9600219726562,
-          "high": 1020.6900024414062,
-          "low": 1004.010009765625,
-          "close": 1018.5499877929688,
-          "volume": 1448600
-        },
-        {
-          "date": "2026-04-07",
-          "open": 1020.260009765625,
-          "high": 1020.8599853515625,
-          "low": 1004.8499755859375,
-          "close": 1013.2100219726562,
-          "volume": 1428500
-        },
-        {
-          "date": "2026-04-08",
-          "open": 1004.4400024414062,
-          "high": 1030.4599609375,
-          "low": 1000.0,
-          "close": 1030.27001953125,
-          "volume": 2265700
-        },
-        {
-          "date": "2026-04-09",
-          "open": 1029.489990234375,
-          "high": 1035.8199462890625,
-          "low": 1025.06005859375,
-          "close": 1032.030029296875,
-          "volume": 1433300
-        },
-        {
-          "date": "2026-04-10",
-          "open": 1026.510009765625,
-          "high": 1029.0,
-          "low": 995.5,
-          "close": 998.469970703125,
-          "volume": 2333000
-        },
-        {
-          "date": "2026-04-13",
-          "open": 998.469970703125,
-          "high": 1000.0499877929688,
-          "low": 979.3599853515625,
-          "close": 980.8499755859375,
-          "volume": 2255500
-        },
-        {
-          "date": "2026-04-14",
-          "open": 973.6799926757812,
-          "high": 977.6099853515625,
-          "low": 966.0,
-          "close": 974.7999877929688,
-          "volume": 2136500
-        },
-        {
-          "date": "2026-04-15",
-          "open": 970.3099975585938,
-          "high": 985.3800048828125,
-          "low": 968.2999877929688,
-          "close": 984.75,
-          "volume": 2346200
-        },
-        {
-          "date": "2026-04-16",
-          "open": 985.0,
-          "high": 995.75,
-          "low": 981.6099853515625,
-          "close": 987.2100219726562,
-          "volume": 1484300
-        },
-        {
-          "date": "2026-04-17",
-          "open": 985.0,
-          "high": 1000.6699829101562,
-          "low": 977.0,
-          "close": 999.8900146484375,
-          "volume": 2346500
-        },
-        {
-          "date": "2026-04-20",
-          "open": 1003.8499755859375,
-          "high": 1011.2999877929688,
-          "low": 994.1400146484375,
-          "close": 997.8400268554688,
-          "volume": 1475400
-        },
-        {
-          "date": "2026-04-21",
-          "open": 994.3699951171875,
-          "high": 1006.5,
-          "low": 986.7000122070312,
-          "close": 1005.8099975585938,
-          "volume": 1367100
-        },
-        {
-          "date": "2026-04-22",
-          "open": 1004.97998046875,
-          "high": 1008.1099853515625,
-          "low": 998.2899780273438,
-          "close": 1003.7000122070312,
-          "volume": 1215200
-        },
-        {
-          "date": "2026-04-23",
-          "open": 1007.5800170898438,
-          "high": 1016.5999755859375,
-          "low": 1007.030029296875,
-          "close": 1014.3800048828125,
-          "volume": 1570700
-        },
-        {
-          "date": "2026-04-24",
-          "open": 1012.0,
-          "high": 1013.4500122070312,
-          "low": 1002.5,
-          "close": 1011.1500244140625,
-          "volume": 1695200
-        },
-        {
-          "date": "2026-04-27",
-          "open": 1008.6300048828125,
-          "high": 1014.4099731445312,
-          "low": 996.6300048828125,
-          "close": 998.010009765625,
-          "volume": 1620400
-        },
-        {
-          "date": "2026-04-28",
-          "open": 1010.47998046875,
-          "high": 1012.6500244140625,
-          "low": 986.0,
-          "close": 994.0,
-          "volume": 1776000
-        },
-        {
-          "date": "2026-04-29",
-          "open": 988.3699951171875,
-          "high": 998.969970703125,
-          "low": 985.1199951171875,
-          "close": 998.6699829101562,
-          "volume": 1516900
-        },
-        {
-          "date": "2026-04-30",
-          "open": 996.4500122070312,
-          "high": 1017.6900024414062,
-          "low": 996.3200073242188,
-          "close": 1014.530029296875,
-          "volume": 2049300
-        },
-        {
-          "date": "2026-05-01",
-          "open": 1015.3800048828125,
-          "high": 1031.27001953125,
-          "low": 1006.3200073242188,
-          "close": 1011.7000122070312,
-          "volume": 1509700
-        },
-        {
-          "date": "2026-05-04",
-          "open": 1007.02001953125,
-          "high": 1024.719970703125,
-          "low": 1002.2100219726562,
-          "close": 1012.7899780273438,
-          "volume": 1479400
-        },
-        {
-          "date": "2026-05-05",
-          "open": 1010.510009765625,
-          "high": 1020.780029296875,
-          "low": 1009.0700073242188,
-          "close": 1016.4199829101562,
-          "volume": 1456300
-        },
-        {
-          "date": "2026-05-06",
-          "open": 1011.3099975585938,
-          "high": 1012.22998046875,
-          "low": 992.4199829101562,
-          "close": 995.75,
-          "volume": 2619100
-        },
-        {
-          "date": "2026-05-07",
-          "open": 993.5,
-          "high": 1012.6599731445312,
-          "low": 990.6599731445312,
-          "close": 1012.0599975585938,
-          "volume": 2014000
-        },
-        {
-          "date": "2026-05-08",
-          "open": 1011.739990234375,
-          "high": 1016.0,
-          "low": 1005.1099853515625,
-          "close": 1008.7899780273438,
-          "volume": 1805200
-        },
-        {
-          "date": "2026-05-11",
-          "open": 1005.8200073242188,
-          "high": 1007.0,
-          "low": 985.1500244140625,
-          "close": 999.469970703125,
-          "volume": 2053500
-        },
-        {
-          "date": "2026-05-12",
-          "open": 1002.5399780273438,
-          "high": 1026.0,
-          "low": 1001.1400146484375,
-          "close": 1021.8800048828125,
-          "volume": 2143200
-        },
-        {
-          "date": "2026-05-13",
-          "open": 1017.9400024414062,
-          "high": 1042.52001953125,
-          "low": 1017.9400024414062,
-          "close": 1033.0799560546875,
-          "volume": 1654600
-        },
-        {
-          "date": "2026-05-14",
-          "open": 1034.949951171875,
-          "high": 1041.7900390625,
-          "low": 1026.0999755859375,
-          "close": 1041.25,
-          "volume": 1606600
-        },
-        {
-          "date": "2026-05-15",
-          "open": 1049.3599853515625,
-          "high": 1057.5,
-          "low": 1039.219970703125,
-          "close": 1048.949951171875,
-          "volume": 1967000
-        },
-        {
-          "date": "2026-05-18",
-          "open": 1050.0,
-          "high": 1079.8299560546875,
-          "low": 1045.0,
-          "close": 1076.469970703125,
-          "volume": 2295200
-        },
-        {
-          "date": "2026-05-19",
-          "open": 1077.0,
-          "high": 1096.5,
-          "low": 1072.0999755859375,
-          "close": 1094.3199462890625,
-          "volume": 2853300
-        },
-        {
-          "date": "2026-05-20",
-          "open": 1089.3699951171875,
-          "high": 1089.739990234375,
-          "low": 1072.0,
-          "close": 1074.010009765625,
-          "volume": 2223400
-        },
-        {
-          "date": "2026-05-21",
-          "open": 1063.4100341796875,
-          "high": 1064.72998046875,
-          "low": 1039.010009765625,
-          "close": 1050.449951171875,
-          "volume": 2149700
-        },
-        {
-          "date": "2026-05-22",
-          "open": 1039.989990234375,
-          "high": 1045.6400146484375,
-          "low": 1025.18994140625,
-          "close": 1028.239990234375,
-          "volume": 2048300
-        },
-        {
-          "date": "2026-05-26",
-          "open": 1026.1300048828125,
-          "high": 1027.5,
-          "low": 996.1599731445312,
-          "close": 1002.9299926757812,
-          "volume": 2704600
-        },
-        {
-          "date": "2026-05-27",
-          "open": 1003.8599853515625,
-          "high": 1013.510009765625,
-          "low": 999.6900024414062,
-          "close": 1003.6900024414062,
-          "volume": 2390100
-        },
-        {
-          "date": "2026-05-28",
-          "open": 1011.6099853515625,
-          "high": 1012.0,
-          "low": 994.27001953125,
-          "close": 995.2000122070312,
-          "volume": 2844300
-        },
-        {
-          "date": "2026-05-29",
-          "open": 986.5700073242188,
-          "high": 998.8200073242188,
-          "low": 945.4500122070312,
-          "close": 956.3200073242188,
-          "volume": 7028000
-        },
-        {
-          "date": "2026-06-01",
-          "open": 955.0,
-          "high": 959.2100219726562,
-          "low": 936.510009765625,
-          "close": 946.1099853515625,
-          "volume": 2816300
-        },
-        {
-          "date": "2026-06-02",
-          "open": 942.2899780273438,
-          "high": 955.3900146484375,
-          "low": 939.4500122070312,
-          "close": 954.27001953125,
-          "volume": 2218200
-        },
-        {
-          "date": "2026-06-03",
-          "open": 952.8800048828125,
-          "high": 969.1799926757812,
-          "low": 951.97998046875,
-          "close": 961.8300170898438,
-          "volume": 2174100
-        },
-        {
-          "date": "2026-06-04",
-          "open": 986.9600219726562,
-          "high": 990.010009765625,
-          "low": 968.2100219726562,
-          "close": 972.3499755859375,
-          "volume": 2345200
-        },
-        {
-          "date": "2026-06-05",
-          "open": 977.5,
-          "high": 997.4099731445312,
-          "low": 971.5999755859375,
-          "close": 971.8699951171875,
-          "volume": 3092000
-        },
-        {
-          "date": "2026-06-08",
-          "open": 963.4600219726562,
-          "high": 978.97998046875,
-          "low": 961.0,
-          "close": 974.75,
-          "volume": 2086100
-        },
-        {
-          "date": "2026-06-09",
-          "open": 974.2100219726562,
-          "high": 981.969970703125,
-          "low": 964.9400024414062,
-          "close": 968.5900268554688,
-          "volume": 1998600
-        },
-        {
-          "date": "2026-06-10",
-          "open": 977.4400024414062,
-          "high": 985.260009765625,
-          "low": 964.3099975585938,
-          "close": 983.3699951171875,
-          "volume": 1715600
-        },
-        {
-          "date": "2026-06-11",
-          "open": 986.9099731445312,
-          "high": 989.1199951171875,
-          "low": 974.0,
-          "close": 975.6900024414062,
-          "volume": 1903400
-        },
-        {
-          "date": "2026-06-12",
-          "open": 975.52001953125,
-          "high": 984.780029296875,
-          "low": 970.0,
-          "close": 982.3499755859375,
-          "volume": 1737300
-        },
-        {
-          "date": "2026-06-15",
-          "open": 974.1900024414062,
-          "high": 987.0,
-          "low": 968.0,
-          "close": 979.4500122070312,
-          "volume": 1893700
-        },
-        {
-          "date": "2026-06-16",
-          "open": 980.3900146484375,
-          "high": 995.3800048828125,
-          "low": 973.1599731445312,
-          "close": 986.6799926757812,
-          "volume": 1523400
-        },
-        {
-          "date": "2026-06-17",
-          "open": 980.0,
-          "high": 983.7100219726562,
-          "low": 961.1599731445312,
-          "close": 965.5900268554688,
-          "volume": 1928000
-        },
-        {
-          "date": "2026-06-18",
-          "open": 962.7000122070312,
-          "high": 964.0,
-          "low": 948.3099975585938,
-          "close": 951.4500122070312,
-          "volume": 3742900
-        },
-        {
-          "date": "2026-06-22",
-          "open": 948.5700073242188,
-          "high": 956.22998046875,
-          "low": 942.530029296875,
-          "close": 951.3499755859375,
-          "volume": 2191900
-        },
-        {
-          "date": "2026-06-23",
-          "open": 964.5,
-          "high": 966.3800048828125,
-          "low": 953.489990234375,
-          "close": 957.6799926757812,
-          "volume": 2529800
-        },
-        {
-          "date": "2026-06-24",
-          "open": 962.030029296875,
-          "high": 967.9400024414062,
-          "low": 957.0,
-          "close": 961.0900268554688,
-          "volume": 2020200
-        },
-        {
-          "date": "2026-06-25",
-          "open": 949.5700073242188,
-          "high": 955.75,
-          "low": 938.5999755859375,
-          "close": 942.239990234375,
-          "volume": 2492700
-        },
-        {
-          "date": "2026-06-26",
-          "open": 953.25,
-          "high": 961.6400146484375,
-          "low": 943.0,
-          "close": 952.5399780273438,
-          "volume": 8239200
-        },
-        {
-          "date": "2026-06-29",
-          "open": 958.5499877929688,
-          "high": 969.8599853515625,
-          "low": 942.3800048828125,
-          "close": 946.6799926757812,
-          "volume": 2450000
-        },
-        {
-          "date": "2026-06-30",
-          "open": 942.0,
-          "high": 946.0,
-          "low": 932.4099731445312,
-          "close": 935.469970703125,
-          "volume": 2870900
-        },
-        {
-          "date": "2026-07-01",
-          "open": 940.4299926757812,
-          "high": 940.4299926757812,
-          "low": 920.5499877929688,
-          "close": 924.6699829101562,
-          "volume": 2909700
-        },
-        {
-          "date": "2026-07-02",
-          "open": 927.0,
-          "high": 952.6400146484375,
-          "low": 924.8400268554688,
-          "close": 951.6699829101562,
-          "volume": 2785800
-        },
-        {
-          "date": "2026-07-06",
-          "open": 949.0999755859375,
-          "high": 955.5,
-          "low": 941.4000244140625,
-          "close": 950.25,
-          "volume": 2327500
-        },
-        {
-          "date": "2026-07-07",
-          "open": 967.52001953125,
-          "high": 969.0,
-          "low": 945.3300170898438,
-          "close": 947.5,
-          "volume": 1940200
-        },
-        {
-          "date": "2026-07-08",
-          "open": 959.0,
-          "high": 966.510009765625,
-          "low": 948.0,
-          "close": 953.1300048828125,
-          "volume": 1645500
-        },
-        {
-          "date": "2026-07-09",
-          "open": 934.9400024414062,
-          "high": 935.0,
-          "low": 907.6799926757812,
-          "close": 912.969970703125,
-          "volume": 4545200
-        },
-        {
-          "date": "2026-07-10",
-          "open": 913.739990234375,
-          "high": 916.72998046875,
-          "low": 907.2100219726562,
-          "close": 916.25,
-          "volume": 2102300
-        },
-        {
-          "date": "2026-07-13",
-          "open": 918.4299926757812,
-          "high": 930.97998046875,
-          "low": 916.8800048828125,
-          "close": 926.4299926757812,
-          "volume": 2373300
-        },
-        {
-          "date": "2026-07-14",
-          "open": 921.3800048828125,
-          "high": 929.4199829101562,
-          "low": 918.5599975585938,
-          "close": 921.75,
-          "volume": 2409200
-        },
-        {
-          "date": "2026-07-15",
-          "open": 917.75,
-          "high": 927.5800170898438,
-          "low": 910.5,
-          "close": 916.5399780273438,
-          "volume": 2423200
-        },
-        {
-          "date": "2026-07-16",
-          "open": 924.0,
-          "high": 945.760009765625,
-          "low": 921.5,
-          "close": 945.5700073242188,
-          "volume": 2735300
-        },
-        {
-          "date": "2026-07-17",
-          "open": 961.52001953125,
-          "high": 964.3300170898438,
-          "low": 933.760009765625,
-          "close": 940.8699951171875,
-          "volume": 2508000
-        },
-        {
-          "date": "2026-07-20",
-          "open": 938.75,
-          "high": 946.97998046875,
-          "low": 932.010009765625,
-          "close": 935.7999877929688,
-          "volume": 1507900
-        },
-        {
-          "date": "2026-07-21",
-          "open": 930.25,
-          "high": 931.989990234375,
-          "low": 924.4400024414062,
-          "close": 929.219970703125,
-          "volume": 1833500
-        },
-        {
-          "date": "2026-07-22",
-          "open": 930.8800048828125,
-          "high": 933.5999755859375,
-          "low": 920.969970703125,
-          "close": 927.3099975585938,
-          "volume": 1762700
-        },
-        {
-          "date": "2026-07-23",
-          "open": 920.510009765625,
-          "high": 926.530029296875,
-          "low": 916.760009765625,
-          "close": 926.0599975585938,
-          "volume": 1785200
-        },
-        {
-          "date": "2026-07-24",
-          "open": 925.010009765625,
-          "high": 936.6599731445312,
-          "low": 921.280029296875,
-          "close": 935.030029296875,
-          "volume": 1586300
-        },
-        {
-          "date": "2026-07-27",
-          "open": 938.1099853515625,
-          "high": 956.6099853515625,
-          "low": 936.6599731445312,
-          "close": 951.5800170898438,
-          "volume": 2109500
-        },
-        {
-          "date": "2026-07-28",
-          "open": 970.5499877929688,
-          "high": 987.5499877929688,
-          "low": 965.8699951171875,
-          "close": 966.5800170898438,
-          "volume": 2682800
-        },
-        {
-          "date": "2026-07-29",
-          "open": 968.0700073242188,
-          "high": 978.7999877929688,
-          "low": 963.0,
-          "close": 974.030029296875,
-          "volume": 1973400
-        },
-        {
-          "date": "2026-07-30",
-          "open": 955.0399780273438,
-          "high": 960.760009765625,
-          "low": 949.6799926757812,
-          "close": 954.1699829101562,
-          "volume": 2334500
-        },
-        {
-          "date": "2026-07-31",
-          "open": 945.739990234375,
-          "high": 955.5599975585938,
-          "low": 937.510009765625,
-          "close": 951.8900146484375,
-          "volume": 1760200
-        },
-        {
-          "date": "2026-08-03",
-          "open": 965.1500244140625,
-          "high": 967.97998046875,
-          "low": 948.75,
-          "close": 954.0800170898438,
-          "volume": 2014100
-        },
-        {
-          "date": "2026-08-04",
-          "open": 945.0,
-          "high": 950.8599853515625,
-          "low": 937.010009765625,
-          "close": 947.8499755859375,
-          "volume": 2437300
-        },
-        {
-          "date": "2026-08-05",
-          "open": 956.989990234375,
-          "high": 956.989990234375,
-          "low": 935.219970703125,
-          "close": 941.989990234375,
-          "volume": 1692400
-        },
-        {
-          "date": "2026-08-06",
-          "open": 959.5499877929688,
-          "high": 966.1400146484375,
-          "low": 941.780029296875,
-          "close": 949.1500244140625,
-          "volume": 2116500
-        },
-        {
-          "date": "2026-08-07",
-          "open": 943.510009765625,
-          "high": 949.7899780273438,
-          "low": 937.510009765625,
-          "close": 947.8200073242188,
-          "volume": 1523800
-        },
-        {
-          "date": "2026-08-10",
-          "open": 942.469970703125,
-          "high": 952.8900146484375,
-          "low": 940.5599975585938,
-          "close": 952.75,
-          "volume": 1479200
-        },
-        {
-          "date": "2026-08-11",
-          "open": 950.0499877929688,
-          "high": 954.9000244140625,
-          "low": 938.0900268554688,
-          "close": 944.3200073242188,
-          "volume": 1801400
-        },
-        {
-          "date": "2026-08-12",
-          "open": 937.4000244140625,
-          "high": 951.3900146484375,
-          "low": 935.0499877929688,
-          "close": 949.5800170898438,
-          "volume": 1311800
-        },
-        {
-          "date": "2026-08-13",
-          "open": 954.2449951171875,
-          "high": 962.5800170898438,
-          "low": 949.5139770507812,
-          "close": 961.8499755859375,
-          "volume": 1296325
-        }
-      ],
-      "historical_analog": {
-        "top_similar_dates": [
-          {
-            "date": "2026-04-22",
-            "distance": 0.2776,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": 0.01064,
-            "return_3d": -0.00567,
-            "return_5d": -0.00501,
-            "max_favorable_excursion": 0.01285,
-            "max_adverse_excursion": -0.01851
-          },
-          {
-            "date": "2026-07-20",
-            "distance": 0.3361,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": -0.00703,
-            "return_3d": -0.01041,
-            "return_5d": 0.01686,
-            "max_favorable_excursion": 0.02224,
-            "max_adverse_excursion": -0.02035
-          },
-          {
-            "date": "2026-07-24",
-            "distance": 0.4227,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": 0.0177,
-            "return_3d": 0.04171,
-            "return_5d": 0.01803,
-            "max_favorable_excursion": 0.05617,
-            "max_adverse_excursion": 0.00174
-          },
-          {
-            "date": "2026-07-08",
-            "distance": 0.4243,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": -0.04213,
-            "return_3d": -0.02801,
-            "return_5d": -0.03839,
-            "max_favorable_excursion": -0.01902,
-            "max_adverse_excursion": -0.04818
-          },
-          {
-            "date": "2026-05-05",
-            "distance": 0.4268,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": -0.02034,
-            "return_3d": -0.00751,
-            "return_5d": 0.00537,
-            "max_favorable_excursion": 0.00943,
-            "max_adverse_excursion": -0.03076
-          },
-          {
-            "date": "2026-06-16",
-            "distance": 0.4295,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": -0.02137,
-            "return_3d": -0.03581,
-            "return_5d": -0.02594,
-            "max_favorable_excursion": -0.00301,
-            "max_adverse_excursion": -0.04475
-          },
-          {
-            "date": "2026-05-04",
-            "distance": 0.4465,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": 0.00358,
-            "return_3d": -0.00072,
-            "return_5d": -0.01315,
-            "max_favorable_excursion": 0.00789,
-            "max_adverse_excursion": -0.02729
-          },
-          {
-            "date": "2026-07-21",
-            "distance": 0.4554,
-            "market_state": "neutral",
-            "news_catalyst_proxy": true,
-            "next_day_return": -0.00206,
-            "return_3d": 0.00625,
-            "return_5d": 0.04021,
-            "max_favorable_excursion": 0.06277,
-            "max_adverse_excursion": -0.01341
-          }
-        ],
-        "next_day_return_avg": -0.0016,
-        "next_day_hit_rate": 0.0,
-        "forward_return_3d_avg": -0.00331,
-        "forward_return_5d_avg": -0.0038,
-        "max_favorable_excursion_avg": 0.01966,
-        "max_adverse_excursion_avg": -0.02386,
-        "worst_case": -0.04213,
-        "best_case": 0.0177,
-        "sample_size": 12,
-        "low_sample_warning": true
-      },
-      "historical_similar_samples": [
-        {
-          "date": "2026-04-22",
-          "distance": 0.2776,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": 0.01064,
-          "return_3d": -0.00567,
-          "return_5d": -0.00501,
-          "max_favorable_excursion": 0.01285,
-          "max_adverse_excursion": -0.01851
-        },
-        {
-          "date": "2026-07-20",
-          "distance": 0.3361,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": -0.00703,
-          "return_3d": -0.01041,
-          "return_5d": 0.01686,
-          "max_favorable_excursion": 0.02224,
-          "max_adverse_excursion": -0.02035
-        },
-        {
-          "date": "2026-07-24",
-          "distance": 0.4227,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": 0.0177,
-          "return_3d": 0.04171,
-          "return_5d": 0.01803,
-          "max_favorable_excursion": 0.05617,
-          "max_adverse_excursion": 0.00174
-        },
-        {
-          "date": "2026-07-08",
-          "distance": 0.4243,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": -0.04213,
-          "return_3d": -0.02801,
-          "return_5d": -0.03839,
-          "max_favorable_excursion": -0.01902,
-          "max_adverse_excursion": -0.04818
-        },
-        {
-          "date": "2026-05-05",
-          "distance": 0.4268,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": -0.02034,
-          "return_3d": -0.00751,
-          "return_5d": 0.00537,
-          "max_favorable_excursion": 0.00943,
-          "max_adverse_excursion": -0.03076
-        },
-        {
-          "date": "2026-06-16",
-          "distance": 0.4295,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": -0.02137,
-          "return_3d": -0.03581,
-          "return_5d": -0.02594,
-          "max_favorable_excursion": -0.00301,
-          "max_adverse_excursion": -0.04475
-        },
-        {
-          "date": "2026-05-04",
-          "distance": 0.4465,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": 0.00358,
-          "return_3d": -0.00072,
-          "return_5d": -0.01315,
-          "max_favorable_excursion": 0.00789,
-          "max_adverse_excursion": -0.02729
-        },
-        {
-          "date": "2026-07-21",
-          "distance": 0.4554,
-          "market_state": "neutral",
-          "news_catalyst_proxy": true,
-          "next_day_return": -0.00206,
-          "return_3d": 0.00625,
-          "return_5d": 0.04021,
-          "max_favorable_excursion": 0.06277,
-          "max_adverse_excursion": -0.01341
-        }
-      ],
-      "supporting_evidence": [
-        {
-          "source": "setup",
-          "name": "setup_quality_confirmed",
-          "score": 70.12,
-          "detail": "价格位置、支撑/压力、量能和风险结构显示低吸或蓄势候选特征。"
-        },
-        {
-          "source": "bottom_structure",
-          "name": "bottom_fishing_structure_confirmed",
-          "score": 86.57,
-          "detail": "低吸结构优先：回撤、支撑距离、RSI、收盘位置和非过热状态共同支持反转观察，但仍需触发价确认。"
-        },
-        {
-          "source": "durability",
-          "name": "swing_durability_confirmed",
-          "score": 96.72,
-          "detail": "持续性评分优于一日冲高风险，候选更偏低吸反转而非追高接力。"
-        },
-        {
-          "source": "price",
-          "name": "bottom_price_structure_confirmed",
-          "score": 86.57,
-          "detail": "价格没有按追涨突破确认，但低吸结构、支撑距离和回撤区间成立。"
-        }
-      ],
-      "conflicting_evidence": [
-        {
-          "source": "catalyst",
-          "name": "weak_or_missing_catalyst",
-          "score": 72.16,
-          "detail": "近期没有强确认催化，不能只靠热度给高等级。"
-        },
-        {
-          "source": "expectation_gap",
-          "name": "expectation_gap_not_confirmed",
-          "score": 47.59,
-          "detail": "预期差证据不足，可能只是普通波动。"
-        },
-        {
-          "source": "fermentation",
-          "name": "fermentation_weak",
-          "score": 52.0,
-          "detail": "蓄势突破发酵：成交量不足，缺少资金发酵"
-        },
-        {
-          "source": "volume",
-          "name": "volume_or_liquidity_weak",
-          "score": 57.34,
-          "detail": "成交确认或流动性不足。"
-        },
-        {
-          "source": "payoff",
-          "name": "payoff_quality_weak",
-          "score": 48.87,
-          "detail": "预期上行空间相对失效风险不够优。"
-        },
-        {
-          "source": "sector",
-          "name": "sector_context_weak",
-          "score": 42.99,
-          "detail": "Consumer Quality 还不是确认的资金主线。"
         }
       ],
       "missing_evidence": [
@@ -25280,7 +25265,7 @@
         "primary_headline": "Fortinet shares are trading higher after reporting better-than-expected Q4 financial results and Q1 and FY26 outlook. Also, Rosenblatt raised its price target on the stock from $100 to $105.",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 8.78,
+        "primary_event_age_hours": 12.3,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -25293,7 +25278,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c037bd149887effaabcfdc383ec33befa7ceaa796692d478fb53d0ffb05b6e76",
             "published_at": "2026-08-13T16:48:57+00:00",
-            "age_hours": 7.32,
+            "age_hours": 10.84,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -25304,7 +25289,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=17adf0d15ec4079a9bb0faf5213b615bec6367c802fd3b9c203d6f8ad2dd2679",
             "published_at": "2026-08-13T15:21:35+00:00",
-            "age_hours": 8.78,
+            "age_hours": 12.3,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -25315,7 +25300,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5229d7c1fd374832535fece3a831d1045937b1f5d7cee52ac26820a63f4fe55f",
             "published_at": "2026-08-13T12:37:24+00:00",
-            "age_hours": 11.52,
+            "age_hours": 15.03,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -25326,7 +25311,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=aab2689da575dc6627348402ea6dce21c691491b43ba62675ffd6da5004fbf9f",
             "published_at": "2026-08-12T22:09:44+00:00",
-            "age_hours": 25.98,
+            "age_hours": 29.49,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -25337,7 +25322,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=97f23dd9de9799cd811d65940699cbc1f8aca18121a7cd7646af0708d15628fb",
             "published_at": "2026-08-12T20:22:11+00:00",
-            "age_hours": 27.77,
+            "age_hours": 31.29,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -25348,7 +25333,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=9835997ae403db443ae0d25aac78dcca154d87ed1e0f992468cca63199752734",
             "published_at": "2026-08-12T15:20:24+00:00",
-            "age_hours": 32.8,
+            "age_hours": 36.32,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "direct"
@@ -25359,7 +25344,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8eec43c619b94315023a7394a0005c3e82f3d0ff7ba2a4a0bd0e96034e9195b6",
             "published_at": "2026-08-12T15:12:30+00:00",
-            "age_hours": 32.93,
+            "age_hours": 36.45,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "direct"
@@ -25370,7 +25355,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1740958c32945d425837d62ff6e5bf09008ddbb9185957c7854da5fe65a2aa92",
             "published_at": "2026-08-10T22:39:08+00:00",
-            "age_hours": 73.49,
+            "age_hours": 77.0,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -28776,7 +28761,7 @@
         "primary_headline": "GameStop weighs eBay partnership as takeover bid falters – report",
         "primary_event_type": "mna_or_strategic_review",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 62.91,
+        "primary_event_age_hours": 66.43,
         "catalyst_type": "mna_or_strategic_review",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -28791,7 +28776,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b3e1905c0608d998455acfa624e2404f6437e9e8d4c7a685cf541c84bbacd245",
             "published_at": "2026-08-13T04:43:03+00:00",
-            "age_hours": 19.42,
+            "age_hours": 22.94,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -28802,7 +28787,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=757f68b77555c7f80cac003c0abee3e62e36f9a1fd51d3ab94d9f69cc1df2e4a",
             "published_at": "2026-08-11T20:07:31+00:00",
-            "age_hours": 52.02,
+            "age_hours": 55.53,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -28813,7 +28798,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=aa104c93a3f13f4560d59d9a8e1dac2102e17168152623c0b09bbb4370ab8f04",
             "published_at": "2026-08-11T18:44:33+00:00",
-            "age_hours": 53.4,
+            "age_hours": 56.91,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -28824,7 +28809,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a3abbd4686b1c2b7752d3c2bea8ce78f4fd0f5b3952ff53e4c2452b1fa84554d",
             "published_at": "2026-08-11T16:11:30+00:00",
-            "age_hours": 55.95,
+            "age_hours": 59.46,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -28835,7 +28820,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=92e2081d7ed7067260f4e031777166df3b9d1c42003ebcc1d0b3ecf337104ec4",
             "published_at": "2026-08-11T09:13:43+00:00",
-            "age_hours": 62.91,
+            "age_hours": 66.43,
             "score_contribution": 16.0,
             "strong": true,
             "relevance": "direct"
@@ -28846,7 +28831,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=83cd8bb4930bdfb7322ff8ef99b5761162ebc7dea28cb039a7e1857a2207a673",
             "published_at": "2026-08-11T07:54:10+00:00",
-            "age_hours": 64.24,
+            "age_hours": 67.75,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -28857,7 +28842,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=c8e195b822ea32983cfa7a7fe428a81691cad5177a141c8ab398bcb51d2e05a6",
             "published_at": "2026-08-11T07:46:25+00:00",
-            "age_hours": 64.37,
+            "age_hours": 67.88,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -28868,8 +28853,8 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1eef841931d02a2f45ff921ea77868d91048ac2b435aa9d9588c18ef18b6952e",
             "published_at": "2026-08-11T02:09:06+00:00",
-            "age_hours": 69.99,
-            "score_contribution": 8.0,
+            "age_hours": 73.5,
+            "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
           }
@@ -28881,7 +28866,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=aa104c93a3f13f4560d59d9a8e1dac2102e17168152623c0b09bbb4370ab8f04",
             "published_at": "2026-08-11T18:44:33+00:00",
-            "age_hours": 53.4,
+            "age_hours": 56.91,
             "score_contribution": 24.0,
             "relevance": "provider_related"
           },
@@ -28891,7 +28876,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d28ddd09f2418c4caef42181e38464a1d3087a3941c59ad6441fd312a4d8802c",
             "published_at": "2026-08-10T16:24:41+00:00",
-            "age_hours": 79.73,
+            "age_hours": 83.24,
             "score_contribution": 10.88,
             "relevance": "direct"
           }
@@ -30207,11 +30192,11 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 51.44,
+      "elasticity_score": 51.36,
       "elasticity_raw_potential": 56.93,
       "elasticity_confirmation_factor": 0.56,
       "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.5446,
+      "next_day_move_probability": 0.5419,
       "upside_momentum_score": 80.18,
       "bounce_score": 48.18,
       "downside_continuation_score": 25.0,
@@ -30267,12 +30252,12 @@
         "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
       },
       "confluence_score": 68,
-      "catalyst_score": 84.56,
+      "catalyst_score": 82.32,
       "expectation_gap_score": 58,
       "execution_quality_score": 70.13,
-      "payoff_quality_score": 49.64,
+      "payoff_quality_score": 49.63,
       "risk_reward_ratio": 0.336,
-      "expected_upside_pct": 0.06639,
+      "expected_upside_pct": 0.06631,
       "expected_downside_pct": 0.19734,
       "precision_gate": {
         "level": "不具备高置信优势",
@@ -30287,7 +30272,7 @@
         "applies": true,
         "passed": false,
         "structure_ready": false,
-        "score": 41.17,
+        "score": 41.15,
         "failures": [
           "上行/失效比不足",
           "失效距离过远",
@@ -30301,7 +30286,7 @@
           "近两交易日反弹空间达标",
           "信号闸门未阻断"
         ],
-        "expected_upside_pct": 0.06639,
+        "expected_upside_pct": 0.06631,
         "expected_downside_pct": 0.19734,
         "risk_reward_ratio": 0.336,
         "invalidation_distance_pct": 0.19734,
@@ -30311,12 +30296,12 @@
         "version": "reliable_bottom_profile_v1",
         "passed": false,
         "watch_eligible": false,
-        "score": 50.12,
+        "score": 50.11,
         "price": 8.26,
         "avg_dollar_volume_m": 349.515,
         "relative_volume": 0.488,
         "risk_reward_ratio": 0.336,
-        "expected_upside_pct": 0.06639,
+        "expected_upside_pct": 0.06631,
         "support_distance_pct": 0.24585,
         "positive_factors": [
           "20日均美元成交额充足",
@@ -30346,7 +30331,7 @@
             "dimension": "catalyst",
             "label": "事件催化",
             "status": "confirmed",
-            "score": 84.56,
+            "score": 82.32,
             "reason": "Joby Aviation's Busy Week: Q2 Beat, Raised Guidance, New Texas Hub",
             "blocking": false,
             "data": {
@@ -30399,7 +30384,7 @@
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "weak",
-            "score": 49.64,
+            "score": 49.63,
             "reason": "赔率分 49.6，上/下行比 0.34，主路径概率 0.70",
             "blocking": false,
             "data": {}
@@ -30518,19 +30503,19 @@
       "risk_scenario": "failed_breakout_or_gap_fade",
       "risk_probability": 0.085,
       "next_day_expected_range": {
-        "expected_low": 7.7404,
-        "expected_high": 8.8084,
+        "expected_low": 7.7411,
+        "expected_high": 8.8077,
         "expected_mid": 8.2744,
-        "expected_low_pct": -0.0629,
-        "expected_high_pct": 0.0664,
-        "volatility_adjusted_range": 0.08737,
+        "expected_low_pct": -0.06282,
+        "expected_high_pct": 0.06631,
+        "volatility_adjusted_range": 0.08725,
         "label": "7.74 to 8.81"
       },
       "scenario_prices": {
         "base_case_price": 8.2744,
-        "upside_case_price": 8.8084,
-        "downside_case_price": 7.7404,
-        "bounce_target_price": 8.8084,
+        "upside_case_price": 8.8077,
+        "downside_case_price": 7.7411,
+        "bounce_target_price": 8.8077,
         "failed_bounce_price": 6.63
       },
       "trigger_levels": {
@@ -30573,14 +30558,14 @@
         "nearest_resistance": 9.075,
         "stop_condition": "无主动优势",
         "target_low_price": 8.2744,
-        "target_high_price": 8.8084,
+        "target_high_price": 8.8077,
         "next_day_expected_range": {
-          "expected_low": 7.7404,
-          "expected_high": 8.8084,
+          "expected_low": 7.7411,
+          "expected_high": 8.8077,
           "expected_mid": 8.2744,
-          "expected_low_pct": -0.0629,
-          "expected_high_pct": 0.0664,
-          "volatility_adjusted_range": 0.08737,
+          "expected_low_pct": -0.06282,
+          "expected_high_pct": 0.06631,
+          "volatility_adjusted_range": 0.08725,
           "label": "7.74 to 8.81"
         },
         "overnight_or_intraday": "只适合盘中确认",
@@ -30588,13 +30573,13 @@
       },
       "news": {
         "symbol": "JOBY",
-        "catalyst_score": 84.56,
+        "catalyst_score": 82.32,
         "risk_event_score": 0,
         "headline_count": 8,
         "primary_headline": "Joby Aviation's Busy Week: Q2 Beat, Raised Guidance, New Texas Hub",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Benzinga",
-        "primary_event_age_hours": 62.85,
+        "primary_event_age_hours": 66.36,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -30609,7 +30594,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=23c2ac63c6831839a386819d9ad45f2637bf5dce389c551ddb889ade86e43df9",
             "published_at": "2026-08-11T09:17:33+00:00",
-            "age_hours": 62.85,
+            "age_hours": 66.36,
             "score_contribution": 18.0,
             "strong": true,
             "relevance": "direct"
@@ -30620,7 +30605,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=98725731faf784bae01f148cffd10a14c8982e97b378e9b9dcfb095998ca9a45",
             "published_at": "2026-08-09T10:40:24+00:00",
-            "age_hours": 109.47,
+            "age_hours": 112.98,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -30631,7 +30616,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=34d9387a1fde8aff2bcffbcff371f2d2324688018336592a9265876968afc955",
             "published_at": "2026-08-07T18:08:00+00:00",
-            "age_hours": 150.01,
+            "age_hours": 153.52,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -30642,7 +30627,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b08a42f3e4edc5eaa52af3f344779890198c0cb1f27dd5bab64faae9b8e75e29",
             "published_at": "2026-08-07T14:26:34+00:00",
-            "age_hours": 153.7,
+            "age_hours": 157.21,
             "score_contribution": 2.72,
             "strong": false,
             "relevance": "direct"
@@ -30653,7 +30638,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cd5193f656d132550ef56509fbed351151f55e03fd686cf8408540ad050f4a2f",
             "published_at": "2026-08-07T11:30:17+00:00",
-            "age_hours": 156.64,
+            "age_hours": 160.15,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -30664,7 +30649,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cf5f8ad2fa5d0307a4d4c9e7de694166e56343edcbf6477b75b4ad90093ca5b6",
             "published_at": "2026-08-07T03:59:00+00:00",
-            "age_hours": 164.16,
+            "age_hours": 167.67,
             "score_contribution": 5.44,
             "strong": false,
             "relevance": "direct"
@@ -30675,8 +30660,8 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=389a6af787ad2d05b4b63ae21d596146a3c9910698b362d296dbe0c933bd0721",
             "published_at": "2026-08-07T01:07:00+00:00",
-            "age_hours": 167.02,
-            "score_contribution": 5.44,
+            "age_hours": 170.54,
+            "score_contribution": 3.2,
             "strong": false,
             "relevance": "direct"
           }
@@ -31909,7 +31894,7 @@
         {
           "source": "catalyst",
           "name": "earnings_momentum",
-          "score": 84.56,
+          "score": 82.32,
           "detail": "Joby Aviation's Busy Week: Q2 Beat, Raised Guidance, New Texas Hub"
         },
         {
@@ -31959,7 +31944,7 @@
         {
           "source": "payoff",
           "name": "payoff_quality_weak",
-          "score": 50.36,
+          "score": 50.37,
           "detail": "预期上行空间相对失效风险不够优。"
         }
       ],
@@ -32377,7 +32362,7 @@
         "primary_headline": "Daiwa Capital Upgrades Merck (MRK)",
         "primary_event_type": "analyst_upgrade",
         "primary_event_source": "Fintel",
-        "primary_event_age_hours": 18.22,
+        "primary_event_age_hours": 21.74,
         "catalyst_type": "analyst_upgrade",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -32390,7 +32375,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=714f3049974d05781568e54aeb73177aa98de4466863007fedd00cdb53fec5a6",
             "published_at": "2026-08-13T21:46:08+00:00",
-            "age_hours": 2.37,
+            "age_hours": 5.89,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -32401,7 +32386,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c33bf4e538c947db085978ac00055bb8a4acef0bef0138fee0ca9da27720ab80",
             "published_at": "2026-08-13T20:07:50+00:00",
-            "age_hours": 4.01,
+            "age_hours": 7.53,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -32412,7 +32397,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=fe477b528bf195ac7f12746c8dac3b63378d9c099e9f5ada24d4772eab51eb48",
             "published_at": "2026-08-13T19:11:01+00:00",
-            "age_hours": 4.96,
+            "age_hours": 8.47,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -32423,7 +32408,7 @@
             "source": "ChartMill",
             "url": "https://finnhub.io/api/news?id=85ac2b07ff18479aadb4467b3e1330bac9629e06dd155f57eff0fc402eb245f3",
             "published_at": "2026-08-13T16:40:06+00:00",
-            "age_hours": 7.47,
+            "age_hours": 10.99,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -32434,7 +32419,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=88a90702b18759d550549111dea289f1d88362148d397438d1ad60ef07c20c75",
             "published_at": "2026-08-13T16:10:11+00:00",
-            "age_hours": 7.97,
+            "age_hours": 11.49,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -32445,7 +32430,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=ded35599f6ae7a9b420ef7ee858d1a84c076023695ebd258c9849f87a5b8884a",
             "published_at": "2026-08-13T15:24:03+00:00",
-            "age_hours": 8.74,
+            "age_hours": 12.26,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -32456,7 +32441,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=65f67b5b963908dafc83473cd4922915bf65bafd53a62096d93568da5b51af3d",
             "published_at": "2026-08-13T14:00:00+00:00",
-            "age_hours": 10.14,
+            "age_hours": 13.66,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -32467,7 +32452,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=2c17b8a18a52bd790df6efd2e12cf63ba958607578677174544fdf7c6dce89f6",
             "published_at": "2026-08-13T13:26:21+00:00",
-            "age_hours": 10.7,
+            "age_hours": 14.22,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -34173,7 +34158,7 @@
         "primary_headline": "JEDI: The New Warfare Paradigm",
         "primary_event_type": "theme_buzz",
         "primary_event_source": "SeekingAlpha",
-        "primary_event_age_hours": 61.15,
+        "primary_event_age_hours": 64.66,
         "catalyst_type": "theme_buzz",
         "catalyst_quality": "unconfirmed",
         "recent_confirmed_catalyst": false,
@@ -34186,7 +34171,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=7a76258cdb626652eb63e4b6b111a4d36e2b4fb25c50a8b7e1435d6fcedb1772",
             "published_at": "2026-08-11T10:59:35+00:00",
-            "age_hours": 61.15,
+            "age_hours": 64.66,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
