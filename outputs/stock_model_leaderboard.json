@@ -1,6 +1,6 @@
 {
   "version": "stock_model_leaderboard_v1",
-  "generated_at": "2026-08-14T20:52:32.446577+00:00",
+  "generated_at": "2026-08-14T22:57:31.644028+00:00",
   "active_baseline": "stock_radar_baseline_v1",
   "validation_status": "validated",
   "models": [
@@ -12,7 +12,7 @@
         "total_forecasts": 244,
         "pending_forecasts": 20,
         "completed_next_day_forecasts": 224,
-        "top_10_avg_next_day_volatility": 0.044348,
+        "top_10_avg_next_day_volatility": 0.044337,
         "top_10_next_day_direction_hit_rate": 0.25,
         "top5_hit_rate": 0.085106,
         "top10_hit_rate": 0.083333,
@@ -20,8 +20,8 @@
         "primary_scenario_hit_rate": 0.0,
         "avg_next_day_high_gain": 0.02636,
         "avg_next_day_close_gain": 0.007715,
-        "avg_max_drawdown": -0.015238,
-        "avg_open_condition_return": -0.00019,
+        "avg_max_drawdown": -0.015232,
+        "avg_open_condition_return": -0.000183,
         "avg_trigger_condition_return": 0.00868,
         "profit_factor": 2.058833930781719,
         "high_confluence_avg_next_day_return": 0.008616,
@@ -37,7 +37,7 @@
         "low_payoff_quality_avg_return": 0.007973,
         "high_payoff_quality_beats_low": false,
         "high_risk_avg_volatility": 0.029387,
-        "lower_risk_avg_volatility": 0.048787,
+        "lower_risk_avg_volatility": 0.04878,
         "high_risk_candidates_more_volatile": false
       },
       "promotion_status": "active_baseline"
@@ -50,7 +50,7 @@
         "total_forecasts": 256,
         "pending_forecasts": 20,
         "completed_next_day_forecasts": 236,
-        "top_10_avg_next_day_volatility": 0.044348,
+        "top_10_avg_next_day_volatility": 0.044337,
         "top_10_next_day_direction_hit_rate": 0.229167,
         "top5_hit_rate": 0.085106,
         "top10_hit_rate": 0.083333,
@@ -58,8 +58,8 @@
         "primary_scenario_hit_rate": 0.0,
         "avg_next_day_high_gain": 0.027197,
         "avg_next_day_close_gain": 0.008316,
-        "avg_max_drawdown": -0.015253,
-        "avg_open_condition_return": 0.000206,
+        "avg_max_drawdown": -0.015247,
+        "avg_open_condition_return": 0.000213,
         "avg_trigger_condition_return": 0.008752,
         "profit_factor": 2.1038706079397866,
         "high_confluence_avg_next_day_return": null,
@@ -75,7 +75,7 @@
         "low_payoff_quality_avg_return": 0.008559,
         "high_payoff_quality_beats_low": false,
         "high_risk_avg_volatility": 0.029387,
-        "lower_risk_avg_volatility": 0.049417,
+        "lower_risk_avg_volatility": 0.049411,
         "high_risk_candidates_more_volatile": false
       },
       "promotion_status": "shadow_observation_required"
