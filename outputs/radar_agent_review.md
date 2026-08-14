@@ -2,10 +2,10 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-13T23:23:32.723637+00:00`
-- overall_decision: `观察`
-- agency_quality_gate: `谨慎通过`
-- market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
+- generated_at: `2026-08-14T00:08:27.109337+00:00`
+- overall_decision: `防守`
+- agency_quality_gate: `不通过`
+- market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
@@ -20,7 +20,7 @@
 
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
-- evidence: market_state=attack; freshness=partial_fallback; strong_edge_count=0
+- evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
 - warning: 强优势候选数量不足，不能强行进攻。
 
 ### 板块主线代理
@@ -31,10 +31,10 @@
 
 ### 预期差代理
 
-- status: `warn`
+- status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=55.33; min_top5_gap=54.0; confirmed_signal_count=2
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=54.8; min_top5_gap=52.41; confirmed_signal_count=2
+- warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
@@ -68,7 +68,7 @@
 
 - status: `warn`
 - conclusion: 检查 provider 状态、降级数量、最新交易日和数据质量分。
-- evidence: score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial
+- evidence: score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial
 - warning: 存在数据源降级，候选已被过滤或压制，但仍需人工确认。
 - warning: Finnhub 非完全可用，新闻/事件催化可能不完整。
 
@@ -83,7 +83,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | AAPL | 可观察候选 | 共振 76.45; 预期差 58; 赔率 56.43; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | V | 可观察候选 | 共振 74.67; 预期差 54; 赔率 52.09; 风险 16.5; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | COST | 可观察候选 | 共振 74.35; 预期差 54; 赔率 51.13; 风险 26.4; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | V | 可观察候选 | 共振 74.49; 预期差 54; 赔率 52.09; 风险 16.5; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | COST | 可观察候选 | 共振 74.16; 预期差 52.41; 赔率 51.13; 风险 26.4; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
