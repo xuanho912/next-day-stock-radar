@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-14T16:12:54.817413+00:00",
+  "generated_at": "2026-08-14T20:52:32.474332+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 29.91,
-    "avg_top5_confluence_score": 76.95,
-    "avg_top5_expectation_gap_score": 56.67,
-    "avg_top5_payoff_quality_score": 55.31,
-    "avg_top5_execution_quality_score": 69.89,
-    "avg_top5_risk_score": 4.4,
-    "min_top5_confluence_score": 76.45,
-    "min_top5_expectation_gap_score": 54.0,
-    "top_sector": "Mega Cap Tech",
+    "avg_top5_elasticity_score": 24.35,
+    "avg_top5_confluence_score": 64.9,
+    "avg_top5_expectation_gap_score": 55.1,
+    "avg_top5_payoff_quality_score": 61.65,
+    "avg_top5_execution_quality_score": 54.98,
+    "avg_top5_risk_score": 3.3,
+    "min_top5_confluence_score": 63.0,
+    "min_top5_expectation_gap_score": 53.29,
+    "top_sector": "Healthcare Quality",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -31,16 +31,16 @@
     "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 2,
+    "top10_signal_confirmed_count": 0,
     "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 0
+    "top10_signal_blocked_count": 2
   },
   "agent_findings": [
     {
       "agent_name": "市场路径代理",
       "status": "warn",
       "conclusion": "检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。",
-      "evidence": "market_state=attack; freshness=partial_fallback; strong_edge_count=0",
+      "evidence": "market_state=neutral; freshness=partial_fallback; strong_edge_count=0",
       "warnings": [
         "强优势候选数量不足，不能强行进攻。"
       ]
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Healthcare Quality(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=2",
+      "evidence": "avg_top5_gap=55.1; min_top5_gap=53.29; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=55.31; avg_execution=69.89; avg_risk=4.4",
+      "evidence": "avg_payoff=61.65; avg_execution=54.98; avg_risk=3.3",
       "warnings": []
     },
     {
@@ -84,14 +84,15 @@
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。",
+        "Top 10 没有真实共振候选，只能观察，不能进攻。"
       ]
     },
     {
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=1047; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=1069; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -100,7 +101,7 @@
       "agent_name": "数据质量代理",
       "status": "warn",
       "conclusion": "检查 provider 状态、降级数量、最新交易日和数据质量分。",
-      "evidence": "score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial",
+      "evidence": "score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial",
       "warnings": [
         "存在数据源降级，候选已被过滤或压制，但仍需人工确认。",
         "Finnhub 非完全可用，新闻/事件催化可能不完整。"
@@ -117,12 +118,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "AAPL",
+      "ticker": "UNH",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.45; 预期差 58; 赔率 56.45; 风险 0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 308.5846,
-      "invalidation": 299.7653,
+      "key_check": "共振 68.7; 预期差 54; 赔率 66.12; 风险 9.9; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 405.998,
+      "invalidation": 394.4989,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -131,30 +132,32 @@
     },
     {
       "rank": 2,
-      "ticker": "V",
+      "ticker": "AAPL",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 77.48; 预期差 54; 赔率 53.22; 风险 13.2; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 369.1633,
-      "invalidation": 348.5,
+      "key_check": "共振 63; 预期差 58; 赔率 65.47; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 309.2359,
+      "invalidation": 300.0,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
       ]
     },
     {
       "rank": 3,
-      "ticker": "COST",
+      "ticker": "MSTR",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.93; 预期差 58; 赔率 56.25; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 971.4685,
-      "invalidation": 916.76,
+      "key_check": "共振 63; 预期差 53.29; 赔率 53.37; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 94.2999,
+      "invalidation": 89.21,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过"
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
       ]
     }
   ],
@@ -162,7 +165,8 @@
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。",
+    "Top 10 没有真实共振候选，只能观察，不能进攻。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
