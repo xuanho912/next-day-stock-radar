@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-17T20:50:22.835642+00:00`
+- generated_at: `2026-08-17T22:58:37.851127+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -34,14 +34,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=56.18; min_top5_gap=52.54; confirmed_signal_count=0
+- evidence: avg_top5_gap=60.92; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=54.0; avg_execution=55.07; avg_risk=9.63
+- evidence: avg_payoff=60.73; avg_execution=59.27; avg_risk=6.33
 
 ### 当前价确认代理
 
@@ -84,8 +84,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | COST | 可观察候选 | 共振 76.92; 预期差 58; 赔率 58.72; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | AAPL | 可观察候选 | 共振 63; 预期差 52.54; 赔率 61.19; 风险 20.9; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
-| 3 | AVGO | 可观察候选 | 共振 63; 预期差 58; 赔率 42.08; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 赔率质量不足 |
+| 1 | COST | 可观察候选 | 共振 76.93; 预期差 58; 赔率 58.72; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | V | 可观察候选 | 共振 74.08; 预期差 70.76; 赔率 68.03; 风险 8.0; 闸门 不具备高置信优势; 信号 partial | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | AAPL | 可观察候选 | 共振 63; 预期差 54; 赔率 55.45; 风险 11.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
