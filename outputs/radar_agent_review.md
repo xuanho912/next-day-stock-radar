@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-18T15:54:51.698606+00:00`
+- generated_at: `2026-08-18T20:46:03.185236+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -28,26 +28,26 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=61.85; min_top5_gap=54.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=61.79; avg_execution=63.57; avg_risk=5.6
+- evidence: avg_payoff=58.91; avg_execution=66.71; avg_risk=2.93
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=2; failed=0; missing=0
+- evidence: confirming=0; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
@@ -63,14 +63,14 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=1094; leaderboard=validated
+- evidence: validation=early_evidence; completed=1118; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
 
 - status: `warn`
 - conclusion: 检查 provider 状态、降级数量、最新交易日和数据质量分。
-- evidence: score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial
+- evidence: score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial
 - warning: 存在数据源降级，候选已被过滤或压制，但仍需人工确认。
 - warning: Finnhub 非完全可用，新闻/事件催化可能不完整。
 
@@ -84,8 +84,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | V | 可观察候选 | 共振 76.88; 预期差 73.56; 赔率 70.14; 风险 8.0; 闸门 不具备高置信优势; 信号 partial | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | COST | 可观察候选 | 共振 77.48; 预期差 58; 赔率 59.05; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | AAPL | 可观察候选 | 共振 63; 预期差 54; 赔率 56.18; 风险 8.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 1 | AAPL | 可观察候选 | 共振 76.47; 预期差 54; 赔率 59.68; 风险 8.8; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | V | 可观察候选 | 共振 76.83; 预期差 58; 赔率 63.96; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | AVGO | 可观察候选 | 共振 63; 预期差 58; 赔率 53.09; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
