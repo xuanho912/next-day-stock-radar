@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-18T13:43:57.002479+00:00",
+  "generated_at": "2026-08-18T14:37:05.588832+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,14 +11,14 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 19.81,
-    "avg_top5_confluence_score": 62.78,
-    "avg_top5_expectation_gap_score": 53.08,
-    "avg_top5_payoff_quality_score": 62.2,
-    "avg_top5_execution_quality_score": 55.2,
+    "avg_top5_elasticity_score": 22.9,
+    "avg_top5_confluence_score": 63.0,
+    "avg_top5_expectation_gap_score": 53.46,
+    "avg_top5_payoff_quality_score": 63.04,
+    "avg_top5_execution_quality_score": 57.42,
     "avg_top5_risk_score": 8.07,
-    "min_top5_confluence_score": 57.34,
-    "min_top5_expectation_gap_score": 47.25,
+    "min_top5_confluence_score": 58.0,
+    "min_top5_expectation_gap_score": 48.37,
     "top_sector": "Mega Cap Tech",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
@@ -57,7 +57,7 @@
       "agent_name": "预期差代理",
       "status": "fail",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=53.08; min_top5_gap=47.25; confirmed_signal_count=1",
+      "evidence": "avg_top5_gap=53.46; min_top5_gap=48.37; confirmed_signal_count=1",
       "warnings": [
         "预期差不足，容易变成表面热闹但没有交易价值。"
       ]
@@ -66,7 +66,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=62.2; avg_execution=55.2; avg_risk=8.07",
+      "evidence": "avg_payoff=63.04; avg_execution=57.42; avg_risk=8.07",
       "warnings": []
     },
     {
@@ -122,7 +122,7 @@
       "ticker": "AAPL",
       "candidate_type": "oversold_bounce",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 57.34; 预期差 54; 赔率 71.46; 风险 11.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 58; 预期差 54; 赔率 72.02; 风险 11.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 309.2359,
       "invalidation": 300.0,
       "warnings": [
@@ -137,7 +137,7 @@
       "ticker": "MSTR",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 47.25; 赔率 52.71; 风险 13.2; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 63; 预期差 48.37; 赔率 53.67; 风险 13.2; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 94.2999,
       "invalidation": 89.21,
       "warnings": [
@@ -152,7 +152,7 @@
       "ticker": "V",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 68; 预期差 58; 赔率 62.43; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "key_check": "共振 68; 预期差 58; 赔率 63.42; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
       "trigger": 367.8254,
       "invalidation": 348.5,
       "warnings": [
