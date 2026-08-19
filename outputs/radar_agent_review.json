@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-19T02:39:47.835200+00:00",
+  "generated_at": "2026-08-19T13:45:58.438912+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,13 +11,13 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 29.66,
-    "avg_top5_confluence_score": 75.66,
+    "avg_top5_elasticity_score": 31.88,
+    "avg_top5_confluence_score": 76.79,
     "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 59.99,
-    "avg_top5_execution_quality_score": 70.93,
+    "avg_top5_payoff_quality_score": 60.23,
+    "avg_top5_execution_quality_score": 72.08,
     "avg_top5_risk_score": 0.0,
-    "min_top5_confluence_score": 73.11,
+    "min_top5_confluence_score": 75.64,
     "min_top5_expectation_gap_score": 58.0,
     "top_sector": "Mega Cap Tech",
     "top_sector_count": 1,
@@ -28,7 +28,7 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 0,
+    "top10_quote_confirming_count": 1,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 1,
@@ -65,14 +65,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=59.99; avg_execution=70.93; avg_risk=0",
+      "evidence": "avg_payoff=60.23; avg_execution=72.08; avg_risk=0",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=0",
+      "evidence": "confirming=1; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -120,7 +120,7 @@
       "ticker": "AAPL",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 77.04; 预期差 58; 赔率 61.38; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 77.22; 预期差 58; 赔率 61.6; 风险 0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 313.3408,
       "invalidation": 300.0,
       "warnings": [
@@ -134,7 +134,7 @@
       "ticker": "V",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.84; 预期差 58; 赔率 64.0; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 77.51; 预期差 58; 赔率 64.22; 风险 0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 367.8925,
       "invalidation": 348.5,
       "warnings": [
@@ -148,7 +148,7 @@
       "ticker": "COST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 73.11; 预期差 58; 赔率 54.58; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "key_check": "共振 75.64; 预期差 58; 赔率 54.88; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
       "trigger": 970.9635,
       "invalidation": 916.76,
       "warnings": [
