@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-19T13:45:58.438912+00:00`
+- generated_at: `2026-08-19T14:37:13.565229+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -40,14 +40,13 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=60.23; avg_execution=72.08; avg_risk=0
+- evidence: avg_payoff=60.51; avg_execution=73.26; avg_risk=0
 
 ### 当前价确认代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=1; failed=0; missing=0
-- warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
+- evidence: confirming=3; failed=0; missing=0
 
 ### 风险现实校验代理
 
@@ -68,7 +67,7 @@
 
 - status: `warn`
 - conclusion: 检查 provider 状态、降级数量、最新交易日和数据质量分。
-- evidence: score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial
+- evidence: score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial
 - warning: 存在数据源降级，候选已被过滤或压制，但仍需人工确认。
 - warning: Finnhub 非完全可用，新闻/事件催化可能不完整。
 
@@ -82,8 +81,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AAPL | 可观察候选 | 共振 77.22; 预期差 58; 赔率 61.6; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | V | 可观察候选 | 共振 77.51; 预期差 58; 赔率 64.22; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | AAPL | 可观察候选 | 共振 77.77; 预期差 58; 赔率 61.94; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | V | 可观察候选 | 共振 78.28; 预期差 58; 赔率 64.72; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | COST | 可观察候选 | 共振 75.64; 预期差 58; 赔率 54.88; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
