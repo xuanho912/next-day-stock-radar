@@ -1,8 +1,8 @@
 # 候选验证报告
 
 - validation_status: `early_evidence`
-- pending_forecasts: `27`
-- completed_next_day_forecasts: `1169`
-- top5_hit_rate: `0.081301`
-- avg_trigger_condition_return: `0.06855`
-- avg_max_drawdown: `0.00439`
+- pending_forecasts: `20`
+- completed_next_day_forecasts: `1196`
+- top5_hit_rate: `0.083665`
+- avg_trigger_condition_return: `0.066049`
+- avg_max_drawdown: `0.003896`
