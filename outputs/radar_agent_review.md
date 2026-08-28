@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-28T13:13:43.625413+00:00`
+- generated_at: `2026-08-28T22:56:25.788051+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -27,20 +27,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Mega Cap Tech(2); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Mega Cap Tech(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=57.91; min_top5_gap=57.74; confirmed_signal_count=1
+- evidence: avg_top5_gap=55.33; min_top5_gap=54.0; confirmed_signal_count=2
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=58.76; avg_execution=63.15; avg_risk=2.67
+- evidence: avg_payoff=57.48; avg_execution=63.89; avg_risk=14.24
 
 ### 当前价确认代理
 
@@ -61,7 +61,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=1285; leaderboard=validated
+- evidence: validation=early_evidence; completed=1305; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AAPL | 可观察候选 | 共振 76.45; 预期差 58; 赔率 56.47; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | GOOGL | 可观察候选 | 共振 67; 预期差 58; 赔率 56.89; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
-| 3 | UNH | 可观察候选 | 共振 63; 预期差 57.74; 赔率 62.93; 风险 8.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足 |
+| 1 | GOOGL | 可观察候选 | 共振 76.84; 预期差 58; 赔率 60.46; 风险 12.38; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | AMZN | 可观察候选 | 共振 76.65; 预期差 54; 赔率 54.49; 风险 12.38; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | BABA | 可观察候选 | 共振 75.21; 预期差 54; 赔率 57.49; 风险 17.95; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
