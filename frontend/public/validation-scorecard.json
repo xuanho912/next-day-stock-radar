@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-08-28T22:56:25.599936+00:00",
+  "generated_at": "2026-08-28T23:29:47.127915+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 20,
+  "pending_forecasts": 22,
   "completed_next_day_forecasts": 1305,
   "baseline": {
-    "total_forecasts": 1325,
-    "pending_forecasts": 20,
+    "total_forecasts": 1327,
+    "pending_forecasts": 22,
     "completed_next_day_forecasts": 1305,
     "top_10_avg_next_day_volatility": 0.125017,
     "top_10_next_day_direction_hit_rate": 0.120996,
@@ -34,12 +34,12 @@
     "low_payoff_quality_avg_return": 0.025046,
     "high_payoff_quality_beats_low": false,
     "high_risk_avg_volatility": 0.044637,
-    "lower_risk_avg_volatility": 0.108898,
+    "lower_risk_avg_volatility": 0.108899,
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 1326,
-    "pending_forecasts": 20,
+    "total_forecasts": 1328,
+    "pending_forecasts": 22,
     "completed_next_day_forecasts": 1306,
     "top_10_avg_next_day_volatility": 0.125425,
     "top_10_next_day_direction_hit_rate": 0.101786,
@@ -66,7 +66,7 @@
     "low_payoff_quality_avg_return": 0.025177,
     "high_payoff_quality_beats_low": false,
     "high_risk_avg_volatility": 0.044637,
-    "lower_risk_avg_volatility": 0.109138,
+    "lower_risk_avg_volatility": 0.109139,
     "high_risk_candidates_more_volatile": false
   },
   "baseline_vs_challenger": {
@@ -144,8 +144,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "neutral": {
-      "total_forecasts": 810,
-      "pending_forecasts": 20,
+      "total_forecasts": 812,
+      "pending_forecasts": 22,
       "completed_next_day_forecasts": 790,
       "top_10_avg_next_day_volatility": 0.05093,
       "top_10_next_day_direction_hit_rate": 0.12894,
@@ -172,7 +172,7 @@
       "low_payoff_quality_avg_return": 0.003024,
       "high_payoff_quality_beats_low": false,
       "high_risk_avg_volatility": 0.026307,
-      "lower_risk_avg_volatility": 0.052361,
+      "lower_risk_avg_volatility": 0.052362,
       "high_risk_candidates_more_volatile": false
     }
   },
@@ -317,7 +317,7 @@
       "primary_scenario_hit_rate": 0.013158,
       "avg_next_day_high_gain": 0.021134,
       "avg_next_day_close_gain": -0.00695,
-      "avg_max_drawdown": -0.027913,
+      "avg_max_drawdown": -0.027921,
       "avg_open_condition_return": 0.004276,
       "avg_trigger_condition_return": 0.003662,
       "profit_factor": 1.2925053597322502,
@@ -334,7 +334,7 @@
       "low_payoff_quality_avg_return": -0.010498,
       "high_payoff_quality_beats_low": true,
       "high_risk_avg_volatility": null,
-      "lower_risk_avg_volatility": 0.078994,
+      "lower_risk_avg_volatility": 0.079002,
       "high_risk_candidates_more_volatile": false
     },
     "Biotech / AI Drug": {
@@ -402,8 +402,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "China ADR / AI": {
-      "total_forecasts": 35,
-      "pending_forecasts": 0,
+      "total_forecasts": 36,
+      "pending_forecasts": 1,
       "completed_next_day_forecasts": 35,
       "top_10_avg_next_day_volatility": 0.031838,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -434,8 +434,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "China ADR / EV": {
-      "total_forecasts": 73,
-      "pending_forecasts": 1,
+      "total_forecasts": 74,
+      "pending_forecasts": 2,
       "completed_next_day_forecasts": 72,
       "top_10_avg_next_day_volatility": 0.036829,
       "top_10_next_day_direction_hit_rate": 0.051282,
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 1130,
-      "pending_forecasts": 15,
+      "total_forecasts": 1132,
+      "pending_forecasts": 17,
       "completed_next_day_forecasts": 1115,
       "top_10_avg_next_day_volatility": 0.052337,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1055,7 +1055,7 @@
       "primary_scenario_hit_rate": 0.0,
       "avg_next_day_high_gain": 0.025581,
       "avg_next_day_close_gain": 0.002587,
-      "avg_max_drawdown": -0.021488,
+      "avg_max_drawdown": -0.021489,
       "avg_open_condition_return": 0.000849,
       "avg_trigger_condition_return": 0.006072,
       "profit_factor": 1.7377618675056183,
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 1172,
-      "pending_forecasts": 15,
+      "total_forecasts": 1174,
+      "pending_forecasts": 17,
       "completed_next_day_forecasts": 1157,
       "top_10_avg_next_day_volatility": 0.146198,
       "top_10_next_day_direction_hit_rate": 0.024943,
@@ -1217,7 +1217,7 @@
       "primary_scenario_hit_rate": 0.009507,
       "avg_next_day_high_gain": 0.047433,
       "avg_next_day_close_gain": 0.023257,
-      "avg_max_drawdown": 0.005036,
+      "avg_max_drawdown": 0.005035,
       "avg_open_condition_return": 0.000509,
       "avg_trigger_condition_return": 0.065395,
       "profit_factor": 9.073558356852976,
@@ -1234,7 +1234,7 @@
       "low_payoff_quality_avg_return": 0.027498,
       "high_payoff_quality_beats_low": false,
       "high_risk_avg_volatility": 0.044637,
-      "lower_risk_avg_volatility": 0.116291,
+      "lower_risk_avg_volatility": 0.116292,
       "high_risk_candidates_more_volatile": false
     },
     "STRONG_EDGE": {
