@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-08-28T23:29:47.290737+00:00`
+- generated_at: `2026-08-29T00:04:03.022758+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -40,7 +40,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=57.48; avg_execution=63.89; avg_risk=14.24
+- evidence: avg_payoff=57.64; avg_execution=64.07; avg_risk=13.41
 
 ### 当前价确认代理
 
@@ -82,7 +82,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | GOOGL | 可观察候选 | 共振 76.84; 预期差 58; 赔率 60.46; 风险 12.38; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | GOOGL | 可观察候选 | 共振 76.92; 预期差 58; 赔率 60.93; 风险 9.9; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | AMZN | 可观察候选 | 共振 76.65; 预期差 54; 赔率 54.49; 风险 12.38; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | BABA | 可观察候选 | 共振 75.21; 预期差 54; 赔率 57.49; 风险 17.95; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
