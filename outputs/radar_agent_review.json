@@ -1,26 +1,26 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-08-31T20:59:17.499883+00:00",
+  "generated_at": "2026-08-31T23:57:29.074160+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
-  "overall_decision": "防守",
-  "agency_quality_gate": "不通过",
-  "market_permission": "防守优先；候选降级，避免把弱信号当成机会。",
+  "overall_decision": "观察",
+  "agency_quality_gate": "谨慎通过",
+  "market_permission": "只观察候选，不强行追逐；等待盘前刷新和触发确认。",
   "top10_metric_snapshot": {
     "top10_count": 3,
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 42.84,
-    "avg_top5_confluence_score": 74.77,
-    "avg_top5_expectation_gap_score": 54.28,
-    "avg_top5_payoff_quality_score": 55.22,
-    "avg_top5_execution_quality_score": 63.0,
-    "avg_top5_risk_score": 6.98,
-    "min_top5_confluence_score": 71.99,
-    "min_top5_expectation_gap_score": 50.84,
-    "top_sector": "Nuclear / Power",
-    "top_sector_count": 2,
+    "avg_top5_elasticity_score": 39.57,
+    "avg_top5_confluence_score": 75.34,
+    "avg_top5_expectation_gap_score": 56.67,
+    "avg_top5_payoff_quality_score": 55.81,
+    "avg_top5_execution_quality_score": 60.73,
+    "avg_top5_risk_score": 3.99,
+    "min_top5_confluence_score": 72.09,
+    "min_top5_expectation_gap_score": 54.0,
+    "top_sector": "AI / Semiconductors",
+    "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -31,8 +31,8 @@
     "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 3,
+    "top10_signal_confirmed_count": 1,
+    "top10_signal_partial_count": 2,
     "top10_signal_blocked_count": 0
   },
   "agent_findings": [
@@ -49,23 +49,23 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Nuclear / Power(2); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
-      "status": "fail",
+      "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=54.28; min_top5_gap=50.84; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=1",
       "warnings": [
-        "预期差不足，容易变成表面热闹但没有交易价值。"
+        "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
     },
     {
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=55.22; avg_execution=63.0; avg_risk=6.98",
+      "evidence": "avg_payoff=55.81; avg_execution=60.73; avg_risk=3.99",
       "warnings": []
     },
     {
@@ -84,15 +84,14 @@
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。",
-        "Top 10 没有真实共振候选，只能观察，不能进攻。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。"
       ]
     },
     {
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=1310; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=1341; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -118,12 +117,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "RKLB",
+      "ticker": "AMD",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.07; 预期差 58; 赔率 55.73; 风险 11.97; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 64.8642,
-      "invalidation": 62.17,
+      "key_check": "共振 76.84; 预期差 58; 赔率 53.77; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 476.395,
+      "invalidation": 451.0,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -132,12 +131,12 @@
     },
     {
       "rank": 2,
-      "ticker": "VST",
+      "ticker": "RKLB",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 71.99; 预期差 54; 赔率 56.87; 风险 0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 138.9114,
-      "invalidation": 134.5,
+      "key_check": "共振 77.1; 预期差 58; 赔率 56.78; 风险 11.97; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 64.8282,
+      "invalidation": 62.17,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -146,12 +145,12 @@
     },
     {
       "rank": 3,
-      "ticker": "OKLO",
+      "ticker": "VST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.26; 预期差 50.84; 赔率 53.06; 风险 8.98; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 41.2011,
-      "invalidation": 38.01,
+      "key_check": "共振 72.09; 预期差 54; 赔率 56.87; 风险 0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 138.9014,
+      "invalidation": 134.5,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -163,8 +162,7 @@
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。",
-    "Top 10 没有真实共振候选，只能观察，不能进攻。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
