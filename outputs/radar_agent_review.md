@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-01T17:13:14.780047+00:00`
+- generated_at: `2026-09-01T17:42:52.911279+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -68,7 +68,7 @@
 
 - status: `warn`
 - conclusion: 检查 provider 状态、降级数量、最新交易日和数据质量分。
-- evidence: score=66; freshness=partial_fallback; yahoo_fallback=1; finnhub=partial
+- evidence: score=64; freshness=partial_fallback; yahoo_fallback=2; finnhub=partial
 - warning: 存在数据源降级，候选已被过滤或压制，但仍需人工确认。
 - warning: Finnhub 非完全可用，新闻/事件催化可能不完整。
 
@@ -76,7 +76,7 @@
 
 - status: `pass`
 - conclusion: 确认前端只读取静态 JSON，并把复杂推理放到后面。
-- evidence: static_payload=True; candidate_count=62
+- evidence: static_payload=True; candidate_count=61
 
 ## Top Candidate Notes
 
