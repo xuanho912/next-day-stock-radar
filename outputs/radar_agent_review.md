@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-01T06:35:55.460989+00:00`
+- generated_at: `2026-09-01T17:13:14.780047+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -33,14 +33,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=1
+- evidence: avg_top5_gap=56.31; min_top5_gap=52.93; confirmed_signal_count=1
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=55.61; avg_execution=61.33; avg_risk=3.99
+- evidence: avg_payoff=60.4; avg_execution=61.8; avg_risk=5.5
 
 ### 当前价确认代理
 
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AMD | 可观察候选 | 共振 76.76; 预期差 58; 赔率 54.09; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | RKLB | 可观察候选 | 共振 76.81; 预期差 58; 赔率 55.86; 风险 11.97; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | VST | 可观察候选 | 共振 72.1; 预期差 54; 赔率 56.88; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | AVGO | 可观察候选 | 共振 78.3; 预期差 58; 赔率 58.71; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | VST | 可观察候选 | 共振 76.4; 预期差 58; 赔率 56.88; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | JPM | 可观察候选 | 共振 63; 预期差 52.93; 赔率 65.6; 风险 16.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
