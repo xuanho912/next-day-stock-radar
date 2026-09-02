@@ -2,9 +2,9 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-02T18:51:04.108550+00:00`
+- generated_at: `2026-09-02T22:44:07.808066+00:00`
 - overall_decision: `防守`
-- agency_quality_gate: `谨慎通过`
+- agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
@@ -14,7 +14,6 @@
 - 市场路径偏防守，个股信号必须降级处理。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
-- Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ## Agent Findings
 
@@ -33,16 +32,16 @@
 
 ### 预期差代理
 
-- status: `warn`
+- status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=54.27; min_top5_gap=50.82; confirmed_signal_count=2
+- warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=51.7; avg_execution=62.01; avg_risk=12.0
+- evidence: avg_payoff=59.46; avg_execution=57.68; avg_risk=23.0
 
 ### 当前价确认代理
 
@@ -58,13 +57,12 @@
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
-- warning: Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ### 验证代理
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=1372; leaderboard=validated
+- evidence: validation=early_evidence; completed=1398; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -85,8 +83,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AMD | 可观察候选 | 共振 76.12; 预期差 58; 赔率 50.91; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | ARM | 可观察候选 | 共振 74.52; 预期差 58; 赔率 49.28; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | VST | 可观察候选 | 共振 76.52; 预期差 58; 赔率 54.91; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | KLAC | 可观察候选 | 共振 77.19; 预期差 58; 赔率 55.13; 风险 28.5; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | TSM | 可观察候选 | 共振 62.42; 预期差 54; 赔率 65.74; 风险 28.5; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | OKLO | 可观察候选 | 共振 68.96; 预期差 50.82; 赔率 57.5; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
