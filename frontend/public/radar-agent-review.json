@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-04T00:23:52.740556+00:00",
+  "generated_at": "2026-09-04T01:12:05.131112+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,11 +11,11 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 30.79,
-    "avg_top5_confluence_score": 67.96,
+    "avg_top5_elasticity_score": 31.05,
+    "avg_top5_confluence_score": 68.66,
     "avg_top5_expectation_gap_score": 54.1,
-    "avg_top5_payoff_quality_score": 59.98,
-    "avg_top5_execution_quality_score": 60.27,
+    "avg_top5_payoff_quality_score": 60.03,
+    "avg_top5_execution_quality_score": 60.55,
     "avg_top5_risk_score": 16.4,
     "min_top5_confluence_score": 65.42,
     "min_top5_expectation_gap_score": 50.29,
@@ -30,7 +30,7 @@
     "top10_proxy_squeeze_count": 3,
     "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
-    "top10_quote_missing_count": 1,
+    "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 1,
     "top10_signal_partial_count": 2,
     "top10_signal_blocked_count": 0
@@ -66,14 +66,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=59.98; avg_execution=60.27; avg_risk=16.4",
+      "evidence": "avg_payoff=60.03; avg_execution=60.55; avg_risk=16.4",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=1",
+      "evidence": "confirming=0; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -150,14 +150,13 @@
       "ticker": "UNH",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 69.32; 预期差 58; 赔率 55.74; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 71.43; 预期差 58; 赔率 55.89; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 403.6566,
       "invalidation": 383.83,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "当前价缺失"
+        "精准闸门未通过"
       ]
     }
   ],

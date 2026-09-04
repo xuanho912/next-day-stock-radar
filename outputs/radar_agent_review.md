@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-04T00:23:52.740556+00:00`
+- generated_at: `2026-09-04T01:12:05.131112+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -44,13 +44,13 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=59.98; avg_execution=60.27; avg_risk=16.4
+- evidence: avg_payoff=60.03; avg_execution=60.55; avg_risk=16.4
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=1
+- evidence: confirming=0; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
@@ -89,6 +89,6 @@
 | ---: | --- | --- | --- | --- |
 | 1 | TSM | 可观察候选 | 共振 65.42; 预期差 54; 赔率 66.54; 风险 25.2; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | OKLO | 可观察候选 | 共振 69.13; 预期差 50.29; 赔率 57.65; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | UNH | 可观察候选 | 共振 69.32; 预期差 58; 赔率 55.74; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 当前价缺失 |
+| 3 | UNH | 可观察候选 | 共振 71.43; 预期差 58; 赔率 55.89; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
