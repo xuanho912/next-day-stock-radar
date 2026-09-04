@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-04T16:46:33.589589+00:00`
+- generated_at: `2026-09-04T17:28:15.299615+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -40,7 +40,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=63.98; avg_execution=73.57; avg_risk=4.4
+- evidence: avg_payoff=64.05; avg_execution=73.92; avg_risk=4.4
 
 ### 当前价确认代理
 
@@ -82,7 +82,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | JPM | 可观察候选 | 共振 76.98; 预期差 58; 赔率 65.55; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | JPM | 可观察候选 | 共振 77.01; 预期差 58; 赔率 65.74; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | TSM | 可观察候选 | 共振 76.75; 预期差 54; 赔率 63.79; 风险 13.2; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | AVGO | 可观察候选 | 共振 78.49; 预期差 73.47; 赔率 62.61; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
