@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-08T18:51:22.809134+00:00",
+  "generated_at": "2026-09-08T22:48:22.570094+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,14 +11,14 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 32.55,
-    "avg_top5_confluence_score": 73.35,
-    "avg_top5_expectation_gap_score": 60.68,
-    "avg_top5_payoff_quality_score": 57.69,
-    "avg_top5_execution_quality_score": 60.63,
-    "avg_top5_risk_score": 4.4,
-    "min_top5_confluence_score": 67.0,
-    "min_top5_expectation_gap_score": 54.0,
+    "avg_top5_elasticity_score": 27.38,
+    "avg_top5_confluence_score": 73.84,
+    "avg_top5_expectation_gap_score": 69.89,
+    "avg_top5_payoff_quality_score": 68.43,
+    "avg_top5_execution_quality_score": 66.55,
+    "avg_top5_risk_score": 9.17,
+    "min_top5_confluence_score": 63.0,
+    "min_top5_expectation_gap_score": 52.91,
     "top_sector": "Consumer Internet",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
@@ -31,8 +31,8 @@
     "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 1,
-    "top10_signal_partial_count": 1,
+    "top10_signal_confirmed_count": 2,
+    "top10_signal_partial_count": 0,
     "top10_signal_blocked_count": 1
   },
   "agent_findings": [
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=60.68; min_top5_gap=54.0; confirmed_signal_count=1",
+      "evidence": "avg_top5_gap=69.89; min_top5_gap=52.91; confirmed_signal_count=2",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=57.69; avg_execution=60.63; avg_risk=4.4",
+      "evidence": "avg_payoff=68.43; avg_execution=66.55; avg_risk=9.17",
       "warnings": []
     },
     {
@@ -91,7 +91,7 @@
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=1450; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=1474; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -120,8 +120,8 @@
       "ticker": "AMZN",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.7; 预期差 58; 赔率 63.48; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 261.1644,
+      "key_check": "共振 76.53; 预期差 58; 赔率 62.73; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 259.6073,
       "invalidation": 251.93,
       "warnings": [
         "历史相似样本不足",
@@ -131,31 +131,32 @@
     },
     {
       "rank": 2,
-      "ticker": "AVGO",
+      "ticker": "UNH",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 67; 预期差 70.03; 赔率 60.7; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 361.9178,
-      "invalidation": 342.33,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：blocked"
-      ]
-    },
-    {
-      "rank": 3,
-      "ticker": "BABA",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 76.35; 预期差 54; 赔率 48.9; 风险 13.2; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 114.539,
-      "invalidation": 109.67,
+      "key_check": "共振 82; 预期差 98.77; 赔率 71.12; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 404.8648,
+      "invalidation": 383.83,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "GOOGL",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 63; 预期差 52.91; 赔率 71.44; 风险 27.5; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 341.7436,
+      "invalidation": 332.2695,
+      "warnings": [
+        "风险标记：news_reversal_or_event_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
       ]
     }
   ],
