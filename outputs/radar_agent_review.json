@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-08T06:18:44.346280+00:00",
+  "generated_at": "2026-09-08T17:07:20.301730+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "观察",
@@ -11,16 +11,16 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 25.24,
-    "avg_top5_confluence_score": 68.78,
-    "avg_top5_expectation_gap_score": 63.07,
-    "avg_top5_payoff_quality_score": 57.11,
-    "avg_top5_execution_quality_score": 59.17,
-    "avg_top5_risk_score": 8.53,
-    "min_top5_confluence_score": 63.0,
-    "min_top5_expectation_gap_score": 49.26,
+    "avg_top5_elasticity_score": 44.54,
+    "avg_top5_confluence_score": 70.57,
+    "avg_top5_expectation_gap_score": 75.81,
+    "avg_top5_payoff_quality_score": 63.63,
+    "avg_top5_execution_quality_score": 68.48,
+    "avg_top5_risk_score": 0.0,
+    "min_top5_confluence_score": 67.0,
+    "min_top5_expectation_gap_score": 58.0,
     "top_sector": "AI / Semiconductors",
-    "top_sector_count": 1,
+    "top_sector_count": 2,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -28,12 +28,12 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 0,
+    "top10_quote_confirming_count": 1,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 2
+    "top10_signal_confirmed_count": 2,
+    "top10_signal_partial_count": 0,
+    "top10_signal_blocked_count": 1
   },
   "agent_findings": [
     {
@@ -49,30 +49,28 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=AI / Semiconductors(2); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
-      "status": "warn",
+      "status": "pass",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=63.07; min_top5_gap=49.26; confirmed_signal_count=0",
-      "warnings": [
-        "Top 5 平均预期差尚可，但最低预期差偏弱。"
-      ]
+      "evidence": "avg_top5_gap=75.81; min_top5_gap=58.0; confirmed_signal_count=2",
+      "warnings": []
     },
     {
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=57.11; avg_execution=59.17; avg_risk=8.53",
+      "evidence": "avg_payoff=63.63; avg_execution=68.48; avg_risk=0",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=0",
+      "evidence": "confirming=1; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -84,8 +82,7 @@
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。",
-        "Top 10 没有真实共振候选，只能观察，不能进攻。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。"
       ]
     },
     {
@@ -118,10 +115,24 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
+      "ticker": "AMZN",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 76.7; 预期差 58; 赔率 63.48; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 261.1644,
+      "invalidation": 251.93,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过"
+      ]
+    },
+    {
+      "rank": 2,
       "ticker": "AVGO",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 67; 预期差 85.95; 赔率 60.27; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 67; 预期差 70.03; 赔率 60.7; 风险 0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 361.9178,
       "invalidation": 342.33,
       "warnings": [
@@ -132,28 +143,13 @@
       ]
     },
     {
-      "rank": 2,
-      "ticker": "AMZN",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 54; 赔率 62.17; 风险 12.38; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 261.1644,
-      "invalidation": 251.93,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足"
-      ]
-    },
-    {
       "rank": 3,
-      "ticker": "BABA",
+      "ticker": "TSM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.35; 预期差 49.26; 赔率 48.9; 风险 13.2; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 114.539,
-      "invalidation": 109.67,
+      "key_check": "共振 68; 预期差 99.4; 赔率 66.71; 风险 0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 433.4033,
+      "invalidation": 405.15,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -165,8 +161,7 @@
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "强优势候选数量不足，不能强行进攻。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。",
-    "Top 10 没有真实共振候选，只能观察，不能进攻。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
