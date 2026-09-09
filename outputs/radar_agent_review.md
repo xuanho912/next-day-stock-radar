@@ -2,15 +2,17 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-08T22:48:22.570094+00:00`
+- generated_at: `2026-09-09T00:36:33.039239+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
 
 ## Hard Warnings
 
+- 存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。
 - 逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。
 - 强优势候选数量不足，不能强行进攻。
+- 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -21,6 +23,7 @@
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
 - evidence: market_state=neutral; freshness=partial_fallback; strong_edge_count=0
+- warning: 存在数据新鲜度或降级警告，需要盘前再次刷新确认。
 - warning: 强优势候选数量不足，不能强行进攻。
 
 ### 板块主线代理
@@ -33,14 +36,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=69.89; min_top5_gap=52.91; confirmed_signal_count=2
+- evidence: avg_top5_gap=60.68; min_top5_gap=54.0; confirmed_signal_count=1
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=68.43; avg_execution=66.55; avg_risk=9.17
+- evidence: avg_payoff=57.37; avg_execution=60.93; avg_risk=2.99
 
 ### 当前价确认代理
 
@@ -54,6 +57,7 @@
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
+- warning: 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
 
@@ -82,8 +86,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AMZN | 可观察候选 | 共振 76.53; 预期差 58; 赔率 62.73; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | UNH | 可观察候选 | 共振 82; 预期差 98.77; 赔率 71.12; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | GOOGL | 可观察候选 | 共振 63; 预期差 52.91; 赔率 71.44; 风险 27.5; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 1 | AMZN | 可观察候选 | 共振 76.14; 预期差 58; 赔率 61.69; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | AVGO | 可观察候选 | 共振 67; 预期差 70.03; 赔率 60.7; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 3 | BABA | 可观察候选 | 共振 76.54; 预期差 54; 赔率 49.72; 风险 8.98; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
