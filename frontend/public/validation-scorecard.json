@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-09-10T17:34:49.487733+00:00",
+  "generated_at": "2026-09-10T18:36:45.136838+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 27,
+  "pending_forecasts": 29,
   "completed_next_day_forecasts": 1501,
   "baseline": {
-    "total_forecasts": 1528,
-    "pending_forecasts": 27,
+    "total_forecasts": 1530,
+    "pending_forecasts": 29,
     "completed_next_day_forecasts": 1501,
     "top_10_avg_next_day_volatility": 0.114599,
     "top_10_next_day_direction_hit_rate": 0.132399,
@@ -38,8 +38,8 @@
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 1529,
-    "pending_forecasts": 27,
+    "total_forecasts": 1531,
+    "pending_forecasts": 29,
     "completed_next_day_forecasts": 1502,
     "top_10_avg_next_day_volatility": 0.114926,
     "top_10_next_day_direction_hit_rate": 0.10625,
@@ -112,8 +112,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "defense": {
-      "total_forecasts": 504,
-      "pending_forecasts": 27,
+      "total_forecasts": 506,
+      "pending_forecasts": 29,
       "completed_next_day_forecasts": 477,
       "top_10_avg_next_day_volatility": 0.261195,
       "top_10_next_day_direction_hit_rate": 0.040816,
@@ -178,8 +178,8 @@
   },
   "by_sector": {
     "AI / Semiconductors": {
-      "total_forecasts": 277,
-      "pending_forecasts": 7,
+      "total_forecasts": 278,
+      "pending_forecasts": 8,
       "completed_next_day_forecasts": 270,
       "top_10_avg_next_day_volatility": 0.281287,
       "top_10_next_day_direction_hit_rate": 0.210526,
@@ -498,8 +498,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Consumer Internet": {
-      "total_forecasts": 62,
-      "pending_forecasts": 1,
+      "total_forecasts": 63,
+      "pending_forecasts": 2,
       "completed_next_day_forecasts": 61,
       "top_10_avg_next_day_volatility": 0.037706,
       "top_10_next_day_direction_hit_rate": 0.037037,
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 1301,
-      "pending_forecasts": 26,
+      "total_forecasts": 1303,
+      "pending_forecasts": 28,
       "completed_next_day_forecasts": 1275,
       "top_10_avg_next_day_volatility": 0.051454,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 1343,
-      "pending_forecasts": 26,
+      "total_forecasts": 1345,
+      "pending_forecasts": 28,
       "completed_next_day_forecasts": 1317,
       "top_10_avg_next_day_volatility": 0.136818,
       "top_10_next_day_direction_hit_rate": 0.024742,
