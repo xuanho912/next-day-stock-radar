@@ -1,10 +1,10 @@
 # 数据质量报告
 
 - score: `66`
-- latest_data_date: `2026-09-09`
+- latest_data_date: `2026-09-08`
 - expected_latest_trading_date: `2026-09-09`
 - data_freshness_status: `partial_fallback`
-- stale_warning: `False`
+- stale_warning: `True`
 - candidate_count: `62`
 
 ## 数据源状态
