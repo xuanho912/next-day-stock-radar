@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-10T22:41:03.340318+00:00",
+  "generated_at": "2026-09-11T00:32:38.537284+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 25.47,
-    "avg_top5_confluence_score": 71.57,
-    "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 64.51,
-    "avg_top5_execution_quality_score": 63.77,
-    "avg_top5_risk_score": 12.0,
-    "min_top5_confluence_score": 63.0,
-    "min_top5_expectation_gap_score": 58.0,
-    "top_sector": "Mega Cap Tech",
+    "avg_top5_elasticity_score": 24.51,
+    "avg_top5_confluence_score": 66.13,
+    "avg_top5_expectation_gap_score": 61.4,
+    "avg_top5_payoff_quality_score": 65.68,
+    "avg_top5_execution_quality_score": 63.24,
+    "avg_top5_risk_score": 15.67,
+    "min_top5_confluence_score": 51.9,
+    "min_top5_expectation_gap_score": 54.0,
+    "top_sector": "Financial Leaders",
     "top_sector_count": 2,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -28,7 +28,7 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 0,
+    "top10_quote_confirming_count": 1,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
@@ -42,6 +42,7 @@
       "conclusion": "检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。",
       "evidence": "market_state=defense; freshness=partial_fallback; strong_edge_count=0",
       "warnings": [
+        "存在数据新鲜度或降级警告，需要盘前再次刷新确认。",
         "市场路径偏防守，个股信号必须降级处理。"
       ]
     },
@@ -49,14 +50,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Mega Cap Tech(2); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Financial Leaders(2); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=61.4; min_top5_gap=54.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,14 +66,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=64.51; avg_execution=63.77; avg_risk=12.0",
+      "evidence": "avg_payoff=65.68; avg_execution=63.24; avg_risk=15.67",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=0",
+      "evidence": "confirming=1; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -83,6 +84,7 @@
       "conclusion": "默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。",
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
+        "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
         "部分历史相似样本不足，不能把相似样本结论当作验证。",
         "Top 10 没有真实共振候选，只能观察，不能进攻。"
@@ -118,12 +120,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "GOOGL",
+      "ticker": "JPM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 75.63; 预期差 58; 赔率 74.0; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 335.9603,
-      "invalidation": 326.6132,
+      "key_check": "共振 69.5; 预期差 54; 赔率 73.56; 风险 23.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 358.2571,
+      "invalidation": 348.3252,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -132,12 +134,12 @@
     },
     {
       "rank": 2,
-      "ticker": "MSFT",
+      "ticker": "AAPL",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.09; 预期差 58; 赔率 61.85; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 497.3944,
-      "invalidation": 477.15,
+      "key_check": "共振 77; 预期差 72.19; 赔率 56.88; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 318.6022,
+      "invalidation": 300.57,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -146,24 +148,26 @@
     },
     {
       "rank": 3,
-      "ticker": "NFLX",
+      "ticker": "V",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 58; 赔率 57.67; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 76.8263,
-      "invalidation": 73.57,
+      "key_check": "共振 51.9; 预期差 58; 赔率 66.59; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 371.0639,
+      "invalidation": 358.05,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认"
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
       ]
     }
   ],
   "hard_warnings": [
+    "存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。",
     "市场路径偏防守，所有个股等级应自动压低。",
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "市场路径偏防守，个股信号必须降级处理。",
+    "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
     "部分历史相似样本不足，不能把相似样本结论当作验证。",
     "Top 10 没有真实共振候选，只能观察，不能进攻。"
