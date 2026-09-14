@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-14T19:53:39.689400+00:00",
+  "generated_at": "2026-09-14T23:14:25.948181+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,16 +11,16 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 29.89,
-    "avg_top5_confluence_score": 70.5,
-    "avg_top5_expectation_gap_score": 66.45,
-    "avg_top5_payoff_quality_score": 60.01,
-    "avg_top5_execution_quality_score": 67.58,
-    "avg_top5_risk_score": 15.67,
-    "min_top5_confluence_score": 63.0,
-    "min_top5_expectation_gap_score": 54.0,
-    "top_sector": "Cloud Software",
-    "top_sector_count": 1,
+    "avg_top5_elasticity_score": 27.21,
+    "avg_top5_confluence_score": 76.66,
+    "avg_top5_expectation_gap_score": 58.0,
+    "avg_top5_payoff_quality_score": 62.37,
+    "avg_top5_execution_quality_score": 65.97,
+    "avg_top5_risk_score": 12.0,
+    "min_top5_confluence_score": 75.73,
+    "min_top5_expectation_gap_score": 58.0,
+    "top_sector": "Financial Leaders",
+    "top_sector_count": 2,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -28,12 +28,12 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 1,
+    "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 2,
-    "top10_signal_blocked_count": 1
+    "top10_signal_partial_count": 3,
+    "top10_signal_blocked_count": 0
   },
   "agent_findings": [
     {
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Cloud Software(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Financial Leaders(2); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=66.45; min_top5_gap=54.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,14 +65,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=60.01; avg_execution=67.58; avg_risk=15.67",
+      "evidence": "avg_payoff=62.37; avg_execution=65.97; avg_risk=12.0",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=1; failed=0; missing=0",
+      "evidence": "confirming=0; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -92,7 +92,7 @@
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=1557; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=1582; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -118,12 +118,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "ADBE",
+      "ticker": "COST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 78.5; 预期差 87.34; 赔率 57.59; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 255.2933,
-      "invalidation": 247.19,
+      "key_check": "共振 77.65; 预期差 58; 赔率 66.57; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 928.0991,
+      "invalidation": 898.43,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -135,9 +135,9 @@
       "ticker": "MA",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 70.0; 预期差 58; 赔率 64.12; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 574.8819,
-      "invalidation": 557.7,
+      "key_check": "共振 75.73; 预期差 58; 赔率 66.34; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 580.1642,
+      "invalidation": 561.26,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -146,17 +146,16 @@
     },
     {
       "rank": 3,
-      "ticker": "NFLX",
+      "ticker": "V",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 54; 赔率 58.31; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 78.2291,
-      "invalidation": 75.03,
+      "key_check": "共振 76.59; 预期差 58; 赔率 54.19; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 379.0328,
+      "invalidation": 358.05,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 预期差不足"
+        "精准闸门未通过"
       ]
     }
   ],
