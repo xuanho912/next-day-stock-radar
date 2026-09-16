@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-09-16T18:03:03.491060+00:00",
+  "generated_at": "2026-09-16T18:59:38.463560+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 27,
+  "pending_forecasts": 30,
   "completed_next_day_forecasts": 1607,
   "baseline": {
-    "total_forecasts": 1634,
-    "pending_forecasts": 27,
+    "total_forecasts": 1637,
+    "pending_forecasts": 30,
     "completed_next_day_forecasts": 1607,
     "top_10_avg_next_day_volatility": 0.109861,
     "top_10_next_day_direction_hit_rate": 0.124633,
@@ -38,8 +38,8 @@
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 1635,
-    "pending_forecasts": 27,
+    "total_forecasts": 1638,
+    "pending_forecasts": 30,
     "completed_next_day_forecasts": 1608,
     "top_10_avg_next_day_volatility": 0.110154,
     "top_10_next_day_direction_hit_rate": 0.1,
@@ -112,8 +112,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "defense": {
-      "total_forecasts": 610,
-      "pending_forecasts": 27,
+      "total_forecasts": 613,
+      "pending_forecasts": 30,
       "completed_next_day_forecasts": 583,
       "top_10_avg_next_day_volatility": 0.222654,
       "top_10_next_day_direction_hit_rate": 0.033898,
@@ -178,8 +178,8 @@
   },
   "by_sector": {
     "AI / Semiconductors": {
-      "total_forecasts": 293,
-      "pending_forecasts": 1,
+      "total_forecasts": 294,
+      "pending_forecasts": 2,
       "completed_next_day_forecasts": 292,
       "top_10_avg_next_day_volatility": 0.272314,
       "top_10_next_day_direction_hit_rate": 0.202899,
@@ -466,8 +466,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Cloud Software": {
-      "total_forecasts": 72,
-      "pending_forecasts": 1,
+      "total_forecasts": 73,
+      "pending_forecasts": 2,
       "completed_next_day_forecasts": 71,
       "top_10_avg_next_day_volatility": 0.069988,
       "top_10_next_day_direction_hit_rate": 0.071429,
@@ -754,8 +754,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Mega Cap Tech": {
-      "total_forecasts": 89,
-      "pending_forecasts": 1,
+      "total_forecasts": 90,
+      "pending_forecasts": 2,
       "completed_next_day_forecasts": 88,
       "top_10_avg_next_day_volatility": 0.035751,
       "top_10_next_day_direction_hit_rate": 0.162162,
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 1406,
-      "pending_forecasts": 27,
+      "total_forecasts": 1409,
+      "pending_forecasts": 30,
       "completed_next_day_forecasts": 1379,
       "top_10_avg_next_day_volatility": 0.050081,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 1448,
-      "pending_forecasts": 27,
+      "total_forecasts": 1451,
+      "pending_forecasts": 30,
       "completed_next_day_forecasts": 1421,
       "top_10_avg_next_day_volatility": 0.129397,
       "top_10_next_day_direction_hit_rate": 0.022945,
