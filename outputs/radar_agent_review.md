@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-16T18:59:38.607582+00:00`
+- generated_at: `2026-09-16T23:04:28.535678+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -14,7 +14,6 @@
 - 市场路径偏防守，个股信号必须降级处理。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
-- Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ## Agent Findings
 
@@ -29,20 +28,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Financial Leaders(2); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Cloud Software(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=55.33; min_top5_gap=54.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=1
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=56.49; avg_execution=66.85; avg_risk=20.25
+- evidence: avg_payoff=55.53; avg_execution=58.06; avg_risk=15.67
 
 ### 当前价确认代理
 
@@ -58,13 +57,12 @@
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
-- warning: Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ### 验证代理
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=1607; leaderboard=validated
+- evidence: validation=early_evidence; completed=1637; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -85,8 +83,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | V | 可观察候选 | 共振 74.82; 预期差 54; 赔率 51.58; 风险 24.38; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | MA | 可观察候选 | 共振 62.36; 预期差 54; 赔率 73.5; 风险 24.38; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
-| 3 | MRK | 可观察候选 | 共振 68; 预期差 58; 赔率 44.4; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | ORCL | 可观察候选 | 共振 68; 预期差 58; 赔率 47.75; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | JPM | 可观察候选 | 共振 54.07; 预期差 58; 赔率 72.16; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 3 | PLTR | 可观察候选 | 共振 63; 预期差 54; 赔率 46.68; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 赔率质量不足 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
