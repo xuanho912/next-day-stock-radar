@@ -2,19 +2,20 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-17T22:57:15.714792+00:00`
+- generated_at: `2026-09-18T00:47:21.073633+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
 
+- 存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。
 - 市场路径偏防守，所有个股等级应自动压低。
 - 逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。
 - 市场路径偏防守，个股信号必须降级处理。
+- 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
-- Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ## Agent Findings
 
@@ -23,32 +24,33 @@
 - status: `warn`
 - conclusion: 检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。
 - evidence: market_state=defense; freshness=partial_fallback; strong_edge_count=0
+- warning: 存在数据新鲜度或降级警告，需要盘前再次刷新确认。
 - warning: 市场路径偏防守，个股信号必须降级处理。
 
 ### 板块主线代理
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Healthcare Quality(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=1
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=59.92; avg_execution=55.99; avg_risk=14.93
+- evidence: avg_payoff=62.47; avg_execution=55.76; avg_risk=12.0
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=0
+- evidence: confirming=2; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
@@ -56,9 +58,9 @@
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
+- warning: 页面必须显示 stale warning；不能把降级数据伪装成今日预测。
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
-- warning: Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ### 验证代理
 
@@ -85,8 +87,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | MRK | 可观察候选 | 共振 76.45; 预期差 58; 赔率 61.11; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | AMZN | 可观察候选 | 共振 67; 预期差 58; 赔率 65.45; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
-| 3 | ASML | 可观察候选 | 共振 67; 预期差 54; 赔率 53.21; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 1 | TSM | 可观察候选 | 共振 71.21; 预期差 58; 赔率 60.15; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | ORCL | 可观察候选 | 共振 76.74; 预期差 58; 赔率 55.09; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | JPM | 可观察候选 | 共振 54.07; 预期差 58; 赔率 72.16; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
