@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-18T01:24:51.069402+00:00",
+  "generated_at": "2026-09-18T06:22:28.740708+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,16 +11,16 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 32.78,
-    "avg_top5_confluence_score": 67.34,
+    "avg_top5_elasticity_score": 26.66,
+    "avg_top5_confluence_score": 73.34,
     "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 62.47,
-    "avg_top5_execution_quality_score": 55.76,
-    "avg_top5_risk_score": 12.0,
-    "min_top5_confluence_score": 54.07,
+    "avg_top5_payoff_quality_score": 58.57,
+    "avg_top5_execution_quality_score": 62.29,
+    "avg_top5_risk_score": 18.42,
+    "min_top5_confluence_score": 67.05,
     "min_top5_expectation_gap_score": 58.0,
-    "top_sector": "AI / Semiconductors",
-    "top_sector_count": 1,
+    "top_sector": "Healthcare Quality",
+    "top_sector_count": 2,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -28,12 +28,12 @@
     "top10_high_volatility_risk_count": 0,
     "top10_low_sample_warning_count": 3,
     "top10_proxy_squeeze_count": 3,
-    "top10_quote_confirming_count": 2,
+    "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 1,
-    "top10_signal_partial_count": 1,
-    "top10_signal_blocked_count": 1
+    "top10_signal_confirmed_count": 0,
+    "top10_signal_partial_count": 3,
+    "top10_signal_blocked_count": 0
   },
   "agent_findings": [
     {
@@ -42,7 +42,6 @@
       "conclusion": "检查 SPY/QQQ/IWM/VIX 与数据新鲜度是否支持次日机会筛选。",
       "evidence": "market_state=defense; freshness=partial_fallback; strong_edge_count=0",
       "warnings": [
-        "存在数据新鲜度或降级警告，需要盘前再次刷新确认。",
         "市场路径偏防守，个股信号必须降级处理。"
       ]
     },
@@ -50,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Healthcare Quality(2); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=1",
+      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -66,14 +65,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=62.47; avg_execution=55.76; avg_risk=12.0",
+      "evidence": "avg_payoff=58.57; avg_execution=62.29; avg_risk=18.42",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=2; failed=0; missing=0",
+      "evidence": "confirming=0; failed=0; missing=0",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -84,9 +83,9 @@
       "conclusion": "默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。",
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
-        "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。",
+        "Top 10 没有真实共振候选，只能观察，不能进攻。"
       ]
     },
     {
@@ -119,12 +118,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "TSM",
+      "ticker": "MRK",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 71.21; 预期差 58; 赔率 60.15; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 422.071,
-      "invalidation": 405.15,
+      "key_check": "共振 77.08; 预期差 58; 赔率 61.15; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 148.6253,
+      "invalidation": 142.32,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -133,13 +132,14 @@
     },
     {
       "rank": 2,
-      "ticker": "ORCL",
+      "ticker": "COST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 76.74; 预期差 58; 赔率 55.09; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed",
-      "trigger": 145.095,
-      "invalidation": 137.43,
+      "key_check": "共振 75.89; 预期差 58; 赔率 56.05; 风险 31.25; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 902.8693,
+      "invalidation": 877.8393,
       "warnings": [
+        "风险标记：news_reversal_or_event_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过"
@@ -147,28 +147,26 @@
     },
     {
       "rank": 3,
-      "ticker": "JPM",
+      "ticker": "LLY",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 54.07; 预期差 58; 赔率 72.16; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 352.4092,
-      "invalidation": 342.6395,
+      "key_check": "共振 67.05; 预期差 58; 赔率 58.5; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 1164.2075,
+      "invalidation": 1113.29,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
+        "精准闸门未通过"
       ]
     }
   ],
   "hard_warnings": [
-    "存在 stale warning 或数据源降级，页面不得假装是完全新鲜数据。",
     "市场路径偏防守，所有个股等级应自动压低。",
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "市场路径偏防守，个股信号必须降级处理。",
-    "页面必须显示 stale warning；不能把降级数据伪装成今日预测。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。",
+    "Top 10 没有真实共振候选，只能观察，不能进攻。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
