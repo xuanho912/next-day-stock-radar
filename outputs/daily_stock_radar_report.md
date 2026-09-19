@@ -1,6 +1,6 @@
 # 次日高弹性股票雷达日报
 
-- generated_at: `2026-09-19T01:28:15.407715+00:00`
+- generated_at: `2026-09-19T06:20:27.306863+00:00`
 - latest_data_date: `2026-09-18`
 - expected_latest_trading_date: `2026-09-18`
 - data_freshness_status: `partial_fallback`
