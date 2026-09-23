@@ -2,7 +2,7 @@
 
 - validation_status: `early_evidence`
 - pending_forecasts: `26`
-- completed_next_day_forecasts: `1747`
-- top5_hit_rate: `0.07967`
-- avg_trigger_condition_return: `0.045499`
-- avg_max_drawdown: `-0.002403`
+- completed_next_day_forecasts: `1767`
+- top5_hit_rate: `0.079235`
+- avg_trigger_condition_return: `0.045087`
+- avg_max_drawdown: `-0.002605`
