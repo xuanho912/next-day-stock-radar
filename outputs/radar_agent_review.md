@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-23T17:45:41.710155+00:00`
+- generated_at: `2026-09-23T18:19:17.328892+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -43,7 +43,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=60.9; avg_execution=68.75; avg_risk=0
+- evidence: avg_payoff=60.85; avg_execution=68.48; avg_risk=0
 
 ### 当前价确认代理
 
@@ -88,6 +88,6 @@
 | ---: | --- | --- | --- | --- |
 | 1 | COST | 可观察候选 | 共振 76.64; 预期差 58; 赔率 63.08; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | MSFT | 可观察候选 | 共振 77; 预期差 78.32; 赔率 65.64; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | CEG | 可观察候选 | 共振 76.88; 预期差 58; 赔率 53.99; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | CEG | 可观察候选 | 共振 76.86; 预期差 58; 赔率 53.84; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
