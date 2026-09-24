@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-09-24T06:34:32.549875+00:00",
+  "generated_at": "2026-09-24T17:47:08.294389+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 33,
+  "pending_forecasts": 36,
   "completed_next_day_forecasts": 1767,
   "baseline": {
-    "total_forecasts": 1800,
-    "pending_forecasts": 33,
+    "total_forecasts": 1803,
+    "pending_forecasts": 36,
     "completed_next_day_forecasts": 1767,
     "top_10_avg_next_day_volatility": 0.103793,
     "top_10_next_day_direction_hit_rate": 0.136,
@@ -38,8 +38,8 @@
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 1801,
-    "pending_forecasts": 33,
+    "total_forecasts": 1804,
+    "pending_forecasts": 36,
     "completed_next_day_forecasts": 1768,
     "top_10_avg_next_day_volatility": 0.104985,
     "top_10_next_day_direction_hit_rate": 0.11245,
@@ -144,8 +144,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "neutral": {
-      "total_forecasts": 1038,
-      "pending_forecasts": 33,
+      "total_forecasts": 1041,
+      "pending_forecasts": 36,
       "completed_next_day_forecasts": 1005,
       "top_10_avg_next_day_volatility": 0.047912,
       "top_10_next_day_direction_hit_rate": 0.172727,
@@ -690,8 +690,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Healthcare Quality": {
-      "total_forecasts": 92,
-      "pending_forecasts": 3,
+      "total_forecasts": 94,
+      "pending_forecasts": 5,
       "completed_next_day_forecasts": 89,
       "top_10_avg_next_day_volatility": 0.030711,
       "top_10_next_day_direction_hit_rate": 0.116279,
@@ -882,8 +882,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "Space / High Beta": {
-      "total_forecasts": 50,
-      "pending_forecasts": 0,
+      "total_forecasts": 51,
+      "pending_forecasts": 1,
       "completed_next_day_forecasts": 50,
       "top_10_avg_next_day_volatility": 0.093675,
       "top_10_next_day_direction_hit_rate": 0.090909,
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 1517,
-      "pending_forecasts": 22,
+      "total_forecasts": 1519,
+      "pending_forecasts": 24,
       "completed_next_day_forecasts": 1495,
       "top_10_avg_next_day_volatility": 0.049999,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1108,8 +1108,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "pullback_reversal_setup": {
-      "total_forecasts": 189,
-      "pending_forecasts": 11,
+      "total_forecasts": 190,
+      "pending_forecasts": 12,
       "completed_next_day_forecasts": 178,
       "top_10_avg_next_day_volatility": 0.040228,
       "top_10_next_day_direction_hit_rate": 0.484663,
@@ -1174,8 +1174,8 @@
   },
   "by_edge_status": {
     "MODERATE_EDGE": {
-      "total_forecasts": 109,
-      "pending_forecasts": 8,
+      "total_forecasts": 110,
+      "pending_forecasts": 9,
       "completed_next_day_forecasts": 101,
       "top_10_avg_next_day_volatility": 0.039402,
       "top_10_next_day_direction_hit_rate": 0.424242,
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 1559,
-      "pending_forecasts": 22,
+      "total_forecasts": 1561,
+      "pending_forecasts": 24,
       "completed_next_day_forecasts": 1537,
       "top_10_avg_next_day_volatility": 0.124019,
       "top_10_next_day_direction_hit_rate": 0.021352,
