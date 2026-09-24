@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-24T01:36:19.431185+00:00`
+- generated_at: `2026-09-24T06:34:32.734327+00:00`
 - overall_decision: `观察`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `只观察候选，不强行追逐；等待盘前刷新和触发确认。`
@@ -13,6 +13,7 @@
 - 强优势候选数量不足，不能强行进攻。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
+- Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ## Agent Findings
 
@@ -33,14 +34,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=64.87; min_top5_gap=58.0; confirmed_signal_count=1
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=63.83; avg_execution=60.56; avg_risk=8.17
+- evidence: avg_payoff=58.13; avg_execution=64.53; avg_risk=6.97
 
 ### 当前价确认代理
 
@@ -56,6 +57,7 @@
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
+- warning: Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ### 验证代理
 
@@ -82,8 +84,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | COST | 可观察候选 | 共振 77.73; 预期差 58; 赔率 66.14; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | COST | 可观察候选 | 共振 77.3; 预期差 54; 赔率 65.28; 风险 4.4; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | ADBE | 可观察候选 | 共振 76.15; 预期差 58; 赔率 56.76; 风险 16.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | AMZN | 可观察候选 | 共振 74.56; 预期差 78.61; 赔率 68.59; 风险 8.0; 闸门 不具备高置信优势; 信号 confirmed | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 3 | CEG | 可观察候选 | 共振 76.28; 预期差 58; 赔率 52.36; 风险 0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
