@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-28T20:28:22.808207+00:00`
+- generated_at: `2026-09-28T21:21:05.670597+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -41,7 +41,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=57.22; avg_execution=62.96; avg_risk=15.67
+- evidence: avg_payoff=57.22; avg_execution=62.97; avg_risk=15.67
 
 ### 当前价确认代理
 
@@ -83,8 +83,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | MA | 可观察候选 | 共振 81.51; 预期差 58; 赔率 67.82; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | COST | 可观察候选 | 共振 72.77; 预期差 54; 赔率 51.23; 风险 23.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | MA | 可观察候选 | 共振 81.52; 预期差 58; 赔率 67.82; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | COST | 可观察候选 | 共振 72.78; 预期差 54; 赔率 51.23; 风险 23.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | GOOGL | 可观察候选 | 共振 71.7; 预期差 58; 赔率 52.6; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
