@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-29T02:17:57.829704+00:00`
+- generated_at: `2026-09-29T02:42:51.512045+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -41,7 +41,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=58.73; avg_execution=59.66; avg_risk=21.65
+- evidence: avg_payoff=57.23; avg_execution=63.04; avg_risk=15.67
 
 ### 当前价确认代理
 
@@ -85,6 +85,6 @@
 | ---: | --- | --- | --- | --- |
 | 1 | MA | 可观察候选 | 共振 81.67; 预期差 58; 赔率 67.85; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | COST | 可观察候选 | 共振 75.81; 预期差 58; 赔率 51.23; 风险 23.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | VST | 可观察候选 | 共振 67; 预期差 58; 赔率 57.12; 风险 29.95; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 3 | GOOGL | 可观察候选 | 共振 71.71; 预期差 58; 赔率 52.6; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
