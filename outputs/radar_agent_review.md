@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-09-30T02:18:02.293165+00:00`
+- generated_at: `2026-09-30T07:10:23.885411+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -42,7 +42,7 @@
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=56.74; avg_execution=62.41; avg_risk=16.4
+- evidence: avg_payoff=57.01; avg_execution=62.72; avg_risk=14.99
 
 ### 当前价确认代理
 
@@ -85,7 +85,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | UNH | 可观察候选 | 共振 76.32; 预期差 58; 赔率 58.91; 风险 25.2; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | UNH | 可观察候选 | 共振 76.52; 预期差 58; 赔率 59.73; 风险 20.98; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | COST | 可观察候选 | 共振 77.74; 预期差 58; 赔率 62.24; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | ADBE | 可观察候选 | 共振 72.07; 预期差 58; 赔率 49.06; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
