@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-29T23:49:41.584454+00:00",
+  "generated_at": "2026-09-30T01:33:48.471766+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,13 +11,13 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 28.39,
-    "avg_top5_confluence_score": 75.3,
+    "avg_top5_elasticity_score": 28.42,
+    "avg_top5_confluence_score": 75.38,
     "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 56.73,
-    "avg_top5_execution_quality_score": 62.4,
+    "avg_top5_payoff_quality_score": 56.74,
+    "avg_top5_execution_quality_score": 62.41,
     "avg_top5_risk_score": 16.4,
-    "min_top5_confluence_score": 71.84,
+    "min_top5_confluence_score": 72.07,
     "min_top5_expectation_gap_score": 58.0,
     "top_sector": "Healthcare Quality",
     "top_sector_count": 1,
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=56.73; avg_execution=62.4; avg_risk=16.4",
+      "evidence": "avg_payoff=56.74; avg_execution=62.41; avg_risk=16.4",
       "warnings": []
     },
     {
@@ -135,7 +135,7 @@
       "ticker": "COST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 77.74; 预期差 58; 赔率 62.23; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 77.74; 预期差 58; 赔率 62.24; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 933.8359,
       "invalidation": 883.1,
       "warnings": [
@@ -149,7 +149,7 @@
       "ticker": "ADBE",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 71.84; 预期差 58; 赔率 49.05; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "key_check": "共振 72.07; 预期差 58; 赔率 49.06; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
       "trigger": 235.9116,
       "invalidation": 224.67,
       "warnings": [
