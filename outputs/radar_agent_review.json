@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-09-30T20:10:59.328921+00:00",
+  "generated_at": "2026-10-01T00:00:54.082361+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,15 +11,15 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 25.32,
-    "avg_top5_confluence_score": 71.33,
-    "avg_top5_expectation_gap_score": 56.75,
-    "avg_top5_payoff_quality_score": 52.02,
-    "avg_top5_execution_quality_score": 61.21,
-    "avg_top5_risk_score": 12.0,
-    "min_top5_confluence_score": 62.87,
-    "min_top5_expectation_gap_score": 54.26,
-    "top_sector": "Consumer Quality",
+    "avg_top5_elasticity_score": 34.98,
+    "avg_top5_confluence_score": 73.34,
+    "avg_top5_expectation_gap_score": 70.33,
+    "avg_top5_payoff_quality_score": 54.31,
+    "avg_top5_execution_quality_score": 62.26,
+    "avg_top5_risk_score": 27.96,
+    "min_top5_confluence_score": 68.16,
+    "min_top5_expectation_gap_score": 58.0,
+    "top_sector": "Nuclear / Power",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
@@ -32,8 +32,8 @@
     "top10_quote_failed_count": 0,
     "top10_quote_missing_count": 0,
     "top10_signal_confirmed_count": 0,
-    "top10_signal_partial_count": 2,
-    "top10_signal_blocked_count": 1
+    "top10_signal_partial_count": 3,
+    "top10_signal_blocked_count": 0
   },
   "agent_findings": [
     {
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Consumer Quality(1); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Nuclear / Power(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=56.75; min_top5_gap=54.26; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=70.33; min_top5_gap=58.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=52.02; avg_execution=61.21; avg_risk=12.0",
+      "evidence": "avg_payoff=54.31; avg_execution=62.26; avg_risk=27.96",
       "warnings": []
     },
     {
@@ -92,7 +92,7 @@
       "agent_name": "验证代理",
       "status": "warn",
       "conclusion": "检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。",
-      "evidence": "validation=early_evidence; completed=1876; leaderboard=validated",
+      "evidence": "validation=early_evidence; completed=1903; leaderboard=validated",
       "warnings": [
         "已有早期样本，但还没有达到 30-60 个交易日前向验证标准。"
       ]
@@ -118,12 +118,12 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
-      "ticker": "COST",
+      "ticker": "VST",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 77.48; 预期差 58; 赔率 54.34; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 933.8359,
-      "invalidation": 883.1,
+      "key_check": "共振 77.9; 预期差 77.25; 赔率 59.21; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 139.8833,
+      "invalidation": 134.9,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -132,12 +132,12 @@
     },
     {
       "rank": 2,
-      "ticker": "ADBE",
+      "ticker": "CRM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 73.65; 预期差 58; 赔率 49.36; 风险 12.0; 闸门 不具备高置信优势; 信号 partial",
-      "trigger": 235.9116,
-      "invalidation": 224.67,
+      "key_check": "共振 68.16; 预期差 58; 赔率 50.72; 风险 28.5; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 232.2358,
+      "invalidation": 221.18,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
@@ -149,14 +149,14 @@
       "ticker": "GOOGL",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 62.87; 预期差 54.26; 赔率 52.35; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 344.4959,
+      "key_check": "共振 73.95; 预期差 75.74; 赔率 52.99; 风险 43.38; 闸门 不具备高置信优势; 信号 partial",
+      "trigger": 347.7255,
       "invalidation": 327.74,
       "warnings": [
+        "风险标记：news_reversal_or_event_risk / weak_close_distribution_risk",
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
+        "精准闸门未通过"
       ]
     }
   ],
