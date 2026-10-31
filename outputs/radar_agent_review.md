@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-10-31T01:33:59.464533+00:00`
+- generated_at: `2026-10-31T01:47:19.315658+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -35,14 +35,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=72.79; min_top5_gap=58.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=73.06; min_top5_gap=58.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=60.39; avg_execution=70.31; avg_risk=17.87
+- evidence: avg_payoff=60.67; avg_execution=70.63; avg_risk=16.4
 
 ### 当前价确认代理
 
@@ -86,7 +86,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | MSFT | 可观察候选 | 共振 77.71; 预期差 70.69; 赔率 67.66; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | AAPL | 可观察候选 | 共振 82; 预期差 89.68; 赔率 64.11; 风险 16.4; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | AAPL | 可观察候选 | 共振 82; 预期差 90.48; 赔率 64.96; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 3 | SMCI | 可观察候选 | 共振 75.66; 预期差 58; 赔率 49.39; 风险 25.2; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
