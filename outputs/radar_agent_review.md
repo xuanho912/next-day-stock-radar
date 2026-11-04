@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-04T03:07:49.920520+00:00`
+- generated_at: `2026-11-04T07:49:57.054958+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -29,20 +29,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Mega Cap Tech(2); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(2)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=60.02; min_top5_gap=58.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=64.2; avg_execution=64.38; avg_risk=12.0
+- evidence: avg_payoff=56.61; avg_execution=61.02; avg_risk=21.17
 
 ### 当前价确认代理
 
@@ -85,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | MSFT | 可观察候选 | 共振 63; 预期差 58; 赔率 62.07; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
-| 2 | QCOM | 可观察候选 | 共振 63; 预期差 58; 赔率 57.24; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
-| 3 | AAPL | 可观察候选 | 共振 63; 预期差 64.06; 赔率 73.29; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 |
+| 1 | QCOM | 可观察候选 | 共振 63; 预期差 58; 赔率 57.24; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 2 | MSFT | 可观察候选 | 共振 54.91; 预期差 54; 赔率 58.88; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 3 | NOW | 可观察候选 | 共振 56.03; 预期差 58; 赔率 53.7; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
