@@ -1,6 +1,6 @@
 {
   "version": "top_candidates_v1",
-  "generated_at": "2026-11-04T20:19:45.338949+00:00",
+  "generated_at": "2026-11-04T20:45:18.782881+00:00",
   "model_version": "stock_radar_baseline_v1",
   "candidates": [
     {
@@ -122,7 +122,7 @@
         "passed": false,
         "watch_eligible": true,
         "score": 69.13,
-        "price": 412.83,
+        "price": 413.35,
         "avg_dollar_volume_m": 2409.124,
         "relative_volume": 0.669,
         "risk_reward_ratio": 0.506,
@@ -197,8 +197,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:18+00:00",
-              "current_price": 412.83
+              "quote_timestamp": "2026-11-04T20:44:10+00:00",
+              "current_price": 413.35
             }
           },
           {
@@ -254,14 +254,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 412.83,
-        "current_vs_last_close_pct": 0.02074,
-        "quote_timestamp": "2026-11-04T20:19:18+00:00",
+        "current_price": 413.35,
+        "current_vs_last_close_pct": 0.02203,
+        "quote_timestamp": "2026-11-04T20:44:10+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 412.83,
-      "current_vs_last_close_pct": 0.02074,
+      "current_price": 413.35,
+      "current_vs_last_close_pct": 0.02203,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -316,7 +316,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:19:18+00:00",
+        "quote_timestamp": "2026-11-04T20:44:10+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -403,7 +403,7 @@
         "primary_headline": "UnitedHealth Group (UNH) Draws Breakup Pressure As AI Threat Enters The Story",
         "primary_event_type": "mna_or_strategic_review",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 5.13,
+        "primary_event_age_hours": 5.56,
         "catalyst_type": "mna_or_strategic_review",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -416,7 +416,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=52f5bc1325b047239cb6b008a7a1f2849b60eefac0f81e2ead372a85805dea7e",
             "published_at": "2026-11-04T16:54:01+00:00",
-            "age_hours": 3.43,
+            "age_hours": 3.85,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -427,7 +427,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=37dd04af8d5066a214104a2b23da470e2ffa2871916b44173e7fbed48cfd6de8",
             "published_at": "2026-11-04T15:31:32+00:00",
-            "age_hours": 4.8,
+            "age_hours": 5.23,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -438,7 +438,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a7ffd1938f0c17c3362e92325b19ae740af809d95d3b474d4af343f7841c94d1",
             "published_at": "2026-11-04T15:11:57+00:00",
-            "age_hours": 5.13,
+            "age_hours": 5.56,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -449,7 +449,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=cb98228031e8a6fea53fbb9cb40fa5c599d2bf35275db097a026963f72a51fc9",
             "published_at": "2026-11-04T13:45:19+00:00",
-            "age_hours": 6.57,
+            "age_hours": 7.0,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -460,7 +460,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=00ee65dab5ddce35ec0c0c220ccca4ce6dc9ede22a4d1abc189e5fe314c03e5b",
             "published_at": "2026-11-04T13:00:00+00:00",
-            "age_hours": 7.33,
+            "age_hours": 7.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -471,7 +471,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=aa6ec913f89ea86a73327c58501a54da4646ae14dbe17aefdaa5a9319bf2c82b",
             "published_at": "2026-11-04T10:24:36+00:00",
-            "age_hours": 9.92,
+            "age_hours": 10.35,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -482,7 +482,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=509e4617be30f24ddd06bbd872f543fe975a5ffa9ed4d15701794e06bb0ad160",
             "published_at": "2026-11-03T18:44:49+00:00",
-            "age_hours": 25.58,
+            "age_hours": 26.01,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -493,7 +493,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=f2502c8f281d6a2f9bd4cbed6ff9a25972a113e79dbf83982fcc5fb97c788de9",
             "published_at": "2026-11-03T18:09:11+00:00",
-            "age_hours": 26.18,
+            "age_hours": 26.6,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -1820,12 +1820,12 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "MODERATE_EDGE",
       "rating": "A",
-      "elasticity_score": 40.57,
+      "elasticity_score": 40.86,
       "elasticity_raw_potential": 43.48,
       "elasticity_confirmation_factor": 0.45,
       "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.4846,
-      "upside_momentum_score": 57.42,
+      "next_day_move_probability": 0.4866,
+      "upside_momentum_score": 59.58,
       "bounce_score": 100.0,
       "downside_continuation_score": 97.97,
       "squeeze_score": 40.55,
@@ -1862,7 +1862,7 @@
           "市场偏防守"
         ],
         "inputs": {
-          "technical_score": 24.0,
+          "technical_score": 27.0,
           "volume_score": 48.4,
           "relative_volume": 1.092,
           "volume_z_score": 0.245,
@@ -1880,11 +1880,11 @@
         "borrow_fee": "missing",
         "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
       },
-      "confluence_score": 75.92,
+      "confluence_score": 75.95,
       "catalyst_score": 100.0,
       "expectation_gap_score": 58,
-      "execution_quality_score": 61.46,
-      "payoff_quality_score": 50.71,
+      "execution_quality_score": 63.12,
+      "payoff_quality_score": 51.01,
       "risk_reward_ratio": 1.167,
       "expected_upside_pct": 0.045,
       "expected_downside_pct": 0.03856,
@@ -1901,7 +1901,7 @@
         "applies": true,
         "passed": true,
         "structure_ready": true,
-        "score": 73.77,
+        "score": 73.82,
         "failures": [],
         "positive_factors": [
           "低吸质量足够",
@@ -1923,8 +1923,8 @@
         "version": "reliable_bottom_profile_v1",
         "passed": true,
         "watch_eligible": true,
-        "score": 87.62,
-        "price": 164.76,
+        "score": 87.66,
+        "price": 166.89,
         "avg_dollar_volume_m": 1833.035,
         "relative_volume": 1.092,
         "risk_reward_ratio": 1.167,
@@ -1968,8 +1968,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "confirmed",
-            "score": 24.0,
-            "reason": "技术分 24.0，低吸分 100.0，收盘位置 0.83，支撑距离 1.8%，20日回撤 11.4%",
+            "score": 27.0,
+            "reason": "技术分 27.0，低吸分 100.0，收盘位置 0.83，支撑距离 1.8%，20日回撤 11.4%",
             "blocking": false,
             "data": {}
           },
@@ -1995,20 +1995,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "partial",
-            "score": 42.0,
-            "reason": "当前价回到关键均线下方",
+            "score": 52.0,
+            "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:19+00:00",
-              "current_price": 164.76
+              "quote_timestamp": "2026-11-04T20:41:56+00:00",
+              "current_price": 166.89
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "weak",
-            "score": 50.71,
-            "reason": "赔率分 50.7，上/下行比 1.17，主路径概率 0.46",
+            "score": 51.01,
+            "reason": "赔率分 51.0，上/下行比 1.17，主路径概率 0.46",
             "blocking": false,
             "data": {}
           },
@@ -2054,16 +2054,16 @@
       "quote_confirmation": {
         "status": "neutral",
         "provider_status": "available",
-        "score": 42.0,
-        "technical_adjustment": -3.0,
-        "current_price": 164.76,
-        "current_vs_last_close_pct": 0.00201,
-        "quote_timestamp": "2026-11-04T20:18:19+00:00",
-        "reason": "当前价回到关键均线下方"
+        "score": 52.0,
+        "technical_adjustment": 0.0,
+        "current_price": 166.89,
+        "current_vs_last_close_pct": 0.01496,
+        "quote_timestamp": "2026-11-04T20:41:56+00:00",
+        "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
-      "quote_confirmation_score": 42.0,
-      "current_price": 164.76,
-      "current_vs_last_close_pct": 0.00201,
+      "quote_confirmation_score": 52.0,
+      "current_price": 166.89,
+      "current_vs_last_close_pct": 0.01496,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -2118,7 +2118,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:19+00:00",
+        "quote_timestamp": "2026-11-04T20:41:56+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -2205,7 +2205,7 @@
         "primary_headline": "Qualcomm’s Smartphone Business Is Hurting. Data Centers Could Fuel Its Next Act.",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 9.33,
+        "primary_event_age_hours": 9.76,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -2220,7 +2220,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8b642319394330b994d4a04c1b7afa847f842c8ffc4d1a18ec316a08000cd448",
             "published_at": "2026-11-04T18:42:42+00:00",
-            "age_hours": 1.62,
+            "age_hours": 2.04,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -2231,7 +2231,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=62f772db7a6d794db96600e740210aaa03f27cd622b65ae0a555e23e47781e9b",
             "published_at": "2026-11-04T17:45:28+00:00",
-            "age_hours": 2.57,
+            "age_hours": 3.0,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -2242,7 +2242,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=27e1a28f31bc2044410778d0b334adb6e595617686f2c1e7834dff02c92b2b23",
             "published_at": "2026-11-04T17:33:20+00:00",
-            "age_hours": 2.77,
+            "age_hours": 3.2,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -2253,7 +2253,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=010c0f8aa2c8f99d2e71858222d155f49318f1b6be176b62caccb442a781de8a",
             "published_at": "2026-11-04T15:43:00+00:00",
-            "age_hours": 4.61,
+            "age_hours": 5.04,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -2264,7 +2264,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2bf82c68bbd5f8fdc9e3e40f700742ee8395dc1103287a49fb3d4c27dcac2a3b",
             "published_at": "2026-11-04T15:18:36+00:00",
-            "age_hours": 5.02,
+            "age_hours": 5.45,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -2275,7 +2275,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e108392592652bc3c745dc3850598daeaeea178a9b24fb04b4c05aa5e9b7219b",
             "published_at": "2026-11-04T15:07:21+00:00",
-            "age_hours": 5.21,
+            "age_hours": 5.63,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -2286,7 +2286,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=526fe313b47752b562674a1d18c3b8aef04be40a8bc213e72f533025b80b3954",
             "published_at": "2026-11-04T15:07:06+00:00",
-            "age_hours": 5.21,
+            "age_hours": 5.64,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -2297,7 +2297,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1385e44e93606a70545f851ca0048669fa0ecf09e1b47dc82c21edaf3de4ef2e",
             "published_at": "2026-11-04T14:46:26+00:00",
-            "age_hours": 5.56,
+            "age_hours": 5.98,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -2320,7 +2320,7 @@
       "relative_strength": -0.04689,
       "relative_volume": 1.092,
       "volume_score": 48.4,
-      "technical_score": 24.0,
+      "technical_score": 27.0,
       "close_position": 0.827,
       "dollar_volume_m": 1881.951,
       "avg_dollar_volume_m": 1833.035,
@@ -2360,7 +2360,7 @@
         "rsi_14": 30.02,
         "atr_pct": 0.04483,
         "realized_volatility_20d": 0.50213,
-        "technical_score": 24.0
+        "technical_score": 27.0
       },
       "volume_snapshot": {
         "latest_date": "2026-11-03",
@@ -3581,7 +3581,7 @@
         {
           "source": "payoff",
           "name": "payoff_quality_weak",
-          "score": 49.29,
+          "score": 48.99,
           "detail": "预期上行空间相对失效风险不够优。"
         },
         {
@@ -3725,7 +3725,7 @@
         "passed": false,
         "watch_eligible": false,
         "score": 68.21,
-        "price": 12.03,
+        "price": 11.98,
         "avg_dollar_volume_m": 60.893,
         "relative_volume": 0.595,
         "risk_reward_ratio": 1.137,
@@ -3801,8 +3801,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:26+00:00",
-              "current_price": 12.03
+              "quote_timestamp": "2026-11-04T20:42:39+00:00",
+              "current_price": 11.98
             }
           },
           {
@@ -3862,14 +3862,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 12.03,
-        "current_vs_last_close_pct": 0.04246,
-        "quote_timestamp": "2026-11-04T20:18:26+00:00",
+        "current_price": 11.98,
+        "current_vs_last_close_pct": 0.03813,
+        "quote_timestamp": "2026-11-04T20:42:39+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 12.03,
-      "current_vs_last_close_pct": 0.04246,
+      "current_price": 11.98,
+      "current_vs_last_close_pct": 0.03813,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -3925,7 +3925,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:18:26+00:00",
+        "quote_timestamp": "2026-11-04T20:42:39+00:00",
         "news_status": "available",
         "news_headline_count": 12
       },
@@ -4012,7 +4012,7 @@
         "primary_headline": "Is C3.ai (AI) Stock Too Pricey For Its Current Sales?",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 15.07,
+        "primary_event_age_hours": 15.5,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -4025,7 +4025,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=daa1c187fa71acfa1d66c635d967ac8fc7a46a3737152dcc1446c4ab96be8810",
             "published_at": "2026-11-04T06:24:01+00:00",
-            "age_hours": 13.93,
+            "age_hours": 14.35,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -4036,7 +4036,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=85a4a18bcafd2ce9629c3003d2343d8c4ad94b72c478a558613414b8ab3c175f",
             "published_at": "2026-11-04T05:15:33+00:00",
-            "age_hours": 15.07,
+            "age_hours": 15.5,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -4047,7 +4047,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a44c83a4bda3a44d1616012673a22b41687ba4f71d543987b9de02e6d653f356",
             "published_at": "2026-11-03T22:17:09+00:00",
-            "age_hours": 22.04,
+            "age_hours": 22.47,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -4058,7 +4058,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=a9ac34f92ff67d90354ccd4fed2b0b07b74bebf9049f5179d76367c78901301c",
             "published_at": "2026-11-03T18:00:30+00:00",
-            "age_hours": 26.32,
+            "age_hours": 26.75,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -4069,7 +4069,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ded98488f3c1c4838d59752a304216efdda3af9304782ddfe5f5329c9590e062",
             "published_at": "2026-11-03T12:53:00+00:00",
-            "age_hours": 31.45,
+            "age_hours": 31.87,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -4080,7 +4080,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=edb6112c70b886dc6a127c2081ee09c092a65b9c51f558fd3609086aae48b5e3",
             "published_at": "2026-11-03T00:04:01+00:00",
-            "age_hours": 44.26,
+            "age_hours": 44.69,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -4091,7 +4091,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=7fd0aa3a84c1c22a0cced80dc612fded6f65171ac7098836762b58eb0eca10ca",
             "published_at": "2026-11-02T21:50:02+00:00",
-            "age_hours": 46.5,
+            "age_hours": 46.92,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -4102,7 +4102,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=48e096f6999454e6f4b79eb00c496ccaee8bd82c91635d0d76d956fa672dfe8a",
             "published_at": "2026-11-02T14:59:19+00:00",
-            "age_hours": 53.34,
+            "age_hours": 53.77,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5534,7 +5534,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 81.53,
-        "price": 558.37,
+        "price": 557.98,
         "avg_dollar_volume_m": 11865.201,
         "relative_volume": 0.892,
         "risk_reward_ratio": 1.463,
@@ -5609,8 +5609,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:19+00:00",
-              "current_price": 558.37
+              "quote_timestamp": "2026-11-04T20:41:34+00:00",
+              "current_price": 557.98
             }
           },
           {
@@ -5671,14 +5671,14 @@
         "provider_status": "available",
         "score": 72.0,
         "technical_adjustment": 7.0,
-        "current_price": 558.37,
-        "current_vs_last_close_pct": 0.07175,
-        "quote_timestamp": "2026-11-04T20:18:19+00:00",
+        "current_price": 557.98,
+        "current_vs_last_close_pct": 0.071,
+        "quote_timestamp": "2026-11-04T20:41:34+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
       },
       "quote_confirmation_score": 72.0,
-      "current_price": 558.37,
-      "current_vs_last_close_pct": 0.07175,
+      "current_price": 557.98,
+      "current_vs_last_close_pct": 0.071,
       "risk_score": 23.0,
       "risk_flags": [],
       "pool_filter": {
@@ -5733,7 +5733,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:18:19+00:00",
+        "quote_timestamp": "2026-11-04T20:41:34+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -5820,7 +5820,7 @@
         "primary_headline": "AMD earnings analysis: questions answered and next catalysts",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.32,
+        "primary_event_age_hours": 2.74,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -5833,7 +5833,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5844,7 +5844,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=95b85fe5f1ec048f70cd93e7c53cc4c5c8a7fa5efc7a9b07fdfa89781914f81d",
             "published_at": "2026-11-04T18:03:24+00:00",
-            "age_hours": 2.27,
+            "age_hours": 2.7,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5855,7 +5855,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=824ba619ccbf0870be84b6d9b30e44c24be65bfd76f9623a4b8f676e2b1a437a",
             "published_at": "2026-11-04T18:00:46+00:00",
-            "age_hours": 2.32,
+            "age_hours": 2.74,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5866,7 +5866,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2a0548c4488fc79f3297ff36ed9adf19d3d768be1136bb71ac40176a91c0277e",
             "published_at": "2026-11-04T17:56:21+00:00",
-            "age_hours": 2.39,
+            "age_hours": 2.82,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5877,7 +5877,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c82d581f83749d8e6a931a2fa7d8cb9fe120c2c7003149c9eb63badd3544ed3d",
             "published_at": "2026-11-04T17:53:00+00:00",
-            "age_hours": 2.45,
+            "age_hours": 2.87,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -5888,7 +5888,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4ddf5ba1d9785f682ca7d73dfaee2314ab5ee08eb179c43f2d2e51f641aed220",
             "published_at": "2026-11-04T17:45:18+00:00",
-            "age_hours": 2.57,
+            "age_hours": 3.0,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -5899,7 +5899,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=db5d0f7553b009651483b1f147e65b77f2b14042444efc0158cc0a10b17b3095",
             "published_at": "2026-11-04T17:23:00+00:00",
-            "age_hours": 2.95,
+            "age_hours": 3.37,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -5910,7 +5910,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1c8af7f3ce08897f9d2d07a45e1fb399fa5fdc4e728ef7567c48c98144c85812",
             "published_at": "2026-11-04T17:07:54+00:00",
-            "age_hours": 3.2,
+            "age_hours": 3.62,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -5923,7 +5923,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 20.0,
             "relevance": "provider_related"
           }
@@ -7352,7 +7352,7 @@
         "passed": false,
         "watch_eligible": true,
         "score": 68.66,
-        "price": 268.07,
+        "price": 268.27,
         "avg_dollar_volume_m": 10752.99,
         "relative_volume": 0.888,
         "risk_reward_ratio": 0.529,
@@ -7430,8 +7430,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:18+00:00",
-              "current_price": 268.07
+              "quote_timestamp": "2026-11-04T20:41:57+00:00",
+              "current_price": 268.27
             }
           },
           {
@@ -7492,14 +7492,14 @@
         "provider_status": "available",
         "score": 72.0,
         "technical_adjustment": 7.0,
-        "current_price": 268.07,
-        "current_vs_last_close_pct": 0.06933,
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "current_price": 268.27,
+        "current_vs_last_close_pct": 0.07013,
+        "quote_timestamp": "2026-11-04T20:41:57+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
       },
       "quote_confirmation_score": 72.0,
-      "current_price": 268.07,
-      "current_vs_last_close_pct": 0.06933,
+      "current_price": 268.27,
+      "current_vs_last_close_pct": 0.07013,
       "risk_score": 23.0,
       "risk_flags": [],
       "pool_filter": {
@@ -7555,7 +7555,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "quote_timestamp": "2026-11-04T20:41:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -7642,7 +7642,7 @@
         "primary_headline": "Nexxus Capital Strengthens Market Position with Latest E-Commerce Acquisition",
         "primary_event_type": "mna_or_strategic_review",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.21,
+        "primary_event_age_hours": 2.64,
         "catalyst_type": "mna_or_strategic_review",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -7655,7 +7655,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5609a2fa868a2ab27e73a816ca189a7870e2479e5ae3e6e5f291b526e62e3b7a",
             "published_at": "2026-11-04T19:06:00+00:00",
-            "age_hours": 1.23,
+            "age_hours": 1.66,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -7666,7 +7666,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -7677,7 +7677,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=eb9704866e7e63e61625c31cf2e2499abd8c3116c4377022d38388c81a971661",
             "published_at": "2026-11-04T18:50:00+00:00",
-            "age_hours": 1.5,
+            "age_hours": 1.92,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -7688,7 +7688,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=470d5c07c54ce8ed53c652ea3b99b9bbf4ed279442e98c4132a187b2f3e9c2e4",
             "published_at": "2026-11-04T18:07:00+00:00",
-            "age_hours": 2.21,
+            "age_hours": 2.64,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -7699,7 +7699,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=95b85fe5f1ec048f70cd93e7c53cc4c5c8a7fa5efc7a9b07fdfa89781914f81d",
             "published_at": "2026-11-04T18:03:24+00:00",
-            "age_hours": 2.27,
+            "age_hours": 2.7,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -7710,7 +7710,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4ddf5ba1d9785f682ca7d73dfaee2314ab5ee08eb179c43f2d2e51f641aed220",
             "published_at": "2026-11-04T17:45:18+00:00",
-            "age_hours": 2.57,
+            "age_hours": 3.0,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -7721,7 +7721,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b519cab8b85c7f7f346068253303ce9da9e78d10f8d11b0b9648b8d35cc8105e",
             "published_at": "2026-11-04T17:37:56+00:00",
-            "age_hours": 2.7,
+            "age_hours": 3.12,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -7732,7 +7732,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=27e1a28f31bc2044410778d0b334adb6e595617686f2c1e7834dff02c92b2b23",
             "published_at": "2026-11-04T17:33:20+00:00",
-            "age_hours": 2.77,
+            "age_hours": 3.2,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -7745,7 +7745,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 20.0,
             "relevance": "provider_related"
           }
@@ -9181,7 +9181,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 74.26,
-        "price": 630.69,
+        "price": 632.05,
         "avg_dollar_volume_m": 15681.297,
         "relative_volume": 0.588,
         "risk_reward_ratio": 0.982,
@@ -9256,8 +9256,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:18+00:00",
-              "current_price": 630.69
+              "quote_timestamp": "2026-11-04T20:41:34+00:00",
+              "current_price": 632.05
             }
           },
           {
@@ -9316,14 +9316,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 630.69,
-        "current_vs_last_close_pct": 0.01555,
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "current_price": 632.05,
+        "current_vs_last_close_pct": 0.01774,
+        "quote_timestamp": "2026-11-04T20:41:34+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 630.69,
-      "current_vs_last_close_pct": 0.01555,
+      "current_price": 632.05,
+      "current_vs_last_close_pct": 0.01774,
       "risk_score": 23.0,
       "risk_flags": [],
       "pool_filter": {
@@ -9379,7 +9379,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "quote_timestamp": "2026-11-04T20:41:34+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -9466,7 +9466,7 @@
         "primary_headline": "Exclusive: Meta buys AI startup, joins race to own coding in show of outsized ambition",
         "primary_event_type": "mna_or_strategic_review",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.08,
+        "primary_event_age_hours": 2.5,
         "catalyst_type": "mna_or_strategic_review",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -9479,7 +9479,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3763e4a0dfc575e72ef7bf2e7f82a0ae861516cf37b1eaaf307a7a6c2e222be7",
             "published_at": "2026-11-04T19:09:40+00:00",
-            "age_hours": 1.17,
+            "age_hours": 1.59,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -9490,7 +9490,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -9501,7 +9501,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=eb9704866e7e63e61625c31cf2e2499abd8c3116c4377022d38388c81a971661",
             "published_at": "2026-11-04T18:50:00+00:00",
-            "age_hours": 1.5,
+            "age_hours": 1.92,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -9512,7 +9512,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4783623cf5ee5bb7d6344a26785c5cf673d00670f6be541989afa3f7628e75a1",
             "published_at": "2026-11-04T18:15:05+00:00",
-            "age_hours": 2.08,
+            "age_hours": 2.5,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -9523,7 +9523,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=824ba619ccbf0870be84b6d9b30e44c24be65bfd76f9623a4b8f676e2b1a437a",
             "published_at": "2026-11-04T18:00:46+00:00",
-            "age_hours": 2.32,
+            "age_hours": 2.74,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -9534,7 +9534,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b519cab8b85c7f7f346068253303ce9da9e78d10f8d11b0b9648b8d35cc8105e",
             "published_at": "2026-11-04T17:37:56+00:00",
-            "age_hours": 2.7,
+            "age_hours": 3.12,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -9545,7 +9545,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1c8af7f3ce08897f9d2d07a45e1fb399fa5fdc4e728ef7567c48c98144c85812",
             "published_at": "2026-11-04T17:07:54+00:00",
-            "age_hours": 3.2,
+            "age_hours": 3.62,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -9556,7 +9556,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8d2411c7e8963d782defd4b4e62ec8044b8ec32acd651641294585cced460487",
             "published_at": "2026-11-04T17:05:36+00:00",
-            "age_hours": 3.24,
+            "age_hours": 3.66,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -9569,7 +9569,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 20.0,
             "relevance": "provider_related"
           }
@@ -10993,7 +10993,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 72.41,
-        "price": 143.58,
+        "price": 142.88,
         "avg_dollar_volume_m": 2695.812,
         "relative_volume": 0.625,
         "risk_reward_ratio": 0.802,
@@ -11071,8 +11071,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:38+00:00",
-              "current_price": 143.58
+              "quote_timestamp": "2026-11-04T20:42:41+00:00",
+              "current_price": 142.88
             }
           },
           {
@@ -11132,14 +11132,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 143.58,
-        "current_vs_last_close_pct": 0.05862,
-        "quote_timestamp": "2026-11-04T20:18:38+00:00",
+        "current_price": 142.88,
+        "current_vs_last_close_pct": 0.05345,
+        "quote_timestamp": "2026-11-04T20:42:41+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 143.58,
-      "current_vs_last_close_pct": 0.05862,
+      "current_price": 142.88,
+      "current_vs_last_close_pct": 0.05345,
       "risk_score": 25.2,
       "risk_flags": [],
       "pool_filter": {
@@ -11196,7 +11196,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:38+00:00",
+        "quote_timestamp": "2026-11-04T20:42:41+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -11283,7 +11283,7 @@
         "primary_headline": "Strategy (MSTR) Q3 Earnings Ride Bitcoin Windfall As Funding Risks Linger",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 14.0,
+        "primary_event_age_hours": 14.43,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -11291,12 +11291,34 @@
         "concrete_event_types": [],
         "supporting_events": [
           {
+            "event_type": "theme_buzz",
+            "headline": "Strategy Gains 7% as Bitcoin Rallies After Midterms, CEO Touts “Bitcoin Capital Cycle”",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=ec27e699dbd8ab609ca47bbff51aae222c695f8562ec155a53b72c86a8a9e82d",
+            "published_at": "2026-11-04T19:18:19+00:00",
+            "age_hours": 1.45,
+            "score_contribution": 5.0,
+            "strong": false,
+            "relevance": "provider_related"
+          },
+          {
+            "event_type": "earnings_momentum",
+            "headline": "Michael Saylor Keeps Buying Bitcoin While ETF Investors Sell. Strategy Added 811 Coins While BlackRock’s Bitcoin ETF Saw $405.3 Million Pulled Out In A Single Day",
+            "source": "Yahoo",
+            "url": "https://finnhub.io/api/news?id=77eb63f92d8f993e335c7f0dee31bb0213bdc050f3dba08fe13c65f8108bfd5a",
+            "published_at": "2026-11-04T18:43:22+00:00",
+            "age_hours": 2.03,
+            "score_contribution": 7.5,
+            "strong": false,
+            "relevance": "provider_related"
+          },
+          {
             "event_type": "earnings_momentum",
             "headline": "Circle Earnings Show Stablecoins Have Arrived. A Crypto Payoff Could Take Longer.",
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c985d2284a58bb85352444163deb8bea6bbd3be351e3969cda8c945ee62c0f80",
             "published_at": "2026-11-04T16:14:00+00:00",
-            "age_hours": 4.1,
+            "age_hours": 4.52,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -11307,7 +11329,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=88d308d4b1866320665b880854453c623c985c7fa0016c498bac0567a6e2cf70",
             "published_at": "2026-11-04T16:07:41+00:00",
-            "age_hours": 4.2,
+            "age_hours": 4.63,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -11318,7 +11340,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4e97ed52c2d00c5f1855156ecca9e027c25d9d843e82fd5625da63579220cb53",
             "published_at": "2026-11-04T16:03:03+00:00",
-            "age_hours": 4.28,
+            "age_hours": 4.7,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -11329,7 +11351,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=084df940ec6e5ae6dd33f35bef369c5a7789936f43459cf9a466ec6794203610",
             "published_at": "2026-11-04T06:19:36+00:00",
-            "age_hours": 14.0,
+            "age_hours": 14.43,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -11340,7 +11362,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=67ebd78525d3ffad180822b1a86e744a83c047b2020c3ab8c26ed3aa1f56f810",
             "published_at": "2026-11-03T21:31:05+00:00",
-            "age_hours": 22.81,
+            "age_hours": 23.24,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -11351,29 +11373,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=839aa99f1e92732450fb3f29d103e98d1851e41b676324433e12cdaf09dcb65a",
             "published_at": "2026-11-03T17:47:51+00:00",
-            "age_hours": 26.53,
-            "score_contribution": 4.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "4 Crypto Stocks Outpace Bitcoin on Election Day: What Drove the Jump?",
-            "source": "Yahoo",
-            "url": "https://finnhub.io/api/news?id=b54f7324cf70b20cccee9544a3258161a1519bbd5ca92b4c7b277eaba8b36116",
-            "published_at": "2026-11-03T16:40:01+00:00",
-            "age_hours": 27.66,
-            "score_contribution": 4.0,
-            "strong": false,
-            "relevance": "provider_related"
-          },
-          {
-            "event_type": "theme_buzz",
-            "headline": "Shares of crypto-related companies are trading higher amid a gain in the price of Bitcoin.",
-            "source": "Benzinga",
-            "url": "https://finnhub.io/api/news?id=517755797339a9282906f23bc60fc53e3aa3fa01808bba5b25c5e8980f0d1099",
-            "published_at": "2026-11-03T16:33:11+00:00",
-            "age_hours": 27.78,
+            "age_hours": 26.96,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -11386,7 +11386,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=64d5631413bf6e394a611935a567c5a3fb9a2118b498e1210698a5eb061e77cf",
             "published_at": "2026-11-03T15:33:49+00:00",
-            "age_hours": 28.77,
+            "age_hours": 29.19,
             "score_contribution": 24.0,
             "relevance": "provider_related"
           }
@@ -11395,11 +11395,11 @@
           "status": "missing"
         },
         "supporting_headlines": [
+          "Strategy Gains 7% as Bitcoin Rallies After Midterms, CEO Touts “Bitcoin Capital Cycle”",
+          "Michael Saylor Keeps Buying Bitcoin While ETF Investors Sell. Strategy Added 811 Coins While BlackRock’s Bitcoin ETF Saw $405.3 Million Pulled Out In A Single Day",
           "Circle Earnings Show Stablecoins Have Arrived. A Crypto Payoff Could Take Longer.",
           "Bitcoin Rises, Crypto Miners Sharply Divided As Midterms Dampen AI Outlook",
-          "Strategy CEO puts his Bitcoin firm alongside SpaceX, Alphabet",
-          "Strategy (MSTR) Q3 Earnings Ride Bitcoin Windfall As Funding Risks Linger",
-          "Bitcoin, Ethereum, XRP, Dogecoin Surrender Early Gains as Midterm Polls Close—Analyst Sees ‘Sell the Rumor, Buy the News’ Play"
+          "Strategy CEO puts his Bitcoin firm alongside SpaceX, Alphabet"
         ],
         "conflicting_headlines": [
           "Strategy’s Bitcoin Bet Just Produced a Monster Quarter. Here’s the Bigger Question."
@@ -12707,12 +12707,12 @@
       "raw_candidate_type": "pullback_reversal_setup",
       "edge_status": "MODERATE_EDGE",
       "rating": "A",
-      "elasticity_score": 19.06,
+      "elasticity_score": 18.3,
       "elasticity_raw_potential": 28.29,
       "elasticity_confirmation_factor": 0.45,
       "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.3762,
-      "upside_momentum_score": 68.3,
+      "next_day_move_probability": 0.3699,
+      "upside_momentum_score": 66.94,
       "bounce_score": 46.15,
       "downside_continuation_score": 66.35,
       "squeeze_score": 35.04,
@@ -12748,7 +12748,7 @@
           "市场偏防守"
         ],
         "inputs": {
-          "technical_score": 26.0,
+          "technical_score": 24.0,
           "volume_score": 68.62,
           "relative_volume": 1.506,
           "volume_z_score": 1.925,
@@ -12766,11 +12766,11 @@
         "borrow_fee": "missing",
         "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
       },
-      "confluence_score": 61.24,
+      "confluence_score": 60.23,
       "catalyst_score": 39.6,
       "expectation_gap_score": 54,
-      "execution_quality_score": 67.33,
-      "payoff_quality_score": 72.14,
+      "execution_quality_score": 66.29,
+      "payoff_quality_score": 71.95,
       "risk_reward_ratio": 2.045,
       "expected_upside_pct": 0.045,
       "expected_downside_pct": 0.022,
@@ -12788,7 +12788,7 @@
         "applies": true,
         "passed": false,
         "structure_ready": true,
-        "score": 78.22,
+        "score": 78.03,
         "failures": [
           "信号闸门阻断"
         ],
@@ -12812,8 +12812,8 @@
         "version": "reliable_bottom_profile_v1",
         "passed": true,
         "watch_eligible": true,
-        "score": 80.54,
-        "price": 352.43,
+        "score": 80.39,
+        "price": 351.73,
         "avg_dollar_volume_m": 14364.659,
         "relative_volume": 1.506,
         "risk_reward_ratio": 2.045,
@@ -12857,8 +12857,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "partial",
-            "score": 26.0,
-            "reason": "技术分 26.0，低吸分 92.2，收盘位置 0.72，支撑距离 0.4%，20日回撤 5.6%",
+            "score": 24.0,
+            "reason": "技术分 24.0，低吸分 92.2，收盘位置 0.72，支撑距离 0.4%，20日回撤 5.6%",
             "blocking": false,
             "data": {}
           },
@@ -12884,20 +12884,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "confirmed",
-            "score": 72.0,
-            "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
+            "score": 66.0,
+            "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:18+00:00",
-              "current_price": 352.43
+              "quote_timestamp": "2026-11-04T20:41:34+00:00",
+              "current_price": 351.73
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "confirmed",
-            "score": 72.14,
-            "reason": "赔率分 72.1，上/下行比 2.04，主路径概率 0.46",
+            "score": 71.95,
+            "reason": "赔率分 72.0，上/下行比 2.04，主路径概率 0.46",
             "blocking": false,
             "data": {}
           },
@@ -12947,16 +12947,16 @@
       "quote_confirmation": {
         "status": "confirming",
         "provider_status": "available",
-        "score": 72.0,
-        "technical_adjustment": 7.0,
-        "current_price": 352.43,
-        "current_vs_last_close_pct": 0.06186,
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
-        "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
+        "score": 66.0,
+        "technical_adjustment": 5.0,
+        "current_price": 351.73,
+        "current_vs_last_close_pct": 0.05975,
+        "quote_timestamp": "2026-11-04T20:41:34+00:00",
+        "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
-      "quote_confirmation_score": 72.0,
-      "current_price": 352.43,
-      "current_vs_last_close_pct": 0.06186,
+      "quote_confirmation_score": 66.0,
+      "current_price": 351.73,
+      "current_vs_last_close_pct": 0.05975,
       "risk_score": 23.0,
       "risk_flags": [],
       "pool_filter": {
@@ -13012,7 +13012,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "quote_timestamp": "2026-11-04T20:41:34+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -13099,7 +13099,7 @@
         "primary_headline": "Apple’s Pain Could Be Micron’s Gain as Memory Prices Surge",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.78,
+        "primary_event_age_hours": 3.2,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -13112,7 +13112,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=05aa33e693cf0be40de7b823d5487a6817b1f5152e52e7583fe7e011d84366d8",
             "published_at": "2026-11-04T19:17:44+00:00",
-            "age_hours": 1.03,
+            "age_hours": 1.46,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -13123,7 +13123,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -13134,7 +13134,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=eb9704866e7e63e61625c31cf2e2499abd8c3116c4377022d38388c81a971661",
             "published_at": "2026-11-04T18:50:00+00:00",
-            "age_hours": 1.5,
+            "age_hours": 1.92,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -13145,7 +13145,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2321724eac92015c22f8907b33d76aabd63d078456f0bfe618cff2f3f7a4928e",
             "published_at": "2026-11-04T17:33:14+00:00",
-            "age_hours": 2.78,
+            "age_hours": 3.2,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -13156,7 +13156,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=db5d0f7553b009651483b1f147e65b77f2b14042444efc0158cc0a10b17b3095",
             "published_at": "2026-11-04T17:23:00+00:00",
-            "age_hours": 2.95,
+            "age_hours": 3.37,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -13167,7 +13167,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1c8af7f3ce08897f9d2d07a45e1fb399fa5fdc4e728ef7567c48c98144c85812",
             "published_at": "2026-11-04T17:07:54+00:00",
-            "age_hours": 3.2,
+            "age_hours": 3.62,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -13178,7 +13178,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5080a3d6a520581eec30e3d19066972765a8dc8559019b5bc7024f179bf4615b",
             "published_at": "2026-11-04T17:05:30+00:00",
-            "age_hours": 3.24,
+            "age_hours": 3.66,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -13189,7 +13189,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=dc0f1ce7b5b312d7b18dee208a1a67441f51918e1596a864aa46387fde3d633f",
             "published_at": "2026-11-04T16:54:14+00:00",
-            "age_hours": 3.43,
+            "age_hours": 3.85,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -13202,7 +13202,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2f5f0332e4ae306e33ae17f2427684b8e8b3f6dbc40ad5a90fbaea816aade8a0",
             "published_at": "2026-11-04T18:57:30+00:00",
-            "age_hours": 1.37,
+            "age_hours": 1.8,
             "score_contribution": 20.0,
             "relevance": "provider_related"
           }
@@ -13225,7 +13225,7 @@
       "relative_strength": 0.01539,
       "relative_volume": 1.506,
       "volume_score": 68.62,
-      "technical_score": 26.0,
+      "technical_score": 24.0,
       "close_position": 0.716,
       "dollar_volume_m": 20962.804,
       "avg_dollar_volume_m": 14364.659,
@@ -13265,7 +13265,7 @@
         "rsi_14": 52.95,
         "atr_pct": 0.02202,
         "realized_volatility_20d": 0.17606,
-        "technical_score": 26.0
+        "technical_score": 24.0
       },
       "volume_snapshot": {
         "latest_date": "2026-11-03",
@@ -14454,13 +14454,13 @@
         {
           "source": "quote",
           "name": "current_price_confirming",
-          "score": 72.0,
-          "detail": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
+          "score": 66.0,
+          "detail": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
         },
         {
           "source": "payoff",
           "name": "payoff_quality_confirmed",
-          "score": 72.14,
+          "score": 71.95,
           "detail": "次日预期上行/下行赔率约 2.045。"
         }
       ],
@@ -14486,7 +14486,7 @@
         {
           "source": "price",
           "name": "price_structure_unconfirmed",
-          "score": 74.0,
+          "score": 76.0,
           "detail": "价格结构没有确认高质量短线形态。"
         },
         {
@@ -14630,7 +14630,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 75.41,
-        "price": 66.51,
+        "price": 66.69,
         "avg_dollar_volume_m": 3007.742,
         "relative_volume": 0.815,
         "risk_reward_ratio": 1.337,
@@ -14708,8 +14708,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:19+00:00",
-              "current_price": 66.51
+              "quote_timestamp": "2026-11-04T20:41:56+00:00",
+              "current_price": 66.69
             }
           },
           {
@@ -14769,14 +14769,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 66.51,
-        "current_vs_last_close_pct": 0.04872,
-        "quote_timestamp": "2026-11-04T20:18:19+00:00",
+        "current_price": 66.69,
+        "current_vs_last_close_pct": 0.05156,
+        "quote_timestamp": "2026-11-04T20:41:56+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 66.51,
-      "current_vs_last_close_pct": 0.04872,
+      "current_price": 66.69,
+      "current_vs_last_close_pct": 0.05156,
       "risk_score": 45.0,
       "risk_flags": [
         "news_reversal_or_event_risk"
@@ -14834,7 +14834,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:19+00:00",
+        "quote_timestamp": "2026-11-04T20:41:56+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -14921,7 +14921,7 @@
         "primary_headline": "Netflix Is Playing a Bigger Game. Investors Should Take Notice",
         "primary_event_type": "confirmed_business_catalyst",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 3.27,
+        "primary_event_age_hours": 3.7,
         "catalyst_type": "confirmed_business_catalyst",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -14934,7 +14934,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2a0548c4488fc79f3297ff36ed9adf19d3d768be1136bb71ac40176a91c0277e",
             "published_at": "2026-11-04T17:56:21+00:00",
-            "age_hours": 2.39,
+            "age_hours": 2.82,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -14945,7 +14945,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8b3c304e2a22987570b390952324692d3f41bb2e966195b6ebfdd309b6d17ed2",
             "published_at": "2026-11-04T17:03:26+00:00",
-            "age_hours": 3.27,
+            "age_hours": 3.7,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -14956,7 +14956,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=21154d8e7136bb6beaf5567c11cc275c85138866528e880d181cd7ed4abd2c63",
             "published_at": "2026-11-04T14:58:01+00:00",
-            "age_hours": 5.36,
+            "age_hours": 5.79,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -14967,7 +14967,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=768065299abc9e4592f698351e572c5c715d9c48e083f0c4908dc8922d127aea",
             "published_at": "2026-11-04T12:56:06+00:00",
-            "age_hours": 7.39,
+            "age_hours": 7.82,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -14978,7 +14978,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=9df1353256bd1392c794c28171b94e5f76622f6fcff53ff916d6813c2395b37b",
             "published_at": "2026-11-04T05:01:00+00:00",
-            "age_hours": 15.31,
+            "age_hours": 15.74,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -14989,7 +14989,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=bd64e9deecaece77a5a85cfbc6359f6e4367f965240944057daaaaf5327a8ec5",
             "published_at": "2026-11-03T21:00:00+00:00",
-            "age_hours": 23.33,
+            "age_hours": 23.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -15000,7 +15000,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=853c5a472ae02714f2dda6f389868d446a41beb335310a644d93ab13bac36b30",
             "published_at": "2026-11-03T17:13:00+00:00",
-            "age_hours": 27.11,
+            "age_hours": 27.54,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -15011,7 +15011,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=d7eced4edcd82f3093ea37c08250314ebdeb41c1fc45177b05e8868c3b5fd813",
             "published_at": "2026-11-03T16:18:46+00:00",
-            "age_hours": 28.02,
+            "age_hours": 28.44,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -15024,7 +15024,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=79a8a04e3aa57cacb139dfa4bde197ec9dcb74d5b904008c15c608246d309604",
             "published_at": "2026-11-03T22:17:28+00:00",
-            "age_hours": 22.04,
+            "age_hours": 22.46,
             "score_contribution": 30.0,
             "relevance": "direct"
           },
@@ -15034,7 +15034,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=bd64e9deecaece77a5a85cfbc6359f6e4367f965240944057daaaaf5327a8ec5",
             "published_at": "2026-11-03T21:00:00+00:00",
-            "age_hours": 23.33,
+            "age_hours": 23.76,
             "score_contribution": 30.0,
             "relevance": "direct"
           }
@@ -16459,7 +16459,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 74.14,
-        "price": 151.84,
+        "price": 152.11,
         "avg_dollar_volume_m": 1392.438,
         "relative_volume": 1.279,
         "risk_reward_ratio": 0.988,
@@ -16534,8 +16534,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:40+00:00",
-              "current_price": 151.84
+              "quote_timestamp": "2026-11-04T20:42:41+00:00",
+              "current_price": 152.11
             }
           },
           {
@@ -16591,14 +16591,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 151.84,
-        "current_vs_last_close_pct": 0.04393,
-        "quote_timestamp": "2026-11-04T20:18:40+00:00",
+        "current_price": 152.11,
+        "current_vs_last_close_pct": 0.04579,
+        "quote_timestamp": "2026-11-04T20:42:41+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 151.84,
-      "current_vs_last_close_pct": 0.04393,
+      "current_price": 152.11,
+      "current_vs_last_close_pct": 0.04579,
       "risk_score": 20.8,
       "risk_flags": [],
       "pool_filter": {
@@ -16654,7 +16654,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:40+00:00",
+        "quote_timestamp": "2026-11-04T20:42:41+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -16741,7 +16741,7 @@
         "primary_headline": "Bitcoin Tops $81,000 After Midterm Dip, Squeezing Short Sellers",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 3.39,
+        "primary_event_age_hours": 3.81,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -16754,7 +16754,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4cdc251886280fdb77690a01b8748b8c4a1c10454aff982e2cab8a76ad233420",
             "published_at": "2026-11-04T16:56:26+00:00",
-            "age_hours": 3.39,
+            "age_hours": 3.81,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -16765,7 +16765,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c985d2284a58bb85352444163deb8bea6bbd3be351e3969cda8c945ee62c0f80",
             "published_at": "2026-11-04T16:14:00+00:00",
-            "age_hours": 4.1,
+            "age_hours": 4.52,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -16776,7 +16776,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=88d308d4b1866320665b880854453c623c985c7fa0016c498bac0567a6e2cf70",
             "published_at": "2026-11-04T16:07:41+00:00",
-            "age_hours": 4.2,
+            "age_hours": 4.63,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -16787,7 +16787,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=9fd4c5ab42f5dbae67881e11b429046e136edd66cbea5e920a0ce7b0edc6f891",
             "published_at": "2026-11-04T14:32:23+00:00",
-            "age_hours": 5.79,
+            "age_hours": 6.22,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -16798,7 +16798,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=a22d992df9cc0afcb93e556f04ef425bc631bdaaf5c5c07d8cce005a15b4887e",
             "published_at": "2026-11-04T14:10:00+00:00",
-            "age_hours": 6.16,
+            "age_hours": 6.59,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -16809,7 +16809,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=85a7050eede7df86d02701d3860872e2e1607fc08ead0460e2b8954ae7ba8a05",
             "published_at": "2026-11-04T13:03:31+00:00",
-            "age_hours": 7.27,
+            "age_hours": 7.7,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -16820,7 +16820,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=07598dc70ad6029380a67521680dbb4199ef9fad5776e681bf8de830d6232078",
             "published_at": "2026-11-04T10:12:10+00:00",
-            "age_hours": 10.13,
+            "age_hours": 10.55,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -16831,7 +16831,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4bce19f68f1c3c1eb3058ed7f97c3a2876a58b40b163b56b848b649e81142a2c",
             "published_at": "2026-11-04T08:19:27+00:00",
-            "age_hours": 12.0,
+            "age_hours": 12.43,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -16844,7 +16844,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=f9cf5812a1924bf1d3fab7fc15bd5b87fa963d3aee82fcf5e50d156f545aae62",
             "published_at": "2026-11-03T17:30:09+00:00",
-            "age_hours": 26.83,
+            "age_hours": 27.25,
             "score_contribution": 16.0,
             "relevance": "direct"
           }
@@ -18269,7 +18269,7 @@
         "passed": false,
         "watch_eligible": false,
         "score": 74.87,
-        "price": 171.97,
+        "price": 171.88,
         "avg_dollar_volume_m": 4717.517,
         "relative_volume": 2.208,
         "risk_reward_ratio": 1.077,
@@ -18349,8 +18349,8 @@
             "reason": "当前价低于昨收 / 当前价跌破近端支撑",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:41+00:00",
-              "current_price": 171.97
+              "quote_timestamp": "2026-11-04T20:42:18+00:00",
+              "current_price": 171.88
             }
           },
           {
@@ -18409,14 +18409,14 @@
         "provider_status": "available",
         "score": 26.0,
         "technical_adjustment": -8.0,
-        "current_price": 171.97,
-        "current_vs_last_close_pct": -0.01956,
-        "quote_timestamp": "2026-11-04T20:18:41+00:00",
+        "current_price": 171.88,
+        "current_vs_last_close_pct": -0.02007,
+        "quote_timestamp": "2026-11-04T20:42:18+00:00",
         "reason": "当前价低于昨收 / 当前价跌破近端支撑"
       },
       "quote_confirmation_score": 26.0,
-      "current_price": 171.97,
-      "current_vs_last_close_pct": -0.01956,
+      "current_price": 171.88,
+      "current_vs_last_close_pct": -0.02007,
       "risk_score": 24.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -18473,7 +18473,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "failed",
-        "quote_timestamp": "2026-11-04T20:18:41+00:00",
+        "quote_timestamp": "2026-11-04T20:42:18+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -18560,7 +18560,7 @@
         "primary_headline": "Palantir Beats Q3 Estimates as Commercial Biz Takes the Lead: ETFs in Focus",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 8.33,
+        "primary_event_age_hours": 8.76,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -18575,7 +18575,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=05933ca5e95d88ce6b1218cf650726df8ff9135754ae7c3f690bb51adc4b23b9",
             "published_at": "2026-11-04T19:20:37+00:00",
-            "age_hours": 0.99,
+            "age_hours": 1.41,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -18586,7 +18586,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ad2419ef3965b8c9af54f797fefa2832efa1f3211bac9a62838b574e96bebc4e",
             "published_at": "2026-11-04T16:59:43+00:00",
-            "age_hours": 3.33,
+            "age_hours": 3.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -18597,7 +18597,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b1815b4d30a48fe66a1ff5419fe9c82bfce408f9e004f4a76b74fe2f5d7746a4",
             "published_at": "2026-11-04T16:37:31+00:00",
-            "age_hours": 3.7,
+            "age_hours": 4.13,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -18608,7 +18608,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ae83e5bc8641df319fc11506041957a98e9a4209ae735a83286e4bf2be0f5b54",
             "published_at": "2026-11-04T16:17:17+00:00",
-            "age_hours": 4.04,
+            "age_hours": 4.47,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -18619,7 +18619,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ae4fc2c790a2207643724e049a1c0ea341826023122017a083856aa496bf6eb5",
             "published_at": "2026-11-04T16:16:52+00:00",
-            "age_hours": 4.05,
+            "age_hours": 4.47,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -18630,7 +18630,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e97d6392087de96555ccadc3368bd40bf03f36bcbf7321e21ee2fd90ca6cf96e",
             "published_at": "2026-11-04T15:39:57+00:00",
-            "age_hours": 4.66,
+            "age_hours": 5.09,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -18641,7 +18641,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=9579e7633034563998656962bb2d5982b32e94d58b78f6480494d487991cf3b5",
             "published_at": "2026-11-04T15:16:01+00:00",
-            "age_hours": 5.06,
+            "age_hours": 5.49,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -18652,7 +18652,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=cfeb39ecc8c90d1c23f786332f12ad260cd94c4e5a0f71d5ee75f1585d9d1257",
             "published_at": "2026-11-04T14:14:17+00:00",
-            "age_hours": 6.09,
+            "age_hours": 6.52,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -20080,7 +20080,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 72.53,
-        "price": 87.45,
+        "price": 87.18,
         "avg_dollar_volume_m": 1917.203,
         "relative_volume": 0.709,
         "risk_reward_ratio": 1.063,
@@ -20155,8 +20155,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:00+00:00",
-              "current_price": 87.45
+              "quote_timestamp": "2026-11-04T20:44:06+00:00",
+              "current_price": 87.18
             }
           },
           {
@@ -20210,14 +20210,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 87.45,
-        "current_vs_last_close_pct": 0.02066,
-        "quote_timestamp": "2026-11-04T20:19:00+00:00",
+        "current_price": 87.18,
+        "current_vs_last_close_pct": 0.01751,
+        "quote_timestamp": "2026-11-04T20:44:06+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 87.45,
-      "current_vs_last_close_pct": 0.02066,
+      "current_price": 87.18,
+      "current_vs_last_close_pct": 0.01751,
       "risk_score": 20.8,
       "risk_flags": [],
       "pool_filter": {
@@ -20272,7 +20272,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:19:00+00:00",
+        "quote_timestamp": "2026-11-04T20:44:06+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -20359,7 +20359,7 @@
         "primary_headline": "Robinhood Q3 Earnings Call Highlights Cost Discipline and Expansion",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 2.95,
+        "primary_event_age_hours": 3.37,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -20372,7 +20372,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d9cdaf942e5727b011fb2458f6c46aaca8e7cf523189b45520d765fe5e98cf5f",
             "published_at": "2026-11-04T17:23:00+00:00",
-            "age_hours": 2.95,
+            "age_hours": 3.37,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -20383,7 +20383,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c985d2284a58bb85352444163deb8bea6bbd3be351e3969cda8c945ee62c0f80",
             "published_at": "2026-11-04T16:14:00+00:00",
-            "age_hours": 4.1,
+            "age_hours": 4.52,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -20394,7 +20394,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=8a821156579bb5ea0860c8491b5ef2517bea0c0c7e9f4d46ceca0442b27ffa12",
             "published_at": "2026-11-04T14:35:00+00:00",
-            "age_hours": 5.75,
+            "age_hours": 6.17,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -20405,7 +20405,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=1c7066d4df17f718b8f8853ffffbe27ec380a3aede08f490b6b77a5c4229e013",
             "published_at": "2026-11-04T14:00:00+00:00",
-            "age_hours": 6.33,
+            "age_hours": 6.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -20416,7 +20416,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=85a7050eede7df86d02701d3860872e2e1607fc08ead0460e2b8954ae7ba8a05",
             "published_at": "2026-11-04T13:03:31+00:00",
-            "age_hours": 7.27,
+            "age_hours": 7.7,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -20427,7 +20427,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=07598dc70ad6029380a67521680dbb4199ef9fad5776e681bf8de830d6232078",
             "published_at": "2026-11-04T10:12:10+00:00",
-            "age_hours": 10.13,
+            "age_hours": 10.55,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -20438,7 +20438,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4bce19f68f1c3c1eb3058ed7f97c3a2876a58b40b163b56b848b649e81142a2c",
             "published_at": "2026-11-04T08:19:27+00:00",
-            "age_hours": 12.0,
+            "age_hours": 12.43,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "direct"
@@ -20449,7 +20449,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=656f817ff042dad048f236c18927114ae971bb9441e51d32e42778acffe5b419",
             "published_at": "2026-11-03T19:14:37+00:00",
-            "age_hours": 25.09,
+            "age_hours": 25.51,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -20462,7 +20462,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=f9cf5812a1924bf1d3fab7fc15bd5b87fa963d3aee82fcf5e50d156f545aae62",
             "published_at": "2026-11-03T17:30:09+00:00",
-            "age_hours": 26.83,
+            "age_hours": 27.25,
             "score_contribution": 16.0,
             "relevance": "provider_related"
           }
@@ -21888,7 +21888,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 73.33,
-        "price": 350.48,
+        "price": 351.7,
         "avg_dollar_volume_m": 2326.592,
         "relative_volume": 0.974,
         "risk_reward_ratio": 1.178,
@@ -21963,8 +21963,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:03+00:00",
-              "current_price": 350.48
+              "quote_timestamp": "2026-11-04T20:44:10+00:00",
+              "current_price": 351.7
             }
           },
           {
@@ -22023,14 +22023,14 @@
         "provider_status": "available",
         "score": 72.0,
         "technical_adjustment": 7.0,
-        "current_price": 350.48,
-        "current_vs_last_close_pct": 0.03698,
-        "quote_timestamp": "2026-11-04T20:19:03+00:00",
+        "current_price": 351.7,
+        "current_vs_last_close_pct": 0.04059,
+        "quote_timestamp": "2026-11-04T20:44:10+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价接近或突破近端压力"
       },
       "quote_confirmation_score": 72.0,
-      "current_price": 350.48,
-      "current_vs_last_close_pct": 0.03698,
+      "current_price": 351.7,
+      "current_vs_last_close_pct": 0.04059,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -22086,7 +22086,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:19:03+00:00",
+        "quote_timestamp": "2026-11-04T20:44:10+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -22173,7 +22173,7 @@
         "primary_headline": "Is Wall Street Bullish or Bearish on JPMorgan Chase Stock?",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 25.26,
+        "primary_event_age_hours": 25.69,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -22186,7 +22186,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=0ad2f2ef4178a734dca714a1a28dcea2d477e92a22d5bdbe325cb843b7049a3b",
             "published_at": "2026-11-04T14:39:00+00:00",
-            "age_hours": 5.68,
+            "age_hours": 6.11,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -22197,7 +22197,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=9ce8bee66e22356d6f1178d9fd09f16673d62118e3dbf14d765358770a2e0065",
             "published_at": "2026-11-04T12:59:00+00:00",
-            "age_hours": 7.35,
+            "age_hours": 7.77,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -22208,7 +22208,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=922bc035779059197cb2b5f4f7b2eb6cb15c4c3660aff6c8778e97956984669a",
             "published_at": "2026-11-03T21:25:00+00:00",
-            "age_hours": 22.91,
+            "age_hours": 23.34,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -22219,7 +22219,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=810ba511d1a06992bd696c941e319fa16c0a1b609b0437bf1454737e86c688e5",
             "published_at": "2026-11-03T19:03:59+00:00",
-            "age_hours": 25.26,
+            "age_hours": 25.69,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -22230,7 +22230,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=53706392d18573d789cc97dfa0a39afea165f0ec27eed9e8d46c54ae8a81b167",
             "published_at": "2026-11-03T16:42:41+00:00",
-            "age_hours": 27.62,
+            "age_hours": 28.04,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -22241,7 +22241,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e63a4c140a942ef674d6fe03c982111967114abc63cb7e512c1df09e560f1d5b",
             "published_at": "2026-11-03T14:33:37+00:00",
-            "age_hours": 29.77,
+            "age_hours": 30.19,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -22252,7 +22252,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=57f75e76c5acc74139bb7ccb264d6dc4686c76bbd2b57b525ddac81152cb5b1c",
             "published_at": "2026-11-03T14:03:48+00:00",
-            "age_hours": 30.27,
+            "age_hours": 30.69,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -22263,7 +22263,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=892a639ddc8978b9418b7a9fbc168849e4634297c0bed727c12d9339cad6c335",
             "published_at": "2026-11-03T14:03:00+00:00",
-            "age_hours": 30.28,
+            "age_hours": 30.71,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -23691,7 +23691,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 59.68,
-        "price": 82.83,
+        "price": 82.5,
         "avg_dollar_volume_m": 423.321,
         "relative_volume": 0.937,
         "risk_reward_ratio": 1.034,
@@ -23768,8 +23768,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:23+00:00",
-              "current_price": 82.83
+              "quote_timestamp": "2026-11-04T20:44:32+00:00",
+              "current_price": 82.5
             }
           },
           {
@@ -23829,14 +23829,14 @@
         "provider_status": "available",
         "score": 66.0,
         "technical_adjustment": 5.0,
-        "current_price": 82.83,
-        "current_vs_last_close_pct": 0.03318,
-        "quote_timestamp": "2026-11-04T20:19:23+00:00",
+        "current_price": 82.5,
+        "current_vs_last_close_pct": 0.02906,
+        "quote_timestamp": "2026-11-04T20:44:32+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价仍在关键均线之上"
       },
       "quote_confirmation_score": 66.0,
-      "current_price": 82.83,
-      "current_vs_last_close_pct": 0.03318,
+      "current_price": 82.5,
+      "current_vs_last_close_pct": 0.02906,
       "risk_score": 25.98,
       "risk_flags": [
         "weak_close_distribution_risk"
@@ -23895,7 +23895,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "confirming",
-        "quote_timestamp": "2026-11-04T20:19:23+00:00",
+        "quote_timestamp": "2026-11-04T20:44:32+00:00",
         "news_status": "available",
         "news_headline_count": 5
       },
@@ -23982,7 +23982,7 @@
         "primary_headline": "PDD Holdings Inc. Sponsored ADR (PDD) Stock Sinks As Market Gains: What You Should Know",
         "primary_event_type": "theme_buzz",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 22.58,
+        "primary_event_age_hours": 23.0,
         "catalyst_type": "theme_buzz",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -23995,7 +23995,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=74c585eaa3754e4f3f6bd51c9c08d49bebe065d93f374cdaf239b0270ae79ee3",
             "published_at": "2026-11-03T21:45:02+00:00",
-            "age_hours": 22.58,
+            "age_hours": 23.0,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -24006,7 +24006,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d1dca4d3fdffce83726c3d3c1177bf517a929e5374054287b78eb18cecb2d657",
             "published_at": "2026-10-29T13:47:55+00:00",
-            "age_hours": 150.53,
+            "age_hours": 150.96,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -24017,8 +24017,8 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c1b7bfd347238dbc7b3314de0b126df4aac5bea33e744f8170445577575b7b48",
             "published_at": "2026-10-28T20:45:03+00:00",
-            "age_hours": 167.58,
-            "score_contribution": 2.72,
+            "age_hours": 168.0,
+            "score_contribution": 1.6,
             "strong": false,
             "relevance": "direct"
           }
@@ -24030,7 +24030,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d1dca4d3fdffce83726c3d3c1177bf517a929e5374054287b78eb18cecb2d657",
             "published_at": "2026-10-29T13:47:55+00:00",
-            "age_hours": 150.53,
+            "age_hours": 150.96,
             "score_contribution": 10.88,
             "relevance": "provider_related"
           }
@@ -25441,7 +25441,7 @@
         "passed": false,
         "watch_eligible": false,
         "score": 54.94,
-        "price": 326.09,
+        "price": 324.66,
         "avg_dollar_volume_m": 7611.279,
         "relative_volume": 0.779,
         "risk_reward_ratio": 0.476,
@@ -25526,8 +25526,8 @@
             "reason": "当前价低于昨收 / 当前价回到关键均线下方",
             "blocking": true,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:18+00:00",
-              "current_price": 326.09
+              "quote_timestamp": "2026-11-04T20:41:57+00:00",
+              "current_price": 324.66
             }
           },
           {
@@ -25588,14 +25588,14 @@
         "provider_status": "available",
         "score": 36.0,
         "technical_adjustment": -5.0,
-        "current_price": 326.09,
-        "current_vs_last_close_pct": -0.01819,
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "current_price": 324.66,
+        "current_vs_last_close_pct": -0.02249,
+        "quote_timestamp": "2026-11-04T20:41:57+00:00",
         "reason": "当前价低于昨收 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 36.0,
-      "current_price": 326.09,
-      "current_vs_last_close_pct": -0.01819,
+      "current_price": 324.66,
+      "current_vs_last_close_pct": -0.02249,
       "risk_score": 24.0,
       "risk_flags": [
         "current_quote_failed_risk"
@@ -25652,7 +25652,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "failed",
-        "quote_timestamp": "2026-11-04T20:18:18+00:00",
+        "quote_timestamp": "2026-11-04T20:41:57+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -25739,7 +25739,7 @@
         "primary_headline": "Buy the Dip or Wait? Three Scenarios That Could Shape Broadcom Stock Through 2028",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 4.76,
+        "primary_event_age_hours": 5.19,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -25752,7 +25752,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e2fbe43f53a5ca261cad7ea8eb0a4057ba4dceb491cb5c78132e42d294021e48",
             "published_at": "2026-11-04T18:20:00+00:00",
-            "age_hours": 2.0,
+            "age_hours": 2.42,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -25763,7 +25763,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=35a3c2e03337a42d01832172a5ceea1b377d5964134e84ecf4747980db3a4a45",
             "published_at": "2026-11-04T18:18:30+00:00",
-            "age_hours": 2.02,
+            "age_hours": 2.45,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -25774,7 +25774,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=b6f87b7070b4ab5fbeffdfa0119700b8eacb0f0c6bb8c146cd1487b6d7a54869",
             "published_at": "2026-11-04T17:50:00+00:00",
-            "age_hours": 2.5,
+            "age_hours": 2.92,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -25785,7 +25785,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=62f772db7a6d794db96600e740210aaa03f27cd622b65ae0a555e23e47781e9b",
             "published_at": "2026-11-04T17:45:28+00:00",
-            "age_hours": 2.57,
+            "age_hours": 3.0,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -25796,7 +25796,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=141a0fc0b7975de4cf8b10df9d8b5948a53fe18e1b6629cfa06c0acf7fd44ade",
             "published_at": "2026-11-04T15:33:57+00:00",
-            "age_hours": 4.76,
+            "age_hours": 5.19,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -25807,7 +25807,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ebf50033d4eb280491e9bf111c3254c726d4a7bb1269b367223d0a6c645e8baf",
             "published_at": "2026-11-04T15:30:00+00:00",
-            "age_hours": 4.83,
+            "age_hours": 5.26,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -25818,7 +25818,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4e46aea29cdf75ab00370437650649b4ccba419c1b8f025392fde402079ab9b8",
             "published_at": "2026-11-04T14:34:02+00:00",
-            "age_hours": 5.76,
+            "age_hours": 6.19,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -25829,7 +25829,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=433bb438a77f29b4aa66333873ad16ed97b1dc0155618a52fdf90e22c8ff6373",
             "published_at": "2026-11-04T13:45:37+00:00",
-            "age_hours": 6.57,
+            "age_hours": 6.99,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -27150,12 +27150,12 @@
       "raw_candidate_type": "oversold_bounce",
       "edge_status": "NO_EDGE",
       "rating": "C",
-      "elasticity_score": 32.85,
+      "elasticity_score": 32.83,
       "elasticity_raw_potential": 58.19,
       "elasticity_confirmation_factor": 0.355,
       "elasticity_interpretation": "normal_volatility",
-      "next_day_move_probability": 0.3763,
-      "upside_momentum_score": 56.08,
+      "next_day_move_probability": 0.3734,
+      "upside_momentum_score": 55.0,
       "bounce_score": 100.0,
       "downside_continuation_score": 100.0,
       "squeeze_score": 39.02,
@@ -27192,7 +27192,7 @@
           "市场偏防守"
         ],
         "inputs": {
-          "technical_score": 25.5,
+          "technical_score": 24.0,
           "volume_score": 44.12,
           "relative_volume": 0.812,
           "volume_z_score": -0.219,
@@ -27210,11 +27210,11 @@
         "borrow_fee": "missing",
         "note": "逼空评分暂时使用波动率、相对成交量和动量代理；真实 short interest / options 数据接入前必须视为 proxy。"
       },
-      "confluence_score": 55.16,
+      "confluence_score": 54.36,
       "catalyst_score": 54.0,
       "expectation_gap_score": 58,
-      "execution_quality_score": 61.26,
-      "payoff_quality_score": 55.07,
+      "execution_quality_score": 60.43,
+      "payoff_quality_score": 54.92,
       "risk_reward_ratio": 1.374,
       "expected_upside_pct": 0.07635,
       "expected_downside_pct": 0.05556,
@@ -27233,7 +27233,7 @@
         "applies": true,
         "passed": false,
         "structure_ready": false,
-        "score": 70.72,
+        "score": 70.57,
         "failures": [
           "低吸质量不足",
           "信号闸门阻断"
@@ -27257,8 +27257,8 @@
         "version": "reliable_bottom_profile_v1",
         "passed": true,
         "watch_eligible": true,
-        "score": 76.3,
-        "price": 110.03,
+        "score": 76.18,
+        "price": 109.25,
         "avg_dollar_volume_m": 2387.666,
         "relative_volume": 0.812,
         "risk_reward_ratio": 1.374,
@@ -27302,8 +27302,8 @@
             "dimension": "price",
             "label": "价格结构",
             "status": "weak",
-            "score": 25.5,
-            "reason": "技术分 25.5，低吸分 70.0，收盘位置 0.98，支撑距离 5.5%，20日回撤 31.6%",
+            "score": 24.0,
+            "reason": "技术分 24.0，低吸分 70.0，收盘位置 0.98，支撑距离 5.5%，20日回撤 31.6%",
             "blocking": false,
             "data": {}
           },
@@ -27329,20 +27329,20 @@
             "dimension": "quote",
             "label": "当前价确认",
             "status": "partial",
-            "score": 47.0,
-            "reason": "当前价略高于昨收 / 当前价回到关键均线下方",
+            "score": 42.0,
+            "reason": "当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:39+00:00",
-              "current_price": 110.03
+              "quote_timestamp": "2026-11-04T20:42:41+00:00",
+              "current_price": 109.25
             }
           },
           {
             "dimension": "payoff",
             "label": "赔率/路径",
             "status": "partial",
-            "score": 55.07,
-            "reason": "赔率分 55.1，上/下行比 1.37，主路径概率 0.46",
+            "score": 54.92,
+            "reason": "赔率分 54.9，上/下行比 1.37，主路径概率 0.46",
             "blocking": false,
             "data": {}
           },
@@ -27390,16 +27390,16 @@
       "quote_confirmation": {
         "status": "neutral",
         "provider_status": "available",
-        "score": 47.0,
-        "technical_adjustment": -1.5,
-        "current_price": 110.03,
-        "current_vs_last_close_pct": 0.00797,
-        "quote_timestamp": "2026-11-04T20:18:39+00:00",
-        "reason": "当前价略高于昨收 / 当前价回到关键均线下方"
+        "score": 42.0,
+        "technical_adjustment": -3.0,
+        "current_price": 109.25,
+        "current_vs_last_close_pct": 0.00082,
+        "quote_timestamp": "2026-11-04T20:42:41+00:00",
+        "reason": "当前价回到关键均线下方"
       },
-      "quote_confirmation_score": 47.0,
-      "current_price": 110.03,
-      "current_vs_last_close_pct": 0.00797,
+      "quote_confirmation_score": 42.0,
+      "current_price": 109.25,
+      "current_vs_last_close_pct": 0.00082,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -27430,6 +27430,7 @@
           "共振矩阵状态缺失",
           "历史相似样本偏少",
           "历史相似样本次日命中率偏弱",
+          "赔率一般",
           "低吸质量只有部分成立",
           "催化偏弱，但结构型候选可继续观察",
           "市场背景偏防守，个股信号需要降级",
@@ -27439,7 +27440,6 @@
         "positive_factors": [
           "真实 OHLCV 行情可用",
           "市场数据为最新交易日",
-          "上行空间相对失效风险有赔率",
           "低吸/蓄势结构质量较好",
           "持续性优于单日冲高",
           "一日冲高风险较低",
@@ -27456,7 +27456,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:39+00:00",
+        "quote_timestamp": "2026-11-04T20:42:41+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -27543,7 +27543,7 @@
         "primary_headline": "ServiceNow Q3 Earnings Call Highlights AI Growth and Outlook Risks",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 6.33,
+        "primary_event_age_hours": 6.76,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -27556,7 +27556,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=2dc477639845c964c6f23176fbda4c1c8007a18f4767bcf42989fe42e97560b1",
             "published_at": "2026-11-04T17:59:41+00:00",
-            "age_hours": 2.33,
+            "age_hours": 2.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -27567,7 +27567,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=42579905020b8dfd834fcf1ecb5926fbada73bddb1b8f50f0f03e0a342449e5b",
             "published_at": "2026-11-04T14:00:00+00:00",
-            "age_hours": 6.33,
+            "age_hours": 6.76,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -27578,7 +27578,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=f211d46bbd62a3e3cdc6c93911aaad43d23b1ae349c8b6d0139b5b655b13ef03",
             "published_at": "2026-11-04T14:00:00+00:00",
-            "age_hours": 6.33,
+            "age_hours": 6.76,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -27589,7 +27589,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=eca49147de1eacd90346d1e2884894bbb3ffae89a12d8348ac2578082d7cb14d",
             "published_at": "2026-11-04T14:00:00+00:00",
-            "age_hours": 6.33,
+            "age_hours": 6.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -27600,7 +27600,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=4061ed4f1d1b54facedc580a6a2d1d8ebb216e1a16fce4be9753d365f00e678a",
             "published_at": "2026-11-04T13:48:29+00:00",
-            "age_hours": 6.52,
+            "age_hours": 6.95,
             "score_contribution": 7.5,
             "strong": false,
             "relevance": "provider_related"
@@ -27611,7 +27611,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3c091b148a8e46c9acb8ba6661617f89d561864175cbc2c325dcb77b88835ff4",
             "published_at": "2026-11-04T11:53:00+00:00",
-            "age_hours": 8.45,
+            "age_hours": 8.87,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -27622,7 +27622,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=fb98e754dfafa6f91e94566f6907239a138075d8422a6b9c3531dd369deb71eb",
             "published_at": "2026-11-04T10:33:00+00:00",
-            "age_hours": 9.78,
+            "age_hours": 10.21,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -27633,7 +27633,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=88eae36624746e6474b0bb077d8e311ce1ee05be6fdec588c365205ff6e8b371",
             "published_at": "2026-11-04T09:59:09+00:00",
-            "age_hours": 10.34,
+            "age_hours": 10.77,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -27656,7 +27656,7 @@
       "relative_strength": -0.22901,
       "relative_volume": 0.812,
       "volume_score": 44.12,
-      "technical_score": 25.5,
+      "technical_score": 24.0,
       "close_position": 0.982,
       "dollar_volume_m": 1594.915,
       "avg_dollar_volume_m": 2387.666,
@@ -27696,7 +27696,7 @@
         "rsi_14": 26.88,
         "atr_pct": 0.08133,
         "realized_volatility_20d": 1.05573,
-        "technical_score": 25.5
+        "technical_score": 24.0
       },
       "volume_snapshot": {
         "latest_date": "2026-11-03",
@@ -28885,7 +28885,7 @@
         {
           "source": "payoff",
           "name": "payoff_quality_confirmed",
-          "score": 55.07,
+          "score": 54.92,
           "detail": "次日预期上行/下行赔率约 1.374。"
         }
       ],
@@ -28905,7 +28905,7 @@
         {
           "source": "price",
           "name": "price_structure_unconfirmed",
-          "score": 74.5,
+          "score": 76.0,
           "detail": "价格结构没有确认高质量短线形态。"
         },
         {
@@ -29055,7 +29055,7 @@
         "passed": false,
         "watch_eligible": false,
         "score": 43.87,
-        "price": 13.99,
+        "price": 13.93,
         "avg_dollar_volume_m": 360.083,
         "relative_volume": 1.053,
         "risk_reward_ratio": 0.312,
@@ -29132,8 +29132,8 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:21+00:00",
-              "current_price": 13.99
+              "quote_timestamp": "2026-11-04T20:44:30+00:00",
+              "current_price": 13.93
             }
           },
           {
@@ -29189,14 +29189,14 @@
         "provider_status": "available",
         "score": 60.0,
         "technical_adjustment": 3.0,
-        "current_price": 13.99,
-        "current_vs_last_close_pct": 0.05267,
-        "quote_timestamp": "2026-11-04T20:19:21+00:00",
+        "current_price": 13.93,
+        "current_vs_last_close_pct": 0.04816,
+        "quote_timestamp": "2026-11-04T20:44:30+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
-      "current_price": 13.99,
-      "current_vs_last_close_pct": 0.05267,
+      "current_price": 13.93,
+      "current_vs_last_close_pct": 0.04816,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -29251,7 +29251,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:19:21+00:00",
+        "quote_timestamp": "2026-11-04T20:44:30+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -29338,7 +29338,7 @@
         "primary_headline": "Rivian Raised Guidance to 67,000-70,000 Deliveries. Here's the Q4 Number the R2 Ramp Must Hit -- and What the Stock Does if It Doesn't.",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 25.5,
+        "primary_event_age_hours": 25.92,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "strong",
         "recent_confirmed_catalyst": true,
@@ -29353,7 +29353,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=ef880197d36325263a054a0dae7584d4ad81fc25c28d5cf783345ff6c49e9c33",
             "published_at": "2026-11-03T18:50:00+00:00",
-            "age_hours": 25.5,
+            "age_hours": 25.92,
             "score_contribution": 18.0,
             "strong": true,
             "relevance": "direct"
@@ -29364,7 +29364,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5114abc77c66768d27721fc8240df49de5ec36764c06aad01727b6db22a7188b",
             "published_at": "2026-11-03T16:14:44+00:00",
-            "age_hours": 28.08,
+            "age_hours": 28.51,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -29375,7 +29375,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=799085877c152f0439fdbab1ebefb090ff16fefbc8fd7d9e5a82a55b06aff792",
             "published_at": "2026-11-03T13:17:50+00:00",
-            "age_hours": 31.03,
+            "age_hours": 31.46,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -29386,7 +29386,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=79690f66a28a5214c1929e61b2e88cc6f2091d380e82858452a24dca8f44433a",
             "published_at": "2026-11-03T09:15:17+00:00",
-            "age_hours": 35.07,
+            "age_hours": 35.5,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -29397,7 +29397,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=f5d26d0bd1a1305ba96065afecbab9289c849a2c7f4f72e3ee9cfc41a11876cb",
             "published_at": "2026-11-03T04:04:42+00:00",
-            "age_hours": 40.25,
+            "age_hours": 40.68,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -29408,7 +29408,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=d19825be0b3be2c0a35eb5367b21fb648a9f13cf551ce7f2d29d2d5e61aab252",
             "published_at": "2026-11-02T22:37:23+00:00",
-            "age_hours": 45.71,
+            "age_hours": 46.13,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -29419,7 +29419,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6849cdd63e713e46d7cc55e0a8177b0a20aacd13a9f0aaf322c500cf7c44b0dd",
             "published_at": "2026-11-02T22:09:00+00:00",
-            "age_hours": 46.18,
+            "age_hours": 46.61,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -29430,7 +29430,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=6e5eb211be7487ce3e3d363d5a3425094b403fb530d2785828ecf64ef57e9f06",
             "published_at": "2026-11-02T21:35:00+00:00",
-            "age_hours": 46.75,
+            "age_hours": 47.17,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -30843,7 +30843,7 @@
         "passed": true,
         "watch_eligible": true,
         "score": 73.2,
-        "price": 228.17,
+        "price": 227.47,
         "avg_dollar_volume_m": 1696.641,
         "relative_volume": 0.939,
         "risk_reward_ratio": 1.641,
@@ -30918,8 +30918,8 @@
             "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:18:26+00:00",
-              "current_price": 228.17
+              "quote_timestamp": "2026-11-04T20:42:40+00:00",
+              "current_price": 227.47
             }
           },
           {
@@ -30978,14 +30978,14 @@
         "provider_status": "available",
         "score": 52.0,
         "technical_adjustment": 0.0,
-        "current_price": 228.17,
-        "current_vs_last_close_pct": 0.02687,
-        "quote_timestamp": "2026-11-04T20:18:26+00:00",
+        "current_price": 227.47,
+        "current_vs_last_close_pct": 0.02372,
+        "quote_timestamp": "2026-11-04T20:42:40+00:00",
         "reason": "当前价高于昨收 1% 以上 / 当前价回到关键均线下方"
       },
       "quote_confirmation_score": 52.0,
-      "current_price": 228.17,
-      "current_vs_last_close_pct": 0.02687,
+      "current_price": 227.47,
+      "current_vs_last_close_pct": 0.02372,
       "risk_score": 12.0,
       "risk_flags": [],
       "pool_filter": {
@@ -31042,7 +31042,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:18:26+00:00",
+        "quote_timestamp": "2026-11-04T20:42:40+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -31129,7 +31129,7 @@
         "primary_headline": "Salesforce (CRM) Moves to Strong Buy: Rationale Behind the Upgrade",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 4.33,
+        "primary_event_age_hours": 4.75,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -31142,7 +31142,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=c82d581f83749d8e6a931a2fa7d8cb9fe120c2c7003149c9eb63badd3544ed3d",
             "published_at": "2026-11-04T17:53:00+00:00",
-            "age_hours": 2.45,
+            "age_hours": 2.87,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -31153,7 +31153,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=bf20a71667756049bd8ff09fd454aa9ca54a1cdaed7271af4c41240547e1a1dd",
             "published_at": "2026-11-04T16:00:02+00:00",
-            "age_hours": 4.33,
+            "age_hours": 4.75,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -31164,7 +31164,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=002ee833786df4c71b654c24c26d8d243dd31cdfdbe4e75baec5aa3073b07b9b",
             "published_at": "2026-11-04T14:30:00+00:00",
-            "age_hours": 5.83,
+            "age_hours": 6.26,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -31175,7 +31175,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=eca49147de1eacd90346d1e2884894bbb3ffae89a12d8348ac2578082d7cb14d",
             "published_at": "2026-11-04T14:00:00+00:00",
-            "age_hours": 6.33,
+            "age_hours": 6.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "direct"
@@ -31186,7 +31186,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=89280cbbd9565203a35932277caa3548e858296ea46ae8b9ee5a0029074f5e84",
             "published_at": "2026-11-04T14:00:00+00:00",
-            "age_hours": 6.33,
+            "age_hours": 6.76,
             "score_contribution": 10.0,
             "strong": false,
             "relevance": "direct"
@@ -31197,7 +31197,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=3d13945f4727099c6b95fd583db4534b6443e254947088a9f7ca79174f31eac9",
             "published_at": "2026-11-04T13:49:33+00:00",
-            "age_hours": 6.5,
+            "age_hours": 6.93,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -31208,7 +31208,7 @@
             "source": "SeekingAlpha",
             "url": "https://finnhub.io/api/news?id=cb98228031e8a6fea53fbb9cb40fa5c599d2bf35275db097a026963f72a51fc9",
             "published_at": "2026-11-04T13:45:19+00:00",
-            "age_hours": 6.57,
+            "age_hours": 7.0,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -31219,7 +31219,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=e82a7db443d52e22e8cd400ccdfa634a7426af8ccb4d5bd1d2c68a83b1f6c090",
             "published_at": "2026-11-04T13:00:00+00:00",
-            "age_hours": 7.33,
+            "age_hours": 7.76,
             "score_contribution": 5.0,
             "strong": false,
             "relevance": "provider_related"
@@ -32640,7 +32640,7 @@
         "passed": false,
         "watch_eligible": false,
         "score": 56.89,
-        "price": 25.1,
+        "price": 25.09,
         "avg_dollar_volume_m": 245.96,
         "relative_volume": 0.509,
         "risk_reward_ratio": 0.91,
@@ -32717,8 +32717,8 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:00+00:00",
-              "current_price": 25.1
+              "quote_timestamp": "2026-11-04T20:43:38+00:00",
+              "current_price": 25.09
             }
           },
           {
@@ -32776,14 +32776,14 @@
         "provider_status": "available",
         "score": 60.0,
         "technical_adjustment": 3.0,
-        "current_price": 25.1,
-        "current_vs_last_close_pct": 0.0342,
-        "quote_timestamp": "2026-11-04T20:19:00+00:00",
+        "current_price": 25.09,
+        "current_vs_last_close_pct": 0.03379,
+        "quote_timestamp": "2026-11-04T20:43:38+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
-      "current_price": 25.1,
-      "current_vs_last_close_pct": 0.0342,
+      "current_price": 25.09,
+      "current_vs_last_close_pct": 0.03379,
       "risk_score": 20.8,
       "risk_flags": [],
       "pool_filter": {
@@ -32840,7 +32840,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:19:00+00:00",
+        "quote_timestamp": "2026-11-04T20:43:38+00:00",
         "news_status": "available",
         "news_headline_count": 7
       },
@@ -32927,7 +32927,7 @@
         "primary_headline": "Buy, Sell, or Hold? Today’s Top Upgrades and Downgrades: Amazon.com, Coinbase Global, CrowdStrike, FormFactor, GameStop, L3Harris Technologies, Oracle, Reddit, Rivian Automotive, and More",
         "primary_event_type": "earnings_momentum",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 55.11,
+        "primary_event_age_hours": 55.53,
         "catalyst_type": "earnings_momentum",
         "catalyst_quality": "conflicted",
         "recent_confirmed_catalyst": false,
@@ -32940,7 +32940,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=0222bf96c9b5337babfcbec3fe2b0db0ef5fc460033006df4f201b3b7b6617d9",
             "published_at": "2026-11-02T14:55:07+00:00",
-            "age_hours": 53.41,
+            "age_hours": 53.84,
             "score_contribution": 6.0,
             "strong": false,
             "relevance": "provider_related"
@@ -32951,7 +32951,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=12b06189569be718fed36bd007a843db8913a6e997fc512a40ccb09c21487f5e",
             "published_at": "2026-11-02T13:13:21+00:00",
-            "age_hours": 55.11,
+            "age_hours": 55.53,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -32962,7 +32962,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=fc37faeaff321720f4ca1ea38830905863e6aa2ac7926a6b778df1da6f7dcfe3",
             "published_at": "2026-10-29T05:04:15+00:00",
-            "age_hours": 159.26,
+            "age_hours": 159.68,
             "score_contribution": 4.08,
             "strong": false,
             "relevance": "provider_related"
@@ -32975,7 +32975,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=12b06189569be718fed36bd007a843db8913a6e997fc512a40ccb09c21487f5e",
             "published_at": "2026-11-02T13:13:21+00:00",
-            "age_hours": 55.11,
+            "age_hours": 55.53,
             "score_contribution": 16.0,
             "relevance": "direct"
           }
@@ -34461,7 +34461,7 @@
             "reason": "当前价高于昨收 1% 以上",
             "blocking": false,
             "data": {
-              "quote_timestamp": "2026-11-04T20:19:21+00:00",
+              "quote_timestamp": "2026-11-04T20:44:55+00:00",
               "current_price": 9.9
             }
           },
@@ -34519,7 +34519,7 @@
         "technical_adjustment": 3.0,
         "current_price": 9.9,
         "current_vs_last_close_pct": 0.02378,
-        "quote_timestamp": "2026-11-04T20:19:21+00:00",
+        "quote_timestamp": "2026-11-04T20:44:55+00:00",
         "reason": "当前价高于昨收 1% 以上"
       },
       "quote_confirmation_score": 60.0,
@@ -34579,7 +34579,7 @@
         "real_price_data": true,
         "latest_price_date": "2026-11-03",
         "quote_status": "neutral",
-        "quote_timestamp": "2026-11-04T20:19:21+00:00",
+        "quote_timestamp": "2026-11-04T20:44:55+00:00",
         "news_status": "available",
         "news_headline_count": 18
       },
@@ -34666,7 +34666,7 @@
         "primary_headline": "Why XPeng Stock Is In Focus After Record Deliveries",
         "primary_event_type": "product_or_launch",
         "primary_event_source": "Yahoo",
-        "primary_event_age_hours": 45.01,
+        "primary_event_age_hours": 45.44,
         "catalyst_type": "product_or_launch",
         "catalyst_quality": "weak",
         "recent_confirmed_catalyst": false,
@@ -34679,7 +34679,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=0811338f0c70ade166b411c18290828510c4122a9932b593971fb0d914954d22",
             "published_at": "2026-11-03T04:08:03+00:00",
-            "age_hours": 40.19,
+            "age_hours": 40.62,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34690,7 +34690,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=597e07097bd0bc8806792b327572c527cd8a161eac05ff2429790bd5e9893a97",
             "published_at": "2026-11-03T01:29:00+00:00",
-            "age_hours": 42.85,
+            "age_hours": 43.27,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
@@ -34701,7 +34701,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=aa8183947d4210cb88adfbb3b97945254b223a5a1941879de2d4b6271f343f95",
             "published_at": "2026-11-02T23:19:12+00:00",
-            "age_hours": 45.01,
+            "age_hours": 45.44,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -34712,7 +34712,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=269f321ebe9683d6c2a89f487d26e068b5acc1f44cbf7c18a908ee75cfb9a0e4",
             "published_at": "2026-11-02T18:44:25+00:00",
-            "age_hours": 49.59,
+            "age_hours": 50.01,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -34723,7 +34723,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=5c66cc3bbaab63906d3e437bfca624dfd9ba638df06f2a77cf64d0486fc61e33",
             "published_at": "2026-11-02T14:06:58+00:00",
-            "age_hours": 54.21,
+            "age_hours": 54.64,
             "score_contribution": 8.0,
             "strong": false,
             "relevance": "direct"
@@ -34734,7 +34734,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=288d1d6c1b25db73efa268e00eb77a04ca38a9484b46d6bf4e4a33d3935a138f",
             "published_at": "2026-11-02T14:04:48+00:00",
-            "age_hours": 54.25,
+            "age_hours": 54.68,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34745,7 +34745,7 @@
             "source": "Benzinga",
             "url": "https://finnhub.io/api/news?id=4f0e53c8b99ae91bfc64d4e1189c153cd40e06a4717c3412e03afb8c4f6d67ba",
             "published_at": "2026-11-02T13:48:23+00:00",
-            "age_hours": 54.52,
+            "age_hours": 54.95,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "provider_related"
@@ -34756,7 +34756,7 @@
             "source": "Yahoo",
             "url": "https://finnhub.io/api/news?id=31f2eeb4719b75b140a96fca04414a58e3feb90c559bdfb3530d9f31707ffc77",
             "published_at": "2026-11-02T13:04:14+00:00",
-            "age_hours": 55.26,
+            "age_hours": 55.68,
             "score_contribution": 4.0,
             "strong": false,
             "relevance": "direct"
