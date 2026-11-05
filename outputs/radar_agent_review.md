@@ -2,9 +2,9 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-04T21:23:55.787878+00:00`
+- generated_at: `2026-11-05T00:57:24.300516+00:00`
 - overall_decision: `防守`
-- agency_quality_gate: `不通过`
+- agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
@@ -32,16 +32,16 @@
 
 ### 预期差代理
 
-- status: `fail`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=54.57; min_top5_gap=51.71; confirmed_signal_count=1
-- warning: 预期差不足，容易变成表面热闹但没有交易价值。
+- evidence: avg_top5_gap=63.91; min_top5_gap=54.0; confirmed_signal_count=1
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=46.77; avg_execution=54.79; avg_risk=18.6
+- evidence: avg_payoff=46.38; avg_execution=55.62; avg_risk=14.93
 - warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
@@ -84,8 +84,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | META | 可观察候选 | 共振 59.54; 预期差 51.71; 赔率 50.35; 风险 23.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | PLTR | 可观察候选 | 共振 67; 预期差 58; 赔率 45.45; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 1 | META | 可观察候选 | 共振 75.13; 预期差 58; 赔率 49.18; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 2 | PLTR | 可观察候选 | 共振 67; 预期差 79.72; 赔率 45.45; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
 | 3 | HOOD | 可观察候选 | 共振 68; 预期差 54; 赔率 44.52; 风险 20.8; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
