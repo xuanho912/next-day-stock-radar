@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-11-06T20:18:08.614111+00:00",
+  "generated_at": "2026-11-06T20:58:41.507432+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,12 +11,12 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 33.94,
-    "avg_top5_confluence_score": 56.99,
-    "avg_top5_expectation_gap_score": 64.51,
-    "avg_top5_payoff_quality_score": 55.01,
-    "avg_top5_execution_quality_score": 63.55,
-    "avg_top5_risk_score": 22.0,
+    "avg_top5_elasticity_score": 34.46,
+    "avg_top5_confluence_score": 56.74,
+    "avg_top5_expectation_gap_score": 65.17,
+    "avg_top5_payoff_quality_score": 55.68,
+    "avg_top5_execution_quality_score": 64.08,
+    "avg_top5_risk_score": 18.33,
     "min_top5_confluence_score": 49.54,
     "min_top5_expectation_gap_score": 51.75,
     "top_sector": "AI / Semiconductors",
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=64.51; min_top5_gap=51.75; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=65.17; min_top5_gap=51.75; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=55.01; avg_execution=63.55; avg_risk=22.0",
+      "evidence": "avg_payoff=55.68; avg_execution=64.08; avg_risk=18.33",
       "warnings": []
     },
     {
@@ -121,7 +121,7 @@
       "ticker": "QCOM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 67; 预期差 83.78; 赔率 56.46; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 67; 预期差 85.76; 赔率 58.63; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 158.8791,
       "invalidation": 153.4245,
       "warnings": [
@@ -152,7 +152,7 @@
       "ticker": "GOOGL",
       "candidate_type": "oversold_bounce",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 54.43; 预期差 58; 赔率 54.13; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 53.67; 预期差 58; 赔率 53.98; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 285.9464,
       "invalidation": 276.92,
       "warnings": [
