@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-05T21:31:09.344223+00:00`
+- generated_at: `2026-11-06T01:00:10.416573+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -14,7 +14,6 @@
 - 市场路径偏防守，个股信号必须降级处理。
 - 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - 部分历史相似样本不足，不能把相似样本结论当作验证。
-- Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ## Agent Findings
 
@@ -29,26 +28,26 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(2)
+- evidence: top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=52.46; min_top5_gap=45.37; confirmed_signal_count=0
+- evidence: avg_top5_gap=48.83; min_top5_gap=42.49; confirmed_signal_count=1
 - warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=51.98; avg_execution=56.15; avg_risk=15.67
+- evidence: avg_payoff=50.83; avg_execution=60.22; avg_risk=15.67
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=0
+- evidence: confirming=0; failed=0; missing=1
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
@@ -58,7 +57,6 @@
 - evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
-- warning: Top 10 没有真实共振候选，只能观察，不能进攻。
 
 ### 验证代理
 
@@ -85,8 +83,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | MSTR | 可观察候选 | 共振 57.94; 预期差 45.37; 赔率 56.25; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
-| 2 | CEG | 可观察候选 | 共振 55.87; 预期差 54; 赔率 45.86; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
-| 3 | GOOGL | 可观察候选 | 共振 52.63; 预期差 58; 赔率 53.84; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 1 | MSTR | 可观察候选 | 共振 50.75; 预期差 42.49; 赔率 54.92; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 2 | CEG | 可观察候选 | 共振 55.89; 预期差 54; 赔率 45.86; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
+| 3 | BIDU | 可观察候选 | 共振 74.46; 预期差 50; 赔率 51.71; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 当前价缺失 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。

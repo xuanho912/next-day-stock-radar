@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-11-05T21:31:09.344223+00:00",
+  "generated_at": "2026-11-06T01:00:10.416573+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,18 +11,18 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 30.03,
-    "avg_top5_confluence_score": 55.48,
-    "avg_top5_expectation_gap_score": 52.46,
-    "avg_top5_payoff_quality_score": 51.98,
-    "avg_top5_execution_quality_score": 56.15,
+    "avg_top5_elasticity_score": 33.8,
+    "avg_top5_confluence_score": 60.37,
+    "avg_top5_expectation_gap_score": 48.83,
+    "avg_top5_payoff_quality_score": 50.83,
+    "avg_top5_execution_quality_score": 60.22,
     "avg_top5_risk_score": 15.67,
-    "min_top5_confluence_score": 52.63,
-    "min_top5_expectation_gap_score": 45.37,
+    "min_top5_confluence_score": 50.75,
+    "min_top5_expectation_gap_score": 42.49,
     "top_sector": "Crypto Proxy",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
-    "top_candidate_type_count": 2,
+    "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
     "top10_high_liquidity_risk_count": 0,
     "top10_high_volatility_risk_count": 0,
@@ -30,10 +30,10 @@
     "top10_proxy_squeeze_count": 3,
     "top10_quote_confirming_count": 0,
     "top10_quote_failed_count": 0,
-    "top10_quote_missing_count": 0,
-    "top10_signal_confirmed_count": 0,
+    "top10_quote_missing_count": 1,
+    "top10_signal_confirmed_count": 1,
     "top10_signal_partial_count": 0,
-    "top10_signal_blocked_count": 3
+    "top10_signal_blocked_count": 2
   },
   "agent_findings": [
     {
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(2)",
+      "evidence": "top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "fail",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=52.46; min_top5_gap=45.37; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=48.83; min_top5_gap=42.49; confirmed_signal_count=1",
       "warnings": [
         "预期差不足，容易变成表面热闹但没有交易价值。"
       ]
@@ -65,14 +65,14 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=51.98; avg_execution=56.15; avg_risk=15.67",
+      "evidence": "avg_payoff=50.83; avg_execution=60.22; avg_risk=15.67",
       "warnings": []
     },
     {
       "agent_name": "当前价确认代理",
       "status": "warn",
       "conclusion": "检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。",
-      "evidence": "confirming=0; failed=0; missing=0",
+      "evidence": "confirming=0; failed=0; missing=1",
       "warnings": [
         "当前价确认数量偏少，盘前/盘中需要再次刷新。"
       ]
@@ -84,8 +84,7 @@
       "evidence": "proxy_squeeze=3; low_sample=3; liquidity_risk=0",
       "warnings": [
         "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-        "部分历史相似样本不足，不能把相似样本结论当作验证。",
-        "Top 10 没有真实共振候选，只能观察，不能进攻。"
+        "部分历史相似样本不足，不能把相似样本结论当作验证。"
       ]
     },
     {
@@ -121,7 +120,7 @@
       "ticker": "MSTR",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 57.94; 预期差 45.37; 赔率 56.25; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 50.75; 预期差 42.49; 赔率 54.92; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 131.455,
       "invalidation": 124.06,
       "warnings": [
@@ -136,7 +135,7 @@
       "ticker": "CEG",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 55.87; 预期差 54; 赔率 45.86; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 55.89; 预期差 54; 赔率 45.86; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 242.7846,
       "invalidation": 235.0238,
       "warnings": [
@@ -148,17 +147,17 @@
     },
     {
       "rank": 3,
-      "ticker": "GOOGL",
-      "candidate_type": "oversold_bounce",
+      "ticker": "BIDU",
+      "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 52.63; 预期差 58; 赔率 53.84; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 285.9464,
-      "invalidation": 276.92,
+      "key_check": "共振 74.46; 预期差 50; 赔率 51.71; 风险 12.0; 闸门 不具备高置信优势; 信号 confirmed",
+      "trigger": 80.3455,
+      "invalidation": 75.8,
       "warnings": [
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
+        "当前价缺失"
       ]
     }
   ],
@@ -167,8 +166,7 @@
     "逼空/期权相关评分包含 proxy，不是真实 short interest / options 数据。",
     "市场路径偏防守，个股信号必须降级处理。",
     "部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。",
-    "部分历史相似样本不足，不能把相似样本结论当作验证。",
-    "Top 10 没有真实共振候选，只能观察，不能进攻。"
+    "部分历史相似样本不足，不能把相似样本结论当作验证。"
   ],
   "not_trading_advice": "这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。"
 }
