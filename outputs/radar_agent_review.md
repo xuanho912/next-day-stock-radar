@@ -2,9 +2,9 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-06T20:58:41.507432+00:00`
+- generated_at: `2026-11-07T00:11:09.082105+00:00`
 - overall_decision: `防守`
-- agency_quality_gate: `谨慎通过`
+- agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
@@ -29,20 +29,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=AI / Semiconductors(1); top_type=pullback_reversal_setup(2)
+- evidence: top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
-- status: `warn`
+- status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=65.17; min_top5_gap=51.75; confirmed_signal_count=0
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=54.33; min_top5_gap=50.99; confirmed_signal_count=0
+- warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=55.68; avg_execution=64.08; avg_risk=18.33
+- evidence: avg_payoff=52.4; avg_execution=57.96; avg_risk=21.17
 
 ### 当前价确认代理
 
@@ -64,7 +64,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=2019; leaderboard=validated
+- evidence: validation=early_evidence; completed=2045; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -85,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | QCOM | 可观察候选 | 共振 67; 预期差 85.76; 赔率 58.63; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
-| 2 | JPM | 可观察候选 | 共振 49.54; 预期差 51.75; 赔率 54.44; 风险 31.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
-| 3 | GOOGL | 可观察候选 | 共振 53.67; 预期差 58; 赔率 53.98; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 1 | MSTR | 可观察候选 | 共振 57.46; 预期差 54; 赔率 58.3; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 2 | ORCL | 可观察候选 | 共振 49.16; 预期差 50.99; 赔率 52.19; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
+| 3 | UNH | 可观察候选 | 共振 68; 预期差 58; 赔率 46.72; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
