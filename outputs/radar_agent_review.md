@@ -2,9 +2,9 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-07T00:11:09.082105+00:00`
+- generated_at: `2026-11-07T02:21:51.161249+00:00`
 - overall_decision: `防守`
-- agency_quality_gate: `不通过`
+- agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
@@ -29,20 +29,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Crypto Proxy(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Cloud Software(1); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
-- status: `fail`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=54.33; min_top5_gap=50.99; confirmed_signal_count=0
-- warning: 预期差不足，容易变成表面热闹但没有交易价值。
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=52.4; avg_execution=57.96; avg_risk=21.17
+- evidence: avg_payoff=53.81; avg_execution=59.2; avg_risk=15.67
 
 ### 当前价确认代理
 
@@ -85,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | MSTR | 可观察候选 | 共振 57.46; 预期差 54; 赔率 58.3; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
-| 2 | ORCL | 可观察候选 | 共振 49.16; 预期差 50.99; 赔率 52.19; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
-| 3 | UNH | 可观察候选 | 共振 68; 预期差 58; 赔率 46.72; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | ORCL | 可观察候选 | 共振 67; 预期差 58; 赔率 56.16; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 2 | MSTR | 可观察候选 | 共振 50.31; 预期差 54; 赔率 58.55; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 3 | UNH | 可观察候选 | 共振 68; 预期差 58; 赔率 46.73; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
