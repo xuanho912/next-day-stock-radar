@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-10T04:44:21.511466+00:00`
+- generated_at: `2026-11-10T08:42:24.392117+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -34,14 +34,14 @@
 
 - status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=53.63; min_top5_gap=52.88; confirmed_signal_count=1
+- evidence: avg_top5_gap=54.0; min_top5_gap=54.0; confirmed_signal_count=1
 - warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=51.56; avg_execution=59.32; avg_risk=22.79
+- evidence: avg_payoff=51.95; avg_execution=59.9; avg_risk=22.79
 
 ### 当前价确认代理
 
@@ -84,7 +84,7 @@
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
 | 1 | NFLX | 可观察候选 | 共振 76.45; 预期差 54; 赔率 52.46; 风险 20.98; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | COIN | 可观察候选 | 共振 50.9; 预期差 52.88; 赔率 49.83; 风险 24.38; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 2 | COIN | 可观察候选 | 共振 51.62; 预期差 54; 赔率 50.99; 风险 24.38; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
 | 3 | JPM | 可观察候选 | 共振 63; 预期差 54; 赔率 52.39; 风险 23.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
