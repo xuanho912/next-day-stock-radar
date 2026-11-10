@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-10T20:44:36.076592+00:00`
+- generated_at: `2026-11-10T21:22:46.750529+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -29,21 +29,20 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=Cloud Software(2); top_type=pullback_reversal_setup(3)
 
 ### 预期差代理
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=56.67; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
-- status: `warn`
+- status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=48.1; avg_execution=66.7; avg_risk=17.5
-- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
+- evidence: avg_payoff=56.64; avg_execution=55.82; avg_risk=14.93
 
 ### 当前价确认代理
 
@@ -65,7 +64,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=2068; leaderboard=validated
+- evidence: validation=early_evidence; completed=2094; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -86,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | JPM | 可观察候选 | 共振 76.38; 预期差 58; 赔率 54.52; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 2 | UNH | 可观察候选 | 共振 68; 预期差 58; 赔率 48.26; 风险 28.5; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
-| 3 | META | 共振不足 | 共振 68; 预期差 58; 赔率 41.51; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | NFLX | 可观察候选 | 共振 67; 预期差 58; 赔率 56.57; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 2 | CRM | 可观察候选 | 共振 59.52; 预期差 58; 赔率 54.87; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 3 | ADBE | 可观察候选 | 共振 49.32; 预期差 54; 赔率 58.47; 风险 20.8; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
