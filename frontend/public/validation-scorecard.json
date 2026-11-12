@@ -1,13 +1,13 @@
 {
   "version": "validation_scorecard_v2",
-  "generated_at": "2026-11-12T04:02:18.971207+00:00",
+  "generated_at": "2026-11-12T08:41:45.807831+00:00",
   "validation_status": "early_evidence",
   "not_high_precision_warning": "Do not call this high precision until forward validation proves it.",
-  "pending_forecasts": 21,
+  "pending_forecasts": 22,
   "completed_next_day_forecasts": 2123,
   "baseline": {
-    "total_forecasts": 2144,
-    "pending_forecasts": 21,
+    "total_forecasts": 2145,
+    "pending_forecasts": 22,
     "completed_next_day_forecasts": 2123,
     "top_10_avg_next_day_volatility": 0.094506,
     "top_10_next_day_direction_hit_rate": 0.131202,
@@ -38,8 +38,8 @@
     "high_risk_candidates_more_volatile": false
   },
   "challenger": {
-    "total_forecasts": 2145,
-    "pending_forecasts": 21,
+    "total_forecasts": 2146,
+    "pending_forecasts": 22,
     "completed_next_day_forecasts": 2124,
     "top_10_avg_next_day_volatility": 0.095458,
     "top_10_next_day_direction_hit_rate": 0.111726,
@@ -112,8 +112,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "defense": {
-      "total_forecasts": 961,
-      "pending_forecasts": 21,
+      "total_forecasts": 962,
+      "pending_forecasts": 22,
       "completed_next_day_forecasts": 940,
       "top_10_avg_next_day_volatility": 0.158592,
       "top_10_next_day_direction_hit_rate": 0.020779,
@@ -178,8 +178,8 @@
   },
   "by_sector": {
     "AI / Semiconductors": {
-      "total_forecasts": 368,
-      "pending_forecasts": 0,
+      "total_forecasts": 369,
+      "pending_forecasts": 1,
       "completed_next_day_forecasts": 368,
       "top_10_avg_next_day_volatility": 0.237921,
       "top_10_next_day_direction_hit_rate": 0.20122,
@@ -1044,8 +1044,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "no_edge": {
-      "total_forecasts": 1836,
-      "pending_forecasts": 21,
+      "total_forecasts": 1837,
+      "pending_forecasts": 22,
       "completed_next_day_forecasts": 1815,
       "top_10_avg_next_day_volatility": 0.051367,
       "top_10_next_day_direction_hit_rate": 0.0,
@@ -1206,8 +1206,8 @@
       "high_risk_candidates_more_volatile": false
     },
     "NO_EDGE": {
-      "total_forecasts": 1878,
-      "pending_forecasts": 21,
+      "total_forecasts": 1879,
+      "pending_forecasts": 22,
       "completed_next_day_forecasts": 1857,
       "top_10_avg_next_day_volatility": 0.111731,
       "top_10_next_day_direction_hit_rate": 0.017493,
