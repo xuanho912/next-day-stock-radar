@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-13T20:22:31.047734+00:00`
+- generated_at: `2026-11-13T20:47:49.408158+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -33,14 +33,14 @@
 
 - status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=54.17; min_top5_gap=46.5; confirmed_signal_count=1
+- evidence: avg_top5_gap=54.09; min_top5_gap=46.26; confirmed_signal_count=1
 - warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=53.71; avg_execution=63.29; avg_risk=5.5
+- evidence: avg_payoff=53.6; avg_execution=62.67; avg_risk=5.5
 
 ### 当前价确认代理
 
@@ -82,8 +82,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | UNH | 可观察候选 | 共振 76.35; 预期差 58; 赔率 56.93; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
+| 1 | UNH | 可观察候选 | 共振 76.32; 预期差 58; 赔率 56.74; 风险 0; 闸门 不具备高置信优势; 信号 confirmed | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 | 2 | ADBE | 可观察候选 | 共振 67; 预期差 58; 赔率 54.51; 风险 0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
-| 3 | CRM | 可观察候选 | 共振 67; 预期差 46.5; 赔率 49.7; 风险 16.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
+| 3 | CRM | 可观察候选 | 共振 67; 预期差 46.26; 赔率 49.55; 风险 16.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：blocked |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
