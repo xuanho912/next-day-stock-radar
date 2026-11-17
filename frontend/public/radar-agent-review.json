@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-11-17T05:11:38.039512+00:00",
+  "generated_at": "2026-11-17T09:38:03.166693+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,14 +11,14 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 15.85,
-    "avg_top5_confluence_score": 52.44,
-    "avg_top5_expectation_gap_score": 56.6,
-    "avg_top5_payoff_quality_score": 58.11,
+    "avg_top5_elasticity_score": 17.44,
+    "avg_top5_confluence_score": 56.83,
+    "avg_top5_expectation_gap_score": 58.0,
+    "avg_top5_payoff_quality_score": 58.31,
     "avg_top5_execution_quality_score": 53.52,
     "avg_top5_risk_score": 17.33,
     "min_top5_confluence_score": 46.69,
-    "min_top5_expectation_gap_score": 53.8,
+    "min_top5_expectation_gap_score": 58.0,
     "top_sector": "Financial Leaders",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=56.6; min_top5_gap=53.8; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=58.11; avg_execution=53.52; avg_risk=17.33",
+      "evidence": "avg_payoff=58.31; avg_execution=53.52; avg_risk=17.33",
       "warnings": []
     },
     {
@@ -121,7 +121,7 @@
       "ticker": "JPM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 47.62; 预期差 53.8; 赔率 66.9; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 60.81; 预期差 58; 赔率 67.5; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 341.7392,
       "invalidation": 330.4,
       "warnings": [
@@ -129,7 +129,7 @@
         "历史相似样本不足",
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
+        "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
       ]
     },
     {
