@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-11-16T23:47:43.437686+00:00",
+  "generated_at": "2026-11-17T03:00:59.501857+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,16 +11,16 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 18.77,
-    "avg_top5_confluence_score": 56.18,
-    "avg_top5_expectation_gap_score": 58.0,
-    "avg_top5_payoff_quality_score": 51.27,
-    "avg_top5_execution_quality_score": 56.99,
-    "avg_top5_risk_score": 14.67,
-    "min_top5_confluence_score": 46.68,
-    "min_top5_expectation_gap_score": 58.0,
-    "top_sector": "Cloud Software",
-    "top_sector_count": 2,
+    "avg_top5_elasticity_score": 15.85,
+    "avg_top5_confluence_score": 52.44,
+    "avg_top5_expectation_gap_score": 56.6,
+    "avg_top5_payoff_quality_score": 58.11,
+    "avg_top5_execution_quality_score": 53.52,
+    "avg_top5_risk_score": 17.33,
+    "min_top5_confluence_score": 46.69,
+    "min_top5_expectation_gap_score": 53.8,
+    "top_sector": "Financial Leaders",
+    "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
     "top_candidate_type_count": 3,
     "top5_high_liquidity_risk_count": 0,
@@ -49,14 +49,14 @@
       "agent_name": "板块主线代理",
       "status": "pass",
       "conclusion": "先判断资金主线，再允许个股进入高等级机会。",
-      "evidence": "top_sector=Cloud Software(2); top_type=pullback_reversal_setup(3)",
+      "evidence": "top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(3)",
       "warnings": []
     },
     {
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=56.6; min_top5_gap=53.8; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=51.27; avg_execution=56.99; avg_risk=14.67",
+      "evidence": "avg_payoff=58.11; avg_execution=53.52; avg_risk=17.33",
       "warnings": []
     },
     {
@@ -118,10 +118,26 @@
   "top_candidate_agent_notes": [
     {
       "rank": 1,
+      "ticker": "JPM",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 47.62; 预期差 53.8; 赔率 66.9; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 341.7392,
+      "invalidation": 330.4,
+      "warnings": [
+        "风险标记：weak_close_distribution_risk",
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 预期差不足"
+      ]
+    },
+    {
+      "rank": 2,
       "ticker": "CRM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 46.68; 预期差 58; 赔率 59.3; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 46.69; 预期差 58; 赔率 59.31; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 217.3635,
       "invalidation": 208.88,
       "warnings": [
@@ -133,11 +149,11 @@
       ]
     },
     {
-      "rank": 2,
+      "rank": 3,
       "ticker": "UNH",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 63; 预期差 58; 赔率 48.12; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 63; 预期差 58; 赔率 48.13; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 416.4142,
       "invalidation": 388.0,
       "warnings": [
@@ -145,21 +161,6 @@
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
         "信号闸门：催化不足或没有确认新闻 / 成交量没有形成确认 / 赔率质量不足"
-      ]
-    },
-    {
-      "rank": 3,
-      "ticker": "ADBE",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 58.86; 预期差 58; 赔率 46.39; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 248.735,
-      "invalidation": 231.82,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足"
       ]
     }
   ],
