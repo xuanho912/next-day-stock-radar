@@ -2,9 +2,9 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-19T21:14:09.355664+00:00`
+- generated_at: `2026-11-19T22:01:32.147894+00:00`
 - overall_decision: `防守`
-- agency_quality_gate: `不通过`
+- agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
@@ -29,26 +29,27 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=China ADR(1); top_type=pullback_reversal_setup(2)
+- evidence: top_sector=Financial Leaders(1); top_type=pullback_reversal_setup(2)
 
 ### 预期差代理
 
-- status: `fail`
+- status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=53.05; min_top5_gap=48.11; confirmed_signal_count=0
-- warning: 预期差不足，容易变成表面热闹但没有交易价值。
+- evidence: avg_top5_gap=55.89; min_top5_gap=53.79; confirmed_signal_count=0
+- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
-- status: `pass`
+- status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=52.2; avg_execution=54.09; avg_risk=23.0
+- evidence: avg_payoff=47.03; avg_execution=64.09; avg_risk=16.0
+- warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=1; failed=0; missing=0
+- evidence: confirming=0; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
@@ -64,7 +65,7 @@
 
 - status: `warn`
 - conclusion: 检查 Forecast Ledger、Baseline/Challenger 和前向样本是否支持模型升级。
-- evidence: validation=early_evidence; completed=2247; leaderboard=validated
+- evidence: validation=early_evidence; completed=2270; leaderboard=validated
 - warning: 已有早期样本，但还没有达到 30-60 个交易日前向验证标准。
 
 ### 数据质量代理
@@ -85,7 +86,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | PDD | 可观察候选 | 共振 63; 预期差 58; 赔率 59.34; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
-| 2 | HOOD | 可观察候选 | 共振 40.5; 预期差 48.11; 赔率 45.07; 风险 34.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
+| 1 | MA | 可观察候选 | 共振 48.48; 预期差 53.79; 赔率 51.31; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
+| 2 | COST | 共振不足 | 共振 68; 预期差 58; 赔率 42.74; 风险 12.0; 闸门 不具备高置信优势; 信号 partial | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
