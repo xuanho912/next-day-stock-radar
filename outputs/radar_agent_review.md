@@ -2,9 +2,9 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-19T09:11:59.594448+00:00`
+- generated_at: `2026-11-19T21:14:09.355664+00:00`
 - overall_decision: `防守`
-- agency_quality_gate: `谨慎通过`
+- agency_quality_gate: `不通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
 
 ## Hard Warnings
@@ -29,33 +29,33 @@
 
 - status: `pass`
 - conclusion: 先判断资金主线，再允许个股进入高等级机会。
-- evidence: top_sector=AI / Semiconductors(2); top_type=pullback_reversal_setup(3)
+- evidence: top_sector=China ADR(1); top_type=pullback_reversal_setup(2)
 
 ### 预期差代理
 
-- status: `warn`
+- status: `fail`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=58.0; min_top5_gap=58.0; confirmed_signal_count=0
-- warning: Top 5 平均预期差尚可，但最低预期差偏弱。
+- evidence: avg_top5_gap=53.05; min_top5_gap=48.11; confirmed_signal_count=0
+- warning: 预期差不足，容易变成表面热闹但没有交易价值。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=50.3; avg_execution=47.46; avg_risk=17.5
+- evidence: avg_payoff=52.2; avg_execution=54.09; avg_risk=23.0
 
 ### 当前价确认代理
 
 - status: `warn`
 - conclusion: 检查 Finnhub quote 是否支持 Top 候选仍沿主路径运行。
-- evidence: confirming=0; failed=0; missing=0
+- evidence: confirming=1; failed=0; missing=0
 - warning: 当前价确认数量偏少，盘前/盘中需要再次刷新。
 
 ### 风险现实校验代理
 
 - status: `warn`
 - conclusion: 默认怀疑一切表面强势，专查旧数据、proxy、流动性、小样本和冲高回落风险。
-- evidence: proxy_squeeze=3; low_sample=3; liquidity_risk=0
+- evidence: proxy_squeeze=2; low_sample=2; liquidity_risk=0
 - warning: 部分逼空/期权信号仍是 proxy，不能当成真实空头或期权数据。
 - warning: 部分历史相似样本不足，不能把相似样本结论当作验证。
 - warning: Top 10 没有真实共振候选，只能观察，不能进攻。
@@ -85,8 +85,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | PLTR | 可观察候选 | 共振 67; 预期差 58; 赔率 49.13; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
-| 2 | ASML | 可观察候选 | 共振 67; 预期差 58; 赔率 50.24; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
-| 3 | TSM | 可观察候选 | 共振 57.62; 预期差 58; 赔率 51.53; 风险 28.5; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 |
+| 1 | PDD | 可观察候选 | 共振 63; 预期差 58; 赔率 59.34; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 2 | HOOD | 可观察候选 | 共振 40.5; 预期差 48.11; 赔率 45.07; 风险 34.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：news_reversal_or_event_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
