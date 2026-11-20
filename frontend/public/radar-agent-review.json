@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-11-20T21:43:34.738125+00:00",
+  "generated_at": "2026-11-20T22:17:40.676695+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,13 +11,13 @@
     "top5_count": 2,
     "strong_edge_count": 0,
     "moderate_edge_count": 1,
-    "avg_top5_elasticity_score": 24.48,
-    "avg_top5_confluence_score": 46.14,
-    "avg_top5_expectation_gap_score": 55.05,
-    "avg_top5_payoff_quality_score": 46.0,
-    "avg_top5_execution_quality_score": 56.77,
+    "avg_top5_elasticity_score": 24.61,
+    "avg_top5_confluence_score": 46.25,
+    "avg_top5_expectation_gap_score": 55.06,
+    "avg_top5_payoff_quality_score": 46.02,
+    "avg_top5_execution_quality_score": 56.89,
     "avg_top5_risk_score": 25.5,
-    "min_top5_confluence_score": 44.9,
+    "min_top5_confluence_score": 44.92,
     "min_top5_expectation_gap_score": 54.0,
     "top_sector": "AI / Semiconductors",
     "top_sector_count": 1,
@@ -58,7 +58,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=55.05; min_top5_gap=54.0; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=55.06; min_top5_gap=54.0; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -67,7 +67,7 @@
       "agent_name": "执行质量代理",
       "status": "warn",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=46.0; avg_execution=56.77; avg_risk=25.5",
+      "evidence": "avg_payoff=46.02; avg_execution=56.89; avg_risk=25.5",
       "warnings": [
         "赔率或执行质量不足，触发价没有确认前不应把它当成强机会。"
       ]
@@ -125,7 +125,7 @@
       "ticker": "AVGO",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 47.38; 预期差 54; 赔率 53.96; 风险 31.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 47.58; 预期差 54; 赔率 54.0; 风险 31.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 316.11,
       "invalidation": 289.77,
       "warnings": [
@@ -141,7 +141,7 @@
       "ticker": "LLY",
       "candidate_type": "oversold_bounce",
       "agency_verdict": "共振不足",
-      "key_check": "共振 44.9; 预期差 56.11; 赔率 38.03; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 44.92; 预期差 56.12; 赔率 38.04; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 1362.2178,
       "invalidation": 1257.62,
       "warnings": [

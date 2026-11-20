@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-20T21:43:34.738125+00:00`
+- generated_at: `2026-11-20T22:17:40.676695+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -36,14 +36,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=55.05; min_top5_gap=54.0; confirmed_signal_count=0
+- evidence: avg_top5_gap=55.06; min_top5_gap=54.0; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `warn`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=46.0; avg_execution=56.77; avg_risk=25.5
+- evidence: avg_payoff=46.02; avg_execution=56.89; avg_risk=25.5
 - warning: 赔率或执行质量不足，触发价没有确认前不应把它当成强机会。
 
 ### 当前价确认代理
@@ -87,7 +87,7 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | AVGO | 可观察候选 | 共振 47.38; 预期差 54; 赔率 53.96; 风险 31.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
-| 2 | LLY | 共振不足 | 共振 44.9; 预期差 56.11; 赔率 38.03; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
+| 1 | AVGO | 可观察候选 | 共振 47.58; 预期差 54; 赔率 54.0; 风险 31.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 板块主线不够强 / 预期差不足 |
+| 2 | LLY | 共振不足 | 共振 44.92; 预期差 56.12; 赔率 38.04; 风险 20.0; 闸门 不具备高置信优势; 信号 blocked | 风险标记：weak_close_distribution_risk / 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：催化不足或没有确认新闻 / 技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 / 赔率质量不足 / 预期差不足 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
