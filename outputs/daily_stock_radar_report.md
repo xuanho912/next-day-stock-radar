@@ -1,8 +1,8 @@
 # 次日高弹性股票雷达日报
 
-- generated_at: `2026-11-20T20:58:02.306002+00:00`
-- latest_data_date: `2026-11-19`
-- expected_latest_trading_date: `2026-11-19`
+- generated_at: `2026-11-20T21:43:34.648953+00:00`
+- latest_data_date: `2026-11-20`
+- expected_latest_trading_date: `2026-11-20`
 - data_freshness_status: `partial_fallback`
 - market_state: `defense`
 - high_elasticity_opportunity: `False`
@@ -12,4 +12,5 @@
 
 | 排名 | 股票 | 等级 | 弹性 | 共振 | 触发价 | 失效价 | 原因 |
 | ---: | --- | --- | ---: | ---: | ---: | ---: | --- |
-| 1 | COST | B | 18.66 | 62.08 | 1104.7683 | 980.32 | 可靠低吸观察： |
+| 1 | AVGO | A | 35.45 | 47.38 | 316.11 | 289.77 | 可靠低吸通过：价格不属于低价小票 / 20日均美元成交额充足 |
+| 2 | LLY | B | 13.5 | 44.9 | 1362.2178 | 1257.62 | 可靠低吸观察： |
