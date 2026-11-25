@@ -1,6 +1,6 @@
 {
   "version": "radar_agency_review_v1",
-  "generated_at": "2026-11-24T23:59:42.029877+00:00",
+  "generated_at": "2026-11-25T03:36:59.628492+00:00",
   "source_framework": "msitarzewski/agency-agents",
   "source_method": "specialist_agents_quality_gates_evidence_review",
   "overall_decision": "防守",
@@ -11,14 +11,14 @@
     "top5_count": 3,
     "strong_edge_count": 0,
     "moderate_edge_count": 3,
-    "avg_top5_elasticity_score": 30.04,
-    "avg_top5_confluence_score": 65.47,
-    "avg_top5_expectation_gap_score": 55.83,
-    "avg_top5_payoff_quality_score": 56.78,
-    "avg_top5_execution_quality_score": 49.21,
+    "avg_top5_elasticity_score": 29.97,
+    "avg_top5_confluence_score": 65.3,
+    "avg_top5_expectation_gap_score": 55.84,
+    "avg_top5_payoff_quality_score": 54.41,
+    "avg_top5_execution_quality_score": 49.35,
     "avg_top5_risk_score": 12.0,
-    "min_top5_confluence_score": 62.4,
-    "min_top5_expectation_gap_score": 51.49,
+    "min_top5_confluence_score": 62.45,
+    "min_top5_expectation_gap_score": 51.52,
     "top_sector": "Financial Leaders",
     "top_sector_count": 1,
     "top_candidate_type": "pullback_reversal_setup",
@@ -56,7 +56,7 @@
       "agent_name": "预期差代理",
       "status": "warn",
       "conclusion": "验证催化、成交和价格是否真的形成超预期，而不是只靠热度。",
-      "evidence": "avg_top5_gap=55.83; min_top5_gap=51.49; confirmed_signal_count=0",
+      "evidence": "avg_top5_gap=55.84; min_top5_gap=51.52; confirmed_signal_count=0",
       "warnings": [
         "Top 5 平均预期差尚可，但最低预期差偏弱。"
       ]
@@ -65,7 +65,7 @@
       "agent_name": "执行质量代理",
       "status": "pass",
       "conclusion": "检查触发价、失效价、赔率质量和流动性是否可执行。",
-      "evidence": "avg_payoff=56.78; avg_execution=49.21; avg_risk=12.0",
+      "evidence": "avg_payoff=54.41; avg_execution=49.35; avg_risk=12.0",
       "warnings": []
     },
     {
@@ -121,7 +121,7 @@
       "ticker": "JPM",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 67; 预期差 51.49; 赔率 56.33; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 67; 预期差 51.52; 赔率 56.34; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 320.5164,
       "invalidation": 309.18,
       "warnings": [
@@ -133,25 +133,10 @@
     },
     {
       "rank": 2,
-      "ticker": "MSFT",
-      "candidate_type": "pullback_reversal_setup",
-      "agency_verdict": "可观察候选",
-      "key_check": "共振 67; 预期差 58; 赔率 58.97; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
-      "trigger": 501.8484,
-      "invalidation": 481.03,
-      "warnings": [
-        "历史相似样本不足",
-        "逼空/期权相关数据为 proxy",
-        "精准闸门未通过",
-        "信号闸门：板块主线不够强"
-      ]
-    },
-    {
-      "rank": 3,
       "ticker": "KLAC",
       "candidate_type": "pullback_reversal_setup",
       "agency_verdict": "可观察候选",
-      "key_check": "共振 62.4; 预期差 58; 赔率 55.05; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "key_check": "共振 62.45; 预期差 58; 赔率 55.04; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
       "trigger": 135.7884,
       "invalidation": 125.72,
       "warnings": [
@@ -159,6 +144,21 @@
         "逼空/期权相关数据为 proxy",
         "精准闸门未通过",
         "信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强"
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "NFLX",
+      "candidate_type": "pullback_reversal_setup",
+      "agency_verdict": "可观察候选",
+      "key_check": "共振 66.44; 预期差 58; 赔率 51.84; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked",
+      "trigger": 59.5374,
+      "invalidation": 56.56,
+      "warnings": [
+        "历史相似样本不足",
+        "逼空/期权相关数据为 proxy",
+        "精准闸门未通过",
+        "信号闸门：板块主线不够强"
       ]
     }
   ],

@@ -2,7 +2,7 @@
 
 - version: `radar_agency_review_v1`
 - source_framework: `msitarzewski/agency-agents`
-- generated_at: `2026-11-24T23:59:42.029877+00:00`
+- generated_at: `2026-11-25T03:36:59.628492+00:00`
 - overall_decision: `防守`
 - agency_quality_gate: `谨慎通过`
 - market_permission: `防守优先；候选降级，避免把弱信号当成机会。`
@@ -35,14 +35,14 @@
 
 - status: `warn`
 - conclusion: 验证催化、成交和价格是否真的形成超预期，而不是只靠热度。
-- evidence: avg_top5_gap=55.83; min_top5_gap=51.49; confirmed_signal_count=0
+- evidence: avg_top5_gap=55.84; min_top5_gap=51.52; confirmed_signal_count=0
 - warning: Top 5 平均预期差尚可，但最低预期差偏弱。
 
 ### 执行质量代理
 
 - status: `pass`
 - conclusion: 检查触发价、失效价、赔率质量和流动性是否可执行。
-- evidence: avg_payoff=56.78; avg_execution=49.21; avg_risk=12.0
+- evidence: avg_payoff=54.41; avg_execution=49.35; avg_risk=12.0
 
 ### 当前价确认代理
 
@@ -85,8 +85,8 @@
 
 | Rank | Ticker | Verdict | Key Check | Warnings |
 | ---: | --- | --- | --- | --- |
-| 1 | JPM | 可观察候选 | 共振 67; 预期差 51.49; 赔率 56.33; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
-| 2 | MSFT | 可观察候选 | 共振 67; 预期差 58; 赔率 58.97; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
-| 3 | KLAC | 可观察候选 | 共振 62.4; 预期差 58; 赔率 55.05; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 1 | JPM | 可观察候选 | 共振 67; 预期差 51.52; 赔率 56.34; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
+| 2 | KLAC | 可观察候选 | 共振 62.45; 预期差 58; 赔率 55.04; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：技术结构未确认 / 成交量没有形成确认 / 板块主线不够强 |
+| 3 | NFLX | 可观察候选 | 共振 66.44; 预期差 58; 赔率 51.84; 风险 12.0; 闸门 不具备高置信优势; 信号 blocked | 历史相似样本不足 / 逼空/期权相关数据为 proxy / 精准闸门未通过 / 信号闸门：板块主线不够强 |
 
 这是次日高弹性概率雷达，不是投资建议、买卖指令或仓位建议。
